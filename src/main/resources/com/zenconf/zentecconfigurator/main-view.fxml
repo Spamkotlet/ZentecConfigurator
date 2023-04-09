@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" minHeight="640.0" minWidth="720.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.MainController">
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <TabPane prefHeight="548.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+     <tabs>
+       <Tab text="Untitled Tab 2">
+         <content>
+           <AnchorPane minHeight="180.0" minWidth="200.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <Label layoutX="24.0" layoutY="23.0" minHeight="25.0" minWidth="535.0" prefHeight="25.0" prefWidth="535.0" text="Номер схемы" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="723.0" AnchorPane.topAnchor="20.0" />
+                     <ChoiceBox layoutX="570.0" layoutY="19.0" minHeight="25.0" minWidth="690.0" prefHeight="25.0" prefWidth="690.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+         <Tab fx:id="ventSystemSettingsTab" text="Настройки системы">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TableView fx:id="settingsTable" prefHeight="668.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <columns>
+                         <TableColumn prefWidth="75.0" text="Параметр" />
+                         <TableColumn prefWidth="75.0" text="Значение" />
+                       </columns>
+                        <columnResizePolicy>
+                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                     </TableView>
+                  </children>
+               </AnchorPane>
+           </content>
+         </Tab>
+         <Tab fx:id="ventSystemSettingsTab2" onSelectionChanged="#onOpenedVentSystemSettingsTab" text="Untitled Tab">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <ScrollPane fitToWidth="true" prefHeight="669.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <content>
+                           <VBox prefHeight="667.0" prefWidth="1267.0">
+                              <children>
+                                 <TitledPane animated="false" text="Номер технологической схемы" VBox.vgrow="ALWAYS">
+                                   <content>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="46.0" prefWidth="1278.0">
+                                          <children>
+                                             <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" onAction="#onSelectedSchemeNumber" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
+                                             <Label fx:id="schemeNumberLabel" alignment="CENTER_RIGHT" layoutX="414.0" layoutY="15.0" prefHeight="17.0" prefWidth="848.0" text="Label" textAlignment="RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          </children>
+                                       </AnchorPane>
+                                   </content>
+                                    <VBox.margin>
+                                       <Insets top="5.0" />
+                                    </VBox.margin>
+                                 </TitledPane>
+                                 <VBox fx:id="ventSystemSettingsVbox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                       <Insets />
+                                    </VBox.margin>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" />
+                              </padding>
+                           </VBox>
+                        </content>
+                     </ScrollPane>
+                  </children>
+               </AnchorPane>
+           </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+</VBox>

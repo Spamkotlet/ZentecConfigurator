@@ -1,40 +1,62 @@
-package com.zenconf.zentecconfigurator;
+package com.zenconf.zentecconfigurator.controllers;
 
-import com.zenconf.zentecconfigurator.models.CustomTitledPane;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.VentSystemSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class MainController {
-    private List<Scheme> schemes;
-    @FXML
-    public ChoiceBox<String> schemeNumberChoiceBox;
+public class ChangeSchemeController implements Initializable {
+
     @FXML
     public Label schemeNumberLabel;
     @FXML
+    public ChoiceBox<String> schemeNumberChoiceBox;
+    @FXML
+    public TitledPane schemeChoiceTitledPane;
+    @FXML
     public VBox ventSystemSettingsVbox;
+    private List<Scheme> schemes;
 
     @FXML
     protected void onSelectedSchemeNumber() {
         int index = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
             setSchemeNumberLabel(schemes.get(index));
+            schemeChoiceTitledPane.getContent();
             ventSystemSettingsVbox.getChildren().clear();
-            for (String actuator: schemes.get(index).getActuators()) {
+            ventSystemSettingsVbox.getChildren().add(schemeChoiceTitledPane);
+            for (String actuator : schemes.get(index).getActuators()) {
                 //ventSystemSettingsVbox.getChildren().add(new CustomTitledPane(actuator, "Parameter"));
                 TitledPane titledPane = new TitledPane();
+                titledPane.setExpanded(true);
                 titledPane.setText(actuator);
 
+                CheckBox checkBox = new CheckBox("Используется");
+                checkBox.setPadding(new Insets(5, 5, 5, 5));
+                checkBox.setAlignment(Pos.CENTER_LEFT);
+                titledPane.setContent(checkBox);
+                ventSystemSettingsVbox.getChildren().add(titledPane);
             }
         }
     }
@@ -91,5 +113,14 @@ public class MainController {
         }
         schemeDescription.append(actuators.get(actuators.size() - 1));
         schemeNumberLabel.setText(schemeDescription.toString());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        onOpenedVentSystemSettingsTab();
+
+        schemeNumberChoiceBox.setOnAction(e ->
+                onSelectedSchemeNumber()
+        );
     }
 }

@@ -14,4 +14,6 @@ module com.zenconf.zentecconfigurator {
     opens com.zenconf.zentecconfigurator.models to com.fasterxml.jackson.databind;
     exports com.zenconf.zentecconfigurator;
     exports com.zenconf.zentecconfigurator.models;
+    exports com.zenconf.zentecconfigurator.controllers;
+    opens com.zenconf.zentecconfigurator.controllers to javafx.fxml;
 }

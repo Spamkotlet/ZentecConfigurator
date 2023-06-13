@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minHeight="640.0" minWidth="720.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.MainController">
-   <MenuBar>
+<VBox alignment="CENTER" minHeight="640.0" minWidth="720.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.MainController">
+   <MenuBar prefHeight="25.0" prefWidth="1280.0">
      <menus>
        <Menu mnemonicParsing="false" text="File">
          <items>
@@ -35,72 +32,106 @@
        </Menu>
      </menus>
    </MenuBar>
-   <TabPane prefHeight="548.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-     <tabs>
-       <Tab text="Untitled Tab 2">
-         <content>
-           <AnchorPane minHeight="180.0" minWidth="200.0" prefHeight="180.0" prefWidth="200.0">
+ <AnchorPane fx:id="mainAnchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1280.0">
+      <children>
+         <SplitPane fx:id="mainSplitPane" dividerPositions="0.25039123630672927" prefHeight="695.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+           <items>
+             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
                   <children>
-                     <Label layoutX="24.0" layoutY="23.0" minHeight="25.0" minWidth="535.0" prefHeight="25.0" prefWidth="535.0" text="Номер схемы" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="723.0" AnchorPane.topAnchor="20.0" />
-                     <ChoiceBox layoutX="570.0" layoutY="19.0" minHeight="25.0" minWidth="690.0" prefHeight="25.0" prefWidth="690.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                  </children>
-               </AnchorPane>
-         </content>
-       </Tab>
-         <Tab fx:id="ventSystemSettingsTab" text="Настройки системы">
-           <content>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                     <TableView fx:id="settingsTable" prefHeight="668.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                       <columns>
-                         <TableColumn prefWidth="75.0" text="Параметр" />
-                         <TableColumn prefWidth="75.0" text="Значение" />
-                       </columns>
-                        <columnResizePolicy>
-                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                        </columnResizePolicy>
-                     </TableView>
-                  </children>
-               </AnchorPane>
-           </content>
-         </Tab>
-         <Tab fx:id="ventSystemSettingsTab2" onSelectionChanged="#onOpenedVentSystemSettingsTab" text="Untitled Tab">
-           <content>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                     <ScrollPane fitToWidth="true" prefHeight="669.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <content>
-                           <VBox prefHeight="667.0" prefWidth="1267.0">
+                     <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                           <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
                               <children>
-                                 <TitledPane animated="false" text="Номер технологической схемы" VBox.vgrow="ALWAYS">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="46.0" prefWidth="1278.0">
-                                          <children>
-                                             <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" onAction="#onSelectedSchemeNumber" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
-                                             <Label fx:id="schemeNumberLabel" alignment="CENTER_RIGHT" layoutX="414.0" layoutY="15.0" prefHeight="17.0" prefWidth="848.0" text="Label" textAlignment="RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                    <VBox.margin>
-                                       <Insets top="5.0" />
-                                    </VBox.margin>
-                                 </TitledPane>
-                                 <VBox fx:id="ventSystemSettingsVbox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                                    <VBox.margin>
+                                 <BorderPane prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <center>
+                                       <ImageView id="schemeButton" fx:id="schemeButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickSchemeButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                          <image>
+                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Схема_1.png" />
+                                          </image>
+                                       </ImageView>
+                                    </center>
+                                    <bottom>
+                                       <Label text="Схема" BorderPane.alignment="CENTER" />
+                                    </bottom>
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                    <opaqueInsets>
                                        <Insets />
-                                    </VBox.margin>
-                                 </VBox>
+                                    </opaqueInsets>
+                                 </BorderPane>
+                                 <BorderPane layoutY="150.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <center>
+                                       <ImageView fx:id="sensorsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                          <image>
+                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Датчики.png" />
+                                          </image>
+                                       </ImageView>
+                                    </center>
+                                    <bottom>
+                                       <Label text="Датчики" BorderPane.alignment="CENTER" />
+                                    </bottom>
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                 </BorderPane>
+                                 <BorderPane layoutY="300.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <center>
+                                       <ImageView fx:id="actuatorsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                          <image>
+                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Устройства.png" />
+                                          </image>
+                                       </ImageView>
+                                    </center>
+                                    <bottom>
+                                       <Label text="Устройства" BorderPane.alignment="CENTER" />
+                                    </bottom>
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                    <opaqueInsets>
+                                       <Insets />
+                                    </opaqueInsets>
+                                 </BorderPane>
+                                 <BorderPane layoutY="450.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <center>
+                                       <ImageView fx:id="inOutsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                          <image>
+                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Вхвых.png" />
+                                          </image>
+                                       </ImageView>
+                                    </center>
+                                    <bottom>
+                                       <Label text="Входы/выходы" BorderPane.alignment="CENTER" />
+                                    </bottom>
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                 </BorderPane>
+                                 <BorderPane layoutY="600.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <center>
+                                       <ImageView fx:id="settingsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                          <image>
+                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Настройки.png" />
+                                          </image>
+                                       </ImageView>
+                                    </center>
+                                    <bottom>
+                                       <Label text="Настройки" BorderPane.alignment="CENTER" />
+                                    </bottom>
+                                    <padding>
+                                       <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                 </BorderPane>
                               </children>
-                              <padding>
-                                 <Insets bottom="5.0" left="5.0" right="5.0" />
-                              </padding>
-                           </VBox>
-                        </content>
-                     </ScrollPane>
+                           </AnchorPane>
+                        </children>
+                     </VBox>
                   </children>
                </AnchorPane>
-           </content>
-         </Tab>
-     </tabs>
-   </TabPane>
+             <AnchorPane fx:id="splitPaneRight" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="957.0" />
+           </items>
+         </SplitPane>
+      </children>
+   </AnchorPane>
 </VBox>

@@ -1,137 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minHeight="640.0" minWidth="720.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.MainController">
-   <MenuBar prefHeight="25.0" prefWidth="1280.0">
-     <menus>
-       <Menu mnemonicParsing="false" text="File">
-         <items>
-           <MenuItem mnemonicParsing="false" text="Close" />
-         </items>
-       </Menu>
-       <Menu mnemonicParsing="false" text="Edit">
-         <items>
-           <MenuItem mnemonicParsing="false" text="Delete" />
-         </items>
-       </Menu>
-       <Menu mnemonicParsing="false" text="Help">
-         <items>
-           <MenuItem mnemonicParsing="false" text="About" />
-         </items>
-       </Menu>
-     </menus>
-   </MenuBar>
- <AnchorPane fx:id="mainAnchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1280.0">
-      <children>
-         <SplitPane fx:id="mainSplitPane" dividerPositions="0.25039123630672927" prefHeight="695.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-           <items>
-             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
-                  <children>
-                     <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <children>
-                           <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
-                              <children>
-                                 <BorderPane prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <center>
-                                       <ImageView id="schemeButton" fx:id="schemeButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickSchemeButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                          <image>
-                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Схема_1.png" />
-                                          </image>
-                                       </ImageView>
-                                    </center>
-                                    <bottom>
-                                       <Label text="Схема" BorderPane.alignment="CENTER" />
-                                    </bottom>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                    <opaqueInsets>
-                                       <Insets />
-                                    </opaqueInsets>
-                                 </BorderPane>
-                                 <BorderPane layoutY="150.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <center>
-                                       <ImageView fx:id="sensorsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                          <image>
-                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Датчики.png" />
-                                          </image>
-                                       </ImageView>
-                                    </center>
-                                    <bottom>
-                                       <Label text="Датчики" BorderPane.alignment="CENTER" />
-                                    </bottom>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                 </BorderPane>
-                                 <BorderPane layoutY="300.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <center>
-                                       <ImageView fx:id="actuatorsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                          <image>
-                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Устройства.png" />
-                                          </image>
-                                       </ImageView>
-                                    </center>
-                                    <bottom>
-                                       <Label text="Устройства" BorderPane.alignment="CENTER" />
-                                    </bottom>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                    <opaqueInsets>
-                                       <Insets />
-                                    </opaqueInsets>
-                                 </BorderPane>
-                                 <BorderPane layoutY="450.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <center>
-                                       <ImageView fx:id="inOutsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                          <image>
-                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Вхвых.png" />
-                                          </image>
-                                       </ImageView>
-                                    </center>
-                                    <bottom>
-                                       <Label text="Входы/выходы" BorderPane.alignment="CENTER" />
-                                    </bottom>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                 </BorderPane>
-                                 <BorderPane layoutY="600.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <center>
-                                       <ImageView fx:id="settingsButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                          <image>
-                                             <Image url="@../../../../../../../../Documents/Проекты/Модернизация%20стенда%20проверки%20ЩУ/Icons/Настройки.png" />
-                                          </image>
-                                       </ImageView>
-                                    </center>
-                                    <bottom>
-                                       <Label text="Настройки" BorderPane.alignment="CENTER" />
-                                    </bottom>
-                                    <padding>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                 </BorderPane>
-                              </children>
-                           </AnchorPane>
-                        </children>
-                     </VBox>
-                  </children>
-               </AnchorPane>
-             <AnchorPane fx:id="splitPaneRight" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="957.0" />
-           </items>
-         </SplitPane>
-      </children>
-   </AnchorPane>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.MainController">
+   <children>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="24.0" prefHeight="761.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <AnchorPane fx:id="mainAnchor" prefHeight="697.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <SplitPane fx:id="mainSplitPane" dividerPositions="0.25039123630672927" prefHeight="695.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <AnchorPane minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
+                           <children>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="745.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <AnchorPane prefHeight="664.0" prefWidth="313.0">
+                                       <children>
+                                          <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <panes>
+                                              <TitledPane animated="false" text="Тестирование">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                               <children>
+                                                                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
+                                                                     <children>
+                                                                        <BorderPane prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView id="schemeButton" fx:id="schemeButton1" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickStartTestButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Start_test.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Начать тестирование" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                           <opaqueInsets>
+                                                                              <Insets />
+                                                                           </opaqueInsets>
+                                                                        </BorderPane>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                              <TitledPane animated="false" text="Конфигуратор">
+                                                <content>
+                                                  <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
+                                                                     <children>
+                                                                        <BorderPane prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView id="schemeButton" fx:id="schemeButton" accessibleText="Схема" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickSchemeButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Схема_1.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Схема" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                           <opaqueInsets>
+                                                                              <Insets />
+                                                                           </opaqueInsets>
+                                                                        </BorderPane>
+                                                                        <BorderPane layoutY="150.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView fx:id="sensorsButton" accessibleText="Датчики" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickSensorsButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Датчики.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Датчики" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                        </BorderPane>
+                                                                        <BorderPane layoutY="300.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView fx:id="actuatorsButton" accessibleText="Устройства" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickActuatorsButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Устройства.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Устройства" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                           <opaqueInsets>
+                                                                              <Insets />
+                                                                           </opaqueInsets>
+                                                                        </BorderPane>
+                                                                        <BorderPane layoutY="450.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView fx:id="inOutsButton" accessibleText="Входа-выхода" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickInOutsButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Вхвых.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Входы/выходы" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                        </BorderPane>
+                                                                        <BorderPane layoutY="600.0" prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                                           <center>
+                                                                              <ImageView fx:id="settingsButton" accessibleText="Настройки" fitHeight="80.0" fitWidth="80.0" nodeOrientation="INHERIT" onMouseClicked="#onClickInOutsButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                                 <image>
+                                                                                    <Image url="@graphics/Настройки.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </center>
+                                                                           <bottom>
+                                                                              <Label text="Настройки" BorderPane.alignment="CENTER" />
+                                                                           </bottom>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" top="10.0" />
+                                                                           </padding>
+                                                                        </BorderPane>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                            </panes>
+                                          </Accordion>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="splitPaneRight" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="957.0" />
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <MenuBar prefHeight="25.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

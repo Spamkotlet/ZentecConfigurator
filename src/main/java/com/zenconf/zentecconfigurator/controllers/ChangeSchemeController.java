@@ -69,8 +69,8 @@ public class ChangeSchemeController implements Initializable {
         ObservableList<String> schemesItems = getSchemeItems(schemes);
 
         schemeNumberChoiceBox.setItems(schemesItems);
-        schemeNumberChoiceBox.setValue(schemesItems.get(22));
-        setSchemeNumberLabel(schemes.get(22));
+        schemeNumberChoiceBox.setValue(schemesItems.get(4));
+        setSchemeNumberLabel(schemes.get(4));
     }
 
     private List<Scheme> getSchemesFromJson(String file) {
@@ -122,5 +122,9 @@ public class ChangeSchemeController implements Initializable {
         schemeNumberChoiceBox.setOnAction(e ->
                 onSelectedSchemeNumber()
         );
+    }
+
+    public void onClickForward() {
+
     }
 }

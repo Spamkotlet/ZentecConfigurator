@@ -1,18 +1,20 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zenconf.zentecconfigurator.Application;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.VentSystemSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -122,9 +124,5 @@ public class ChangeSchemeController implements Initializable {
         schemeNumberChoiceBox.setOnAction(e ->
                 onSelectedSchemeNumber()
         );
-    }
-
-    public void onClickForward() {
-
     }
 }

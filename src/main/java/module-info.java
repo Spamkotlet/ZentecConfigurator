@@ -16,4 +16,6 @@ module com.zenconf.zentecconfigurator {
     exports com.zenconf.zentecconfigurator.models;
     exports com.zenconf.zentecconfigurator.controllers;
     opens com.zenconf.zentecconfigurator.controllers to javafx.fxml;
+    exports com.zenconf.zentecconfigurator.controllers.testing;
+    opens com.zenconf.zentecconfigurator.controllers.testing to javafx.fxml;
 }

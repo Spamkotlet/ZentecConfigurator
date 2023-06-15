@@ -48,7 +48,7 @@
                                                                               </ImageView>
                                                                            </center>
                                                                            <bottom>
-                                                                              <Label text="Начать тестирование" BorderPane.alignment="CENTER" />
+                                                                              <Label text="Тестирование" BorderPane.alignment="CENTER" />
                                                                            </bottom>
                                                                            <padding>
                                                                               <Insets bottom="10.0" top="10.0" />

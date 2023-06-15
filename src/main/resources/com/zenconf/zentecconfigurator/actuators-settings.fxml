@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <content>
-        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
+        <VBox minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
             <children>
-            <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор">
+            <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор" VBox.vgrow="ALWAYS">
                <content>
                   <AnchorPane minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
                      <children>
@@ -82,7 +82,7 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-                <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Электрический нагреватель 1">
+                <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Электрический нагреватель 1" VBox.vgrow="ALWAYS">
                     <content>
                         <AnchorPane minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
                             <children>

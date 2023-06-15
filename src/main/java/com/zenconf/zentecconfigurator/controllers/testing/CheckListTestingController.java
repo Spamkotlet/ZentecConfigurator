@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InOutsSettingsTestingController implements Initializable {
+public class CheckListTestingController implements Initializable {
 
     @FXML
     public Button forwardButton;
@@ -41,7 +41,7 @@ public class InOutsSettingsTestingController implements Initializable {
             Scene currentScene = forwardButton.getScene();
             Parent root = currentScene.getRoot();
             try {
-                Node testingPanel = FXMLLoader.load(Application.class.getResource("fxml/testing/actuators-settings-testing.fxml"));
+                Node testingPanel = FXMLLoader.load(Application.class.getResource("fxml/testing/waiting-io-testing.fxml"));
                 AnchorPane splitPaneRight = (AnchorPane) root.lookup("#splitPaneRight");
                 splitPaneRight.getChildren().clear();
                 splitPaneRight.getChildren().add(testingPanel);

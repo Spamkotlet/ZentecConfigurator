@@ -23,19 +23,19 @@
                <children>
                   <SplitPane fx:id="mainSplitPane" dividerPositions="0.25039123630672927" prefHeight="695.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <items>
-                        <AnchorPane minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
+                        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
                            <children>
                               <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="745.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>
                                     <AnchorPane prefHeight="664.0" prefWidth="313.0">
                                        <children>
                                           <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <panes>
-                                              <TitledPane animated="false" text="Тестирование">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <panes>
+                                                <TitledPane animated="false" text="Тестирование">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
                                                                   <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
                                                                      <children>
@@ -63,11 +63,11 @@
                                                             </VBox>
                                                          </children>
                                                       </AnchorPane>
-                                                </content>
-                                              </TitledPane>
-                                              <TitledPane animated="false" text="Конфигуратор">
-                                                <content>
-                                                  <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                                                   </content>
+                                                </TitledPane>
+                                                <TitledPane animated="false" text="Конфигуратор">
+                                                   <content>
+                                                      <AnchorPane prefHeight="180.0" prefWidth="200.0">
                                                          <children>
                                                             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
@@ -160,9 +160,9 @@
                                                             </VBox>
                                                          </children>
                                                       </AnchorPane>
-                                                </content>
-                                              </TitledPane>
-                                            </panes>
+                                                   </content>
+                                                </TitledPane>
+                                             </panes>
                                           </Accordion>
                                        </children>
                                     </AnchorPane>

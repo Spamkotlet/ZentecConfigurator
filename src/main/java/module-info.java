@@ -9,6 +9,7 @@ module com.zenconf.zentecconfigurator {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.fasterxml.jackson.databind;
+    requires json.simple;
 
     opens com.zenconf.zentecconfigurator to javafx.fxml;
     opens com.zenconf.zentecconfigurator.models to com.fasterxml.jackson.databind;

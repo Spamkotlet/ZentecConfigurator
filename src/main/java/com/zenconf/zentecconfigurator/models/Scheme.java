@@ -6,13 +6,13 @@ public class Scheme {
 
     private String number;
     private String name;
-    private List<String> actuators;
+    private List<Actuator> actuators;
 
     public String getName() {
         return name;
     }
 
-    public List<String> getActuators() {
+    public List<Actuator> getActuators() {
         return actuators;
     }
 
@@ -24,7 +24,7 @@ public class Scheme {
 
     }
 
-    public Scheme(String number, String name, List<String> actuators) {
+    public Scheme(String number, String name, List<Actuator> actuators) {
         this.number = number;
         this.name = name;
         this.actuators = actuators;

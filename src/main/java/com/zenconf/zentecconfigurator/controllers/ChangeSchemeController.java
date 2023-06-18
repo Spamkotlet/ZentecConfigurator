@@ -1,35 +1,30 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zenconf.zentecconfigurator.Application;
+import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
-import com.zenconf.zentecconfigurator.models.VentSystemSettings;
+import com.zenconf.zentecconfigurator.models.SchemeTitledPane;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChangeSchemeController implements Initializable {
 
+    private Stage primaryStage;
     @FXML
     public Label schemeNumberLabel;
     @FXML
@@ -37,34 +32,12 @@ public class ChangeSchemeController implements Initializable {
     @FXML
     public TitledPane schemeChoiceTitledPane;
     @FXML
-    public VBox ventSystemSettingsVbox;
+    public VBox choiceSchemeVbox;
     private List<Scheme> schemes;
+    private Scheme selectedScheme;
 
-    @FXML
-    protected void onSelectedSchemeNumber() {
-        int index = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            setSchemeNumberLabel(schemes.get(index));
-            schemeChoiceTitledPane.getContent();
-            ventSystemSettingsVbox.getChildren().clear();
-            ventSystemSettingsVbox.getChildren().add(schemeChoiceTitledPane);
-            for (String actuator : schemes.get(index).getActuators()) {
-                //ventSystemSettingsVbox.getChildren().add(new CustomTitledPane(actuator, "Parameter"));
-                TitledPane titledPane = new TitledPane();
-                titledPane.setExpanded(true);
-                titledPane.setText(actuator);
-
-                CheckBox checkBox = new CheckBox("Используется");
-                checkBox.setPadding(new Insets(5, 5, 5, 5));
-                checkBox.setAlignment(Pos.CENTER_LEFT);
-                titledPane.setContent(checkBox);
-                ventSystemSettingsVbox.getChildren().add(titledPane);
-            }
-        }
-    }
-
-    @FXML
-    protected void onOpenedVentSystemSettingsTab() {
+    // Чтение файла со схемами schemes.json
+    protected void onOpenedChoiceSchemePane() {
         String file = "src/schemes.json";
 
         schemes = getSchemesFromJson(file);
@@ -75,25 +48,36 @@ public class ChangeSchemeController implements Initializable {
         setSchemeNumberLabel(schemes.get(4));
     }
 
+    @FXML
+    protected void onSelectedSchemeNumber() {
+        int index = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
+        selectedScheme = schemes.get(index);
+
+        setSchemeNumberLabel(schemes.get(index));
+        schemeChoiceTitledPane.getContent();
+        choiceSchemeVbox.getChildren().clear();
+        choiceSchemeVbox.getChildren().add(schemeChoiceTitledPane);
+        for (Actuator actuator : schemes.get(index).getActuators()) {
+            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
+            choiceSchemeVbox.getChildren().add(schemeTitledPane);
+        }
+    }
+
     private List<Scheme> getSchemesFromJson(String file) {
         List<Scheme> schemes;
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
                         new FileInputStream(file),
                         "windows-1251"))) {
+            JSONParser parser = new JSONParser();
             ObjectMapper mapper = new ObjectMapper();
-            StringBuilder jsonString = new StringBuilder();
-            while (reader.ready()) {
-                jsonString.append(reader.readLine());
-            }
-            VentSystemSettings ventSystemSettings = mapper.readValue(
-                    new String(jsonString.toString().getBytes(), StandardCharsets.UTF_8),
-                    VentSystemSettings.class);
-            schemes = ventSystemSettings.getSchemes();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {});
             System.out.println("Number: " + schemes.get(0).getNumber() +
                     " Name: " + schemes.get(0).getName() +
                     " Actuators: " + schemes.get(0).getActuators());
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return schemes;
@@ -109,9 +93,9 @@ public class ChangeSchemeController implements Initializable {
 
     private void setSchemeNumberLabel(Scheme scheme) {
         StringBuilder schemeDescription = new StringBuilder();
-        List<String> actuators = scheme.getActuators();
+        List<Actuator> actuators = scheme.getActuators();
         for (int i = 0; i < actuators.size() - 1; i++) {
-            schemeDescription.append(actuators.get(i)).append(", ");
+            schemeDescription.append(actuators.get(i).getName()).append(", ");
         }
         schemeDescription.append(actuators.get(actuators.size() - 1));
         schemeNumberLabel.setText(schemeDescription.toString());
@@ -119,10 +103,20 @@ public class ChangeSchemeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        onOpenedVentSystemSettingsTab();
+        onOpenedChoiceSchemePane();
 
-        schemeNumberChoiceBox.setOnAction(e ->
-                onSelectedSchemeNumber()
+        schemeNumberChoiceBox.setOnAction(e -> {
+                    System.out.println("Выбор схемы");
+                    onSelectedSchemeNumber();
+                }
         );
+    }
+
+    public Scheme getSelectedScheme() {
+        return selectedScheme;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 }

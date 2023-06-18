@@ -4,10 +4,12 @@ import com.zenconf.zentecconfigurator.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +26,9 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Zentec Configurator");
         stage.setScene(scene);
         stage.show();
+
+        MainController mainController = fxmlLoader.getController();
+        mainController.setPrimaryStage(stage);
 
 //        ImageView schemeImageView = (ImageView) scene.lookup("#schemeButton");
 //        ImageView sensorsImageView = (ImageView) scene.lookup("#sensorsButton");

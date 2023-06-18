@@ -1,43 +1,82 @@
 {
   "controls": {
-    "checkbox": 0,
-    "spinner": 1
+    "checkBox": 0,
+    "spinner": 1,
+    "choiceBox": 2
   },
-  "Приточный вентилятор": [
+  "actuators": [
     {
-      "В работе": {
-        "control": 0,
-        "min_value": 0,
-        "max_value": 1
-      }
+      "name": "Приточный вентилятор",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1
+        },
+        {
+          "name": "Задержка РПД",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 300
+        },
+        {
+          "name": "Min U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "name": "Nom U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "name": "Max U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        }
+      ]
     },
     {
-      "Задержка РПД": {
-        "control": 1,
-        "min_value": 0,
-        "max_value": 300
-      }
+      "name": "Вытяжной вентилятор",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1
+        },
+        {
+          "name": "Задержка РПД",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 300
+        },
+        {
+          "name": "Min U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "name": "Nom U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        },
+        {
+          "name": "Max U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100
+        }
+      ]
     },
     {
-      "Min U, %": {
-        "control": 1,
-        "min_value": 0,
-        "max_value": 100
-      }
-    },
-    {
-      "Nom U, %": {
-        "control": 1,
-        "min_value": 0,
-        "max_value": 100
-      }
-    },
-    {
-      "Max U, %": {
-        "control": 1,
-        "min_value": 0,
-        "max_value": 100
-      }
+      "name": "Электрический нагреватель"
     }
   ]
 }

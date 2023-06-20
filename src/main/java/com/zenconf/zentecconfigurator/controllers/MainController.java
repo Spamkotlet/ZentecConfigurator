@@ -120,19 +120,7 @@ public class MainController extends CommonController implements Initializable {
 
     private Node createNewNode(String resourcePath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
-        Parent node = loader.load();
-
-        Class<?> aClass = loader.getController().getClass();
-        if (aClass.equals(ChangeSchemeController.class)) {
-            ChangeSchemeController changeSchemeController = loader.getController();
-            changeSchemeController.setPrimaryStage(primaryStage);
-        } else if (aClass.equals(ActuatorsController.class)) {
-            ActuatorsController controller = loader.getController();
-            controller.setPrimaryStage(primaryStage);
-        }
-
-        System.out.println(aClass);
-        return node;
+        return loader.load();
     }
 
 //    private Node createNewNode(String resourcePath) throws IOException {

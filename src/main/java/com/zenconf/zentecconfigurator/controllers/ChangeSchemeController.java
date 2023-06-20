@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 
 public class ChangeSchemeController implements Initializable {
 
-    private Stage primaryStage;
     @FXML
     public Label schemeNumberLabel;
     @FXML
@@ -34,7 +33,7 @@ public class ChangeSchemeController implements Initializable {
     @FXML
     public VBox choiceSchemeVbox;
     private List<Scheme> schemes;
-    private Scheme selectedScheme;
+    static Scheme selectedScheme = null;
 
     // Чтение файла со схемами schemes.json
     protected void onOpenedChoiceSchemePane() {
@@ -110,13 +109,5 @@ public class ChangeSchemeController implements Initializable {
                     onSelectedSchemeNumber();
                 }
         );
-    }
-
-    public Scheme getSelectedScheme() {
-        return selectedScheme;
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
     }
 }

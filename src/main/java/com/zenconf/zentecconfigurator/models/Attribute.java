@@ -1,11 +1,16 @@
 package com.zenconf.zentecconfigurator.models;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Attribute {
 
     private String name;
     private Controls control;
     private int minValue;
     private int maxValue;
+    private List<String> values;
 
     public void setName(String name) {
         this.name = name;
@@ -23,6 +28,10 @@ public class Attribute {
         this.maxValue = maxValue;
     }
 
+    public void setValues(List<String> values) {
+        this.values = values;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,5 +46,9 @@ public class Attribute {
 
     public int getMaxValue() {
         return maxValue;
+    }
+
+    public List<String> getValues() {
+        return values;
     }
 }

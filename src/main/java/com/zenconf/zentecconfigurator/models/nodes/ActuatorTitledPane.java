@@ -23,14 +23,21 @@ public class ActuatorTitledPane extends TitledPane {
 
     public ActuatorTitledPane(Actuator actuator) {
 
-        VBox vBox = new VBox();
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(10);
-        vBox.setPadding(new Insets(10));
+        VBox vBox = createMainVBox();
+        vBox.setFillWidth(true);
+
+        AnchorPane.setLeftAnchor(vBox, 0.0);
+        AnchorPane.setRightAnchor(vBox, 0.0);
+        AnchorPane.setTopAnchor(vBox, 0.0);
+        AnchorPane.setBottomAnchor(vBox, 0.0);
 
         for (Attribute attribute : actuator.getAttributes()) {
             if (attribute.getControl() == Controls.SPINNER) {
-                vBox.getChildren().add(newSpinner(attribute));
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute);
+                vBox.getChildren().add(labeledSpinner.getSpinner());
+            } else if (attribute.getControl() == Controls.CHOICE_BOX) {
+                LabeledChoiceBox labeledChoiceBox = new LabeledChoiceBox(attribute);
+                vBox.getChildren().add(labeledChoiceBox.getChoiceBox());
             }
         }
 
@@ -41,29 +48,11 @@ public class ActuatorTitledPane extends TitledPane {
         this.setContent(mainAnchor);
     }
 
-    private Node newSpinner(Attribute attribute) {
-        Label label = new Label(attribute.getName());
-        Spinner<Double> spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), 0);
-
-        AnchorPane labelAnchor = new AnchorPane();
-        labelAnchor.getChildren().add(label);
-        HBox.setHgrow(labelAnchor, Priority.ALWAYS);
-        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
-        AnchorPane.setRightAnchor(labelAnchor, 0.0);
-        AnchorPane.setTopAnchor(labelAnchor, 0.0);
-        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
-
-        AnchorPane spinnerAnchor = new AnchorPane();
-        spinnerAnchor.getChildren().add(spinner);
-        AnchorPane.setLeftAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setRightAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setTopAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setBottomAnchor(spinnerAnchor, 0.0);
-
-        HBox hBox = new HBox();
-        hBox.getChildren().addAll(labelAnchor, spinnerAnchor);
-        hBox.setSpacing(10);
-
-        return hBox;
+    private VBox createMainVBox() {
+        VBox vBox = new VBox();
+//        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
+        vBox.setPadding(new Insets(10));
+        return vBox;
     }
 }

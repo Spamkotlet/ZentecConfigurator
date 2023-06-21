@@ -1,4 +1,4 @@
-package com.zenconf.zentecconfigurator.models;
+package com.zenconf.zentecconfigurator.models.nodes;
 
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;

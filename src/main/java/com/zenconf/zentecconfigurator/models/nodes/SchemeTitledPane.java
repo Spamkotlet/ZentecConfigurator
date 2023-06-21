@@ -1,5 +1,6 @@
-package com.zenconf.zentecconfigurator.models;
+package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.models.Actuator;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;

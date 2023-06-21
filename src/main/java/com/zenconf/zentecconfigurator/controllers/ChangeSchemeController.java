@@ -2,6 +2,11 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intelligt.modbus.jlibmodbus.Modbus;
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
+import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
@@ -20,6 +25,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+// TEST
+import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
+import jssc.SerialPortList;
 
 public class ChangeSchemeController implements Initializable {
 
@@ -59,6 +68,8 @@ public class ChangeSchemeController implements Initializable {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
             choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
+
+        setSchemeNumberModbus();
     }
 
     private List<Scheme> getSchemesFromJson(String file) {
@@ -108,5 +119,49 @@ public class ChangeSchemeController implements Initializable {
                     onSelectedSchemeNumber();
                 }
         );
+    }
+
+    // TEST
+    private void setSchemeNumberModbus() {
+        SerialParameters sp = new SerialParameters();
+        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
+        try {
+            String[] dev_list = SerialPortList.getPortNames();
+            if (dev_list.length > 0) {
+                sp.setDevice(dev_list[0]);
+                sp.setBaudRate(SerialPort.BaudRate.BAUD_RATE_9600);
+                sp.setDataBits(8);
+                sp.setParity(SerialPort.Parity.EVEN);
+                sp.setStopBits(1);
+
+                ModbusMaster master = ModbusMasterFactory.createModbusMasterRTU(sp);
+                master.connect();
+
+                int slaveId = 247;
+                int offset = 0;
+                int quantity = 1;
+
+                try {
+                    int[] registerValues = master.readHoldingRegisters(slaveId, offset, quantity);
+                    for (int value : registerValues) {
+                        System.out.println("Address: " + offset++ + ", Value: " + value);
+                    }
+                } catch (RuntimeException e) {
+                    throw e;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        master.disconnect();
+                    } catch (ModbusIOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

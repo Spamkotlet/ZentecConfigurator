@@ -37,6 +37,16 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100
+        },
+        {
+          "name": "Критичность аварии",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 1,
+          "values": [
+            "Не критичная",
+            "Критичная"
+          ]
         }
       ]
     },

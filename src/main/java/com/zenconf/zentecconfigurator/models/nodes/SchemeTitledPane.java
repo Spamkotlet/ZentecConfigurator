@@ -1,6 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Element;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
@@ -13,9 +13,9 @@ public class SchemeTitledPane extends TitledPane {
 
     }
 
-    public SchemeTitledPane(Actuator actuator) {
+    public SchemeTitledPane(Element element) {
         CheckBox checkBox = new CheckBox();
-        checkBox.setSelected(actuator.getIsUsedDefault());
+        checkBox.setSelected(element.getIsUsedDefault());
         checkBox.setText("Используется");
 
         AnchorPane anchorPane = new AnchorPane();
@@ -25,7 +25,7 @@ public class SchemeTitledPane extends TitledPane {
         vBox.getChildren().add(anchorPane);
         vBox.setAlignment(Pos.CENTER);
 
-        this.setText(actuator.getName());
+        this.setText(element.getName());
         this.setContent(vBox);
     }
 }

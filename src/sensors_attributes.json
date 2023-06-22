@@ -1,0 +1,99 @@
+{
+  "controls": {
+    "checkBox": 0,
+    "spinner": 1,
+    "choiceBox": 2
+  },
+  "sensors": [
+    {
+      "name": "[ПРИТОК] Температура приточного воздуха",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "address": 123
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ],
+          "address": 123
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60
+        }
+      ]
+    },
+    {
+      "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "address": 123
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ],
+          "address": 123
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60
+        }
+      ]
+    },
+    {
+      "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "address": 123
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ],
+          "address": 123
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60
+        }
+      ]
+    }
+  ]
+}

@@ -3,25 +3,19 @@ package com.zenconf.zentecconfigurator.models.nodes;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Controls;
+import com.zenconf.zentecconfigurator.models.Element;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class ActuatorTitledPane extends TitledPane {
+public class ElementTitledPane extends TitledPane {
 
-    public ActuatorTitledPane() {
+    public ElementTitledPane() {
 
     }
 
-    public ActuatorTitledPane(Actuator actuator) {
+    public ElementTitledPane(Element element) {
 
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);
@@ -31,7 +25,7 @@ public class ActuatorTitledPane extends TitledPane {
         AnchorPane.setTopAnchor(vBox, 0.0);
         AnchorPane.setBottomAnchor(vBox, 0.0);
 
-        for (Attribute attribute : actuator.getAttributes()) {
+        for (Attribute attribute : element.getAttributes()) {
             if (attribute.getControl() == Controls.SPINNER) {
                 LabeledSpinner labeledSpinner = new LabeledSpinner(attribute);
                 vBox.getChildren().add(labeledSpinner.getSpinner());
@@ -44,7 +38,7 @@ public class ActuatorTitledPane extends TitledPane {
         AnchorPane mainAnchor = new AnchorPane();
         mainAnchor.getChildren().add(vBox);
 
-        this.setText(actuator.getName());
+        this.setText(element.getName());
         this.setContent(mainAnchor);
     }
 

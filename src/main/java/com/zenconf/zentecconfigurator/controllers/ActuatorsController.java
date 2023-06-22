@@ -4,10 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
-import com.zenconf.zentecconfigurator.models.nodes.ActuatorTitledPane;
+import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleRole;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
@@ -22,45 +22,44 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActuatorsController implements Initializable {
-
-    private Stage primaryStage;
     private List<Actuator> actuatorsInScheme;
     private Scheme selectedScheme;
     private List<Actuator> allActuators;
 
     @FXML
     public VBox actuatorsSettingsVbox;
+    @FXML
+    public ScrollPane actuatorsSettingsScrollPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedScheme = ChangeSchemeController.selectedScheme;
+        actuatorsSettingsScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                selectedScheme = ChangeSchemeController.selectedScheme;
 
-        if (selectedScheme != null) {
-            actuatorsInScheme = selectedScheme.getActuators();
-            if (actuatorsInScheme != null) {
-                fillActuatorsSettingsPane();
+                if (selectedScheme != null) {
+                    actuatorsInScheme = selectedScheme.getActuators();
+                    if (actuatorsInScheme != null) {
+                        fillActuatorsSettingsPane();
+                    }
+                }
             }
-        }
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        });
     }
 
     private void fillActuatorsSettingsPane() {
         allActuators = getActuatorsFromJson();
 
         actuatorsSettingsVbox.getChildren().clear();
-        for (int i = 0; i < actuatorsInScheme.size(); i++) {
-            Actuator actuator = actuatorsInScheme.get(i);
-            for (int j = 0; j < allActuators.size(); j++) {
-                if (actuator.getName().equals(allActuators.get(j).getName())) {
-                    actuator.setAttributes(allActuators.get(j).getAttributes());
+        for (Actuator actuator : actuatorsInScheme) {
+            for (Actuator allActuator : allActuators) {
+                if (actuator.getName().equals(allActuator.getName())) {
+                    actuator.setAttributes(allActuator.getAttributes());
                 }
             }
             if (actuator.getAttributes() != null) {
-                ActuatorTitledPane actuatorTitledPane = new ActuatorTitledPane(actuator);
-                actuatorsSettingsVbox.getChildren().add(actuatorTitledPane);
+                ElementTitledPane elementTitledPane = new ElementTitledPane(actuator);
+                actuatorsSettingsVbox.getChildren().add(elementTitledPane);
             }
         }
     }

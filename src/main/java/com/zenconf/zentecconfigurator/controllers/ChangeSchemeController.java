@@ -9,6 +9,7 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
+import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import org.json.simple.JSONObject;
@@ -40,8 +41,10 @@ public class ChangeSchemeController implements Initializable {
     public TitledPane schemeChoiceTitledPane;
     @FXML
     public VBox choiceSchemeVbox;
+    @FXML
+    public ScrollPane changeSchemeScrollPane;
     private List<Scheme> schemes;
-    static Scheme selectedScheme = null;
+    protected static Scheme selectedScheme = null;
 
     // Чтение файла со схемами schemes.json
     protected void onOpenedChoiceSchemePane() {
@@ -68,6 +71,10 @@ public class ChangeSchemeController implements Initializable {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
             choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
+        for (Sensor sensor : schemes.get(index).getSensors()) {
+            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
+            choiceSchemeVbox.getChildren().add(schemeTitledPane);
+        }
 
         setSchemeNumberModbus();
     }
@@ -83,9 +90,6 @@ public class ChangeSchemeController implements Initializable {
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
             schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {});
-            System.out.println("Number: " + schemes.get(0).getNumber() +
-                    " Name: " + schemes.get(0).getName() +
-                    " Actuators: " + schemes.get(0).getActuators());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -112,6 +116,7 @@ public class ChangeSchemeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         onOpenedChoiceSchemePane();
 
         schemeNumberChoiceBox.setOnAction(e -> {

@@ -1,8 +1,6 @@
 package com.zenconf.zentecconfigurator.models;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Attribute {
 
@@ -11,6 +9,7 @@ public class Attribute {
     private int minValue;
     private int maxValue;
     private List<String> values;
+    private int address;
 
     public void setName(String name) {
         this.name = name;
@@ -50,5 +49,13 @@ public class Attribute {
 
     public List<String> getValues() {
         return values;
+    }
+
+    public int getAddress() {
+        return address;
+    }
+
+    public void setAddress(int address) {
+        this.address = address;
     }
 }

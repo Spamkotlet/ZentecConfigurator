@@ -12,7 +12,8 @@
           "name": "В работе",
           "control": 0,
           "minValue": 0,
-          "maxValue": 1
+          "maxValue": 1,
+          "address": 123
         },
         {
           "name": "Задержка РПД",

@@ -28,6 +28,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -66,6 +88,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -102,6 +146,28 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -146,6 +212,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -186,6 +274,28 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -230,6 +340,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -272,6 +408,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -304,6 +466,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -348,6 +536,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -388,6 +602,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -436,6 +676,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -480,6 +746,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -528,6 +820,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -572,6 +894,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -620,6 +972,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -666,6 +1044,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -698,6 +1102,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -742,6 +1172,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -784,6 +1240,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -820,6 +1302,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -868,6 +1376,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -914,6 +1448,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -942,6 +1502,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -982,6 +1568,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1018,6 +1630,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1062,6 +1700,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1102,6 +1766,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1146,6 +1836,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1188,6 +1908,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1220,6 +1970,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1264,6 +2044,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1304,6 +2114,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1352,6 +2192,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1396,6 +2266,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1444,6 +2344,40 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1488,6 +2422,40 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1536,6 +2504,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1582,6 +2580,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1614,6 +2642,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1658,6 +2716,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1700,6 +2788,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1736,6 +2854,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1784,6 +2932,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1830,6 +3008,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1862,6 +3070,28 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1898,6 +3128,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -1930,6 +3186,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -1966,6 +3248,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2000,6 +3308,36 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2032,6 +3370,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2070,6 +3438,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2114,6 +3512,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2156,6 +3580,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2192,6 +3642,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2236,6 +3712,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2278,6 +3776,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2314,6 +3834,36 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2358,6 +3908,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2400,6 +3976,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2436,6 +4038,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2480,6 +4108,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2522,6 +4172,28 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2562,6 +4234,40 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2610,6 +4316,40 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2634,6 +4374,28 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2668,6 +4430,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2708,6 +4496,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2736,6 +4550,32 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]
@@ -2776,6 +4616,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2814,6 +4680,32 @@
                     "name": "Увлажнитель",
                     "isUsedDefault": false
                 }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
+                    "isUsedDefault": false
+                }
             ]
         },
         {
@@ -2850,6 +4742,40 @@
                 },
                 {
                     "name": "Увлажнитель",
+                    "isUsedDefault": false
+                }
+            ],
+            "sensors": [
+                {
+                    "name": "[ПРИТОК] Температура приточного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 1] Температура обратной воды 1",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ОБРАТКА 2] Температура обратной воды 2",
+                    "isUsedDefault": true
+                },
+                {
+                    "name": "[ДАВЛЕНИЕ] Датчик давления",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+                    "isUsedDefault": false
+                },
+                {
+                    "name": "[CO2] Датчик углекислого газа",
                     "isUsedDefault": false
                 }
             ]

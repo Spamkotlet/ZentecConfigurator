@@ -4,6 +4,12 @@
     "spinner": 1,
     "choiceBox": 2
   },
+  "modbusFunctionCodes": {
+    "readCoils": 1,
+    "readHoldingRegisters": 3,
+    "writeMultipleCoils": 9,
+    "writeMultipleRegisters": 10
+  },
   "actuators": [
     {
       "name": "Приточный вентилятор",
@@ -13,13 +19,18 @@
           "control": 0,
           "minValue": 0,
           "maxValue": 1,
-          "address": 123
+          "modbusParameters" : {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         },
         {
           "name": "Задержка РПД",
           "control": 1,
           "minValue": 0,
-          "maxValue": 300
+          "maxValue": 300,
+          "address": 123
         },
         {
           "name": "Min U, %",

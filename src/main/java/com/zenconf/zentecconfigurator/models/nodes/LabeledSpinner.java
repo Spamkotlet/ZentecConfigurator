@@ -1,14 +1,14 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
+
+import java.util.Objects;
 
 public class LabeledSpinner {
 
@@ -51,7 +51,6 @@ public class LabeledSpinner {
         AnchorPane labelAnchor = new AnchorPane();
 
         labelAnchor.getChildren().add(label);
-//        HBox.setHgrow(labelAnchor, Priority.ALWAYS);
         AnchorPane.setLeftAnchor(labelAnchor, 0.0);
         AnchorPane.setRightAnchor(labelAnchor, 0.0);
         AnchorPane.setTopAnchor(labelAnchor, 0.0);
@@ -65,11 +64,15 @@ public class LabeledSpinner {
         Spinner<Double> spinner = new Spinner<>(minValue, maxValue, initValue);
         spinner.setEditable(true);
         spinner.setPrefWidth(200);
+        spinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (!Objects.equals(newValue, oldValue)) {
+
+            }
+        });
 
         AnchorPane spinnerAnchor = new AnchorPane();
 
         spinnerAnchor.getChildren().add(spinner);
-//        HBox.setHgrow(spinnerAnchor, Priority.ALWAYS);
         AnchorPane.setLeftAnchor(spinnerAnchor, 0.0);
         AnchorPane.setRightAnchor(spinnerAnchor, 0.0);
         AnchorPane.setTopAnchor(spinnerAnchor, 0.0);

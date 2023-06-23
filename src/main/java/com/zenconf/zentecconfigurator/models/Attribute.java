@@ -1,5 +1,7 @@
 package com.zenconf.zentecconfigurator.models;
 
+import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
+
 import java.util.List;
 
 public class Attribute {
@@ -9,7 +11,7 @@ public class Attribute {
     private int minValue;
     private int maxValue;
     private List<String> values;
-    private int address;
+    private ModbusParameter modbusParameter;
 
     public void setName(String name) {
         this.name = name;
@@ -51,11 +53,11 @@ public class Attribute {
         return values;
     }
 
-    public int getAddress() {
-        return address;
+    public ModbusParameter getModbusParameter() {
+        return modbusParameter;
     }
 
-    public void setAddress(int address) {
-        this.address = address;
+    public void setAddress(ModbusParameter modbusParameter) {
+        this.modbusParameter = modbusParameter;
     }
 }

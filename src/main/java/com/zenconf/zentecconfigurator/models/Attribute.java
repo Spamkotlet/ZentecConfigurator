@@ -11,7 +11,7 @@ public class Attribute {
     private int minValue;
     private int maxValue;
     private List<String> values;
-    private ModbusParameter modbusParameter;
+    private ModbusParameter modbusParameters;
 
     public void setName(String name) {
         this.name = name;
@@ -53,11 +53,11 @@ public class Attribute {
         return values;
     }
 
-    public ModbusParameter getModbusParameter() {
-        return modbusParameter;
+    public ModbusParameter getModbusParameters() {
+        return modbusParameters;
     }
 
     public void setAddress(ModbusParameter modbusParameter) {
-        this.modbusParameter = modbusParameter;
+        this.modbusParameters = modbusParameter;
     }
 }

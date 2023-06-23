@@ -2,16 +2,13 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -26,7 +23,6 @@ public class SensorsController implements Initializable {
 
     private List<Sensor> sensorsInScheme;
     private Scheme selectedScheme;
-    private List<Sensor> allSensors;
 
     @FXML
     public VBox sensorsSettingsVbox;
@@ -52,7 +48,7 @@ public class SensorsController implements Initializable {
     }
 
     private void fillSensorsSettingsPane() {
-        allSensors = getSensorsFromJson();
+        List<Sensor> allSensors = getSensorsFromJson();
 
         sensorsSettingsVbox.getChildren().clear();
         for (int i = 0; i < sensorsInScheme.size(); i++) {

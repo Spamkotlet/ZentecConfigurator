@@ -7,11 +7,14 @@ import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
+import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
+import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javafx.collections.FXCollections;
@@ -75,7 +78,8 @@ public class ChangeSchemeController implements Initializable {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
             choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
-
+        ModbusUtilSingleton modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        System.out.println(modbusUtilSingleton.readModbusCoil(5362));
         setSchemeNumberModbus();
     }
 
@@ -128,45 +132,46 @@ public class ChangeSchemeController implements Initializable {
 
     // TEST
     private void setSchemeNumberModbus() {
-        SerialParameters sp = new SerialParameters();
-        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
-        try {
-            String[] dev_list = SerialPortList.getPortNames();
-            if (dev_list.length > 0) {
-                sp.setDevice(dev_list[0]);
-                sp.setBaudRate(SerialPort.BaudRate.BAUD_RATE_9600);
-                sp.setDataBits(8);
-                sp.setParity(SerialPort.Parity.EVEN);
-                sp.setStopBits(1);
-
-                ModbusMaster master = ModbusMasterFactory.createModbusMasterRTU(sp);
-                master.connect();
-
-                int slaveId = 247;
-                int offset = 0;
-                int quantity = 1;
-
-                try {
-                    int[] registerValues = master.readHoldingRegisters(slaveId, offset, quantity);
-                    for (int value : registerValues) {
-                        System.out.println("Address: " + offset++ + ", Value: " + value);
-                    }
-                } catch (RuntimeException e) {
-                    throw e;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        master.disconnect();
-                    } catch (ModbusIOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        SerialParameters sp = new SerialParameters();
+//        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
+//        try {
+//            String[] dev_list = SerialPortList.getPortNames();
+//            if (dev_list.length > 0) {
+//                sp.setDevice(dev_list[0]);
+//                sp.setBaudRate(SerialPort.BaudRate.BAUD_RATE_115200);
+//                sp.setDataBits(8);
+//                sp.setParity(SerialPort.Parity.EVEN);
+//                sp.setStopBits(1);
+//
+//                SerialUtils.setSerialPortFactory(new SerialPortFactoryJSSC());
+//                ModbusMaster master = ModbusMasterFactory.createModbusMasterRTU(sp);
+//                master.connect();
+//
+//                int slaveId = 247;
+//                int offset = 5299;
+//                int quantity = 1;
+//
+//                try {
+//                    int[] registerValues = master.readHoldingRegisters(slaveId, offset, quantity);
+//                    for (int value : registerValues) {
+//                        System.out.println("Address: " + offset++ + ", Value: " + value);
+//                    }
+//                } catch (RuntimeException e) {
+//                    throw e;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    try {
+//                        master.disconnect();
+//                    } catch (ModbusIOException e1) {
+//                        e1.printStackTrace();
+//                    }
+//                }
+//            }
+//        } catch (RuntimeException e) {
+//            throw e;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

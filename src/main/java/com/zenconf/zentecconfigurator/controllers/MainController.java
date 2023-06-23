@@ -35,6 +35,8 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public Button ioButton;
     @FXML
+    public Button settingsButton;
+    @FXML
     public Button testButton;
     @FXML
     public AnchorPane splitPaneRight;
@@ -104,6 +106,21 @@ public class MainController extends CommonController implements Initializable {
     }
 
     @FXML
+    public void onClickSettingsButton(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        Node node = panels.get(button);
+        if (node == null) {
+            try {
+                node = createNewNode("settings.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            panels.put(button, node);
+        }
+        showNode(node);
+    }
+
+    @FXML
     public void onClickTestButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
@@ -138,6 +155,7 @@ public class MainController extends CommonController implements Initializable {
         sensorsButton.setOnAction(this::onClickSensorsButton);
         actuatorsButton.setOnAction(this::onClickActuatorsButton);
         ioButton.setOnAction(this::onClickIOButton);
+        settingsButton.setOnAction(this::onClickSettingsButton);
         testButton.setOnAction(this::onClickTestButton);
     }
 

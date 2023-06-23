@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Controls;
 import com.zenconf.zentecconfigurator.models.Element;
@@ -44,7 +43,6 @@ public class ElementTitledPane extends TitledPane {
 
     private VBox createMainVBox() {
         VBox vBox = new VBox();
-//        vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10));
         return vBox;

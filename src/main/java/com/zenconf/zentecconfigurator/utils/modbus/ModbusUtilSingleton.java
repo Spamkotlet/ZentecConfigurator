@@ -8,6 +8,7 @@ import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
 import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
+import javafx.scene.control.Alert;
 
 // TODO: Сделать билдер
 
@@ -48,6 +49,10 @@ public class ModbusUtilSingleton {
                 master = ModbusMasterFactory.createModbusMasterRTU(sp);
             }
         } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка при подключении к контроллеру\n" + e.getMessage());
+            alert.setHeaderText("Ошибка Modbus");
+            alert.show();
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
@@ -174,5 +179,9 @@ public class ModbusUtilSingleton {
 
     public void setStopBits(int stopBits) {
         this.stopBits = stopBits;
+    }
+
+    public ModbusMaster getMaster() {
+        return master;
     }
 }

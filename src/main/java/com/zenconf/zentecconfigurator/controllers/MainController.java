@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -24,7 +24,7 @@ public class MainController extends CommonController implements Initializable {
 
     private Stage primaryStage;
 
-    private Map<Button, Node> panels = new HashMap<>();
+    private final Map<Button, Node> panels = new HashMap<>();
 
     @FXML
     public Button schemeButton;
@@ -140,10 +140,6 @@ public class MainController extends CommonController implements Initializable {
         return loader.load();
     }
 
-//    private Node createNewNode(String resourcePath) throws IOException {
-//        return FXMLLoader.<Parent>load(Objects.requireNonNull(Application.class.getResource(resourcePath)));
-//    }
-
     private void showNode(Node node) {
         splitPaneRight.getChildren().clear();
         splitPaneRight.getChildren().add(node);
@@ -157,6 +153,31 @@ public class MainController extends CommonController implements Initializable {
         ioButton.setOnAction(this::onClickIOButton);
         settingsButton.setOnAction(this::onClickSettingsButton);
         testButton.setOnAction(this::onClickTestButton);
+
+        Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
+        schemeButton.graphicProperty().setValue(new ImageView(schemeImage));
+        schemeButton.setBackground(Background.EMPTY);
+        schemeButton.setText("");
+
+        Image sensorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/sensors_button.png")));
+        sensorsButton.graphicProperty().setValue(new ImageView(sensorsImage));
+        sensorsButton.setBackground(Background.EMPTY);
+        sensorsButton.setText("");
+
+        Image actuatorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/actuators_button.png")));
+        actuatorsButton.graphicProperty().setValue(new ImageView(actuatorsImage));
+        actuatorsButton.setBackground(Background.EMPTY);
+        actuatorsButton.setText("");
+
+        Image inOutsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png")));
+        ioButton.graphicProperty().setValue(new ImageView(inOutsImage));
+        ioButton.setBackground(Background.EMPTY);
+        ioButton.setText("");
+
+        Image settingsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/settings_button.png")));
+        settingsButton.graphicProperty().setValue(new ImageView(settingsImage));
+        settingsButton.setBackground(Background.EMPTY);
+        settingsButton.setText("");
     }
 
     public void setPrimaryStage(Stage primaryStage) {

@@ -2,13 +2,6 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intelligt.modbus.jlibmodbus.Modbus;
-import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
-import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
-import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
-import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
-import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
-import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
@@ -31,8 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 // TEST
-import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
-import jssc.SerialPortList;
+
 
 public class ChangeSchemeController implements Initializable {
 
@@ -49,6 +41,8 @@ public class ChangeSchemeController implements Initializable {
     private List<Scheme> schemes;
     protected static Scheme selectedScheme = null;
 
+    private ModbusUtilSingleton modbusUtilSingleton;
+
     // Чтение файла со схемами schemes.json
     protected void onOpenedChoiceSchemePane() {
         String file = "src/schemes.json";
@@ -63,24 +57,22 @@ public class ChangeSchemeController implements Initializable {
 
     @FXML
     protected void onSelectedSchemeNumber() {
-        int index = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
-        selectedScheme = schemes.get(index);
+        int schemeNumber = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
+        selectedScheme = schemes.get(schemeNumber);
 
-        setSchemeNumberLabel(schemes.get(index));
+        setSchemeNumberLabel(schemes.get(schemeNumber));
         schemeChoiceTitledPane.getContent();
         choiceSchemeVbox.getChildren().clear();
         choiceSchemeVbox.getChildren().add(schemeChoiceTitledPane);
-        for (Actuator actuator : schemes.get(index).getActuators()) {
+        for (Actuator actuator : schemes.get(schemeNumber).getActuators()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
             choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
-        for (Sensor sensor : schemes.get(index).getSensors()) {
+        for (Sensor sensor : schemes.get(schemeNumber).getSensors()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
             choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
-        ModbusUtilSingleton modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        System.out.println(modbusUtilSingleton.readModbusCoil(5362));
-        setSchemeNumberModbus();
+        writeSchemeNumberByModbus(schemeNumber);
     }
 
     private List<Scheme> getSchemesFromJson(String file) {
@@ -93,7 +85,8 @@ public class ChangeSchemeController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {});
+            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
+            });
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -130,48 +123,10 @@ public class ChangeSchemeController implements Initializable {
         );
     }
 
-    // TEST
-    private void setSchemeNumberModbus() {
-//        SerialParameters sp = new SerialParameters();
-//        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
-//        try {
-//            String[] dev_list = SerialPortList.getPortNames();
-//            if (dev_list.length > 0) {
-//                sp.setDevice(dev_list[0]);
-//                sp.setBaudRate(SerialPort.BaudRate.BAUD_RATE_115200);
-//                sp.setDataBits(8);
-//                sp.setParity(SerialPort.Parity.EVEN);
-//                sp.setStopBits(1);
-//
-//                SerialUtils.setSerialPortFactory(new SerialPortFactoryJSSC());
-//                ModbusMaster master = ModbusMasterFactory.createModbusMasterRTU(sp);
-//                master.connect();
-//
-//                int slaveId = 247;
-//                int offset = 5299;
-//                int quantity = 1;
-//
-//                try {
-//                    int[] registerValues = master.readHoldingRegisters(slaveId, offset, quantity);
-//                    for (int value : registerValues) {
-//                        System.out.println("Address: " + offset++ + ", Value: " + value);
-//                    }
-//                } catch (RuntimeException e) {
-//                    throw e;
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                } finally {
-//                    try {
-//                        master.disconnect();
-//                    } catch (ModbusIOException e1) {
-//                        e1.printStackTrace();
-//                    }
-//                }
-//            }
-//        } catch (RuntimeException e) {
-//            throw e;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    private void writeSchemeNumberByModbus(int schemeNumber) {
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            modbusUtilSingleton.writeModbusRegister(5299, schemeNumber);
+        }
     }
 }

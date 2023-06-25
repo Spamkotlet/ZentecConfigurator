@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ActuatorsController implements Initializable {
     private List<Actuator> actuatorsInScheme;
     private Scheme selectedScheme;
-    private List<Actuator> allActuators;
+    private List<Actuator> selectedActuators;
 
     @FXML
     public VBox actuatorsSettingsVbox;
@@ -48,7 +48,7 @@ public class ActuatorsController implements Initializable {
     }
 
     private void fillActuatorsSettingsPane() {
-        allActuators = getActuatorsFromJson();
+        List<Actuator> allActuators = getActuatorsFromJson();
 
         actuatorsSettingsVbox.getChildren().clear();
         for (Actuator actuator : actuatorsInScheme) {
@@ -57,9 +57,11 @@ public class ActuatorsController implements Initializable {
                     actuator.setAttributes(allActuator.getAttributes());
                 }
             }
-            if (actuator.getAttributes() != null) {
-                ElementTitledPane elementTitledPane = new ElementTitledPane(actuator);
-                actuatorsSettingsVbox.getChildren().add(elementTitledPane);
+            if (actuator.getIsUsedDefault()) {
+                if (actuator.getAttributes() != null) {
+                    ElementTitledPane elementTitledPane = new ElementTitledPane(actuator);
+                    actuatorsSettingsVbox.getChildren().add(elementTitledPane);
+                }
             }
         }
     }

@@ -35,11 +35,11 @@ public class Application extends javafx.application.Application {
 //        ImageView actuatorsImageView = (ImageView) scene.lookup("#actuatorsButton");
 //        ImageView inOutsImageView = (ImageView) scene.lookup("#inOutsButton");
 //        ImageView settingsImageView = (ImageView) scene.lookup("#settingsButton");
-//        Image schemeImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/Схема_1.png"));
-//        Image sensorsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/Датчики.png"));
-//        Image actuatorsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/Устройства.png"));
-//        Image inOutsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/Вхвых.png"));
-//        Image settingsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/Настройки.png"));
+//        Image schemeImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png"));
+//        Image sensorsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/sensors_button.png"));
+//        Image actuatorsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/actuators_button.png"));
+//        Image inOutsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png"));
+//        Image settingsImage = new Image(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/settings_button.png"));
 //        schemeImageView.setImage(schemeImage);
 //        sensorsImageView.setImage(sensorsImage);
 //        actuatorsImageView.setImage(actuatorsImage);

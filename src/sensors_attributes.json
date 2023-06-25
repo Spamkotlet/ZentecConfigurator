@@ -13,25 +13,38 @@
           "control": 0,
           "minValue": 0,
           "maxValue": 1,
-          "address": 123
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         },
         {
           "name": "Тип датчика",
           "control": 2,
           "minValue": 0,
           "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
           "values": [
             "PT1000",
             "NTC10k",
             "0..10 В"
-          ],
-          "address": 123
+          ]
         },
         {
           "name": "Коррекция",
           "control": 1,
           "minValue": -50,
-          "maxValue": 60
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         }
       ]
     },
@@ -43,25 +56,124 @@
           "control": 0,
           "minValue": 0,
           "maxValue": 1,
-          "address": 123
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         },
         {
           "name": "Тип датчика",
           "control": 2,
           "minValue": 0,
           "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
           "values": [
             "PT1000",
             "NTC10k",
             "0..10 В"
-          ],
-          "address": 123
+          ]
         },
         {
           "name": "Коррекция",
           "control": 1,
           "minValue": -50,
-          "maxValue": 60
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ОБРАТКА 1] Температура обратной воды 1",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ОБРАТКА 2] Температура обратной воды 2",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         }
       ]
     },
@@ -73,25 +185,210 @@
           "control": 0,
           "minValue": 0,
           "maxValue": 1,
-          "address": 123
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         },
         {
           "name": "Тип датчика",
           "control": 2,
           "minValue": 0,
           "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
           "values": [
             "PT1000",
             "NTC10k",
             "0..10 В"
-          ],
-          "address": 123
+          ]
         },
         {
           "name": "Коррекция",
           "control": 1,
           "minValue": -50,
-          "maxValue": 60
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ДАВЛЕНИЕ] Датчик давления",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "[CO2] Датчик углекислого газа",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5418,
+            "readFunctionCode": 1,
+            "writeFunctionCode": 9
+          }
         }
       ]
     }

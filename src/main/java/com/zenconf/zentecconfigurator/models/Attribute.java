@@ -8,8 +8,8 @@ public class Attribute {
 
     private String name;
     private Controls control;
-    private int minValue;
-    private int maxValue;
+    private double minValue;
+    private double maxValue;
     private List<String> values;
     private ModbusParameter modbusParameters;
 
@@ -41,11 +41,11 @@ public class Attribute {
         return control;
     }
 
-    public int getMinValue() {
+    public double getMinValue() {
         return minValue;
     }
 
-    public int getMaxValue() {
+    public double getMaxValue() {
         return maxValue;
     }
 

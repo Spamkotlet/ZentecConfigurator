@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -24,7 +23,6 @@ import java.util.ResourceBundle;
 public class ActuatorsController implements Initializable {
     private List<Actuator> actuatorsInScheme;
     private Scheme selectedScheme;
-    private List<Actuator> selectedActuators;
 
     @FXML
     public VBox actuatorsSettingsVbox;

@@ -27,11 +27,4 @@ public class Scheme {
     public Scheme() {
 
     }
-
-    public Scheme(String number, String name, List<Actuator> actuators, List<Sensor> sensors) {
-        this.number = number;
-        this.name = name;
-        this.actuators = actuators;
-        this.sensors = sensors;
-    }
 }

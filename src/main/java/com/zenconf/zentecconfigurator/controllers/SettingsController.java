@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.intelligt.modbus.jlibmodbus.Modbus;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -77,7 +76,6 @@ public class SettingsController implements Initializable {
         connectDeviceButton.setOnAction(this::connectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
         testModbusButton.setOnAction(this::testModbus);
-//        slaveIdSpinner.getValueFactory().setValue(modbusUtilSingleton.getSlaveId());
     }
 
     private void connectDevice(ActionEvent actionEvent) {

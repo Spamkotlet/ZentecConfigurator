@@ -51,16 +51,17 @@ public class SensorsController implements Initializable {
         List<Sensor> allSensors = getSensorsFromJson();
 
         sensorsSettingsVbox.getChildren().clear();
-        for (int i = 0; i < sensorsInScheme.size(); i++) {
-            Sensor sensor = sensorsInScheme.get(i);
-            for (int j = 0; j < allSensors.size(); j++) {
-                if (sensor.getName().equals(allSensors.get(j).getName())) {
-                    sensor.setAttributes(allSensors.get(j).getAttributes());
+        for (Sensor sensor : sensorsInScheme) {
+            for (Sensor allSensor : allSensors) {
+                if (sensor.getName().equals(allSensor.getName())) {
+                    sensor.setAttributes(allSensor.getAttributes());
                 }
             }
-            if (sensor.getAttributes() != null) {
-                ElementTitledPane elementTitledPane = new ElementTitledPane(sensor);
-                sensorsSettingsVbox.getChildren().add(elementTitledPane);
+            if (sensor.getIsUsedDefault()) {
+                if (sensor.getAttributes() != null) {
+                    ElementTitledPane elementTitledPane = new ElementTitledPane(sensor);
+                    sensorsSettingsVbox.getChildren().add(elementTitledPane);
+                }
             }
         }
     }

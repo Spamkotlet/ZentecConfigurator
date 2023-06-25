@@ -20,8 +20,8 @@ public class LabeledSpinner {
 
     public Node getSpinner() {
         String labelText = attribute.getName();
-        int minValue = attribute.getMinValue();
-        int maxValue = attribute.getMaxValue();
+        double minValue = attribute.getMinValue();
+        double maxValue = attribute.getMaxValue();
 
         AnchorPane labelAnchor = createLabelAnchor(labelText);
         AnchorPane spinnerAnchor = createSpinnerAnchor(minValue, maxValue);
@@ -59,14 +59,14 @@ public class LabeledSpinner {
         return labelAnchor;
     }
 
-    private AnchorPane createSpinnerAnchor(int minValue, int maxValue) {
+    private AnchorPane createSpinnerAnchor(double minValue, double maxValue) {
         int initValue = 0;
         Spinner<Double> spinner = new Spinner<>(minValue, maxValue, initValue);
         spinner.setEditable(true);
         spinner.setPrefWidth(200);
         spinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (!Objects.equals(newValue, oldValue)) {
-
+                System.out.print("wd ");
             }
         });
 

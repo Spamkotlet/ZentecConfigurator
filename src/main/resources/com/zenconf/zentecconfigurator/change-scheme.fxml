@@ -14,7 +14,7 @@
 
 <ScrollPane fx:id="changeSchemeScrollPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ChangeSchemeController">
         <content>
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
+            <VBox prefHeight="798.0" prefWidth="600.0" spacing="5.0">
                 <children>
             <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
                <children>

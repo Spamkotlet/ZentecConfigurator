@@ -12,76 +12,55 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="sensorsSettingsScrollPane" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.zenconf.zentecconfigurator.controllers.SensorsController">
+<ScrollPane fx:id="sensorsSettingsScrollPane" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.SensorsController">
     <content>
-        <VBox minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
+        <VBox prefHeight="798.0" prefWidth="600.0" spacing="5.0">
             <children>
                 <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;"
-                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                              AnchorPane.topAnchor="0.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Label alignment="CENTER" text="КОНФИГУРАТОР. Настройка датчиков"
-                                               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <Label alignment="CENTER" text="КОНФИГУРАТОР. Настройка датчиков" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
-                                                <Font name="System Bold" size="18.0"/>
+                                                <Font name="System Bold" size="18.0" />
                                             </font>
                                         </Label>
                                     </children>
                                 </AnchorPane>
                             </children>
                             <padding>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
                         </HBox>
                     </children>
                 </AnchorPane>
                 <VBox fx:id="sensorsSettingsVbox" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0"
-                                    text="Температура в канале">
+                        <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Температура в канале">
                             <content>
                                 <AnchorPane minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
                                     <children>
-                                        <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0"
-                                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <CheckBox mnemonicParsing="false" text="Используется">
                                                     <font>
-                                                        <Font size="14.0"/>
+                                                        <Font size="14.0" />
                                                     </font>
                                                 </CheckBox>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0"
-                                                              spacing="10.0" AnchorPane.bottomAnchor="0.0"
-                                                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                              AnchorPane.topAnchor="0.0">
+                                                        <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <children>
                                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                     <children>
-                                                                        <Label text="Тип датчика"
-                                                                               AnchorPane.bottomAnchor="0.0"
-                                                                               AnchorPane.leftAnchor="0.0"
-                                                                               AnchorPane.rightAnchor="0.0"
-                                                                               AnchorPane.topAnchor="0.0"/>
+                                                                        <Label text="Тип датчика" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                     </children>
                                                                 </AnchorPane>
                                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                     <children>
-                                                                        <ChoiceBox prefWidth="150.0"
-                                                                                   AnchorPane.bottomAnchor="0.0"
-                                                                                   AnchorPane.leftAnchor="0.0"
-                                                                                   AnchorPane.rightAnchor="0.0"
-                                                                                   AnchorPane.topAnchor="0.0"/>
+                                                                        <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                     </children>
                                                                 </AnchorPane>
                                                             </children>
@@ -92,18 +71,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Коррекция" AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Коррекция" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -112,19 +85,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Авар. низк. Тприт"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Авар. низк. Тприт" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -133,19 +99,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Авар. высок. Тприт"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Авар. высок. Тприт" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -154,20 +113,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тип аварии низк. Тприт"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тип аварии низк. Тприт" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <ChoiceBox prefWidth="150.0"
-                                                                           AnchorPane.bottomAnchor="0.0"
-                                                                           AnchorPane.leftAnchor="0.0"
-                                                                           AnchorPane.rightAnchor="0.0"
-                                                                           AnchorPane.topAnchor="0.0"/>
+                                                                <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -176,19 +127,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тприт MAX 0...10"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тприт MAX 0...10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -197,19 +141,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тприт MIN 0...10"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тприт MIN 0...10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -220,37 +157,27 @@
                                 </AnchorPane>
                             </content>
                         </TitledPane>
-                        <TitledPane fx:id="schemeChoiceTitledPane11" animated="false" minWidth="-Infinity"
-                                    prefHeight="61.0" prefWidth="600.0" text="Температура наружняя" VBox.vgrow="ALWAYS">
+                        <TitledPane fx:id="schemeChoiceTitledPane11" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Температура наружняя" VBox.vgrow="ALWAYS">
                             <content>
                                 <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                     <children>
-                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0"
-                                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <CheckBox mnemonicParsing="false" text="Используется">
                                                     <font>
-                                                        <Font size="14.0"/>
+                                                        <Font size="14.0" />
                                                     </font>
                                                 </CheckBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тип датчика" AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тип датчика" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <ChoiceBox prefWidth="150.0"
-                                                                           AnchorPane.bottomAnchor="0.0"
-                                                                           AnchorPane.leftAnchor="0.0"
-                                                                           AnchorPane.rightAnchor="0.0"
-                                                                           AnchorPane.topAnchor="0.0"/>
+                                                                <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -259,18 +186,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Коррекция" AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Коррекция" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -279,19 +200,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тприт MAX 0...10"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тприт MAX 0...10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -300,19 +214,12 @@
                                                     <children>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Label text="Тприт MIN 0...10"
-                                                                       AnchorPane.bottomAnchor="0.0"
-                                                                       AnchorPane.leftAnchor="0.0"
-                                                                       AnchorPane.rightAnchor="0.0"
-                                                                       AnchorPane.topAnchor="0.0"/>
+                                                                <Label text="Тприт MIN 0...10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                             <children>
-                                                                <Spinner AnchorPane.bottomAnchor="0.0"
-                                                                         AnchorPane.leftAnchor="0.0"
-                                                                         AnchorPane.rightAnchor="0.0"
-                                                                         AnchorPane.topAnchor="0.0"/>
+                                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             </children>
                                                         </AnchorPane>
                                                     </children>
@@ -327,7 +234,7 @@
                 </VBox>
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </VBox>
     </content>

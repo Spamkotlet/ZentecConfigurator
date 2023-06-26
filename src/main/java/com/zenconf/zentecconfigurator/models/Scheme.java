@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Scheme {
 
-    private String number;
+    private int number;
     private String name;
     private List<Actuator> actuators;
     private List<Sensor> sensors;
@@ -20,7 +20,7 @@ public class Scheme {
         return sensors;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 

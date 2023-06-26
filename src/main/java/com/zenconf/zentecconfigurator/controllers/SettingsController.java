@@ -50,7 +50,6 @@ public class SettingsController implements Initializable {
     @FXML
     public ChoiceBox<ModbusFunctionCode> functionChoiceBox;
 
-
     ModbusUtilSingleton modbusUtilSingleton;
 
     @Override
@@ -93,6 +92,9 @@ public class SettingsController implements Initializable {
         String[] devices = SerialPortList.getPortNames();
         ObservableList<String> devicesList = FXCollections.observableArrayList(devices);
         comPortChoiceBox.setItems(devicesList);
+        if (devicesList.size() > 0) {
+            comPortChoiceBox.setValue(devicesList.get(0));
+        }
     }
 
     private void testModbus(ActionEvent actionEvent) {

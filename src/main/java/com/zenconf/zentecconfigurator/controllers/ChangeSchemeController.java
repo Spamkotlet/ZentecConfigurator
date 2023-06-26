@@ -23,13 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-// TEST
-
-
 public class ChangeSchemeController implements Initializable {
 
-    @FXML
-    public Label schemeNumberLabel;
     @FXML
     public ChoiceBox<String> schemeNumberChoiceBox;
     @FXML
@@ -43,39 +38,19 @@ public class ChangeSchemeController implements Initializable {
 
     private ModbusUtilSingleton modbusUtilSingleton;
 
-    // Чтение файла со схемами schemes.json
+    // Что происходит при открытии экрана
     protected void onOpenedChoiceSchemePane() {
-        String file = "src/schemes.json";
-
-        schemes = getSchemesFromJson(file);
-        ObservableList<String> schemesItems = getSchemeItems(schemes);
+        schemes = getSchemesFromJson();
+        ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
 
         schemeNumberChoiceBox.setItems(schemesItems);
-        schemeNumberChoiceBox.setValue(schemesItems.get(4));
-        setSchemeNumberLabel(schemes.get(4));
+        selectedScheme = readSchemeNumberFromModbus();
+        schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
-    @FXML
-    protected void onSelectedSchemeNumber() {
-        int schemeNumber = schemeNumberChoiceBox.getSelectionModel().getSelectedIndex();
-        selectedScheme = schemes.get(schemeNumber);
-
-        setSchemeNumberLabel(schemes.get(schemeNumber));
-        schemeChoiceTitledPane.getContent();
-        choiceSchemeVbox.getChildren().clear();
-        choiceSchemeVbox.getChildren().add(schemeChoiceTitledPane);
-        for (Actuator actuator : schemes.get(schemeNumber).getActuators()) {
-            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
-            choiceSchemeVbox.getChildren().add(schemeTitledPane);
-        }
-        for (Sensor sensor : schemes.get(schemeNumber).getSensors()) {
-            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
-            choiceSchemeVbox.getChildren().add(schemeTitledPane);
-        }
-        writeSchemeNumberByModbus(schemeNumber);
-    }
-
-    private List<Scheme> getSchemesFromJson(String file) {
+    // Чтение файла со схемами schemes.json и сохранение схем
+    private List<Scheme> getSchemesFromJson() {
+        String file = "src/schemes.json";
         List<Scheme> schemes;
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
@@ -93,22 +68,37 @@ public class ChangeSchemeController implements Initializable {
         return schemes;
     }
 
-    private ObservableList<String> getSchemeItems(List<Scheme> schemes) {
-        List<String> schemeStrings = new ArrayList<>();
-        for (Scheme scheme : schemes) {
-            schemeStrings.add(Integer.parseInt(scheme.getNumber()) + 1 + " - " + scheme.getName());
-        }
-        return FXCollections.observableArrayList(schemeStrings);
+    // Что происходит при выборе схемы из списка
+    @FXML
+    protected void onSelectedSchemeNumber() {
+        selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+
+        fillingPane();
+        writeSchemeNumberByModbus();
     }
 
-    private void setSchemeNumberLabel(Scheme scheme) {
-        StringBuilder schemeDescription = new StringBuilder();
-        List<Actuator> actuators = scheme.getActuators();
-        for (int i = 0; i < actuators.size() - 1; i++) {
-            schemeDescription.append(actuators.get(i).getName()).append(", ");
+    // Заполнение панели устройствами и датчиками
+    private void fillingPane() {
+        schemeChoiceTitledPane.getContent();
+        choiceSchemeVbox.getChildren().clear();
+        choiceSchemeVbox.getChildren().add(schemeChoiceTitledPane);
+        for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
+            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
+            choiceSchemeVbox.getChildren().add(schemeTitledPane);
         }
-        schemeDescription.append(actuators.get(actuators.size() - 1));
-        schemeNumberLabel.setText(schemeDescription.toString());
+        for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
+            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
+            choiceSchemeVbox.getChildren().add(schemeTitledPane);
+        }
+    }
+
+    // Получить список схем для помещения в schemeNumberChoiceBox
+    private ObservableList<String> getSchemesForSchemeNumberChoiceBox(List<Scheme> schemes) {
+        List<String> schemeStrings = new ArrayList<>();
+        for (Scheme scheme : schemes) {
+            schemeStrings.add(scheme.getNumber() + 1 + " - " + scheme.getName());
+        }
+        return FXCollections.observableArrayList(schemeStrings);
     }
 
     @Override
@@ -123,10 +113,21 @@ public class ChangeSchemeController implements Initializable {
         );
     }
 
-    private void writeSchemeNumberByModbus(int schemeNumber) {
+    // Запись номера схемы в контроллер по Modbus
+    private void writeSchemeNumberByModbus() {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbusRegister(5299, schemeNumber);
+            modbusUtilSingleton.writeModbusRegister(5299, selectedScheme.getNumber());
         }
+    }
+
+    // Чтение номера схемы из контроллера по Modbus
+    private Scheme readSchemeNumberFromModbus() {
+        selectedScheme = schemes.get(0);
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            selectedScheme = schemes.get(modbusUtilSingleton.readModbusRegister(5299));
+        }
+        return selectedScheme;
     }
 }

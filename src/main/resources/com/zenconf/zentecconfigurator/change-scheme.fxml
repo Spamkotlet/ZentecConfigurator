@@ -41,7 +41,6 @@
                             <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                 <children>
                                     <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
-                                    <Label fx:id="schemeNumberLabel" alignment="CENTER_RIGHT" layoutX="414.0" layoutY="15.0" minWidth="-Infinity" prefHeight="17.0" prefWidth="200.0" text="Label" textAlignment="RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                 </children>
                             </AnchorPane>
                         </content>

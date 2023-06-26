@@ -30,7 +30,9 @@ public class ChangeSchemeController implements Initializable {
     @FXML
     public TitledPane schemeChoiceTitledPane;
     @FXML
-    public VBox choiceSchemeVbox;
+    public VBox actuatorsVbox;
+    @FXML
+    public VBox sensorsVbox;
     @FXML
     public ScrollPane changeSchemeScrollPane;
     private List<Scheme> schemes;
@@ -80,15 +82,15 @@ public class ChangeSchemeController implements Initializable {
     // Заполнение панели устройствами и датчиками
     private void fillingPane() {
         schemeChoiceTitledPane.getContent();
-        choiceSchemeVbox.getChildren().clear();
-        choiceSchemeVbox.getChildren().add(schemeChoiceTitledPane);
+        actuatorsVbox.getChildren().clear();
         for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
-            choiceSchemeVbox.getChildren().add(schemeTitledPane);
+            actuatorsVbox.getChildren().add(schemeTitledPane);
         }
+        sensorsVbox.getChildren().clear();
         for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
-            choiceSchemeVbox.getChildren().add(schemeTitledPane);
+            sensorsVbox.getChildren().add(schemeTitledPane);
         }
     }
 

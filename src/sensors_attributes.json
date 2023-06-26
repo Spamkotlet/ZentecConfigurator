@@ -99,6 +99,7 @@
           "control": 0,
           "minValue": 0,
           "maxValue": 1,
+
           "modbusParameters": {
             "address": 5418,
             "readFunctionCode": 1,

@@ -1,6 +1,8 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
+import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -10,12 +12,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.util.List;
+import java.util.Objects;
+
 public class LabeledChoiceBox {
 
     private final Attribute attribute;
+    private ModbusUtilSingleton modbusUtilSingleton;
+    private ModbusParameter modbusParameter;
 
     public LabeledChoiceBox(Attribute attribute) {
         this.attribute = attribute;
+        modbusParameter = attribute.getModbusParameters();
     }
 
     public Node getChoiceBox() {
@@ -46,6 +53,10 @@ public class LabeledChoiceBox {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
+        choiceBox.setOnAction(e -> {
+            writeAttributeValueByModbus(attributeValues.indexOf(choiceBox.getValue()));
+            System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
+        });
 
         AnchorPane choiceBoxAnchor = new AnchorPane();
         choiceBoxAnchor.getChildren().add(choiceBox);
@@ -67,5 +78,13 @@ public class LabeledChoiceBox {
         hBox.setSpacing(10);
 
         return hBox;
+    }
+
+    // Запись значения атрибута в контроллер по Modbus
+    private void writeAttributeValueByModbus(int value) {
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            modbusUtilSingleton.writeModbusRegister(modbusParameter.getAddress(), value);
+        }
     }
 }

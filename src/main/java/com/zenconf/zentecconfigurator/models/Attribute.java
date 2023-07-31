@@ -1,8 +1,11 @@
 package com.zenconf.zentecconfigurator.models;
 
+import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
+import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Attribute {
 
@@ -12,6 +15,7 @@ public class Attribute {
     private double maxValue;
     private List<String> values;
     private ModbusParameter modbusParameters;
+    private ModbusUtilSingleton modbusUtilSingleton;
 
     public void setName(String name) {
         this.name = name;
@@ -59,5 +63,29 @@ public class Attribute {
 
     public void setAddress(ModbusParameter modbusParameter) {
         this.modbusParameters = modbusParameter;
+    }
+
+    public String readModbusParameter() {
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        String value = "";
+        if (modbusUtilSingleton.getMaster() != null) {
+            if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_COILS) {
+                value = String.valueOf(modbusUtilSingleton.readModbusCoil(modbusParameters.getAddress()));
+            } else if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_HOLDING_REGISTERS) {
+                value = String.valueOf(modbusUtilSingleton.readModbusRegister(modbusParameters.getAddress()));
+            }
+        }
+        return value;
+    }
+
+    public void writeModbusParameter(Object value) {
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            if (value.getClass().equals(Boolean.class)) {
+                modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), (boolean) value);
+            } else if (value.getClass().equals(Integer.class)) {
+                modbusUtilSingleton.writeModbusRegister(modbusParameters.getAddress(), (int) value);
+            }
+        }
     }
 }

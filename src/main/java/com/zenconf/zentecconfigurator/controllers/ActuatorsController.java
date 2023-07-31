@@ -34,52 +34,24 @@ public class ActuatorsController implements Initializable {
         actuatorsSettingsScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 selectedScheme = ChangeSchemeController.selectedScheme;
+                actuatorsInScheme = ChangeSchemeController.actuatorsInScheme;
 
-                if (selectedScheme != null) {
-                    actuatorsInScheme = selectedScheme.getActuators();
-                    if (actuatorsInScheme != null) {
-                        fillActuatorsSettingsPane();
-                    }
+                if (actuatorsInScheme != null) {
+                    fillActuatorsSettingsPane();
                 }
             }
         });
     }
 
     private void fillActuatorsSettingsPane() {
-        List<Actuator> allActuators = getActuatorsFromJson();
-
         actuatorsSettingsVbox.getChildren().clear();
-        for (Actuator actuator : actuatorsInScheme) {
-            for (Actuator allActuator : allActuators) {
-                if (actuator.getName().equals(allActuator.getName())) {
-                    actuator.setAttributes(allActuator.getAttributes());
-                }
-            }
-            if (actuator.getIsUsedDefault()) {
-                if (actuator.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane = new ElementTitledPane(actuator);
+        for (Actuator actuatorInScheme : actuatorsInScheme) {
+            if (actuatorInScheme.getIsUsedDefault()) {
+                if (actuatorInScheme.getAttributes() != null) {
+                    ElementTitledPane elementTitledPane = new ElementTitledPane(actuatorInScheme);
                     actuatorsSettingsVbox.getChildren().add(elementTitledPane);
                 }
             }
         }
-    }
-
-    private List<Actuator> getActuatorsFromJson() {
-        String file = "src/actuators_attributes.json";
-
-        List<Actuator> actuators;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            actuators = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {});
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return actuators;
     }
 }

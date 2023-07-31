@@ -22,7 +22,7 @@
                <children>
                   <SplitPane fx:id="mainSplitPane" dividerPositions="0.25039123630672927" prefHeight="695.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <items>
-                        <AnchorPane maxWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
+                        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="315.0">
                            <children>
                               <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="745.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>

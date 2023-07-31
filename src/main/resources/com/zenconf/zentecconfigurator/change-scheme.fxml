@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 
 <ScrollPane fx:id="changeSchemeScrollPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ChangeSchemeController">
-        <content>
-            <VBox prefHeight="798.0" prefWidth="600.0" spacing="5.0">
-                <children>
+   <content>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
             <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -36,261 +36,443 @@
                   </HBox>
                </children>
             </AnchorPane>
-                    <TitledPane fx:id="schemeChoiceTitledPane" animated="false" minWidth="-Infinity" prefHeight="82.0" prefWidth="600.0" text="Номер технологической схемы" VBox.vgrow="ALWAYS">
-                        <content>
-                            <AnchorPane prefHeight="46.0" prefWidth="1200.0">
-                                <children>
-                                    <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
-                                </children>
-                            </AnchorPane>
-                        </content>
-                    </TitledPane>
-            <VBox fx:id="choiceSchemeVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <TitledPane fx:id="schemeChoiceTitledPane" animated="false" minWidth="-Infinity" prefHeight="82.0" prefWidth="600.0" text="Номер технологической схемы" VBox.vgrow="ALWAYS">
+               <content>
+                  <AnchorPane prefHeight="46.0" prefWidth="1200.0">
+                     <children>
+                        <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TitledPane fx:id="schemeChoiceTitledPane1" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор" VBox.vgrow="ALWAYS">
-                     <content>
-                        <AnchorPane prefHeight="46.0" prefWidth="1200.0">
+                  <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </CheckBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane11" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Вытяжной вентилятор">
-                     <content>
-                        <AnchorPane prefHeight="46.0" prefWidth="1200.0">
-                           <children>
-                              <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </CheckBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane111" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Приточный дополнительный вентилятор">
-                     <content>
-                        <AnchorPane prefHeight="88.0" prefWidth="1200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox fx:id="actuatorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TitledPane fx:id="schemeChoiceTitledPane1" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор" VBox.vgrow="ALWAYS">
+                                       <content>
+                                          <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                              <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </CheckBox>
-                                                   </children>
-                                                </AnchorPane>
+                                                <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
                                              </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane111" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Вытяжной вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                              <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
+                                                <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
                                              </children>
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane1111" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Приточный дополнительный вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </CheckBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane11112" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Вытяжной дополнительный вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </CheckBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane1112" animated="false" minWidth="-Infinity" prefHeight="62.0" prefWidth="600.0" text="Электрический теплообменник 1">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <Spinner editable="true" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane111211" animated="false" minWidth="-Infinity" prefHeight="62.0" prefWidth="600.0" text="Фреоновый охладитель 1">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <Spinner editable="true" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane1112112" animated="false" minWidth="-Infinity" prefHeight="106.0" prefWidth="600.0" text="Фреоновый охладитель 2">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <Spinner editable="true" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane112" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Увлажнитель">
+                                       <content>
+                                          <AnchorPane prefHeight="46.0" prefWidth="1200.0">
+                                             <children>
+                                                <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane1111" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Вытяжной дополнительный вентилятор">
-                     <content>
-                        <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox fx:id="sensorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TitledPane fx:id="schemeChoiceTitledPane11" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор" VBox.vgrow="ALWAYS">
+                                       <content>
+                                          <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                              <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </CheckBox>
-                                                   </children>
-                                                </AnchorPane>
+                                                <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
                                              </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane1111" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Вытяжной вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                                              <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
+                                                <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </CheckBox>
                                              </children>
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane11113" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Приточный дополнительный вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </CheckBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane11111" animated="false" minWidth="-Infinity" prefHeight="115.0" prefWidth="600.0" text="Вытяжной дополнительный вентилятор">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <CheckBox mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </CheckBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Тип вентилятора" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="schemeChoiceTitledPane11121" animated="false" minWidth="-Infinity" prefHeight="62.0" prefWidth="600.0" text="Электрический теплообменник 1">
+                                       <content>
+                                          <AnchorPane prefHeight="88.0" prefWidth="1200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <Spinner editable="true" AnchorPane.topAnchor="0.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane1112" animated="false" minWidth="-Infinity" prefHeight="62.0" prefWidth="600.0" text="Электрический теплообменник 1">
-                     <content>
-                        <AnchorPane prefHeight="88.0" prefWidth="1200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Spinner editable="true" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane11121" animated="false" minWidth="-Infinity" prefHeight="62.0" prefWidth="600.0" text="Фреоновый охладитель 1">
-                     <content>
-                        <AnchorPane prefHeight="88.0" prefWidth="1200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Spinner editable="true" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane111211" animated="false" minWidth="-Infinity" prefHeight="106.0" prefWidth="600.0" text="Фреоновый охладитель 2">
-                     <content>
-                        <AnchorPane prefHeight="88.0" prefWidth="1200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="Количество ступеней" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Spinner editable="true" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="schemeChoiceTitledPane112" animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Увлажнитель">
-                     <content>
-                        <AnchorPane prefHeight="46.0" prefWidth="1200.0">
-                           <children>
-                              <CheckBox layoutX="37.0" layoutY="56.0" mnemonicParsing="false" text="Используется" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </CheckBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
+                     </children>
+                  </HBox>
                </children>
-            </VBox>
-                </children>
-                <padding>
-                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                </padding>
-            </VBox>
-        </content>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </content>
     </ScrollPane>

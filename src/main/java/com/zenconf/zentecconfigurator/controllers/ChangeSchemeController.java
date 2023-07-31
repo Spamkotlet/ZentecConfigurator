@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,6 +36,8 @@ public class ChangeSchemeController implements Initializable {
     public ScrollPane changeSchemeScrollPane;
     private List<Scheme> schemes;
     protected static Scheme selectedScheme = null;
+    protected static List<Sensor> sensorsInScheme;
+    protected static List<Actuator> actuatorsInScheme;
 
     private ModbusUtilSingleton modbusUtilSingleton;
 
@@ -72,6 +75,26 @@ public class ChangeSchemeController implements Initializable {
     @FXML
     protected void onSelectedSchemeNumber() {
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+        sensorsInScheme = selectedScheme.getSensors();
+        actuatorsInScheme = selectedScheme.getActuators();
+
+        List<Actuator> actuatorList = getActuatorsFromJson();
+        for (Actuator actuatorInScheme : actuatorsInScheme) {
+            for (Actuator actuator : actuatorList) {
+                if (actuatorInScheme.getName().equals(actuator.getName())) {
+                    actuatorInScheme.setAttributes(actuator.getAttributes());
+                }
+            }
+        }
+
+        List<Sensor> sensorList = getSensorsFromJson();
+        for (Sensor sensorInScheme : sensorsInScheme) {
+            for (Sensor sensor : sensorList) {
+                if (sensorInScheme.getName().equals(sensor.getName())) {
+                    sensorInScheme.setAttributes(sensor.getAttributes());
+                }
+            }
+        }
 
         fillingPane();
         writeSchemeNumberByModbus();
@@ -129,5 +152,45 @@ public class ChangeSchemeController implements Initializable {
             selectedScheme = schemes.get(modbusUtilSingleton.readModbusRegister(5299));
         }
         return selectedScheme;
+    }
+
+    private List<Actuator> getActuatorsFromJson() {
+        String file = "src/actuators_attributes.json";
+
+        List<Actuator> actuators;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            actuators = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return actuators;
+    }
+
+    private List<Sensor> getSensorsFromJson() {
+        String file = "src/sensors_attributes.json";
+
+        List<Sensor> sensors;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        "windows-1251"))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            sensors = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return sensors;
     }
 }

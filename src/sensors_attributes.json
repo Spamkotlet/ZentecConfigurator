@@ -4,6 +4,12 @@
     "spinner": 1,
     "choiceBox": 2
   },
+  "modbusFunctionCodes": {
+    "readCoils": 0,
+    "readHoldingRegisters": 2,
+    "writeSingleCoils": 4,
+    "writeSingleRegisters": 11
+  },
   "sensors": [
     {
       "name": "[ПРИТОК] Температура приточного воздуха",
@@ -14,9 +20,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5363,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -25,9 +31,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5359,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -41,9 +47,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5596,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -57,9 +63,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5386,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -68,9 +74,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5384,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -84,9 +90,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5614,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         }
       ]
@@ -100,9 +106,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5374,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -111,9 +117,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5368,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -127,9 +133,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5600,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -143,9 +149,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5373,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -154,9 +160,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5367,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -170,9 +176,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5602,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -186,9 +192,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5377,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -197,9 +203,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5375,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -213,9 +219,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5608,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -229,9 +235,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5362,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -240,9 +246,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5328,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -256,9 +262,52 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5620,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
+          }
+        }
+      ]
+    },
+    {
+      "name": "[ПОМЕЩЕНИЕ] Температура в помещении",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5380,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5378,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5610,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -272,9 +321,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5383,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -283,9 +332,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5381,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -299,9 +348,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5612,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -315,9 +364,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5389,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -326,9 +375,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5387,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -342,9 +391,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5592,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]
@@ -358,9 +407,9 @@
           "minValue": 0,
           "maxValue": 1,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5327,
+            "readFunctionCode": 0,
+            "writeFunctionCode": 4
           }
         },
         {
@@ -369,9 +418,9 @@
           "minValue": 0,
           "maxValue": 2,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5325,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           },
           "values": [
             "PT1000",
@@ -385,9 +434,9 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5418,
-            "readFunctionCode": 1,
-            "writeFunctionCode": 9
+            "address": 5594,
+            "readFunctionCode": 2,
+            "writeFunctionCode": 5
           }
         }
       ]

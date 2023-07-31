@@ -34,55 +34,23 @@ public class SensorsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsSettingsScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                selectedScheme = ChangeSchemeController.selectedScheme;
-
-                if (selectedScheme != null) {
-                    sensorsInScheme = selectedScheme.getSensors();
-                    if (sensorsInScheme != null) {
-                        fillSensorsSettingsPane();
-                    }
+                sensorsInScheme = ChangeSchemeController.sensorsInScheme;
+                if (sensorsInScheme != null) {
+                    fillSensorsSettingsPane();
                 }
-                System.out.println("ScrollPane newVal");
             }
         });
     }
 
     private void fillSensorsSettingsPane() {
-        List<Sensor> allSensors = getSensorsFromJson();
-
         sensorsSettingsVbox.getChildren().clear();
-        for (Sensor sensor : sensorsInScheme) {
-            for (Sensor allSensor : allSensors) {
-                if (sensor.getName().equals(allSensor.getName())) {
-                    sensor.setAttributes(allSensor.getAttributes());
-                }
-            }
-            if (sensor.getIsUsedDefault()) {
-                if (sensor.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane = new ElementTitledPane(sensor);
+        for (Sensor sensorInScheme : sensorsInScheme) {
+            if (sensorInScheme.getIsUsedDefault()) {
+                if (sensorInScheme.getAttributes() != null) {
+                    ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
                     sensorsSettingsVbox.getChildren().add(elementTitledPane);
                 }
             }
         }
-    }
-
-    private List<Sensor> getSensorsFromJson() {
-        String file = "src/sensors_attributes.json";
-
-        List<Sensor> sensors;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        "windows-1251"))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            sensors = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return sensors;
     }
 }

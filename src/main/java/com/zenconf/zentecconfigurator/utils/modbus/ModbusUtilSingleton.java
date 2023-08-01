@@ -5,6 +5,13 @@ import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
+import com.intelligt.modbus.jlibmodbus.msg.base.AbstractWriteMultipleRequest;
+import com.intelligt.modbus.jlibmodbus.msg.request.ReadHoldingRegistersRequest;
+import com.intelligt.modbus.jlibmodbus.msg.request.ReadInputRegistersRequest;
+import com.intelligt.modbus.jlibmodbus.msg.request.WriteMultipleRegistersRequest;
+import com.intelligt.modbus.jlibmodbus.msg.response.ReadHoldingRegistersResponse;
+import com.intelligt.modbus.jlibmodbus.msg.response.ReadInputRegistersResponse;
+import com.intelligt.modbus.jlibmodbus.msg.response.WriteMultipleRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
@@ -101,6 +108,15 @@ public class ModbusUtilSingleton {
         int registerValue = 0;
         try {
             master.connect();
+            ReadHoldingRegistersRequest request = new ReadHoldingRegistersRequest();
+            request.setServerAddress(slaveId);
+            request.setStartAddress(address);
+            request.setQuantity(2);
+            ReadHoldingRegistersResponse response = (ReadHoldingRegistersResponse) request.getResponse();
+            master.processRequest(request);
+            ModbusHoldingRegisters registers = response.getHoldingRegisters();
+            System.out.println(registers.getFloat32At(0));
+
             registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
             System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
@@ -134,46 +150,19 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public double readMultipleModbusRegister(int address) {
-        int[] registerValue = new int[2];
+    public float readMultipleModbusRegister(int address) {
+        float registerValue = 0;
         try {
             master.connect();
-            ModbusHoldingRegisters registers = new ModbusHoldingRegisters(2);
-            registers.setRegisters(new int[]{address, address + 1});
-            registers.getFloat32At(0);
-            registerValue = master.readInputRegisters(slaveId, address, 2);
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 1) | (registerValue[1] >> 1)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 2) | (registerValue[1] >> 2)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 3) | (registerValue[1] >> 3)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 4) | (registerValue[1] >> 4)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 5) | (registerValue[1] >> 5)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 6) | (registerValue[1] >> 6)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 7) | (registerValue[1] >> 7)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 8) | (registerValue[1] >> 8)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 1) | (registerValue[1] << 1)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 2) | (registerValue[1] << 2)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 3) | (registerValue[1] << 3)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 4) | (registerValue[1] << 4)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 5) | (registerValue[1] << 5)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 6) | (registerValue[1] << 6)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 7) | (registerValue[1] << 7)));
-            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 8) | (registerValue[1] << 8)));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 2) + "." + (registerValue[1] >> 2));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 3) + "." + (registerValue[1] >> 3));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 4) + "." + (registerValue[1] >> 4));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 5) + "." + (registerValue[1] >> 5));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 6) + "." + (registerValue[1] >> 6));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 7) + "." + (registerValue[1] >> 7));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 8) + "." + (registerValue[1] >> 8));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 9) + "." + (registerValue[1] >> 9));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 10) + "." + (registerValue[1] >> 10));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 11) + "." + (registerValue[1] >> 11));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 12) + "." + (registerValue[1] >> 12));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 13) + "." + (registerValue[1] >> 13));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 14) + "." + (registerValue[1] >> 14));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 15) + "." + (registerValue[1] >> 15));
-            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 16) + "." + (registerValue[1] >> 16));
-            System.out.println(Integer.toBinaryString(registerValue[0]) + "." + Integer.toBinaryString(registerValue[1]));
+            ReadInputRegistersRequest request = new ReadInputRegistersRequest();
+            request.setServerAddress(slaveId);
+            request.setStartAddress(address);
+            request.setQuantity(2);
+            ReadInputRegistersResponse response = (ReadInputRegistersResponse) request.getResponse();
+            master.processRequest(request);
+            ModbusHoldingRegisters registers = response.getHoldingRegisters();
+            registerValue = registers.getFloat32At(0);
+            System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
@@ -185,15 +174,22 @@ public class ModbusUtilSingleton {
                 e1.printStackTrace();
             }
         }
-        return registerValue[0];
+        return registerValue;
     }
 
     public void writeMultipleModbusRegister(int address, double value) {
         try {
+            byte integer = (byte) value;
+            byte fractional = (byte) (value % 1 * 1000);
             master.connect();
-            int integer = (int) value;
-            int fractional = (int) (value % 1 * 1000);
-            master.writeMultipleRegisters(slaveId, address, new int[]{integer, fractional});
+            WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest();
+            request.setServerAddress(slaveId);
+            request.setStartAddress(address);
+            request.setQuantity(1);
+//            request.setRegisters(new int[]{integer, fractional});
+            ((AbstractWriteMultipleRequest)(request)).setBytes(new byte[]{fractional, integer});
+            master.processRequest(request);
+//            master.writeMultipleRegisters(slaveId, address, new int[]{fractional, integer});
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

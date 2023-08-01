@@ -1,5 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
+import com.intelligt.modbus.jlibmodbus.exception.IllegalDataAddressException;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -103,13 +105,18 @@ public class SettingsController implements Initializable {
         if (functionCode.equals(ModbusFunctionCode.READ_COILS)) {
             valueTextField.setText(String.valueOf(modbusUtilSingleton.readModbusCoil(address)));
         } else if (functionCode.equals(ModbusFunctionCode.READ_HOLDING_REGISTERS)) {
-            valueTextField.setText(String.valueOf(modbusUtilSingleton.readModbusRegister(address)));
+            valueTextField.setText(String.valueOf(modbusUtilSingleton.readSingleModbusRegister(address)));
+        } else if (functionCode.equals(ModbusFunctionCode.READ_INPUT_REGISTERS)) {
+            valueTextField.setText(String.valueOf(modbusUtilSingleton.readMultipleModbusRegister(address)));
         } else if (functionCode.equals(ModbusFunctionCode.WRITE_SINGLE_COIL)) {
             boolean value = Boolean.parseBoolean(valueTextField.getText());
             modbusUtilSingleton.writeModbusCoil(address, value);
         } else if (functionCode.equals(ModbusFunctionCode.WRITE_SINGLE_REGISTER)) {
             int value = Integer.parseInt(valueTextField.getText());
-            modbusUtilSingleton.writeModbusRegister(address, value);
+            modbusUtilSingleton.writeSingleModbusRegister(address, value);
+        } else if (functionCode.equals(ModbusFunctionCode.WRITE_MULTIPLE_REGISTERS)) {
+            double value = Double.parseDouble(valueTextField.getText());
+            modbusUtilSingleton.writeMultipleModbusRegister(address, value);
         }
     }
 

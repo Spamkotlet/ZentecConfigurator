@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.util.List;
-import java.util.Objects;
 
 public class LabeledChoiceBox {
 
@@ -84,7 +83,7 @@ public class LabeledChoiceBox {
     private void writeAttributeValueByModbus(int value) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbusRegister(modbusParameter.getAddress(), value);
+            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value);
         }
     }
 }

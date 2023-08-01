@@ -142,7 +142,7 @@ public class ChangeSchemeController implements Initializable {
     private void writeSchemeNumberByModbus() {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbusRegister(5299, selectedScheme.getNumber());
+            modbusUtilSingleton.writeSingleModbusRegister(5299, selectedScheme.getNumber());
         }
     }
 
@@ -151,7 +151,7 @@ public class ChangeSchemeController implements Initializable {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get(modbusUtilSingleton.readModbusRegister(5299));
+            selectedScheme = schemes.get(modbusUtilSingleton.readSingleModbusRegister(5299));
         }
         return selectedScheme;
     }

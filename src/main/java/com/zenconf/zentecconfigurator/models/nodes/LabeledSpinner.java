@@ -102,18 +102,26 @@ public class LabeledSpinner {
 
     // Запись значения атрибута в контроллер по Modbus
     private void writeAttributeValueByModbus(int value) {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbusRegister(modbusParameter.getAddress(), value);
+//        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+//        if (modbusUtilSingleton.getMaster() != null) {
+//            modbusUtilSingleton.writeModbusRegister(modbusParameter.getAddress(), value);
+//        }
+        if (attribute != null) {
+            attribute.writeModbusParameter(value);
         }
     }
 
     // Чтение значения атрибута из контроллера по Modbus
     private int readAttributeValueFromModbus() {
+//        int attributeValue = 0;
+//        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+//        if (modbusUtilSingleton.getMaster() != null) {
+//            attributeValue = modbusUtilSingleton.readModbusRegister(modbusParameter.getAddress());
+//        }
+//        return attributeValue;
         int attributeValue = 0;
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            attributeValue = modbusUtilSingleton.readModbusRegister(modbusParameter.getAddress());
+        if (attribute != null) {
+            attributeValue = Integer.parseInt(attribute.readModbusParameter());
         }
         return attributeValue;
     }

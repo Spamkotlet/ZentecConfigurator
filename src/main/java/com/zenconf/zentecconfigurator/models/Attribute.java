@@ -5,7 +5,6 @@ import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Attribute {
 
@@ -72,7 +71,7 @@ public class Attribute {
             if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_COILS) {
                 value = String.valueOf(modbusUtilSingleton.readModbusCoil(modbusParameters.getAddress()));
             } else if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_HOLDING_REGISTERS) {
-                value = String.valueOf(modbusUtilSingleton.readModbusRegister(modbusParameters.getAddress()));
+                value = String.valueOf(modbusUtilSingleton.readSingleModbusRegister(modbusParameters.getAddress()));
             }
         }
         return value;
@@ -84,7 +83,7 @@ public class Attribute {
             if (value.getClass().equals(Boolean.class)) {
                 modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), (boolean) value);
             } else if (value.getClass().equals(Integer.class)) {
-                modbusUtilSingleton.writeModbusRegister(modbusParameters.getAddress(), (int) value);
+                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), (int) value);
             }
         }
     }

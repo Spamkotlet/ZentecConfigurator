@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.utils.modbus;
 
 import com.intelligt.modbus.jlibmodbus.Modbus;
+import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
@@ -96,7 +97,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public int readModbusRegister(int address) {
+    public int readSingleModbusRegister(int address) {
         int registerValue = 0;
         try {
             master.connect();
@@ -116,10 +117,83 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
-    public void writeModbusRegister(int address, int value) {
+    public void writeSingleModbusRegister(int address, int value) {
         try {
             master.connect();
             master.writeSingleRegister(slaveId, address, value);
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                master.disconnect();
+            } catch (ModbusIOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public double readMultipleModbusRegister(int address) {
+        int[] registerValue = new int[2];
+        try {
+            master.connect();
+            ModbusHoldingRegisters registers = new ModbusHoldingRegisters(2);
+            registers.setRegisters(new int[]{address, address + 1});
+            registers.getFloat32At(0);
+            registerValue = master.readInputRegisters(slaveId, address, 2);
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 1) | (registerValue[1] >> 1)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 2) | (registerValue[1] >> 2)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 3) | (registerValue[1] >> 3)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 4) | (registerValue[1] >> 4)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 5) | (registerValue[1] >> 5)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 6) | (registerValue[1] >> 6)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 7) | (registerValue[1] >> 7)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] >> 8) | (registerValue[1] >> 8)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 1) | (registerValue[1] << 1)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 2) | (registerValue[1] << 2)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 3) | (registerValue[1] << 3)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 4) | (registerValue[1] << 4)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 5) | (registerValue[1] << 5)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 6) | (registerValue[1] << 6)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 7) | (registerValue[1] << 7)));
+            System.out.println("Address: " + address + ", Value: " + ((registerValue[0] << 8) | (registerValue[1] << 8)));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 2) + "." + (registerValue[1] >> 2));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 3) + "." + (registerValue[1] >> 3));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 4) + "." + (registerValue[1] >> 4));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 5) + "." + (registerValue[1] >> 5));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 6) + "." + (registerValue[1] >> 6));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 7) + "." + (registerValue[1] >> 7));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 8) + "." + (registerValue[1] >> 8));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 9) + "." + (registerValue[1] >> 9));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 10) + "." + (registerValue[1] >> 10));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 11) + "." + (registerValue[1] >> 11));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 12) + "." + (registerValue[1] >> 12));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 13) + "." + (registerValue[1] >> 13));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 14) + "." + (registerValue[1] >> 14));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 15) + "." + (registerValue[1] >> 15));
+            System.out.println("Address: " + address + ", Value: " + (registerValue[0] >> 16) + "." + (registerValue[1] >> 16));
+            System.out.println(Integer.toBinaryString(registerValue[0]) + "." + Integer.toBinaryString(registerValue[1]));
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                master.disconnect();
+            } catch (ModbusIOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return registerValue[0];
+    }
+
+    public void writeMultipleModbusRegister(int address, double value) {
+        try {
+            master.connect();
+            int integer = (int) value;
+            int fractional = (int) (value % 1 * 1000);
+            master.writeMultipleRegisters(slaveId, address, new int[]{integer, fractional});
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

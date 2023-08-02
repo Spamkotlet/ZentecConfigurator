@@ -18,6 +18,8 @@ import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
 import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
 import javafx.scene.control.Alert;
 
+import java.util.Arrays;
+
 // TODO: Сделать билдер
 
 public class ModbusUtilSingleton {
@@ -161,7 +163,14 @@ public class ModbusUtilSingleton {
             ReadInputRegistersResponse response = (ReadInputRegistersResponse) request.getResponse();
             master.processRequest(request);
             ModbusHoldingRegisters registers = response.getHoldingRegisters();
-            registerValue = registers.getFloat32At(0);
+
+            byte[] bytes = registers.getBytes();
+            int value = 0;
+            for (byte b: bytes) {
+                value = (value << 8) + (b & 0xFF);
+            }
+            registerValue = Float.intBitsToFloat(value);
+
             System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
@@ -177,19 +186,25 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
-    public void writeMultipleModbusRegister(int address, double value) {
+    public void writeMultipleModbusRegister(int address, float value) {
         try {
-            byte integer = (byte) value;
-            byte fractional = (byte) (value % 1 * 1000);
+            int intValue = Float.floatToIntBits(value);
+            int[] bytes = new int[Float.BYTES];
+            int length = bytes.length;
+            for (int i = 0; i < length; i++) {
+                bytes[length - i - 1] = (byte) (intValue & 0xFF);
+                intValue >>= 8;
+            }
             master.connect();
-            WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest();
-            request.setServerAddress(slaveId);
-            request.setStartAddress(address);
-            request.setQuantity(1);
-//            request.setRegisters(new int[]{integer, fractional});
-            ((AbstractWriteMultipleRequest)(request)).setBytes(new byte[]{fractional, integer});
-            master.processRequest(request);
-//            master.writeMultipleRegisters(slaveId, address, new int[]{fractional, integer});
+//            WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest();
+//            request.setServerAddress(slaveId);
+//            request.setStartAddress(address);
+//            request.setQuantity(1);
+////            request.setRegisters(new int[]{integer, fractional});
+//            ((AbstractWriteMultipleRequest)(request)).setBytes(new byte[]{fractional, integer});
+//            master.processRequest(request);
+//            master.writeMultipleRegisters();
+            master.writeMultipleRegisters(slaveId, address, bytes);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
@@ -253,5 +268,17 @@ public class ModbusUtilSingleton {
 
     public ModbusMaster getMaster() {
         return master;
+    }
+
+    private byte[] wordSwap(byte[] buf) {
+        byte[] returnBuf = new byte[buf.length];
+        for (int i = 0; i < buf.length; i = i + 4)
+        {
+            returnBuf[i] = buf[i+2];
+            returnBuf[i+1] = buf[i+3];
+            returnBuf[i+2] = buf[i];
+            returnBuf[i+3] = buf[i+1];
+        }
+        return returnBuf;
     }
 }

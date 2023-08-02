@@ -115,7 +115,7 @@ public class SettingsController implements Initializable {
             int value = Integer.parseInt(valueTextField.getText());
             modbusUtilSingleton.writeSingleModbusRegister(address, value);
         } else if (functionCode.equals(ModbusFunctionCode.WRITE_MULTIPLE_REGISTERS)) {
-            double value = Double.parseDouble(valueTextField.getText());
+            float value = Float.parseFloat(valueTextField.getText());
             modbusUtilSingleton.writeMultipleModbusRegister(address, value);
         }
     }

@@ -189,22 +189,19 @@ public class ModbusUtilSingleton {
     public void writeMultipleModbusRegister(int address, float value) {
         try {
             int intValue = Float.floatToIntBits(value);
-            int[] bytes = new int[Float.BYTES];
+            byte[] bytes = new byte[Float.BYTES];
             int length = bytes.length;
             for (int i = 0; i < length; i++) {
                 bytes[length - i - 1] = (byte) (intValue & 0xFF);
                 intValue >>= 8;
             }
             master.connect();
-//            WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest();
-//            request.setServerAddress(slaveId);
-//            request.setStartAddress(address);
-//            request.setQuantity(1);
-////            request.setRegisters(new int[]{integer, fractional});
-//            ((AbstractWriteMultipleRequest)(request)).setBytes(new byte[]{fractional, integer});
-//            master.processRequest(request);
-//            master.writeMultipleRegisters();
-            master.writeMultipleRegisters(slaveId, address, bytes);
+            WriteMultipleRegistersRequest request = new WriteMultipleRegistersRequest();
+            request.setServerAddress(slaveId);
+            request.setStartAddress(address);
+            request.setQuantity(2);
+            request.setBytes(bytes);
+            master.processRequest(request);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

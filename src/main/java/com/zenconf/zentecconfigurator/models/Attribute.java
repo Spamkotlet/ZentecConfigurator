@@ -1,6 +1,8 @@
 package com.zenconf.zentecconfigurator.models;
 
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
+import com.zenconf.zentecconfigurator.models.enums.Controls;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 
@@ -68,11 +70,7 @@ public class Attribute {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         String value = "";
         if (modbusUtilSingleton.getMaster() != null) {
-            if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_COILS) {
-                value = String.valueOf(modbusUtilSingleton.readModbusCoil(modbusParameters.getAddress()));
-            } else if (modbusParameters.getReadFunctionCode() == ModbusFunctionCode.READ_HOLDING_REGISTERS) {
-                value = String.valueOf(modbusUtilSingleton.readSingleModbusRegister(modbusParameters.getAddress()));
-            }
+            value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
         }
         return value;
     }
@@ -80,10 +78,12 @@ public class Attribute {
     public void writeModbusParameter(Object value) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            if (value.getClass().equals(Boolean.class)) {
-                modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), (boolean) value);
-            } else if (value.getClass().equals(Integer.class)) {
-                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), (int) value);
+            if (modbusParameters.getVarType().equals(VarTypes.BOOL)) {
+                modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), Boolean.parseBoolean(value.toString()));
+            } else if (modbusParameters.getVarType().equals(VarTypes.FLOAT)) {
+                modbusUtilSingleton.writeMultipleModbusRegister(modbusParameters.getAddress(), (float) value);
+            } else {
+                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), Integer.parseInt(value.toString()), modbusParameters.getVarType());
             }
         }
     }

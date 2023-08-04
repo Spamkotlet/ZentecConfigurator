@@ -78,13 +78,13 @@ public class LabeledSpinner {
                         attribute.getMinValue(), attribute.getMaxValue(), readAttributeValueFromModbus());
         spinner.setValueFactory(spinnerFactory);
         spinner.setOnMouseReleased(e -> {
-            writeAttributeValueByModbus((int)((double) spinner.getValue()));
+            attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
             System.out.println("Value: " + spinner.getValue());
         });
 
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                writeAttributeValueByModbus((int)((double) spinner.getValue()));
+                attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
                 System.out.println("Value: " + spinner.getValue());
             }
         });
@@ -102,26 +102,18 @@ public class LabeledSpinner {
 
     // Запись значения атрибута в контроллер по Modbus
     private void writeAttributeValueByModbus(int value) {
-//        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-//        if (modbusUtilSingleton.getMaster() != null) {
-//            modbusUtilSingleton.writeModbusRegister(modbusParameter.getAddress(), value);
-//        }
-        if (attribute != null) {
-            attribute.writeModbusParameter(value);
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value, modbusParameter.getVarType());
         }
     }
 
     // Чтение значения атрибута из контроллера по Modbus
     private int readAttributeValueFromModbus() {
-//        int attributeValue = 0;
-//        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-//        if (modbusUtilSingleton.getMaster() != null) {
-//            attributeValue = modbusUtilSingleton.readModbusRegister(modbusParameter.getAddress());
-//        }
-//        return attributeValue;
         int attributeValue = 0;
-        if (attribute != null) {
-            attributeValue = Integer.parseInt(attribute.readModbusParameter());
+        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
+        if (modbusUtilSingleton.getMaster() != null) {
+            attributeValue = modbusUtilSingleton.readSingleModbusRegister(modbusParameter.getAddress(), modbusParameter.getVarType());
         }
         return attributeValue;
     }

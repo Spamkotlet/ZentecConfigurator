@@ -23,9 +23,11 @@ public class SchemeTitledPane extends TitledPane {
     public SchemeTitledPane(Element element) {
         this.element = element;
         List<Attribute> elementAttributes = element.getAttributes();
-        for (Attribute attribute : elementAttributes) {
-            if (attribute.getName().equals("В работе")) {
-                inWorkAttribute = attribute;
+        if (elementAttributes != null) {
+            for (Attribute attribute : elementAttributes) {
+                if (attribute.getName().equals("В работе")) {
+                    inWorkAttribute = attribute;
+                }
             }
         }
 

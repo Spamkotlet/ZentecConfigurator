@@ -25,4 +25,6 @@ module com.zenconf.zentecconfigurator {
     opens com.zenconf.zentecconfigurator.models.nodes to com.fasterxml.jackson.databind;
     exports com.zenconf.zentecconfigurator.models.modbus;
     exports com.zenconf.zentecconfigurator.utils.modbus;
+    exports com.zenconf.zentecconfigurator.models.enums;
+    opens com.zenconf.zentecconfigurator.models.enums to com.fasterxml.jackson.databind;
 }

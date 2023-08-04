@@ -5,20 +5,15 @@ import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
-import com.intelligt.modbus.jlibmodbus.msg.base.AbstractWriteMultipleRequest;
-import com.intelligt.modbus.jlibmodbus.msg.request.ReadHoldingRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.request.ReadInputRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.request.WriteMultipleRegistersRequest;
-import com.intelligt.modbus.jlibmodbus.msg.response.ReadHoldingRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.msg.response.ReadInputRegistersResponse;
-import com.intelligt.modbus.jlibmodbus.msg.response.WriteMultipleRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
 import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
-
-import java.util.Arrays;
 
 // TODO: Сделать билдер
 
@@ -26,7 +21,7 @@ public class ModbusUtilSingleton {
     private static ModbusUtilSingleton instance;
 
     private ModbusMaster master;
-    private int slaveId = 247;
+    private int slaveId = 1;
     private String device;
     private SerialPort.BaudRate baudRate = SerialPort.BaudRate.BAUD_RATE_115200;
     private int dataBits = 8;
@@ -57,6 +52,7 @@ public class ModbusUtilSingleton {
 
                 SerialUtils.setSerialPortFactory(new SerialPortFactoryJSSC());
                 master = ModbusMasterFactory.createModbusMasterRTU(sp);
+                System.out.println("Успешное соединение");
             }
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -67,6 +63,27 @@ public class ModbusUtilSingleton {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void disconnect() throws ModbusIOException {
+        if (master != null) {
+            if (master.isConnected()) {
+                master.disconnect();
+                System.out.println("Успешное отключение");
+            }
+        }
+    }
+
+    public Object readModbus(int address, VarTypes varType) {
+        Object value = null;
+        if (varType.equals(VarTypes.BOOL)) {
+            value = readModbusCoil(address);
+        } else if (varType.equals(VarTypes.FLOAT)) {
+            value = readMultipleModbusRegister(address);
+        } else {
+            value = readSingleModbusRegister(address, varType);
+        }
+        return value;
     }
 
     public boolean readModbusCoil(int address) {
@@ -106,20 +123,20 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public int readSingleModbusRegister(int address) {
+    public int readSingleModbusRegister(int address, VarTypes varType) {
         int registerValue = 0;
         try {
             master.connect();
-            ReadHoldingRegistersRequest request = new ReadHoldingRegistersRequest();
-            request.setServerAddress(slaveId);
-            request.setStartAddress(address);
-            request.setQuantity(2);
-            ReadHoldingRegistersResponse response = (ReadHoldingRegistersResponse) request.getResponse();
-            master.processRequest(request);
-            ModbusHoldingRegisters registers = response.getHoldingRegisters();
-            System.out.println(registers.getFloat32At(0));
-
-            registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
+            if (varType.equals(VarTypes.UINT8) || varType.equals(VarTypes.UINT16)) {
+                registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
+            } else if (varType.equals(VarTypes.UINT32)) {
+                registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
+            } else if (varType.equals(VarTypes.SINT8)) {
+                registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
+                if (registerValue > Byte.MAX_VALUE) {
+                    registerValue -= Byte.MAX_VALUE * 2 + 2;
+                }
+            }
             System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
@@ -135,9 +152,14 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
-    public void writeSingleModbusRegister(int address, int value) {
+    public void writeSingleModbusRegister(int address, int value, VarTypes varType) {
         try {
             master.connect();
+            if (varType.equals(VarTypes.SINT8)) {
+                if (value < Byte.MAX_VALUE) {
+                    value = Byte.MAX_VALUE * 2 + 2 + value;
+                }
+            }
             master.writeSingleRegister(slaveId, address, value);
         } catch (RuntimeException e) {
             throw e;
@@ -186,6 +208,7 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
+    // Запись Дробный 4-байт
     public void writeMultipleModbusRegister(int address, float value) {
         try {
             int intValue = Float.floatToIntBits(value);

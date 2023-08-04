@@ -1,9 +1,10 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
-import com.intelligt.modbus.jlibmodbus.exception.IllegalDataAddressException;
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
+import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.text.TextFlow;
 import jssc.SerialPortList;
 
 import java.net.URL;
@@ -38,6 +40,8 @@ public class SettingsController implements Initializable {
 
     @FXML
     public Button connectDeviceButton;
+    @FXML
+    public Button disconnectDeviceButton;
 
     @FXML
     public Button refreshComPortsButton;
@@ -50,7 +54,11 @@ public class SettingsController implements Initializable {
     @FXML
     public TextField valueTextField;
     @FXML
-    public ChoiceBox<ModbusFunctionCode> functionChoiceBox;
+    public ChoiceBox<VarFunctions> functionChoiceBox;
+    @FXML
+    public TextFlow functionDescriptionTextFlow;
+    @FXML
+    public ChoiceBox<VarTypes> varTypeChoiceBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
 
@@ -69,14 +77,18 @@ public class SettingsController implements Initializable {
         parityChoiceBox.setValue(modbusUtilSingleton.getParity());
         stopBitsChoiceBox.setItems(getStopBitsObservableList());
         stopBitsChoiceBox.setValue(modbusUtilSingleton.getStopBits());
-        functionChoiceBox.setItems(getModbusFunctionCodeObservableList());
-        functionChoiceBox.setValue(ModbusFunctionCode.READ_COILS);
+        functionChoiceBox.setItems(getVarFunctionObservableList());
+        functionChoiceBox.setValue(VarFunctions.READ);
+        varTypeChoiceBox.setItems(getVarTypesObservableList());
+        varTypeChoiceBox.setValue(VarTypes.BOOL);
         addressTextField.setText("5363");
         valueTextField.setText("1");
 
         connectDeviceButton.setOnAction(this::connectDevice);
+        disconnectDeviceButton.setOnAction(this::disconnectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
         testModbusButton.setOnAction(this::testModbus);
+        functionDescriptionTextFlow.setAccessibleText("Описание функций");
     }
 
     private void connectDevice(ActionEvent actionEvent) {
@@ -90,6 +102,14 @@ public class SettingsController implements Initializable {
         modbusUtilSingleton.connect();
     }
 
+    private void disconnectDevice(ActionEvent actionEvent) {
+        try {
+            modbusUtilSingleton.disconnect();
+        } catch (ModbusIOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void refreshComPorts(ActionEvent actionEvent) {
         String[] devices = SerialPortList.getPortNames();
         ObservableList<String> devicesList = FXCollections.observableArrayList(devices);
@@ -100,23 +120,28 @@ public class SettingsController implements Initializable {
     }
 
     private void testModbus(ActionEvent actionEvent) {
-        ModbusFunctionCode functionCode = functionChoiceBox.getValue();
         int address = Integer.parseInt(addressTextField.getText());
-        if (functionCode.equals(ModbusFunctionCode.READ_COILS)) {
-            valueTextField.setText(String.valueOf(modbusUtilSingleton.readModbusCoil(address)));
-        } else if (functionCode.equals(ModbusFunctionCode.READ_HOLDING_REGISTERS)) {
-            valueTextField.setText(String.valueOf(modbusUtilSingleton.readSingleModbusRegister(address)));
-        } else if (functionCode.equals(ModbusFunctionCode.READ_INPUT_REGISTERS)) {
-            valueTextField.setText(String.valueOf(modbusUtilSingleton.readMultipleModbusRegister(address)));
-        } else if (functionCode.equals(ModbusFunctionCode.WRITE_SINGLE_COIL)) {
-            boolean value = Boolean.parseBoolean(valueTextField.getText());
-            modbusUtilSingleton.writeModbusCoil(address, value);
-        } else if (functionCode.equals(ModbusFunctionCode.WRITE_SINGLE_REGISTER)) {
-            int value = Integer.parseInt(valueTextField.getText());
-            modbusUtilSingleton.writeSingleModbusRegister(address, value);
-        } else if (functionCode.equals(ModbusFunctionCode.WRITE_MULTIPLE_REGISTERS)) {
-            float value = Float.parseFloat(valueTextField.getText());
-            modbusUtilSingleton.writeMultipleModbusRegister(address, value);
+        VarTypes varType = varTypeChoiceBox.getValue();
+        VarFunctions varFunction = functionChoiceBox.getValue();
+        if (varFunction.equals(VarFunctions.READ)) {
+            if (varType.equals(VarTypes.BOOL)) {
+                valueTextField.setText(String.valueOf(modbusUtilSingleton.readModbusCoil(address)));
+            } else if (varType.equals(VarTypes.FLOAT)) {
+                valueTextField.setText(String.valueOf(modbusUtilSingleton.readMultipleModbusRegister(address)));
+            } else {
+                valueTextField.setText(String.valueOf(modbusUtilSingleton.readSingleModbusRegister(address, varType)));
+            }
+        } else {
+            if (varType.equals(VarTypes.BOOL)) {
+                boolean value = Boolean.parseBoolean(valueTextField.getText());
+                modbusUtilSingleton.writeModbusCoil(address, value);
+            } else if (varType.equals(VarTypes.FLOAT)) {
+                float value = Float.parseFloat(valueTextField.getText());
+                modbusUtilSingleton.writeMultipleModbusRegister(address, value);
+            } else {
+                int value = Integer.parseInt(valueTextField.getText());
+                modbusUtilSingleton.writeSingleModbusRegister(address, value, varType);
+            }
         }
     }
 
@@ -140,5 +165,13 @@ public class SettingsController implements Initializable {
 
     private ObservableList<ModbusFunctionCode> getModbusFunctionCodeObservableList() {
         return FXCollections.observableArrayList(ModbusFunctionCode.values());
+    }
+
+    private ObservableList<VarTypes> getVarTypesObservableList() {
+        return FXCollections.observableArrayList(VarTypes.values());
+    }
+
+    private ObservableList<VarFunctions> getVarFunctionObservableList() {
+        return FXCollections.observableArrayList(VarFunctions.values());
     }
 }

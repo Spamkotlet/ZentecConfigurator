@@ -1,4 +1,4 @@
-package com.zenconf.zentecconfigurator.models;
+package com.zenconf.zentecconfigurator.models.enums;
 
 import javafx.scene.control.CheckBox;
 

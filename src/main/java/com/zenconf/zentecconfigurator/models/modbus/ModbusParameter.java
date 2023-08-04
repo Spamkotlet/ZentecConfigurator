@@ -1,12 +1,13 @@
 package com.zenconf.zentecconfigurator.models.modbus;
 
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
+import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 
 public class ModbusParameter {
 
     private int address;
-    private ModbusFunctionCode readFunctionCode;
-    private ModbusFunctionCode writeFunctionCode;
+    private VarTypes varType;
 
     public int getAddress() {
         return address;
@@ -16,19 +17,11 @@ public class ModbusParameter {
         this.address = address;
     }
 
-    public ModbusFunctionCode getReadFunctionCode() {
-        return readFunctionCode;
+    public void setVarType(VarTypes varType) {
+        this.varType = varType;
     }
 
-    public void setReadFunctionCode(ModbusFunctionCode readFunctionCode) {
-        this.readFunctionCode = readFunctionCode;
-    }
-
-    public ModbusFunctionCode getWriteFunctionCode() {
-        return writeFunctionCode;
-    }
-
-    public void setWriteFunctionCode(ModbusFunctionCode writeFunctionCode) {
-        this.writeFunctionCode = writeFunctionCode;
+    public VarTypes getVarType() {
+        return varType;
     }
 }

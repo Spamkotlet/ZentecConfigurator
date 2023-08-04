@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -142,7 +143,7 @@ public class ChangeSchemeController implements Initializable {
     private void writeSchemeNumberByModbus() {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(5299, selectedScheme.getNumber());
+            modbusUtilSingleton.writeSingleModbusRegister(5299, selectedScheme.getNumber(), VarTypes.UINT8);
         }
     }
 
@@ -151,7 +152,7 @@ public class ChangeSchemeController implements Initializable {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get(modbusUtilSingleton.readSingleModbusRegister(5299));
+            selectedScheme = schemes.get(modbusUtilSingleton.readSingleModbusRegister(5299, VarTypes.UINT8));
         }
         return selectedScheme;
     }

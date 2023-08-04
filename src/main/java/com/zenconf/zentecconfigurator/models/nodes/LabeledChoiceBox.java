@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.collections.FXCollections;
@@ -52,8 +53,9 @@ public class LabeledChoiceBox {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
+        choiceBox.setValue(getChoiceBoxItems(attributeValues).get(Integer.parseInt(attribute.readModbusParameter())));
         choiceBox.setOnAction(e -> {
-            writeAttributeValueByModbus(attributeValues.indexOf(choiceBox.getValue()));
+            attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
             System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
         });
 
@@ -83,7 +85,7 @@ public class LabeledChoiceBox {
     private void writeAttributeValueByModbus(int value) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value);
+            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value, modbusParameter.getVarType());
         }
     }
 }

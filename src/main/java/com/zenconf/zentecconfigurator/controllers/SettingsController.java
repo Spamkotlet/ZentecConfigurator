@@ -22,27 +22,20 @@ public class SettingsController implements Initializable {
 
     @FXML
     public ChoiceBox<String> comPortChoiceBox;
-
     @FXML
     public Spinner<Integer> slaveIdSpinner;
-
     @FXML
     public ChoiceBox<SerialPort.BaudRate> baudRateChoiceBox;
-
     @FXML
     public ChoiceBox<Integer> dataBitsChoiceBox;
-
     @FXML
     public ChoiceBox<SerialPort.Parity> parityChoiceBox;
-
     @FXML
     public ChoiceBox<Integer> stopBitsChoiceBox;
-
     @FXML
     public Button connectDeviceButton;
     @FXML
     public Button disconnectDeviceButton;
-
     @FXML
     public Button refreshComPortsButton;
 

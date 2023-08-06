@@ -1,29 +1,22 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class SensorsController implements Initializable {
 
     private List<Sensor> sensorsInScheme;
-    private Scheme selectedScheme;
 
+    protected static List<Sensor> sensorsIsInUsed = new ArrayList<>();
     @FXML
     public VBox sensorsSettingsVbox;
 
@@ -37,6 +30,7 @@ public class SensorsController implements Initializable {
                 sensorsInScheme = ChangeSchemeController.sensorsInScheme;
                 if (sensorsInScheme != null) {
                     fillSensorsSettingsPane();
+                    System.out.println("Датчики");
                 }
             }
         });
@@ -47,6 +41,7 @@ public class SensorsController implements Initializable {
         for (Sensor sensorInScheme : sensorsInScheme) {
             if (sensorInScheme.getIsUsedDefault()) {
                 if (sensorInScheme.getAttributes() != null) {
+                    sensorsIsInUsed.add(sensorInScheme);
                     ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
                     sensorsSettingsVbox.getChildren().add(elementTitledPane);
                 }

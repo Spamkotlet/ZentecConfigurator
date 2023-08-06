@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.models;
 
-import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
@@ -68,9 +67,11 @@ public class Attribute {
 
     public String readModbusParameter() {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        String value = "";
+        String value;
         if (modbusUtilSingleton.getMaster() != null) {
             value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+        } else {
+            value = "0";
         }
         return value;
     }
@@ -81,9 +82,9 @@ public class Attribute {
             if (modbusParameters.getVarType().equals(VarTypes.BOOL)) {
                 modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), Boolean.parseBoolean(value.toString()));
             } else if (modbusParameters.getVarType().equals(VarTypes.FLOAT)) {
-                modbusUtilSingleton.writeMultipleModbusRegister(modbusParameters.getAddress(), (float) value);
+                modbusUtilSingleton.writeMultipleModbusRegister(modbusParameters.getAddress(), Float.parseFloat(value.toString()));
             } else {
-                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), Integer.parseInt(value.toString()), modbusParameters.getVarType());
+                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), Math.round(Float.parseFloat(value.toString())), modbusParameters.getVarType());
             }
         }
     }

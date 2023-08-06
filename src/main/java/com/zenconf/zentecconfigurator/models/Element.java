@@ -7,6 +7,7 @@ public abstract class Element {
     private String name;
     private Boolean isUsedDefault;
     private List<Attribute> attributes;
+    private Attribute attributeForMonitoring;
 
     public String getName() {
         return this.name;
@@ -30,5 +31,13 @@ public abstract class Element {
 
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
+    }
+
+    public Attribute getAttributeForMonitoring() {
+        return attributeForMonitoring;
+    }
+
+    public void setAttributeForMonitoring(Attribute attributeForMonitoring) {
+        this.attributeForMonitoring = attributeForMonitoring;
     }
 }

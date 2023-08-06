@@ -1,9 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.enums.VarTypes;
-import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
-import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -17,12 +14,9 @@ import java.util.List;
 public class LabeledChoiceBox {
 
     private final Attribute attribute;
-    private ModbusUtilSingleton modbusUtilSingleton;
-    private ModbusParameter modbusParameter;
 
     public LabeledChoiceBox(Attribute attribute) {
         this.attribute = attribute;
-        modbusParameter = attribute.getModbusParameters();
     }
 
     public Node getChoiceBox() {
@@ -53,7 +47,10 @@ public class LabeledChoiceBox {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
-        choiceBox.setValue(getChoiceBoxItems(attributeValues).get(Integer.parseInt(attribute.readModbusParameter())));
+        choiceBox.setValue(
+                getChoiceBoxItems(attributeValues)
+                        .get(Integer.parseInt(attribute.readModbusParameter()))
+        );
         choiceBox.setOnAction(e -> {
             attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
             System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
@@ -79,13 +76,5 @@ public class LabeledChoiceBox {
         hBox.setSpacing(10);
 
         return hBox;
-    }
-
-    // Запись значения атрибута в контроллер по Modbus
-    private void writeAttributeValueByModbus(int value) {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value, modbusParameter.getVarType());
-        }
     }
 }

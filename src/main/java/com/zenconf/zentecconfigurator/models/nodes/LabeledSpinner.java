@@ -1,9 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.Scheme;
-import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
-import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -14,17 +11,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import java.util.Objects;
-
 public class LabeledSpinner {
 
     private final Attribute attribute;
-    private ModbusUtilSingleton modbusUtilSingleton;
-    private final ModbusParameter modbusParameter;
 
     public LabeledSpinner(Attribute attribute) {
         this.attribute = attribute;
-        modbusParameter = attribute.getModbusParameters();
     }
 
     public Node getSpinner() {
@@ -75,10 +67,10 @@ public class LabeledSpinner {
         spinner.setPrefWidth(200);
         SpinnerValueFactory<Double> spinnerFactory =
                 new SpinnerValueFactory.DoubleSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), readAttributeValueFromModbus());
+                        attribute.getMinValue(), attribute.getMaxValue(), Double.parseDouble(attribute.readModbusParameter()));
         spinner.setValueFactory(spinnerFactory);
         spinner.setOnMouseReleased(e -> {
-            attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
+            attribute.writeModbusParameter(spinner.getValue().toString());
             System.out.println("Value: " + spinner.getValue());
         });
 
@@ -98,23 +90,5 @@ public class LabeledSpinner {
         AnchorPane.setBottomAnchor(spinnerAnchor, 0.0);
 
         return spinnerAnchor;
-    }
-
-    // Запись значения атрибута в контроллер по Modbus
-    private void writeAttributeValueByModbus(int value) {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(modbusParameter.getAddress(), value, modbusParameter.getVarType());
-        }
-    }
-
-    // Чтение значения атрибута из контроллера по Modbus
-    private int readAttributeValueFromModbus() {
-        int attributeValue = 0;
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            attributeValue = modbusUtilSingleton.readSingleModbusRegister(modbusParameter.getAddress(), modbusParameter.getVarType());
-        }
-        return attributeValue;
     }
 }

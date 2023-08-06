@@ -1,7 +1,5 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
@@ -9,20 +7,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActuatorsController implements Initializable {
     private List<Actuator> actuatorsInScheme;
-    private Scheme selectedScheme;
+
+    protected static List<Actuator> actuatorsIsInUsing;
 
     @FXML
     public VBox actuatorsSettingsVbox;
@@ -33,7 +26,6 @@ public class ActuatorsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         actuatorsSettingsScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                selectedScheme = ChangeSchemeController.selectedScheme;
                 actuatorsInScheme = ChangeSchemeController.actuatorsInScheme;
 
                 if (actuatorsInScheme != null) {

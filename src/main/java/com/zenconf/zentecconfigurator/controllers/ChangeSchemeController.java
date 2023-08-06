@@ -41,7 +41,6 @@ public class ChangeSchemeController implements Initializable {
     protected static Scheme selectedScheme = null;
     protected static List<Sensor> sensorsInScheme;
     protected static List<Actuator> actuatorsInScheme;
-
     private ModbusUtilSingleton modbusUtilSingleton;
 
     // Что происходит при открытии экрана
@@ -95,6 +94,7 @@ public class ChangeSchemeController implements Initializable {
             for (Sensor sensor : sensorList) {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     sensorInScheme.setAttributes(sensor.getAttributes());
+                    sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                 }
             }
         }
@@ -111,6 +111,7 @@ public class ChangeSchemeController implements Initializable {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
             actuatorsVbox.getChildren().add(schemeTitledPane);
         }
+
         sensorsVbox.getChildren().clear();
         for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
@@ -130,8 +131,16 @@ public class ChangeSchemeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        onOpenedChoiceSchemePane();
+        changeSchemeScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                // Потом надо запихать в метод
+                ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
+                selectedScheme = readSchemeNumberFromModbus();
+                schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
+            }
+        });
 
+        onOpenedChoiceSchemePane();
         schemeNumberChoiceBox.setOnAction(e -> {
                     System.out.println("Выбор схемы");
                     onSelectedSchemeNumber();

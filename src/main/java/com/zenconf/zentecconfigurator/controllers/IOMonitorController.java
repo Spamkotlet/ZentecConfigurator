@@ -40,7 +40,6 @@ public class IOMonitorController implements Initializable {
     List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
 
     public static ScheduledExecutorService executor;
-    public static Thread pollingThread;
     private boolean pollingPreviousState = false;
 
     @Override
@@ -71,6 +70,7 @@ public class IOMonitorController implements Initializable {
                 }
 
                 sensorsMonitorVBox.getChildren().clear();
+                monitorTextFlowList.clear();
                 setpointsVBox.getChildren().clear();
                 if (sensorsInScheme != null) {
                     for (Sensor sensor : sensorsInScheme) {
@@ -114,29 +114,24 @@ public class IOMonitorController implements Initializable {
         if (master != null) {
             System.out.println(Thread.currentThread().getName());
             stopPolling();
-            pollingThread = new Thread(() -> {
-                pollingThread.setName("POLLING");
-                executor = Executors.newSingleThreadScheduledExecutor();
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
-                            monitorTextFlow.update();
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
+
+            executor = Executors.newSingleThreadScheduledExecutor();
+            TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
+                        monitorTextFlow.update();
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
                         }
-                        System.out.println(Thread.currentThread());
                     }
-                };
+                    System.out.println(Thread.currentThread());
+                }
+            };
 
-                executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
-
-            });
-//            pollingThread.setName("POLLING");
-            pollingThread.start();
+            executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
         }
     }
 
@@ -144,12 +139,6 @@ public class IOMonitorController implements Initializable {
         if (executor != null) {
             if (!executor.isShutdown()) {
                 executor.shutdown();
-            }
-        }
-        if (pollingThread != null) {
-            if (pollingThread.isAlive()) {
-                pollingThread.stop();
-                pollingThread = null;
             }
         }
     }

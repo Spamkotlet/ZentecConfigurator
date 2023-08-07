@@ -29,6 +29,9 @@ public class Application extends javafx.application.Application {
         if (IOMonitorController.executor != null) {
             IOMonitorController.executor.shutdownNow();
         }
+        if (IOMonitorController.pollingThread != null) {
+            IOMonitorController.pollingThread.stop();
+        }
     }
     public static void main(String[] args) {
         launch();

@@ -28,7 +28,7 @@ public class ModbusUtilSingleton {
     private SerialPort.Parity parity = SerialPort.Parity.EVEN;
     private int stopBits = 1;
 
-    public static ModbusUtilSingleton getInstance() {
+    public synchronized static ModbusUtilSingleton getInstance() {
         if (instance == null) {
             instance = new ModbusUtilSingleton();
         }
@@ -74,7 +74,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public Object readModbus(int address, VarTypes varType) {
+    public synchronized Object readModbus(int address, VarTypes varType) {
         Object value = null;
         if (varType.equals(VarTypes.BOOL)) {
             value = readModbusCoil(address);
@@ -86,7 +86,7 @@ public class ModbusUtilSingleton {
         return value;
     }
 
-    public boolean readModbusCoil(int address) {
+    public synchronized boolean readModbusCoil(int address) {
         boolean coilValue = false;
         try {
             master.connect();
@@ -106,7 +106,7 @@ public class ModbusUtilSingleton {
         return coilValue;
     }
 
-    public void writeModbusCoil(int address, boolean value) {
+    public synchronized void writeModbusCoil(int address, boolean value) {
         try {
             master.connect();
             master.writeSingleCoil(slaveId, address, value);
@@ -123,7 +123,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public int readSingleModbusRegister(int address, VarTypes varType) {
+    public synchronized int readSingleModbusRegister(int address, VarTypes varType) {
         int registerValue = 0;
         try {
             master.connect();
@@ -152,7 +152,7 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
-    public void writeSingleModbusRegister(int address, int value, VarTypes varType) {
+    public synchronized void writeSingleModbusRegister(int address, int value, VarTypes varType) {
         try {
             master.connect();
             if (varType.equals(VarTypes.SINT8)) {
@@ -174,7 +174,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public float readMultipleModbusRegister(int address) {
+    public synchronized float readMultipleModbusRegister(int address) {
         float registerValue = 0;
         try {
             master.connect();
@@ -209,7 +209,7 @@ public class ModbusUtilSingleton {
     }
 
     // Запись Дробный 4-байт
-    public void writeMultipleModbusRegister(int address, float value) {
+    public synchronized void writeMultipleModbusRegister(int address, float value) {
         try {
             int intValue = Float.floatToIntBits(value);
             byte[] bytes = new byte[Float.BYTES];

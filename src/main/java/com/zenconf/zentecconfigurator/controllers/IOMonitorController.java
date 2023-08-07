@@ -4,6 +4,7 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
+import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +29,8 @@ public class IOMonitorController implements Initializable {
     public VBox sensorsMonitorVBox;
     @FXML
     public VBox actuatorsMonitorVBox;
+    @FXML
+    public VBox setpointsVBox;
     @FXML
     public ScrollPane ioMonitorScrollPane;
 
@@ -67,6 +70,7 @@ public class IOMonitorController implements Initializable {
                 }
 
                 sensorsMonitorVBox.getChildren().clear();
+                setpointsVBox.getChildren().clear();
                 if (sensorsInScheme != null) {
                     for (Sensor sensor : sensorsInScheme) {
                         if (sensor.getIsUsedDefault()) {
@@ -74,6 +78,10 @@ public class IOMonitorController implements Initializable {
                                 MonitorTextFlow monitorTextFlow = new MonitorTextFlow(sensor);
                                 monitorTextFlowList.add(monitorTextFlow);
                                 sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
+                            }
+                            if (sensor.getAttributeForControlling() != null) {
+                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
+                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                             }
                         }
                     }

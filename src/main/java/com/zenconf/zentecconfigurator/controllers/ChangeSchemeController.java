@@ -97,6 +97,7 @@ public class ChangeSchemeController implements Initializable {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
+                    sensorInScheme.setAttributeForControlling(sensor.getAttributeForControlling());
                 }
             }
         }

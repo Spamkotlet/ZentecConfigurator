@@ -30,7 +30,7 @@ public class MonitorTextFlow {
     }
 
     private Text createValueText() {
-        valueText.setFont(Font.font("Arial", 28));
+        valueText.setFont(Font.font("Arial", 32));
         valueText.setFill(new Color(0.996, 0.4, 0.247, 1));
         valueText.setTextAlignment(TextAlignment.CENTER);
         return valueText;
@@ -40,6 +40,8 @@ public class MonitorTextFlow {
         TextFlow textFlow = new TextFlow();
         textFlow.setBackground(new Background(new BackgroundFill(new Color(0.831, 0.831, 0.831, 1), CornerRadii.EMPTY, Insets.EMPTY)));
         textFlow.setTextAlignment(TextAlignment.CENTER);
+        textFlow.setPadding(new Insets(10));
+
         VBox vBox = new VBox();
         vBox.getChildren().add(createValueText());
         vBox.getChildren().add(createNameText());

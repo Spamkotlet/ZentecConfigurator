@@ -2,7 +2,6 @@ package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
-import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SchemeTitledPane extends TitledPane {
@@ -48,12 +46,15 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setOnAction(this::onSelectedCheckBox);
                     isUsedDefaultCheckBox.setText("Используется");
                     anchorPane.getChildren().add(isUsedDefaultCheckBox);
+                    inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
+                    int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
                     isUsedDefaultChoiceBox.setItems(getElementTypes());
-                    isUsedDefaultChoiceBox.setValue(getElementTypes().get(Integer.parseInt(inWorkAttribute.readModbusParameter())));
+                    isUsedDefaultChoiceBox.setValue(getElementTypes().get(isInWorkInteger));
                     isUsedDefaultChoiceBox.setOnAction(this::onSelectedChoiceBox);
                     anchorPane.getChildren().add(isUsedDefaultChoiceBox);
+                    inWorkAttribute.writeModbusParameter(isInWorkInteger);
                 }
             }
         }
@@ -64,6 +65,18 @@ public class SchemeTitledPane extends TitledPane {
 
         this.setText(element.getName());
         this.setContent(vBox);
+    }
+
+    public void setAttributeIsUsedOff() {
+        if (inWorkAttribute != null) {
+            if (inWorkAttribute.getControl() != null) {
+                if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
+                    inWorkAttribute.writeModbusParameter(false);
+                } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
+                    inWorkAttribute.writeModbusParameter(0);
+                }
+            }
+        }
     }
 
     private void onSelectedCheckBox(ActionEvent actionEvent) {
@@ -77,7 +90,6 @@ public class SchemeTitledPane extends TitledPane {
         if (inWorkAttribute != null) {
             inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setIsUsedDefault(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0);
-            System.out.println(element.getIsUsedDefault());
         }
     }
 

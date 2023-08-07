@@ -1,10 +1,10 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class IOMonitorController implements Initializable {
 
@@ -24,23 +27,45 @@ public class IOMonitorController implements Initializable {
     @FXML
     public VBox sensorsMonitorVBox;
     @FXML
+    public VBox actuatorsMonitorVBox;
+    @FXML
     public ScrollPane ioMonitorScrollPane;
 
     ModbusUtilSingleton modbusUtilSingleton;
-    Timer myTimer;
     List<Sensor> sensorsInScheme = new ArrayList<>();
+    List<Actuator> actuatorsInScheme = new ArrayList<>();
     List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
+
+    public static ScheduledExecutorService executor;
+    private boolean pollingPreviousState = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
-        startPollingButton.setOnAction(this::startPolling);
-        stopPollingButton.setOnAction(this::stopPolling);
+        startPollingButton.setOnAction(e -> {
+            startPolling();
+            pollingPreviousState = true;
+        });
+        stopPollingButton.setOnAction(e -> {
+            stopPolling();
+            pollingPreviousState = false;
+        });
 
         ioMonitorScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+            // Событие на открытие окна
             if (newVal != null) {
                 sensorsInScheme = ChangeSchemeController.sensorsInScheme;
+                actuatorsInScheme = ChangeSchemeController.actuatorsInScheme;
+
+                if (sensorsInScheme != null || actuatorsInScheme != null) {
+                    if (pollingPreviousState) {
+                        startPolling();
+                    } else {
+                        stopPolling();
+                    }
+                }
+
                 sensorsMonitorVBox.getChildren().clear();
                 if (sensorsInScheme != null) {
                     for (Sensor sensor : sensorsInScheme) {
@@ -53,35 +78,53 @@ public class IOMonitorController implements Initializable {
                         }
                     }
                 }
+
+                actuatorsMonitorVBox.getChildren().clear();
+                if (actuatorsInScheme != null) {
+                    for (Actuator actuator : actuatorsInScheme) {
+                        if (actuator.getIsUsedDefault()) {
+                            if (actuator.getAttributeForMonitoring() != null) {
+                                MonitorTextFlow monitorTextFlow = new MonitorTextFlow(actuator);
+                                monitorTextFlowList.add(monitorTextFlow);
+                                actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Событие на закрытие окна
+            if (oldVal != null) {
+                stopPolling();
             }
         });
     }
 
-    private void startPolling(ActionEvent actionEvent) {
+    private void startPolling() {
         ModbusMaster master = modbusUtilSingleton.getMaster();
         if (master != null) {
-            if (myTimer != null) {
-                myTimer.cancel();
-            }
 
-            myTimer = new Timer();
-            myTimer.schedule(new TimerTask() {
+            stopPolling();
+
+            executor = Executors.newSingleThreadScheduledExecutor();
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
                         monitorTextFlow.update();
                     }
-
                 }
-            }, 0, 1000);
+            };
 
+            executor.scheduleWithFixedDelay(timerTask, 1, 1000, TimeUnit.MILLISECONDS);
         }
     }
 
-    private void stopPolling(ActionEvent actionEvent) {
-        if (myTimer != null) {
-            myTimer.cancel();
-            myTimer = null;
+    private void stopPolling() {
+        if (executor != null) {
+            if (!executor.isShutdown()) {
+                executor.shutdown();
+            }
         }
     }
 }

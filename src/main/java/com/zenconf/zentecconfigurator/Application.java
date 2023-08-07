@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator;
 
+import com.zenconf.zentecconfigurator.controllers.IOMonitorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,12 @@ public class Application extends javafx.application.Application {
         mainController.setPrimaryStage(stage);
     }
 
+    @Override
+    public void stop() {
+        if (IOMonitorController.executor != null) {
+            IOMonitorController.executor.shutdownNow();
+        }
+    }
     public static void main(String[] args) {
         launch();
     }

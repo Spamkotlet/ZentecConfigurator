@@ -9,6 +9,7 @@ import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.scene.Node;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javafx.collections.FXCollections;
@@ -85,6 +86,7 @@ public class ChangeSchemeController implements Initializable {
             for (Actuator actuator : actuatorList) {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     actuatorInScheme.setAttributes(actuator.getAttributes());
+                    actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                 }
             }
         }
@@ -106,10 +108,24 @@ public class ChangeSchemeController implements Initializable {
     // Заполнение панели устройствами и датчиками
     private void fillingPane() {
         schemeChoiceTitledPane.getContent();
+        ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
+        if (actuatorSchemeTitledPaneNodes != null) {
+            for (Node schemeTitledNode : actuatorSchemeTitledPaneNodes) {
+                ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+            }
+        }
+
         actuatorsVbox.getChildren().clear();
         for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
             SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
             actuatorsVbox.getChildren().add(schemeTitledPane);
+        }
+
+        ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
+        if (sensorSchemeTitledPaneNodes != null) {
+            for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
+                ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+            }
         }
 
         sensorsVbox.getChildren().clear();

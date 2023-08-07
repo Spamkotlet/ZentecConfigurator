@@ -30,7 +30,6 @@ public class SensorsController implements Initializable {
                 sensorsInScheme = ChangeSchemeController.sensorsInScheme;
                 if (sensorsInScheme != null) {
                     fillSensorsSettingsPane();
-                    System.out.println("Датчики");
                 }
             }
         });

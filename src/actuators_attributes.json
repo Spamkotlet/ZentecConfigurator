@@ -64,7 +64,14 @@
             "varType": "UINT8"
           }
         }
-      ]
+      ],
+      "attributeForMonitoring": {
+        "name": "Приточный вентилятор",
+        "modbusParameters": {
+          "address": 5557,
+          "varType": "FLOAT"
+        }
+      }
     }
   ]
 }

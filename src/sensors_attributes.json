@@ -50,6 +50,15 @@
           "address": 5565,
           "varType": "FLOAT"
         }
+      },
+      "attributeForControlling": {
+        "name": "Уставка температуры притока",
+        "minValue": 0,
+        "maxValue": 35,
+        "modbusParameters": {
+          "address": 5080,
+          "varType": "UINT8"
+        }
       }
     },
     {

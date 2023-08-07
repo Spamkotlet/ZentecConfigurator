@@ -72,6 +72,16 @@
           "varType": "FLOAT"
         }
       }
+    },
+    {
+      "name": "Электрический нагреватель",
+      "attributeForMonitoring": {
+        "name": "Нагреватель 1",
+        "modbusParameters": {
+          "address": 5555,
+          "varType": "FLOAT"
+        }
+      }
     }
   ]
 }

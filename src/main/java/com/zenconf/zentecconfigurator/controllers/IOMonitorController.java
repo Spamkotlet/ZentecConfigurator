@@ -69,21 +69,21 @@ public class IOMonitorController implements Initializable {
                     }
                 }
 
-                sensorsMonitorVBox.getChildren().clear();
                 monitorTextFlowList.clear();
-//                setpointsVBox.getChildren().clear();
+                sensorsMonitorVBox.getChildren().clear();
+                setpointsVBox.getChildren().clear();
                 if (sensorsInScheme != null) {
                     for (Sensor sensor : sensorsInScheme) {
                         if (sensor.getIsUsedDefault()) {
+                            if (sensor.getAttributeForControlling() != null) {
+                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
+                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                            }
                             if (sensor.getAttributeForMonitoring() != null) {
                                 MonitorTextFlow monitorTextFlow = new MonitorTextFlow(sensor);
                                 monitorTextFlowList.add(monitorTextFlow);
                                 sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                             }
-//                            if (sensor.getAttributeForControlling() != null) {
-//                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
-//                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
-//                            }
                         }
                     }
                 }

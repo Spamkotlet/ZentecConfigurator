@@ -70,7 +70,8 @@ public class IOMonitorController implements Initializable {
                 }
 
                 sensorsMonitorVBox.getChildren().clear();
-                setpointsVBox.getChildren().clear();
+                monitorTextFlowList.clear();
+//                setpointsVBox.getChildren().clear();
                 if (sensorsInScheme != null) {
                     for (Sensor sensor : sensorsInScheme) {
                         if (sensor.getIsUsedDefault()) {
@@ -79,10 +80,10 @@ public class IOMonitorController implements Initializable {
                                 monitorTextFlowList.add(monitorTextFlow);
                                 sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                             }
-                            if (sensor.getAttributeForControlling() != null) {
-                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
-                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
-                            }
+//                            if (sensor.getAttributeForControlling() != null) {
+//                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
+//                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+//                            }
                         }
                     }
                 }
@@ -124,7 +125,7 @@ public class IOMonitorController implements Initializable {
                 }
             };
 
-            executor.scheduleWithFixedDelay(timerTask, 1, 1000, TimeUnit.MILLISECONDS);
+            executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
         }
     }
 

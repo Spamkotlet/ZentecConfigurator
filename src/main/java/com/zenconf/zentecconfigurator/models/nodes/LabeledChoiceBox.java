@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -47,10 +48,27 @@ public class LabeledChoiceBox {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
-        choiceBox.setValue(
-                getChoiceBoxItems(attributeValues)
-                        .get(Integer.parseInt(attribute.readModbusParameter()))
-        );
+
+        if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
+            choiceBox.setValue(
+                    getChoiceBoxItems(attributeValues)
+                            .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
+            );
+            choiceBox.setOnAction(e -> {
+                attribute.writeModbusParameter(Boolean.valueOf(String.valueOf(attributeValues.indexOf(choiceBox.getValue()))));
+                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
+            });
+        } else {
+            choiceBox.setValue(
+                    getChoiceBoxItems(attributeValues)
+                            .get(Integer.parseInt(attribute.readModbusParameter()))
+            );
+            choiceBox.setOnAction(e -> {
+                attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
+                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
+            });
+        }
+
         choiceBox.setOnAction(e -> {
             attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
             System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());

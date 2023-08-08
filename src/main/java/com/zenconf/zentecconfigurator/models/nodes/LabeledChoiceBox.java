@@ -4,6 +4,7 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -55,8 +56,9 @@ public class LabeledChoiceBox {
                             .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
             );
             choiceBox.setOnAction(e -> {
-                attribute.writeModbusParameter(Boolean.valueOf(String.valueOf(attributeValues.indexOf(choiceBox.getValue()))));
-                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
+                Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
+                attribute.writeModbusParameter(value);
+                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + value);
             });
         } else {
             choiceBox.setValue(
@@ -68,11 +70,6 @@ public class LabeledChoiceBox {
                 System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
             });
         }
-
-        choiceBox.setOnAction(e -> {
-            attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
-            System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
-        });
 
         AnchorPane choiceBoxAnchor = new AnchorPane();
         choiceBoxAnchor.getChildren().add(choiceBox);

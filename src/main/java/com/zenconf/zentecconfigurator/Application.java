@@ -14,8 +14,8 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setMinHeight(800);
-        stage.setMinWidth(1280);
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
         stage.setTitle("Zentec Configurator");
         stage.setScene(scene);
         stage.show();

@@ -9,7 +9,7 @@ import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -32,7 +32,13 @@ public class IOMonitorController implements Initializable {
     @FXML
     public VBox setpointsVBox;
     @FXML
-    public ScrollPane ioMonitorScrollPane;
+    public VBox ioMonitorVBox;
+    @FXML
+    public Button startStopButton;
+    @FXML
+    public Button resetAlarmsButton;
+    @FXML
+    public ChoiceBox<String> controlModeChoiceBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -55,7 +61,7 @@ public class IOMonitorController implements Initializable {
             pollingPreviousState = false;
         });
 
-        ioMonitorScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+        ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             // Событие на открытие окна
             if (newVal != null) {
                 sensorsInScheme = ChangeSchemeController.sensorsInScheme;

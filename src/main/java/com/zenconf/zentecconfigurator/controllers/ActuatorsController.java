@@ -1,7 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Actuator;
-import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +13,6 @@ import java.util.ResourceBundle;
 
 public class ActuatorsController implements Initializable {
     private List<Actuator> actuatorsInScheme;
-
-    protected static List<Actuator> actuatorsIsInUsing;
 
     @FXML
     public VBox actuatorsSettingsVbox;

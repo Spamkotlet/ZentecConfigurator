@@ -8,7 +8,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,7 +15,6 @@ public class SensorsController implements Initializable {
 
     private List<Sensor> sensorsInScheme;
 
-    protected static List<Sensor> sensorsIsInUsed = new ArrayList<>();
     @FXML
     public VBox sensorsSettingsVbox;
 
@@ -40,7 +38,6 @@ public class SensorsController implements Initializable {
         for (Sensor sensorInScheme : sensorsInScheme) {
             if (sensorInScheme.getIsUsedDefault()) {
                 if (sensorInScheme.getAttributes() != null) {
-                    sensorsIsInUsed.add(sensorInScheme);
                     ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
                     sensorsSettingsVbox.getChildren().add(elementTitledPane);
                 }

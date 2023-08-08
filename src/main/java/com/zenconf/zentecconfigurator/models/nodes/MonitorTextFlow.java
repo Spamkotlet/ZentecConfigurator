@@ -13,8 +13,8 @@ import javafx.scene.text.TextFlow;
 
 public class MonitorTextFlow {
 
-    private Element element;
-    private Text valueText = new Text("***");
+    private final Element element;
+    private final Text valueText = new Text("***");
 
     public MonitorTextFlow(Element element) {
         this.element = element;
@@ -36,12 +36,7 @@ public class MonitorTextFlow {
         return valueText;
     }
 
-    public Node getTextFlow() {
-        TextFlow textFlow = new TextFlow();
-        textFlow.setBackground(new Background(new BackgroundFill(new Color(0.831, 0.831, 0.831, 1), CornerRadii.EMPTY, Insets.EMPTY)));
-        textFlow.setTextAlignment(TextAlignment.CENTER);
-        textFlow.setPadding(new Insets(10));
-
+    private VBox createVBoxForTextFlow() {
         VBox vBox = new VBox();
         vBox.getChildren().add(createValueText());
         vBox.getChildren().add(createNameText());
@@ -50,7 +45,16 @@ public class MonitorTextFlow {
         vBox.setAlignment(Pos.CENTER);
         VBox.setVgrow(vBox, Priority.ALWAYS);
 
-        textFlow.getChildren().add(vBox);
+        return vBox;
+    }
+
+    public Node getTextFlow() {
+        TextFlow textFlow = new TextFlow();
+        textFlow.setBackground(new Background(new BackgroundFill(new Color(0.831, 0.831, 0.831, 1), CornerRadii.EMPTY, Insets.EMPTY)));
+        textFlow.setTextAlignment(TextAlignment.CENTER);
+        textFlow.setPadding(new Insets(10));
+
+        textFlow.getChildren().add(createVBoxForTextFlow());
 
         return textFlow;
     }

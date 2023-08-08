@@ -252,6 +252,15 @@
           "address": 5571,
           "varType": "FLOAT"
         }
+      },
+      "attributeForControlling": {
+        "name": "Температура обр. воды деж. 1",
+        "minValue": 0,
+        "maxValue": 100,
+        "modbusParameters": {
+          "address": 5268,
+          "varType": "UINT8"
+        }
       }
     },
     {
@@ -298,6 +307,15 @@
         "modbusParameters": {
           "address": 5579,
           "varType": "FLOAT"
+        }
+      },
+      "attributeForControlling": {
+        "name": "Уставка давления",
+        "minValue": 0,
+        "maxValue": 32000,
+        "modbusParameters": {
+          "address": 5108,
+          "varType": "UINT16"
         }
       }
     },
@@ -346,6 +364,15 @@
           "address": 5583,
           "varType": "FLOAT"
         }
+      },
+      "attributeForControlling": {
+        "name": "Уставка влажности",
+        "minValue": 0,
+        "maxValue": 100,
+        "modbusParameters": {
+          "address": 5110,
+          "varType": "UINT8"
+        }
       }
     },
     {
@@ -392,6 +419,15 @@
         "modbusParameters": {
           "address": 5561,
           "varType": "FLOAT"
+        }
+      },
+      "attributeForControlling": {
+        "name": "Уставка CO2",
+        "minValue": 0,
+        "maxValue": 32000,
+        "modbusParameters": {
+          "address": 5107,
+          "varType": "UINT16"
         }
       }
     }

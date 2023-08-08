@@ -74,11 +74,321 @@
       }
     },
     {
-      "name": "Электрический нагреватель",
+      "name": "Вытяжной вентилятор",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5412,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Задержка РПД",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 300,
+          "modbusParameters": {
+            "address": 5411,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Min U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5409,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Nom U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5408,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Max U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5410,
+            "varType": "UINT8"
+          }
+        }
+      ],
       "attributeForMonitoring": {
-        "name": "Нагреватель 1",
+        "name": "Вытяжной вентилятор",
+        "modbusParameters": {
+          "address": 5559,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Дополнительный приточный вентилятор",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5406,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Тип вентилятора",
+          "control": 2,
+          "modbusParameters": {
+            "address": 5401,
+            "varType": "UINT8"
+          },
+          "values": [
+            "Дополнительный",
+            "Резервный"
+          ]
+        },
+        {
+          "name": "Задержка РПД",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 300,
+          "modbusParameters": {
+            "address": 5405,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Min U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5403,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Nom U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5402,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Max U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5404,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Дополнительный приточный вентилятор",
+        "modbusParameters": {
+          "address": 5541,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Дополнительный вытяжной вентилятор",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5400,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Тип вентилятора",
+          "control": 2,
+          "modbusParameters": {
+            "address": 5395,
+            "varType": "UINT8"
+          },
+          "values": [
+            "Дополнительный",
+            "Резервный"
+          ]
+        },
+        {
+          "name": "Задержка РПД",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 300,
+          "modbusParameters": {
+            "address": 5399,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Min U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5397,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Nom U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5396,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Max U, %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5398,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Дополнительный приточный вентилятор",
+        "modbusParameters": {
+          "address": 5541,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Электрический нагреватель",
+      "attributes": [
+        {
+          "name": "Кол-во ступеней",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 5,
+          "modbusParameters": {
+            "address": 5264,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Электр. нагреватель 1",
         "modbusParameters": {
           "address": 5555,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Дополнительный электрический нагреватель",
+      "attributes": [
+        {
+          "name": "Кол-во ступеней",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 5,
+          "modbusParameters": {
+            "address": 5243,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Электр. нагреватель 2",
+        "modbusParameters": {
+          "address": 5553,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Водяной нагреватель",
+      "attributes": [
+        {
+          "name": "Min откр КЗР %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5272,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Водяной нагреватель 1",
+        "modbusParameters": {
+          "address": 5555,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Дополнительный водяной нагреватель",
+      "attributes": [
+        {
+          "name": "Min откр КЗР %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5251,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Водяной нагреватель 2",
+        "modbusParameters": {
+          "address": 5553,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "Рекуператор",
+      "attributes": [
+        {
+          "name": "Мин. производит. рекуп %",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 5283,
+            "varType": "UINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Рекуператор",
+        "modbusParameters": {
+          "address": 5537,
           "varType": "FLOAT"
         }
       }

@@ -44,8 +44,6 @@ public class ChangeSchemeController implements Initializable {
     protected static List<Actuator> actuatorsInScheme;
     private ModbusUtilSingleton modbusUtilSingleton;
 
-    public static Thread fillingPaneThread;
-
     // Что происходит при открытии экрана
     protected void onOpenedChoiceSchemePane() {
         schemes = getSchemesFromJson();
@@ -110,7 +108,6 @@ public class ChangeSchemeController implements Initializable {
 
     // Заполнение панели устройствами и датчиками
     private void fillingPane() {
-
         schemeChoiceTitledPane.getContent();
         ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
         if (actuatorSchemeTitledPaneNodes != null) {

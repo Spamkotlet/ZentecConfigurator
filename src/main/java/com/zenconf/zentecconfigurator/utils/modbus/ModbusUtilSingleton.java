@@ -28,7 +28,7 @@ public class ModbusUtilSingleton {
     private SerialPort.Parity parity = SerialPort.Parity.EVEN;
     private int stopBits = 1;
 
-    public synchronized static ModbusUtilSingleton getInstance() {
+    public static ModbusUtilSingleton getInstance() {
         if (instance == null) {
             instance = new ModbusUtilSingleton();
         }

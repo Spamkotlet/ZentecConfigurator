@@ -5,18 +5,26 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LabeledSpinner {
 
     private final Attribute attribute;
+    private final int labelWidth;
 
-    public LabeledSpinner(Attribute attribute) {
+    public LabeledSpinner(Attribute attribute, int labelWidth) {
         this.attribute = attribute;
+        this.labelWidth = labelWidth;
     }
 
     public Node getSpinner() {
@@ -24,13 +32,17 @@ public class LabeledSpinner {
         double minValue = attribute.getMinValue();
         double maxValue = attribute.getMaxValue();
 
-        AnchorPane labelAnchor = createLabelAnchor(labelText);
-        AnchorPane spinnerAnchor = createSpinnerAnchor(minValue, maxValue);
+        List<Node> nodes = new ArrayList<>();
+        nodes.add(createLabelAnchor(labelText));
+        nodes.add(createSpinnerAnchor(minValue, maxValue));
+        if (attribute.getDefaultValue() != null) {
+            nodes.add(createDefaultValueLabelAnchor(attribute.getDefaultValue()));
+        }
 
-        return createHBoxForLabeledSpinner(labelAnchor, spinnerAnchor);
+        return createHBoxForLabeledSpinner(nodes);
     }
 
-    private HBox createHBoxForLabeledSpinner(Node... nodes) {
+    private HBox createHBoxForLabeledSpinner(List<Node> nodes) {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(nodes);
         hBox.setFillHeight(true);
@@ -47,7 +59,10 @@ public class LabeledSpinner {
 
     private AnchorPane createLabelAnchor(String labelText) {
         Label label = new Label(labelText);
-        label.setPrefWidth(200);
+        label.setPrefWidth(labelWidth);
+        if (attribute.getDescription() != null) {
+            label.setTooltip(new Tooltip(attribute.getDescription()));
+        }
 
         AnchorPane labelAnchor = new AnchorPane();
 
@@ -90,5 +105,21 @@ public class LabeledSpinner {
         AnchorPane.setBottomAnchor(spinnerAnchor, 0.0);
 
         return spinnerAnchor;
+    }
+
+    private AnchorPane createDefaultValueLabelAnchor(Object labelText) {
+        Label label = new Label("(" + labelText + ")");
+        label.setPrefWidth(labelWidth);
+        label.setTextFill(Color.GRAY);
+
+        AnchorPane labelAnchor = new AnchorPane();
+
+        labelAnchor.getChildren().add(label);
+        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
+        AnchorPane.setRightAnchor(labelAnchor, 0.0);
+        AnchorPane.setTopAnchor(labelAnchor, 0.0);
+        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
+
+        return labelAnchor;
     }
 }

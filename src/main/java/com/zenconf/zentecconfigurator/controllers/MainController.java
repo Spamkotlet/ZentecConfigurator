@@ -37,6 +37,8 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public Button settingsButton;
     @FXML
+    public Button z031Button;
+    @FXML
     public Button testButton;
     @FXML
     public AnchorPane splitPaneRight;
@@ -45,8 +47,7 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public AnchorPane mainAnchor;
 
-    @FXML
-    public void onClickSchemeButton(ActionEvent event) {
+    private void onClickSchemeButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -60,8 +61,7 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    @FXML
-    public void onClickSensorsButton(ActionEvent event) {
+    private void onClickSensorsButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -75,8 +75,7 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    @FXML
-    public void onClickActuatorsButton(ActionEvent event) {
+    private void onClickActuatorsButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -90,8 +89,7 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    @FXML
-    public void onClickIOButton(ActionEvent event) {
+    private void onClickIOButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -105,8 +103,7 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    @FXML
-    public void onClickSettingsButton(ActionEvent event) {
+    private void onClickSettingsButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -120,8 +117,21 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    @FXML
-    public void onClickTestButton(ActionEvent event) {
+    private void onClickZ031Button(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        Node node = panels.get(button);
+        if (node == null) {
+            try {
+                node = createNewNode("z031-settings.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            panels.put(button, node);
+        }
+        showNode(node);
+    }
+
+    private void onClickTestButton(ActionEvent event) {
         Button button = (Button) event.getSource();
         Node node = panels.get(button);
         if (node == null) {
@@ -152,6 +162,7 @@ public class MainController extends CommonController implements Initializable {
         actuatorsButton.setOnAction(this::onClickActuatorsButton);
         ioButton.setOnAction(this::onClickIOButton);
         settingsButton.setOnAction(this::onClickSettingsButton);
+        z031Button.setOnAction(this::onClickZ031Button);
         testButton.setOnAction(this::onClickTestButton);
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
@@ -178,6 +189,11 @@ public class MainController extends CommonController implements Initializable {
         settingsButton.graphicProperty().setValue(new ImageView(settingsImage));
         settingsButton.setBackground(Background.EMPTY);
         settingsButton.setText("");
+
+        Image z031Image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/z031_button.png")));
+        z031Button.graphicProperty().setValue(new ImageView(z031Image));
+        z031Button.setBackground(Background.EMPTY);
+        z031Button.setText("");
     }
 
     public void setPrimaryStage(Stage primaryStage) {

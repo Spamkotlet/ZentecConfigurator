@@ -6,5 +6,6 @@ public enum Controls {
 
     CHECKBOX,
     SPINNER,
-    CHOICE_BOX
+    CHOICE_BOX,
+    BUTTON
 }

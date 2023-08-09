@@ -1,0 +1,53 @@
+{
+  "mainParameters": {
+    "startStopAttribute": {
+      "name": "Пуск/стоп диспетчеризация",
+      "control": 3,
+      "modbusParameters": {
+        "address": 5116,
+        "varType": "BOOL"
+      }
+    },
+    "controlModeAttribute": {
+      "name": "Тип управления",
+      "control": 2,
+      "values": [
+        "СТОП",
+        "Местный",
+        "Дистанционный",
+        "ПУ Z031",
+        "Диспетчеризация",
+        "Расписание",
+        "Резерв",
+        "Датчик",
+        "Elhart"
+      ],
+      "modbusParameters": {
+        "address": 5086,
+        "varType": "UINT8"
+      }
+    },
+    "resetAlarmsAttribute": {
+      "name": "Сброс аварий",
+      "control": 3,
+      "modbusParameters": {
+        "address": 5121,
+        "varType": "BOOL"
+      }
+    },
+    "seasonAttribute": {
+      "name": "Режим работы",
+      "control": 2,
+      "values": [
+        "Вентиляция",
+        "Нагревание",
+        "Охлаждение",
+        "АВТО"
+      ],
+      "modbusParameters": {
+        "address": 5105,
+        "varType": "UINT8"
+      }
+    }
+  }
+}

@@ -1,18 +1,31 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Attribute;
+import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.VBox;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -39,11 +52,14 @@ public class IOMonitorController implements Initializable {
     public Button resetAlarmsButton;
     @FXML
     public ChoiceBox<String> controlModeChoiceBox;
+    @FXML
+    public ChoiceBox<String> seasonChoiceBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
     List<Actuator> actuatorsInScheme = new ArrayList<>();
     List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
+    private MainParameters mainParameters;
 
     public static ScheduledExecutorService executor;
     private boolean pollingPreviousState = false;
@@ -52,15 +68,8 @@ public class IOMonitorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
-        startPollingButton.setOnAction(e -> {
-            startPolling();
-            pollingPreviousState = true;
-        });
-        stopPollingButton.setOnAction(e -> {
-            stopPolling();
-            pollingPreviousState = false;
-        });
-
+        initializationPollingElements();
+        initializationPLCControlElements();
         ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             // Событие на открытие окна
             if (newVal != null) {
@@ -75,37 +84,7 @@ public class IOMonitorController implements Initializable {
                     }
                 }
 
-                monitorTextFlowList.clear();
-                sensorsMonitorVBox.getChildren().clear();
-                setpointsVBox.getChildren().clear();
-                if (sensorsInScheme != null) {
-                    for (Sensor sensor : sensorsInScheme) {
-                        if (sensor.getIsUsedDefault()) {
-                            if (sensor.getAttributeForControlling() != null) {
-                                SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
-                                setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
-                            }
-                            if (sensor.getAttributeForMonitoring() != null) {
-                                MonitorTextFlow monitorTextFlow = new MonitorTextFlow(sensor);
-                                monitorTextFlowList.add(monitorTextFlow);
-                                sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
-                            }
-                        }
-                    }
-                }
-
-                actuatorsMonitorVBox.getChildren().clear();
-                if (actuatorsInScheme != null) {
-                    for (Actuator actuator : actuatorsInScheme) {
-                        if (actuator.getIsUsedDefault()) {
-                            if (actuator.getAttributeForMonitoring() != null) {
-                                MonitorTextFlow monitorTextFlow = new MonitorTextFlow(actuator);
-                                monitorTextFlowList.add(monitorTextFlow);
-                                actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
-                            }
-                        }
-                    }
-                }
+                initializationPLCMonitoringElements();
             }
 
             // Событие на закрытие окна
@@ -141,5 +120,119 @@ public class IOMonitorController implements Initializable {
                 executor.shutdown();
             }
         }
+    }
+
+    private void initializationPollingElements() {
+        startPollingButton.setOnAction(e -> {
+            startPolling();
+            pollingPreviousState = true;
+        });
+        stopPollingButton.setOnAction(e -> {
+            stopPolling();
+            pollingPreviousState = false;
+        });
+    }
+
+    private void initializationPLCControlElements() {
+        mainParameters = getMainParametersFromJson();
+
+        startStopButton.setOnAction(e -> {
+            Attribute startStopAttribute = mainParameters.getStartStopAttribute();
+            startStopAttribute.writeModbusParameter(true);
+        });
+
+        resetAlarmsButton.setOnAction(e -> {
+            Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
+            resetAlarmsAttribute.writeModbusParameter(true);
+        });
+
+        Attribute controlModeAttribute = mainParameters.getControlModeAttribute();
+        List<String> controlModeValues = mainParameters.getControlModeAttribute().getValues();
+        controlModeChoiceBox.setItems(getChoiceBoxStringItems(controlModeValues));
+        controlModeChoiceBox.setValue(
+                getChoiceBoxStringItems(controlModeValues)
+                        .get(Integer.parseInt(controlModeAttribute.readModbusParameter()))
+        );
+        controlModeChoiceBox.setOnAction(e -> {
+            controlModeAttribute.writeModbusParameter(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
+            System.out.println("Index: " + controlModeValues.indexOf(controlModeChoiceBox.getValue()) + " Value: " + controlModeChoiceBox.getValue());
+        });
+
+        Attribute seasonAttribute = mainParameters.getSeasonAttribute();
+        seasonChoiceBox.setItems(getSeasonsChoiceBoxItems());
+        seasonChoiceBox.setValue(getSeasonsChoiceBoxItems()
+                .get(Integer.parseInt(seasonAttribute.readModbusParameter()))
+        );
+        seasonChoiceBox.setOnAction(e -> {
+            seasonAttribute.writeModbusParameter(Seasons.values()[seasonChoiceBox.getSelectionModel().getSelectedIndex()].getNumber());
+            System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
+        });
+    }
+
+    private void initializationPLCMonitoringElements() {
+        monitorTextFlowList.clear();
+        sensorsMonitorVBox.getChildren().clear();
+        setpointsVBox.getChildren().clear();
+        if (sensorsInScheme != null) {
+            for (Sensor sensor : sensorsInScheme) {
+                if (sensor.getIsUsedDefault()) {
+                    if (sensor.getAttributeForControlling() != null) {
+                        SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
+                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                    }
+                    if (sensor.getAttributeForMonitoring() != null) {
+                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(sensor);
+                        monitorTextFlowList.add(monitorTextFlow);
+                        sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
+                    }
+                }
+            }
+        }
+
+        actuatorsMonitorVBox.getChildren().clear();
+        if (actuatorsInScheme != null) {
+            for (Actuator actuator : actuatorsInScheme) {
+                if (actuator.getIsUsedDefault()) {
+                    if (actuator.getAttributeForMonitoring() != null) {
+                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(actuator);
+                        monitorTextFlowList.add(monitorTextFlow);
+                        actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
+                    }
+                }
+            }
+        }
+    }
+
+    private MainParameters getMainParametersFromJson() {
+        String file = "src/main_parameters.json";
+
+        MainParameters mainParameters;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return mainParameters;
+    }
+
+    private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {
+        return FXCollections.observableArrayList(attributeValues);
+    }
+
+    private ObservableList<String> getSeasonsChoiceBoxItems() {
+        List<String> seasonsString = new ArrayList<>();
+        List<Seasons> seasons = Arrays.asList(Seasons.values());
+        for (int i = 0; i < seasons.size(); i++) {
+            seasonsString.add(seasons.get(i).getDisplayValue());
+        }
+        return FXCollections.observableArrayList(seasonsString);
     }
 }

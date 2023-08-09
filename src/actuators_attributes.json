@@ -4,12 +4,6 @@
     "spinner": 1,
     "choiceBox": 2
   },
-  "modbusFunctionCodes": {
-    "readCoils": 1,
-    "readHoldingRegisters": 3,
-    "writeMultipleCoils": 9,
-    "writeMultipleRegisters": 10
-  },
   "actuators": [
     {
       "name": "Воздушный клапан",
@@ -36,14 +30,7 @@
             "Инверсный"
           ]
         }
-      ],
-      "attributeForMonitoring": {
-        "name": "Электр. нагреватель 2",
-        "modbusParameters": {
-          "address": 5553,
-          "varType": "FLOAT"
-        }
-      }
+      ]
     },
     {
       "name": "Приточный вентилятор",

@@ -10,7 +10,9 @@ import java.util.List;
 public class Attribute {
 
     private String name;
+    private String description;
     private Controls control;
+    private Object defaultValue;
     private double minValue;
     private double maxValue;
     private List<String> values;
@@ -19,6 +21,14 @@ public class Attribute {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setControl(Controls control) {
@@ -43,6 +53,14 @@ public class Attribute {
 
     public Controls getControl() {
         return control;
+    }
+
+    public Object getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(Object defaultValue) {
+        this.defaultValue = defaultValue;
     }
 
     public double getMinValue() {

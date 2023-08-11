@@ -11,12 +11,15 @@ import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -54,6 +57,8 @@ public class IOMonitorController implements Initializable {
     public ChoiceBox<String> controlModeChoiceBox;
     @FXML
     public ChoiceBox<String> seasonChoiceBox;
+    @FXML
+    public Label statusLabel;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -107,10 +112,17 @@ public class IOMonitorController implements Initializable {
                     for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
                         monitorTextFlow.update();
                     }
+                    Platform.runLater(() -> updateStatusLabel());
                 }
             };
 
             executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Невозможно запустить опрос контроллера");
+            alert.setContentText("- установите соединение с контроллером");
+            alert.show();
         }
     }
 
@@ -136,10 +148,7 @@ public class IOMonitorController implements Initializable {
     private void initializationPLCControlElements() {
         mainParameters = getMainParametersFromJson();
 
-        startStopButton.setOnAction(e -> {
-            Attribute startStopAttribute = mainParameters.getStartStopAttribute();
-            startStopAttribute.writeModbusParameter(true);
-        });
+        startStopButton.setOnAction(e -> startStop());
 
         resetAlarmsButton.setOnAction(e -> {
             Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
@@ -201,6 +210,24 @@ public class IOMonitorController implements Initializable {
                 }
             }
         }
+    }
+
+    private synchronized void updateStatusLabel() {
+        List<String> statusList = mainParameters.getStatusAttribute().getValues();
+        int statusNumber = Integer.parseInt(mainParameters.getStatusAttribute().readModbusParameter());
+        statusLabel.setText(statusList.get(statusNumber));
+    }
+
+    private synchronized void startStop() {
+        Attribute startStopAttribute = mainParameters.getStartStopAttribute();
+        boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
+        if (startStopBoolean) {
+            startStopAttribute.writeModbusParameter(startStopBoolean);
+        } else {
+            startStopAttribute.writeModbusParameter(!startStopBoolean);
+        }
+        startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
+        startStopAttribute.writeModbusParameter(!startStopBoolean);
     }
 
     private MainParameters getMainParametersFromJson() {

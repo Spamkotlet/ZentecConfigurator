@@ -56,7 +56,7 @@
         "minValue": 0,
         "maxValue": 35,
         "modbusParameters": {
-          "address": 5080,
+          "address": 5082,
           "varType": "UINT8"
         }
       }

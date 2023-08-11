@@ -5,6 +5,7 @@ public class MainParameters {
     private Attribute resetAlarmsAttribute;
     private Attribute controlModeAttribute;
     private Attribute seasonAttribute;
+    private Attribute statusAttribute;
 
     public Attribute getStartStopAttribute() {
         return startStopAttribute;
@@ -36,5 +37,13 @@ public class MainParameters {
 
     public void setSeasonAttribute(Attribute seasonAttribute) {
         this.seasonAttribute = seasonAttribute;
+    }
+
+    public Attribute getStatusAttribute() {
+        return statusAttribute;
+    }
+
+    public void setStatusAttribute(Attribute statusAttribute) {
+        this.statusAttribute = statusAttribute;
     }
 }

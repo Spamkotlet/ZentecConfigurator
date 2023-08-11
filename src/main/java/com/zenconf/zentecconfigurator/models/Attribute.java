@@ -13,8 +13,8 @@ public class Attribute {
     private String description;
     private Controls control;
     private Object defaultValue;
-    private double minValue;
-    private double maxValue;
+    private int minValue;
+    private int maxValue;
     private List<String> values;
     private ModbusParameter modbusParameters;
     private ModbusUtilSingleton modbusUtilSingleton;
@@ -63,11 +63,11 @@ public class Attribute {
         this.defaultValue = defaultValue;
     }
 
-    public double getMinValue() {
+    public int getMinValue() {
         return minValue;
     }
 
-    public double getMaxValue() {
+    public int getMaxValue() {
         return maxValue;
     }
 

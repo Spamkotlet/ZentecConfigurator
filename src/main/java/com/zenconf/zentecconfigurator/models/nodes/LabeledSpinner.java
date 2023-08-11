@@ -12,31 +12,45 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LabeledSpinner {
 
+    private Spinner<Integer> spinner;
     private final Attribute attribute;
-    private final int labelWidth;
+    private int labelWidth = 200;
+    private boolean showDefaultValue = false;
+
+
+    public LabeledSpinner(Attribute attribute) {
+        this.attribute = attribute;
+    }
 
     public LabeledSpinner(Attribute attribute, int labelWidth) {
         this.attribute = attribute;
         this.labelWidth = labelWidth;
     }
 
+    public LabeledSpinner(Attribute attribute, int labelWidth, boolean showDefaultValue) {
+        this.attribute = attribute;
+        this.labelWidth = labelWidth;
+        this.showDefaultValue = showDefaultValue;
+    }
+
     public Node getSpinner() {
         String labelText = attribute.getName();
-        double minValue = attribute.getMinValue();
-        double maxValue = attribute.getMaxValue();
+        int minValue = attribute.getMinValue();
+        int maxValue = attribute.getMaxValue();
 
         List<Node> nodes = new ArrayList<>();
         nodes.add(createLabelAnchor(labelText));
         nodes.add(createSpinnerAnchor(minValue, maxValue));
         if (attribute.getDefaultValue() != null) {
-            nodes.add(createDefaultValueLabelAnchor(attribute.getDefaultValue()));
+            if (showDefaultValue) {
+                nodes.add(createDefaultValueLabelAnchor(attribute.getDefaultValue()));
+            }
         }
 
         return createHBoxForLabeledSpinner(nodes);
@@ -75,24 +89,29 @@ public class LabeledSpinner {
         return labelAnchor;
     }
 
-    private AnchorPane createSpinnerAnchor(double minValue, double maxValue) {
+    private AnchorPane createSpinnerAnchor(int minValue, int maxValue) {
         int initValue = 0;
-        Spinner<Double> spinner = new Spinner<>(minValue, maxValue, initValue, 0.1);
+
+        if (showDefaultValue) {
+            if (attribute.getDefaultValue() != null) {
+                initValue = (int) attribute.getDefaultValue();
+            }
+        } else {
+            initValue = (int) Double.parseDouble(attribute.readModbusParameter());
+        }
+
+        spinner = new Spinner<>(minValue, maxValue, initValue);
+
         spinner.setEditable(true);
         spinner.setPrefWidth(200);
-        SpinnerValueFactory<Double> spinnerFactory =
-                new SpinnerValueFactory.DoubleSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), Double.parseDouble(attribute.readModbusParameter()));
-        spinner.setValueFactory(spinnerFactory);
+
         spinner.setOnMouseReleased(e -> {
-            attribute.writeModbusParameter(spinner.getValue().toString());
-            System.out.println("Value: " + spinner.getValue());
+            writeModbusValue();
         });
 
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
-                System.out.println("Value: " + spinner.getValue());
+                writeModbusValue();
             }
         });
 
@@ -121,5 +140,24 @@ public class LabeledSpinner {
         AnchorPane.setBottomAnchor(labelAnchor, 0.0);
 
         return labelAnchor;
+    }
+
+    public void readModbusValue() {
+        SpinnerValueFactory<Integer> spinnerFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
+        spinner.setValueFactory(spinnerFactory);
+    }
+
+    public void writeModbusValue() {
+        attribute.writeModbusParameter(spinner.getValue().toString());
+        System.out.println("Value: " + spinner.getValue());
+    }
+
+    public void setDefaultValue() {
+        SpinnerValueFactory<Integer> spinnerFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                        attribute.getMinValue(), attribute.getMaxValue(), (Integer) attribute.getDefaultValue());
+        spinner.setValueFactory(spinnerFactory);
     }
 }

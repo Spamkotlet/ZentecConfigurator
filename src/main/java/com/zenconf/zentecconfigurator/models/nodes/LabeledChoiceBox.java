@@ -4,7 +4,6 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;

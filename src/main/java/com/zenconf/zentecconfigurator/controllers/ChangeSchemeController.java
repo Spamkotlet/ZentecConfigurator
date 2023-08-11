@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
+import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -44,6 +46,26 @@ public class ChangeSchemeController implements Initializable {
     protected static List<Actuator> actuatorsInScheme;
     private ModbusUtilSingleton modbusUtilSingleton;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        changeSchemeScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                // Потом надо запихать в метод
+                ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
+                selectedScheme = readSchemeNumberFromModbus();
+                schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
+            }
+        });
+
+        onOpenedChoiceSchemePane();
+        schemeNumberChoiceBox.setOnAction(e -> {
+                    System.out.println("Выбор схемы");
+                    onSelectedSchemeNumber();
+                }
+        );
+    }
+
     // Что происходит при открытии экрана
     protected void onOpenedChoiceSchemePane() {
         schemes = getSchemesFromJson();
@@ -54,28 +76,7 @@ public class ChangeSchemeController implements Initializable {
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
-    // Чтение файла со схемами schemes.json и сохранение схем
-    private List<Scheme> getSchemesFromJson() {
-        String file = "src/schemes.json";
-        List<Scheme> schemes;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        "windows-1251"))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return schemes;
-    }
-
     // Что происходит при выборе схемы из списка
-    @FXML
     protected void onSelectedSchemeNumber() {
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
         sensorsInScheme = selectedScheme.getSensors();
@@ -136,35 +137,6 @@ public class ChangeSchemeController implements Initializable {
         }
     }
 
-    // Получить список схем для помещения в schemeNumberChoiceBox
-    private ObservableList<String> getSchemesForSchemeNumberChoiceBox(List<Scheme> schemes) {
-        List<String> schemeStrings = new ArrayList<>();
-        for (Scheme scheme : schemes) {
-            schemeStrings.add(scheme.getNumber() + 1 + " - " + scheme.getName());
-        }
-        return FXCollections.observableArrayList(schemeStrings);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        changeSchemeScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                // Потом надо запихать в метод
-                ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
-                selectedScheme = readSchemeNumberFromModbus();
-                schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
-            }
-        });
-
-        onOpenedChoiceSchemePane();
-        schemeNumberChoiceBox.setOnAction(e -> {
-                    System.out.println("Выбор схемы");
-                    onSelectedSchemeNumber();
-                }
-        );
-    }
-
     // Запись номера схемы в контроллер по Modbus
     private void writeSchemeNumberByModbus() {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
@@ -181,6 +153,15 @@ public class ChangeSchemeController implements Initializable {
             selectedScheme = schemes.get(modbusUtilSingleton.readSingleModbusRegister(5299, VarTypes.UINT8));
         }
         return selectedScheme;
+    }
+
+    // Получить список схем для помещения в schemeNumberChoiceBox
+    private ObservableList<String> getSchemesForSchemeNumberChoiceBox(List<Scheme> schemes) {
+        List<String> schemeStrings = new ArrayList<>();
+        for (Scheme scheme : schemes) {
+            schemeStrings.add(scheme.getNumber() + 1 + " - " + scheme.getName());
+        }
+        return FXCollections.observableArrayList(schemeStrings);
     }
 
     private List<Actuator> getActuatorsFromJson() {
@@ -221,5 +202,25 @@ public class ChangeSchemeController implements Initializable {
             throw new RuntimeException(e);
         }
         return sensors;
+    }
+
+    // Чтение файла со схемами schemes.json и сохранение схем
+    private List<Scheme> getSchemesFromJson() {
+        String file = "src/schemes.json";
+        List<Scheme> schemes;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        "windows-1251"))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return schemes;
     }
 }

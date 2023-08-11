@@ -3,127 +3,115 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="z031VBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.Z031Controller">
+<StackPane prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.Z031Controller">
    <children>
-      <AnchorPane minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
+      <VBox fx:id="z031VBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
+            <AnchorPane minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <AnchorPane prefHeight="50.0" prefWidth="50.0" HBox.hgrow="NEVER">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                      <children>
-                        <Button fx:id="startPollingButton" mnemonicParsing="false" text="Старт" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #d4d4d4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <AnchorPane prefHeight="50.0" prefWidth="95.0">
-                     <children>
-                        <Button fx:id="startStopButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="89.0" text="Пуск/Стоп" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <content>
-                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="1188.0" spacing="5.0">
-                     <children>
-                        <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label text="Параметры в пульте" />
-                                    <VBox fx:id="z031ParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                                       <children>
-                                          <Button fx:id="readZ031ParametersButton" mnemonicParsing="false" text="Прочитать" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label text="Электрический теплообменник" />
-                                    <VBox fx:id="electricParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                                       <children>
-                                          <Button fx:id="writeElectricParametersButton" mnemonicParsing="false" text="Записать" />
-                                          <Button fx:id="resetDefaultElectricButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="По умолчанию" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label text="Водяной теплообменник" />
-                                    <VBox fx:id="waterParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                                       <children>
-                                          <Button fx:id="writeWaterParametersButton" mnemonicParsing="false" text="Записать" />
-                                          <Button fx:id="resetDefaultWaterButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="По умолчанию" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane prefHeight="50.0" prefWidth="50.0" HBox.hgrow="NEVER" />
                      </children>
                   </HBox>
-               </content>
-            </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <HBox fillHeight="false" prefHeight="100.0" prefWidth="1188.0" spacing="5.0">
+                           <children>
+                              <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label text="Параметры в пульте" />
+                                          <VBox fx:id="z031ParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                             <children>
+                                                <Button fx:id="readZ031ParametersButton" mnemonicParsing="false" text="Прочитать" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label text="Электрический теплообменник" />
+                                          <VBox fx:id="electricParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                             <children>
+                                                <Button fx:id="writeElectricParametersButton" mnemonicParsing="false" text="Записать" />
+                                                <Button fx:id="resetDefaultElectricButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="По умолчанию" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #adadad;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label text="Водяной теплообменник" />
+                                          <VBox fx:id="waterParametersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                             <children>
+                                                <Button fx:id="writeWaterParametersButton" mnemonicParsing="false" text="Записать" />
+                                                <Button fx:id="resetDefaultWaterButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="По умолчанию" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <AnchorPane fx:id="transparentPane" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d4d4d4;" visible="false" />
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" visible="false" />
    </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-</VBox>
+</StackPane>

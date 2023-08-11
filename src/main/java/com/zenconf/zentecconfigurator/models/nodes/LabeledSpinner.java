@@ -22,6 +22,7 @@ public class LabeledSpinner {
     private final Attribute attribute;
     private int labelWidth = 200;
     private boolean showDefaultValue = false;
+    private boolean readingByInitialization = false;
 
 
     public LabeledSpinner(Attribute attribute) {
@@ -37,6 +38,11 @@ public class LabeledSpinner {
         this.attribute = attribute;
         this.labelWidth = labelWidth;
         this.showDefaultValue = showDefaultValue;
+    }
+
+    public LabeledSpinner(Attribute attribute, boolean readingByInitialization) {
+        this.attribute = attribute;
+        this.readingByInitialization = readingByInitialization;
     }
 
     public Node getSpinner() {
@@ -96,7 +102,9 @@ public class LabeledSpinner {
             if (attribute.getDefaultValue() != null) {
                 initValue = (int) attribute.getDefaultValue();
             }
-        } else {
+        }
+
+        if (readingByInitialization) {
             initValue = (int) Double.parseDouble(attribute.readModbusParameter());
         }
 

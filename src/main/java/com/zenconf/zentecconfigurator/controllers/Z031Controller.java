@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+// TODO: Добавить сравнение параметров после записи с прочитанными из пульта. Помечать поля где расхождение
 public class Z031Controller implements Initializable {
 
     private ElectricParameters electricParameters;

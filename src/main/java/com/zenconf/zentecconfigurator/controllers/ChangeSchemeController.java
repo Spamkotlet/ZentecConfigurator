@@ -5,12 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
-import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
-import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -40,6 +39,7 @@ public class ChangeSchemeController implements Initializable {
     public VBox sensorsVbox;
     @FXML
     public ScrollPane changeSchemeScrollPane;
+
     private List<Scheme> schemes;
     protected static Scheme selectedScheme = null;
     protected static List<Sensor> sensorsInScheme;
@@ -78,6 +78,7 @@ public class ChangeSchemeController implements Initializable {
 
     // Что происходит при выборе схемы из списка
     protected void onSelectedSchemeNumber() {
+
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
         sensorsInScheme = selectedScheme.getSensors();
         actuatorsInScheme = selectedScheme.getActuators();
@@ -102,13 +103,14 @@ public class ChangeSchemeController implements Initializable {
                 }
             }
         }
-
         fillingPane();
         writeSchemeNumberByModbus();
     }
 
+
     // Заполнение панели устройствами и датчиками
     private void fillingPane() {
+
         schemeChoiceTitledPane.getContent();
         ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
         if (actuatorSchemeTitledPaneNodes != null) {
@@ -117,24 +119,31 @@ public class ChangeSchemeController implements Initializable {
             }
         }
 
-        actuatorsVbox.getChildren().clear();
-        for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
-            actuatorsVbox.getChildren().add(schemeTitledPane);
-        }
+        Thread thread;
+        Runnable task = () -> {
+            Platform.runLater(() -> {
+                actuatorsVbox.getChildren().clear();
+                for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
+                    SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
+                    actuatorsVbox.getChildren().add(schemeTitledPane);
+                }
 
-        ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
-        if (sensorSchemeTitledPaneNodes != null) {
-            for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
-                ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
-            }
-        }
+                ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
+                if (sensorSchemeTitledPaneNodes != null) {
+                    for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
+                        ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+                    }
+                }
 
-        sensorsVbox.getChildren().clear();
-        for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-            SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
-            sensorsVbox.getChildren().add(schemeTitledPane);
-        }
+                sensorsVbox.getChildren().clear();
+                for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
+                    SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
+                    sensorsVbox.getChildren().add(schemeTitledPane);
+                }
+            });
+        };
+        thread = new Thread(task);
+        thread.start();
     }
 
     // Запись номера схемы в контроллер по Modbus

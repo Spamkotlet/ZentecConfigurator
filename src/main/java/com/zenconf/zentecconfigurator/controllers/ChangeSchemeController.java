@@ -10,7 +10,9 @@ import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javafx.collections.FXCollections;
@@ -38,18 +40,25 @@ public class ChangeSchemeController implements Initializable {
     @FXML
     public VBox sensorsVbox;
     @FXML
-    public ScrollPane changeSchemeScrollPane;
+    public VBox changeSchemeVBox;
+    @FXML
+    public AnchorPane transparentPane;
+    @FXML
+    public ProgressBar progressBar;
 
     private List<Scheme> schemes;
     protected static Scheme selectedScheme = null;
+    private Scheme previousScheme = null;
     protected static List<Sensor> sensorsInScheme;
     protected static List<Actuator> actuatorsInScheme;
+    private List<Actuator> actuatorList;
+    private List<Sensor> sensorList;
     private ModbusUtilSingleton modbusUtilSingleton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        changeSchemeScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+        changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 // Потом надо запихать в метод
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
@@ -59,21 +68,34 @@ public class ChangeSchemeController implements Initializable {
         });
 
         onOpenedChoiceSchemePane();
-        schemeNumberChoiceBox.setOnAction(e -> {
-                    System.out.println("Выбор схемы");
-                    onSelectedSchemeNumber();
-                }
-        );
+        schemeNumberChoiceBox.setOnAction(this::onActionSchemeNumberChoiceBox);
     }
 
     // Что происходит при открытии экрана
     protected void onOpenedChoiceSchemePane() {
         schemes = getSchemesFromJson();
+        actuatorList = getActuatorsFromJson();
+        sensorList = getSensorsFromJson();
+
         ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
 
         schemeNumberChoiceBox.setItems(schemesItems);
         selectedScheme = readSchemeNumberFromModbus();
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
+    }
+
+    private void onActionSchemeNumberChoiceBox(ActionEvent actionEvent) {
+        String selectedSchemeName = "";
+        if (previousScheme != null) {
+            selectedSchemeName = previousScheme.getNumber() + 1 + " - " + previousScheme.getName();
+            System.out.println(schemeNumberChoiceBox.getValue());
+            System.out.println(selectedSchemeName);
+        }
+        if (!schemeNumberChoiceBox.getValue().equals(selectedSchemeName)) {
+            System.out.println("Выбор схемы");
+            previousScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+            onSelectedSchemeNumber();
+        }
     }
 
     // Что происходит при выборе схемы из списка
@@ -83,7 +105,6 @@ public class ChangeSchemeController implements Initializable {
         sensorsInScheme = selectedScheme.getSensors();
         actuatorsInScheme = selectedScheme.getActuators();
 
-        List<Actuator> actuatorList = getActuatorsFromJson();
         for (Actuator actuatorInScheme : actuatorsInScheme) {
             for (Actuator actuator : actuatorList) {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
@@ -93,7 +114,6 @@ public class ChangeSchemeController implements Initializable {
             }
         }
 
-        List<Sensor> sensorList = getSensorsFromJson();
         for (Sensor sensorInScheme : sensorsInScheme) {
             for (Sensor sensor : sensorList) {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
@@ -121,26 +141,29 @@ public class ChangeSchemeController implements Initializable {
 
         Thread thread;
         Runnable task = () -> {
-            Platform.runLater(() -> {
-                actuatorsVbox.getChildren().clear();
-                for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-                    SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
-                    actuatorsVbox.getChildren().add(schemeTitledPane);
-                }
+            transparentPane.setVisible(true);
+            progressBar.setVisible(true);
+            Platform.runLater(() -> actuatorsVbox.getChildren().clear());
+            for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
+                SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
+                Platform.runLater(() -> actuatorsVbox.getChildren().add(schemeTitledPane));
+            }
 
-                ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
-                if (sensorSchemeTitledPaneNodes != null) {
-                    for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
-                        ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
-                    }
+            ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
+            if (sensorSchemeTitledPaneNodes != null) {
+                for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
+                    ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
                 }
+            }
 
-                sensorsVbox.getChildren().clear();
-                for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-                    SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
-                    sensorsVbox.getChildren().add(schemeTitledPane);
-                }
-            });
+            Platform.runLater(() -> sensorsVbox.getChildren().clear());
+            for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
+                SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
+                Platform.runLater(() -> sensorsVbox.getChildren().add(schemeTitledPane));
+            }
+
+            transparentPane.setVisible(false);
+            progressBar.setVisible(false);
         };
         thread = new Thread(task);
         thread.start();

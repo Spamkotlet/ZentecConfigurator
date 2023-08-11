@@ -2,41 +2,55 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:id="changeSchemeScrollPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ChangeSchemeController">
-   <content>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+<StackPane prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ChangeSchemeController">
+   <children>
+      <VBox fx:id="changeSchemeVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0">
          <children>
-            <TitledPane fx:id="schemeChoiceTitledPane" animated="false" minWidth="-Infinity" prefHeight="82.0" prefWidth="600.0" text="Номер технологической схемы" VBox.vgrow="ALWAYS">
-               <content>
-                  <AnchorPane prefHeight="46.0" prefWidth="1200.0">
-                     <children>
-                        <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-            <AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="81.0" prefWidth="1190.0">
                <children>
-                  <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="schemeChoiceTitledPane" animated="false" minWidth="-Infinity" prefHeight="82.0" prefWidth="600.0" text="Номер технологической схемы" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane prefHeight="46.0" prefWidth="1200.0">
                            <children>
-                              <VBox fx:id="actuatorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ChoiceBox fx:id="schemeNumberChoiceBox" layoutY="11.0" prefHeight="25.0" prefWidth="330.0" AnchorPane.leftAnchor="0.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox fx:id="sensorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox fx:id="actuatorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <VBox fx:id="sensorsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </HBox>
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
          </children>
@@ -44,5 +58,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-   </content>
-</ScrollPane>
+      <AnchorPane fx:id="transparentPane" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d4d4d4;" visible="false" />
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" visible="false" />
+   </children>
+</StackPane>

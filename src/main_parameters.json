@@ -67,6 +67,13 @@
         "address": 5119,
         "varType": "UINT8"
       }
+    },
+    "deviceAddressAttribute": {
+      "name": "Адрес устройства",
+      "modbusParameters": {
+        "address": 65520,
+        "varType": "UINT8"
+      }
     }
   }
 }

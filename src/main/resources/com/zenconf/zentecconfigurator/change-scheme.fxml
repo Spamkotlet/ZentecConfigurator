@@ -50,6 +50,9 @@
                            </children>
                         </AnchorPane>
                      </content>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
                   </ScrollPane>
                </children>
             </AnchorPane>

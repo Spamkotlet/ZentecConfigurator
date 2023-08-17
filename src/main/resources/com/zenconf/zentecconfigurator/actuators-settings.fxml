@@ -1,336 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="actuatorsSettingsScrollPane" fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ActuatorsController">
-    <content>
-        <VBox prefHeight="798.0" prefWidth="600.0" spacing="5.0">
-            <children>
-            <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
+<StackPane prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ActuatorsController">
+   <children>
+      <VBox fx:id="actuatorsVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                      <AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label alignment="CENTER" text="КОНФИГУРАТОР. Настройка устройств" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
+                              <VBox fx:id="actuatorsSettingsVbox" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
-                     </children>
+                    </content>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets right="5.0" />
                      </padding>
-                  </HBox>
+                  </ScrollPane>
                </children>
             </AnchorPane>
-            <VBox fx:id="actuatorsSettingsVbox" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Приточный вентилятор" VBox.vgrow="ALWAYS">
-                     <content>
-                        <AnchorPane minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
-                           <children>
-                              <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Min U" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Nom U" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Max U" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Задержка РПД" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
-                      <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Электрический нагреватель 1" VBox.vgrow="ALWAYS">
-                          <content>
-                              <AnchorPane minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0">
-                                  <children>
-                                      <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                          <children>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="Смещение уставки" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="dI" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="dP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="Tqut" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                             </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                          </children>
-                                      </VBox>
-                                  </children>
-                              </AnchorPane>
-                          </content>
-                      </TitledPane>
-                      <TitledPane animated="false" minWidth="-Infinity" prefHeight="61.0" prefWidth="600.0" text="Фреоновый охладитель 1" VBox.vgrow="ALWAYS">
-                          <content>
-                              <AnchorPane prefHeight="46.0" prefWidth="1200.0">
-                                  <children>
-                                      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                          <children>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="Гистерезис темп. блок" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="Длительность разморозки" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                  <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Label text="Интервал разморозки" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                          <children>
-                                                              <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                          </children>
-                                                      </AnchorPane>
-                                                  </children>
-                                              </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Смещение уставки темп." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Скважность" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Темп. блок. по нар. возд." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="dI_TCooler" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="dP_TCooler" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Tqut_TCooler" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label text="Критичность аварии" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <ChoiceBox prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                          </children>
-                                      </VBox>
-                                  </children>
-                              </AnchorPane>
-                          </content>
-                      </TitledPane>
-               </children>
-            </VBox>
-            </children>
-            <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </padding>
-        </VBox>
-    </content>
-</ScrollPane>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <AnchorPane fx:id="transparentPane" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d4d4d4;" visible="false" />
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" visible="false" />
+   </children>
+</StackPane>

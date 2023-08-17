@@ -1,10 +1,13 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -19,11 +22,16 @@ public class SensorsController implements Initializable {
     public VBox sensorsSettingsVbox;
 
     @FXML
-    private ScrollPane sensorsSettingsScrollPane;
+    private VBox sensorsVBox;
+
+    @FXML
+    public AnchorPane transparentPane;
+    @FXML
+    public ProgressBar progressBar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sensorsSettingsScrollPane.sceneProperty().addListener((obs, oldVal, newVal) -> {
+        sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 sensorsInScheme = ChangeSchemeController.sensorsInScheme;
                 if (sensorsInScheme != null) {
@@ -34,14 +42,24 @@ public class SensorsController implements Initializable {
     }
 
     private void fillSensorsSettingsPane() {
-        sensorsSettingsVbox.getChildren().clear();
-        for (Sensor sensorInScheme : sensorsInScheme) {
-            if (sensorInScheme.getIsUsedDefault()) {
-                if (sensorInScheme.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
-                    sensorsSettingsVbox.getChildren().add(elementTitledPane);
+        Thread thread;
+        Runnable task = () -> {
+            transparentPane.setVisible(true);
+            progressBar.setVisible(true);
+            Platform.runLater(() -> sensorsSettingsVbox.getChildren().clear());
+            for (Sensor sensorInScheme : sensorsInScheme) {
+                if (sensorInScheme.getIsUsedDefault()) {
+                    if (sensorInScheme.getAttributes() != null) {
+                        ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
+                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(elementTitledPane));
+                    }
                 }
             }
-        }
+
+            transparentPane.setVisible(false);
+            progressBar.setVisible(false);
+        };
+        thread = new Thread(task);
+        thread.start();
     }
 }

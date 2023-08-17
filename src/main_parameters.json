@@ -1,5 +1,12 @@
 {
   "mainParameters": {
+    "deviceAddressAttribute": {
+      "name": "Адрес устройства",
+      "modbusParameters": {
+        "address": 65520,
+        "varType": "UINT8"
+      }
+    },
     "startStopAttribute": {
       "name": "Пуск/стоп диспетчеризация",
       "control": 3,
@@ -65,13 +72,6 @@
       ],
       "modbusParameters": {
         "address": 5119,
-        "varType": "UINT8"
-      }
-    },
-    "deviceAddressAttribute": {
-      "name": "Адрес устройства",
-      "modbusParameters": {
-        "address": 65520,
         "varType": "UINT8"
       }
     }

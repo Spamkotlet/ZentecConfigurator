@@ -247,19 +247,104 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура обратной воды",
+        "name": "Температура обратной воды 1",
         "modbusParameters": {
           "address": 5571,
           "varType": "FLOAT"
         }
-      },
-      "attributeForControlling": {
-        "name": "Температура обр. воды деж. 1",
-        "minValue": 0,
-        "maxValue": 100,
+      }
+    },
+    {
+      "name": "[ОБРАТКА 2] Температура обратной воды 2",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5373,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5367,
+            "varType": "UINT8"
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5602,
+            "varType": "FLOAT"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Температура обратной воды 2",
         "modbusParameters": {
-          "address": 5268,
-          "varType": "UINT8"
+          "address": 5569,
+          "varType": "FLOAT"
+        }
+      }
+    },
+    {
+      "name": "[ОБРАТКА 3] Температура обратной воды 3",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "minValue": 0,
+          "maxValue": 1,
+          "modbusParameters": {
+            "address": 5372,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "minValue": 0,
+          "maxValue": 2,
+          "modbusParameters": {
+            "address": 5366,
+            "varType": "UINT8"
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 5604,
+            "varType": "FLOAT"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Температура обратной воды 3",
+        "modbusParameters": {
+          "address": 5567,
+          "varType": "FLOAT"
         }
       }
     },

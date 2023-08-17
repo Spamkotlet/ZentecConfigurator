@@ -202,6 +202,10 @@ public class IOMonitorController implements Initializable {
         if (actuatorsInScheme != null) {
             for (Actuator actuator : actuatorsInScheme) {
                 if (actuator.getIsUsedDefault()) {
+                    if (actuator.getAttributeForControlling() != null) {
+                        SetpointSpinner setpointSpinner = new SetpointSpinner(actuator.getAttributeForControlling());
+                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                    }
                     if (actuator.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(actuator);
                         monitorTextFlowList.add(monitorTextFlow);

@@ -110,6 +110,7 @@ public class ChangeSchemeController implements Initializable {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
+                    actuatorInScheme.setAttributeForControlling(actuator.getAttributeForControlling());
                 }
             }
         }

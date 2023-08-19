@@ -479,7 +479,6 @@
     },
     {
       "name": "Водяной охладитель",
-      "attributes" : [],
       "attributeForMonitoring": {
         "name": "Водяной охладитель 1",
         "modbusParameters": {

@@ -44,8 +44,6 @@ public class MainController extends CommonController implements Initializable {
     public AnchorPane splitPaneRight;
     @FXML
     public SplitPane mainSplitPane;
-    @FXML
-    public AnchorPane mainAnchor;
 
     private void onClickSchemeButton(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -166,32 +164,50 @@ public class MainController extends CommonController implements Initializable {
         testButton.setOnAction(this::onClickTestButton);
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
-        schemeButton.graphicProperty().setValue(new ImageView(schemeImage));
+        ImageView schemeImageView = new ImageView(schemeImage);
+        schemeImageView.setFitHeight(80);
+        schemeImageView.setFitWidth(80);
+        schemeButton.graphicProperty().setValue(schemeImageView);
         schemeButton.setBackground(Background.EMPTY);
         schemeButton.setText("");
 
         Image sensorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/sensors_button.png")));
-        sensorsButton.graphicProperty().setValue(new ImageView(sensorsImage));
+        ImageView sensorsImageView = new ImageView(sensorsImage);
+        sensorsImageView.setFitHeight(80);
+        sensorsImageView.setFitWidth(80);
+        sensorsButton.graphicProperty().setValue(sensorsImageView);
         sensorsButton.setBackground(Background.EMPTY);
         sensorsButton.setText("");
 
         Image actuatorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/actuators_button.png")));
-        actuatorsButton.graphicProperty().setValue(new ImageView(actuatorsImage));
+        ImageView actuatorsImageView = new ImageView(actuatorsImage);
+        actuatorsImageView.setFitHeight(80);
+        actuatorsImageView.setFitWidth(80);
+        actuatorsButton.graphicProperty().setValue(actuatorsImageView);
         actuatorsButton.setBackground(Background.EMPTY);
         actuatorsButton.setText("");
 
         Image inOutsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png")));
-        ioButton.graphicProperty().setValue(new ImageView(inOutsImage));
+        ImageView inOutsImageView = new ImageView(inOutsImage);
+        inOutsImageView.setFitHeight(80);
+        inOutsImageView.setFitWidth(80);
+        ioButton.graphicProperty().setValue(inOutsImageView);
         ioButton.setBackground(Background.EMPTY);
         ioButton.setText("");
 
         Image settingsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/settings_button.png")));
-        settingsButton.graphicProperty().setValue(new ImageView(settingsImage));
+        ImageView settingsImageView = new ImageView(settingsImage);
+        settingsImageView.setFitHeight(80);
+        settingsImageView.setFitWidth(80);
+        settingsButton.graphicProperty().setValue(settingsImageView);
         settingsButton.setBackground(Background.EMPTY);
         settingsButton.setText("");
 
         Image z031Image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/z031_button.png")));
-        z031Button.graphicProperty().setValue(new ImageView(z031Image));
+        ImageView z031ImageView = new ImageView(z031Image);
+        z031ImageView.setFitHeight(80);
+        z031ImageView.setFitWidth(80);
+        z031Button.graphicProperty().setValue(z031ImageView);
         z031Button.setBackground(Background.EMPTY);
         z031Button.setText("");
     }

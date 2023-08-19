@@ -57,6 +57,12 @@ public class SchemeTitledPane extends TitledPane {
                     inWorkAttribute.writeModbusParameter(isInWorkInteger);
                 }
             }
+        } else {
+            isUsedDefaultCheckBox = new CheckBox();
+            isUsedDefaultCheckBox.setSelected(true);
+            isUsedDefaultCheckBox.setText("Используется");
+            isUsedDefaultCheckBox.setDisable(true);
+            anchorPane.getChildren().add(isUsedDefaultCheckBox);
         }
 
         VBox vBox = new VBox();

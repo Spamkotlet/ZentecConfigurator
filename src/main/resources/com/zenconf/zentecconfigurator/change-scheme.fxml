@@ -26,6 +26,9 @@
                      </content>
                   </TitledPane>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
@@ -48,18 +51,15 @@
                                  </children>
                               </HBox>
                            </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
                         </AnchorPane>
                      </content>
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
                   </ScrollPane>
                </children>
             </AnchorPane>
          </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
       </VBox>
       <AnchorPane fx:id="transparentPane" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d4d4d4;" visible="false" />
       <ProgressBar fx:id="progressBar" prefWidth="200.0" visible="false" />

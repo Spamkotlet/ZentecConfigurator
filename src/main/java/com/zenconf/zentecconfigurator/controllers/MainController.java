@@ -41,9 +41,69 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public Button testButton;
     @FXML
+    public Button goToHomeButton;
+    private String homeButtonPrevStyle;
+    @FXML
+    public Button goToHelpButton;
+    private String helpButtonPrevStyle;
+    @FXML
+    public Button goToSettingsButton;
+    private String settingsButtonPrevStyle;
+    @FXML
     public AnchorPane splitPaneRight;
     @FXML
     public SplitPane mainSplitPane;
+
+    private void onClickHomeButton(ActionEvent actionEvent) {
+        if (!goToHelpButton.getStyleClass().contains("button-main-header")) {
+            goToHelpButton.getStyleClass().add("button-main-header");
+            goToHelpButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
+            goToSettingsButton.getStyleClass().add("button-main-header");
+            goToSettingsButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToHomeButton.getStyleClass().contains("button-main-header-active")) {
+            goToHomeButton.getStyleClass().remove("button-main-header");
+            goToHomeButton.getStyleClass().add("button-main-header-active");
+        }
+    }
+
+    private void onClickHelpButton(ActionEvent actionEvent) {
+        if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
+            goToHomeButton.getStyleClass().add("button-main-header");
+            goToHomeButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
+            goToSettingsButton.getStyleClass().add("button-main-header");
+            goToSettingsButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToHelpButton.getStyleClass().contains("button-main-header-active")) {
+            goToHelpButton.getStyleClass().remove("button-main-header");
+            goToHelpButton.getStyleClass().add("button-main-header-active");
+        }
+    }
+
+    private void onClickSettingsButton1(ActionEvent actionEvent) {
+        if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
+            goToHomeButton.getStyleClass().add("button-main-header");
+            goToHomeButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToHelpButton.getStyleClass().contains("button-main-header")) {
+            goToHelpButton.getStyleClass().add("button-main-header");
+            goToHelpButton.getStyleClass().remove("button-main-header-active");
+        }
+
+        if (!goToSettingsButton.getStyleClass().contains("button-main-header-active")) {
+            goToSettingsButton.getStyleClass().remove("button-main-header");
+            goToSettingsButton.getStyleClass().add("button-main-header-active");
+        }
+    }
 
     private void onClickSchemeButton(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -155,6 +215,15 @@ public class MainController extends CommonController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        homeButtonPrevStyle = goToHomeButton.getStyleClass().toString();
+        goToHomeButton.setOnAction(this::onClickHomeButton);
+
+        helpButtonPrevStyle = goToHelpButton.getStyleClass().toString();
+        goToHelpButton.setOnAction(this::onClickHelpButton);
+
+        settingsButtonPrevStyle = goToSettingsButton.getStyleClass().toString();
+        goToSettingsButton.setOnAction(this::onClickSettingsButton1);
+
         schemeButton.setOnAction(this::onClickSchemeButton);
         sensorsButton.setOnAction(this::onClickSensorsButton);
         actuatorsButton.setOnAction(this::onClickActuatorsButton);

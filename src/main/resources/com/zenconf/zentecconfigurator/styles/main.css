@@ -1,0 +1,16 @@
+.button-main-header {
+    -fx-text-fill: "#E9E9E9";
+    -fx-background-color: "#343435";
+    -fx-background-radius: 0px;
+}
+
+.button-main-header:hover {
+    -fx-text-fill: "#E9E9E9";
+    -fx-background-color: "#4f4f4f";
+}
+
+.button-main-header-active {
+    -fx-text-fill: "#343435";
+    -fx-background-color: "#E9E9E9";
+    -fx-background-radius: 0px;
+}

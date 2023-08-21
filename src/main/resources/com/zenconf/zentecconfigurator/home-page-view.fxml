@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainViewVBox" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E9E9E9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.HomePageController">
+<VBox fx:id="mainViewVBox" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #E9E9E9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.HomePageController">
     <children>
         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #5E5E5E;">
             <children>
@@ -35,15 +35,32 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
             <children>
-                <BorderPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <BorderPane disable="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #CDCDCD;" HBox.hgrow="ALWAYS">
+               <center>
+                  <Button fx:id="goToConfiguratorButton1" alignment="CENTER" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" text="Тестирование" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <Label text="В разработке" BorderPane.alignment="CENTER" />
+               </bottom>
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
+            </BorderPane>
+                <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #CDCDCD;" HBox.hgrow="ALWAYS">
                     <center>
                         <Button fx:id="goToConfiguratorButton" alignment="CENTER" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" text="Конфигуратор" BorderPane.alignment="CENTER" />
                     </center>
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
                 </BorderPane>
-                <BorderPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #CDCDCD;" HBox.hgrow="ALWAYS">
                     <center>
                         <Button fx:id="goToZ031Button" alignment="CENTER" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" text="Z031" BorderPane.alignment="CENTER" />
                     </center>
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
                 </BorderPane>
             </children>
         </HBox>

@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,8 @@ public class HomePageController implements Initializable {
     public Button goToConfiguratorButton;
     @FXML
     public Button goToZ031Button;
+    @FXML
+    public VBox mainViewVBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,7 +67,8 @@ public class HomePageController implements Initializable {
     }
 
     private void showNode(Node node) {
-//        MainController.mainAnchorPane.getChildren().clear();
-//        MainController.mainAnchorPane.getChildren().add(node);
+        AnchorPane mainAnchorPane = (AnchorPane) mainViewVBox.getParent();
+        mainAnchorPane.getChildren().clear();
+        mainAnchorPane.getChildren().add(node);
     }
 }

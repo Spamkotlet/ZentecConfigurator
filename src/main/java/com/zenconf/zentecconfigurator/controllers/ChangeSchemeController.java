@@ -148,12 +148,22 @@ public class ChangeSchemeController implements Initializable {
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
                 SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
                 Platform.runLater(() -> actuatorsVbox.getChildren().add(schemeTitledPane));
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
             if (sensorSchemeTitledPaneNodes != null) {
                 for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
                     ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
 
@@ -161,6 +171,11 @@ public class ChangeSchemeController implements Initializable {
             for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
                 SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
                 Platform.runLater(() -> sensorsVbox.getChildren().add(schemeTitledPane));
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             transparentPane.setVisible(false);

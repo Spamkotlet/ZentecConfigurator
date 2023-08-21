@@ -1,138 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<SplitPane fx:id="mainSplitPane" dividerPositions="0.2504" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS"
-           xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ConfiguratorController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane fx:id="mainSplitPane" dividerPositions="0.2504" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ConfiguratorController">
     <items>
         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="315.0">
             <content>
                 <AnchorPane prefHeight="664.0" prefWidth="313.0">
                     <children>
-                        <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <panes>
-                                <TitledPane animated="false" disable="true" text="Тестирование">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <children>
-                                                        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="693.0" prefWidth="290.0" VBox.vgrow="ALWAYS">
-                                                            <children>
-                                                                <BorderPane prefHeight="150.0" prefWidth="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                                    <bottom>
-                                                                        <Label text="Тестирование" BorderPane.alignment="CENTER" />
-                                                                    </bottom>
-                                                                    <padding>
-                                                                        <Insets bottom="10.0" top="10.0" />
-                                                                    </padding>
-                                                                    <opaqueInsets>
-                                                                        <Insets />
-                                                                    </opaqueInsets>
-                                                                    <center>
-                                                                        <Button fx:id="testButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                                    </center>
-                                                                </BorderPane>
-                                                            </children>
-                                                        </AnchorPane>
-                                                    </children>
-                                                </VBox>
-                                            </children>
-                                        </AnchorPane>
-                                    </content>
-                                </TitledPane>
-                                <TitledPane animated="false" style="-fx-background-color: #FFFFFF;" text="Конфигуратор">
-                                    <content>
-                                        <AnchorPane prefHeight="180.0" prefWidth="200.0">
-                                            <children>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <children>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Схема" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <opaqueInsets>
-                                                                <Insets />
-                                                            </opaqueInsets>
-                                                            <center>
-                                                                <Button fx:id="schemeButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Датчики" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <center>
-                                                                <Button fx:id="sensorsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Устройства" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <opaqueInsets>
-                                                                <Insets />
-                                                            </opaqueInsets>
-                                                            <center>
-                                                                <Button fx:id="actuatorsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Входы/выходы" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <center>
-                                                                <Button fx:id="ioButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Настройки" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <center>
-                                                                <Button fx:id="settingsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                        <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
-                                                            <bottom>
-                                                                <Label text="Пульт Z031" BorderPane.alignment="CENTER" />
-                                                            </bottom>
-                                                            <padding>
-                                                                <Insets bottom="10.0" top="10.0" />
-                                                            </padding>
-                                                            <center>
-                                                                <Button fx:id="z031Button" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-                                                            </center>
-                                                        </BorderPane>
-                                                    </children>
-                                                </VBox>
-                                            </children>
-                                        </AnchorPane>
-                                    </content>
-                                </TitledPane>
-                            </panes>
-                        </Accordion>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <children>
+                                      <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
+                                          <bottom>
+                                              <Label text="Схема" BorderPane.alignment="CENTER" />
+                                          </bottom>
+                                          <padding>
+                                              <Insets bottom="10.0" top="10.0" />
+                                          </padding>
+                                          <opaqueInsets>
+                                              <Insets />
+                                          </opaqueInsets>
+                                          <center>
+                                              <Button fx:id="schemeButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+                                          </center>
+                                      </BorderPane>
+                                      <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
+                                          <bottom>
+                                              <Label text="Датчики" BorderPane.alignment="CENTER" />
+                                          </bottom>
+                                          <padding>
+                                              <Insets bottom="10.0" top="10.0" />
+                                          </padding>
+                                          <center>
+                                              <Button fx:id="sensorsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+                                          </center>
+                                      </BorderPane>
+                                      <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
+                                          <bottom>
+                                              <Label text="Устройства" BorderPane.alignment="CENTER" />
+                                          </bottom>
+                                          <padding>
+                                              <Insets bottom="10.0" top="10.0" />
+                                          </padding>
+                                          <opaqueInsets>
+                                              <Insets />
+                                          </opaqueInsets>
+                                          <center>
+                                              <Button fx:id="actuatorsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+                                          </center>
+                                      </BorderPane>
+                                      <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
+                                          <bottom>
+                                              <Label text="Входы/выходы" BorderPane.alignment="CENTER" />
+                                          </bottom>
+                                          <padding>
+                                              <Insets bottom="10.0" top="10.0" />
+                                          </padding>
+                                          <center>
+                                              <Button fx:id="ioButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+                                          </center>
+                                      </BorderPane>
+                                  </children>
+                              </VBox>
                     </children>
                 </AnchorPane>
             </content>

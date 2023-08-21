@@ -10,23 +10,40 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.MainController">
    <children>
       <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343435;">
          <children>
-            <Button fx:id="goToHomeButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" styleClass="button-main-header" text="Главная">
+            <Button fx:id="goToHomeButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Главная">
                <HBox.margin>
                   <Insets bottom="1.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="goToJournalButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Журнал">
+               <HBox.margin>
+                  <Insets bottom="1.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
             <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="goToHelpButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" styleClass="button-main-header" text="Справка">
+            <Button fx:id="goToHelpButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Справка">
                <HBox.margin>
                   <Insets bottom="1.0" />
-               </HBox.margin></Button>
-            <Button fx:id="goToSettingsButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" styleClass="button-main-header" text="Настройки">
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="goToSettingsButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Настройки">
                <HBox.margin>
                   <Insets bottom="1.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
          </children>
       </HBox>
       <AnchorPane fx:id="mainAnchorPane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />

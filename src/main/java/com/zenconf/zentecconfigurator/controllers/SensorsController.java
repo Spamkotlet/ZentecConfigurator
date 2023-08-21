@@ -52,6 +52,11 @@ public class SensorsController implements Initializable {
                     if (sensorInScheme.getAttributes() != null) {
                         ElementTitledPane elementTitledPane = new ElementTitledPane(sensorInScheme);
                         Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(elementTitledPane));
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }

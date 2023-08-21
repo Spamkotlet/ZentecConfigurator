@@ -50,6 +50,11 @@ public class ActuatorsController implements Initializable {
                     if (actuatorInScheme.getAttributes() != null) {
                         ElementTitledPane elementTitledPane = new ElementTitledPane(actuatorInScheme);
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(elementTitledPane));
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }

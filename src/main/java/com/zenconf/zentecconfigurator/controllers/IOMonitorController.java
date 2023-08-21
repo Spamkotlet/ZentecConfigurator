@@ -111,6 +111,11 @@ public class IOMonitorController implements Initializable {
                 public void run() {
                     for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
                         monitorTextFlow.update();
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     Platform.runLater(() -> updateStatusLabel());
                 }

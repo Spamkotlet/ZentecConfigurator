@@ -16,10 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -59,6 +56,8 @@ public class IOMonitorController implements Initializable {
     public ChoiceBox<String> seasonChoiceBox;
     @FXML
     public Label statusLabel;
+    @FXML
+    public SplitPane verticalSplitPane;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -110,7 +109,7 @@ public class IOMonitorController implements Initializable {
                 @Override
                 public void run() {
                     for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
-                        monitorTextFlow.update();
+                        Platform.runLater(monitorTextFlow::update);
                         try {
                             Thread.sleep(20);
                         } catch (InterruptedException e) {
@@ -195,7 +194,7 @@ public class IOMonitorController implements Initializable {
                         setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
                     if (sensor.getAttributeForMonitoring() != null) {
-                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(sensor);
+                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
                         monitorTextFlowList.add(monitorTextFlow);
                         sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }
@@ -212,7 +211,7 @@ public class IOMonitorController implements Initializable {
                         setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
                     if (actuator.getAttributeForMonitoring() != null) {
-                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(actuator);
+                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
                         monitorTextFlowList.add(monitorTextFlow);
                         actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }

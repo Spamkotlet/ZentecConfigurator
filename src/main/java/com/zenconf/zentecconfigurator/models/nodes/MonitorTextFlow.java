@@ -1,9 +1,15 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Element;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -11,12 +17,19 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MonitorTextFlow {
 
+    private final SplitPane parentSplitPane;
     private final Element element;
     private final Text valueText = new Text("***");
+    private final List<Float> values = new ArrayList<>();
+    XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
-    public MonitorTextFlow(Element element) {
+    public MonitorTextFlow(SplitPane parentSplitPane, Element element) {
+        this.parentSplitPane = parentSplitPane;
         this.element = element;
     }
 
@@ -44,7 +57,9 @@ public class MonitorTextFlow {
         vBox.setFillWidth(true);
         vBox.setAlignment(Pos.CENTER);
         VBox.setVgrow(vBox, Priority.ALWAYS);
-
+        vBox.setOnMouseClicked(e -> {
+            onClickToMonitorTextFlow();
+        });
         return vBox;
     }
 
@@ -60,6 +75,48 @@ public class MonitorTextFlow {
     }
 
     public void update() {
-        valueText.setText(element.getAttributeForMonitoring().readModbusParameter());
+        String value = element.getAttributeForMonitoring().readModbusParameter();
+        valueText.setText(value);
+        if (values.size() > 100) {
+            values.remove(0);
+        }
+        values.add(Float.valueOf(value));
+        for (int i = 0; i < values.size(); i++) {
+            series.getData().add(new XYChart.Data<>(i, values.get(i)));
+        }
+    }
+
+    private void onClickToMonitorTextFlow() {
+        AnchorPane plotPane = null;
+        for (Node node : parentSplitPane.getItems()) {
+            if (node instanceof AnchorPane)
+                if (node.getId() != null && node.getId().equals("plotPane")) {
+                plotPane = (AnchorPane) node;
+                break;
+            }
+        }
+
+        LineChart<Number, Number> chart = new LineChart<>(new NumberAxis(), new NumberAxis());
+        chart.setAnimated(false);
+        chart.getData().add(series);
+
+        AnchorPane.setBottomAnchor(chart, 0d);
+        AnchorPane.setLeftAnchor(chart, 0d);
+        AnchorPane.setRightAnchor(chart, 0d);
+        AnchorPane.setTopAnchor(chart, 0d);
+
+        if (plotPane != null) {
+            plotPane.getChildren().clear();
+            plotPane.getChildren().add(chart);
+        } else {
+            plotPane = new AnchorPane();
+            plotPane.setId("plotPane");
+            plotPane.getChildren().add(chart);
+            parentSplitPane.getItems().add(plotPane);
+        }
+    }
+
+    public SplitPane getParentSplitPane() {
+        return parentSplitPane;
     }
 }

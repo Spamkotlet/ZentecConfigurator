@@ -11,13 +11,18 @@ import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -57,6 +62,8 @@ public class IOMonitorController implements Initializable {
     @FXML
     public Label statusLabel;
     @FXML
+    public AnchorPane statusAnchorPane;
+    @FXML
     public SplitPane verticalSplitPane;
 
     ModbusUtilSingleton modbusUtilSingleton;
@@ -94,6 +101,20 @@ public class IOMonitorController implements Initializable {
             // Событие на закрытие окна
             if (oldVal != null) {
                 stopPolling();
+            }
+        });
+
+        statusLabel.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                if (!newVal.equals(oldVal)) {
+                    FillTransition fillTransition = new FillTransition(Duration.seconds(1.0), statusAnchorPane.getShape());
+                    fillTransition.setDelay(Duration.seconds(1.0));
+                    fillTransition.setAutoReverse(true);
+                    fillTransition.setFromValue(Color.GRAY);
+                    fillTransition.setToValue(Color.RED);
+                    fillTransition.setCycleCount(3);
+                    fillTransition.play();
+                }
             }
         });
     }
@@ -150,7 +171,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private void initializationPLCControlElements() {
-        mainParameters = getMainParametersFromJson();
+        mainParameters = MainParameters.getMainParametersFromJson();
 
         startStopButton.setOnAction(e -> startStop());
 
@@ -236,26 +257,6 @@ public class IOMonitorController implements Initializable {
         }
         startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
         startStopAttribute.writeModbusParameter(!startStopBoolean);
-    }
-
-    private MainParameters getMainParametersFromJson() {
-        String file = "src/main_parameters.json";
-
-        MainParameters mainParameters;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return mainParameters;
     }
 
     private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {

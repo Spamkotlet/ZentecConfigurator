@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -12,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
+import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +53,12 @@ public class LabeledSpinner {
         int maxValue = attribute.getMaxValue();
 
         List<Node> nodes = new ArrayList<>();
-        nodes.add(createLabelAnchor(labelText));
-        nodes.add(createSpinnerAnchor(minValue, maxValue));
+        nodes.add(createLabel(labelText, false));
+        nodes.add(createSpinner(minValue, maxValue));
+        nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", true));
         if (attribute.getDefaultValue() != null) {
             if (showDefaultValue) {
-                nodes.add(createDefaultValueLabelAnchor(attribute.getDefaultValue()));
+                nodes.add(createDefaultValueLabel(attribute.getDefaultValue()));
             }
         }
 
@@ -67,6 +70,7 @@ public class LabeledSpinner {
         hBox.getChildren().addAll(nodes);
         hBox.setFillHeight(true);
         hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER_LEFT);
         HBox.setHgrow(hBox, Priority.ALWAYS);
 
         AnchorPane.setLeftAnchor(hBox, 0.0);
@@ -77,25 +81,18 @@ public class LabeledSpinner {
         return hBox;
     }
 
-    private AnchorPane createLabelAnchor(String labelText) {
+    private Label createLabel (String labelText, boolean isDisabled) {
         Label label = new Label(labelText);
+        label.setDisable(isDisabled);
         label.setPrefWidth(labelWidth);
         if (attribute.getDescription() != null) {
             label.setTooltip(new Tooltip(attribute.getDescription()));
         }
 
-        AnchorPane labelAnchor = new AnchorPane();
-
-        labelAnchor.getChildren().add(label);
-        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
-        AnchorPane.setRightAnchor(labelAnchor, 0.0);
-        AnchorPane.setTopAnchor(labelAnchor, 0.0);
-        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
-
-        return labelAnchor;
+        return label;
     }
 
-    private AnchorPane createSpinnerAnchor(int minValue, int maxValue) {
+    private Spinner<Integer> createSpinner (int minValue, int maxValue) {
         int initValue = 0;
 
         if (showDefaultValue) {
@@ -112,6 +109,27 @@ public class LabeledSpinner {
 
         spinner.setEditable(true);
         spinner.setPrefWidth(200);
+        spinner.getValueFactory().setWrapAround(true);
+        spinner.getValueFactory().setConverter(
+                new StringConverter<>() {
+                    @Override
+                    public String toString(Integer integer) {
+                        return (integer == null) ? "0" : integer.toString();
+                    }
+
+                    @Override
+                    public Integer fromString(String s) {
+                        if (s.matches("^[0-9]+$")) {
+                            try {
+                                return Integer.valueOf(s);
+                            } catch (NumberFormatException e) {
+                                return 0;
+                            }
+                        }
+                        return 0;
+                    }
+                }
+        );
 
         spinner.setOnMouseReleased(e -> {
             writeModbusValue();
@@ -123,31 +141,15 @@ public class LabeledSpinner {
             }
         });
 
-        AnchorPane spinnerAnchor = new AnchorPane();
-
-        spinnerAnchor.getChildren().add(spinner);
-        AnchorPane.setLeftAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setRightAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setTopAnchor(spinnerAnchor, 0.0);
-        AnchorPane.setBottomAnchor(spinnerAnchor, 0.0);
-
-        return spinnerAnchor;
+        return spinner;
     }
 
-    private AnchorPane createDefaultValueLabelAnchor(Object labelText) {
+    private Label createDefaultValueLabel(Object labelText) {
         Label label = new Label("(" + labelText + ")");
         label.setPrefWidth(labelWidth);
         label.setTextFill(Color.GRAY);
 
-        AnchorPane labelAnchor = new AnchorPane();
-
-        labelAnchor.getChildren().add(label);
-        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
-        AnchorPane.setRightAnchor(labelAnchor, 0.0);
-        AnchorPane.setTopAnchor(labelAnchor, 0.0);
-        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
-
-        return labelAnchor;
+        return label;
     }
 
     public void readModbusValue() {

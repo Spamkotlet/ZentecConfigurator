@@ -74,6 +74,28 @@
         "address": 5119,
         "varType": "UINT8"
       }
-    }
+    },
+    "heatExchangerAttributes": [
+      {
+        "name": "Время прогрева",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 5279,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "Время продувки",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 5278,
+          "varType": "UINT8"
+        }
+      }
+    ]
   }
 }

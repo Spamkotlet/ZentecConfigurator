@@ -91,11 +91,11 @@ public class MonitorTextFlow {
     }
 
     private void onClickToMonitorTextFlow() {
-        AnchorPane plotPane = null;
+        VBox plotPane = null;
         for (Node node : parentSplitPane.getItems()) {
-            if (node instanceof AnchorPane)
+            if (node instanceof VBox)
                 if (node.getId() != null && node.getId().equals("plotPane")) {
-                plotPane = (AnchorPane) node;
+                plotPane = (VBox) node;
                 break;
             }
         }
@@ -104,6 +104,7 @@ public class MonitorTextFlow {
         chart.setAnimated(false);
         chart.setCreateSymbols(false);
         chart.getData().add(series);
+        chart.setTitle(element.getName());
 
         AnchorPane.setBottomAnchor(chart, 0d);
         AnchorPane.setLeftAnchor(chart, 0d);
@@ -114,7 +115,7 @@ public class MonitorTextFlow {
             plotPane.getChildren().clear();
             plotPane.getChildren().add(chart);
         } else {
-            plotPane = new AnchorPane();
+            plotPane = new VBox();
             plotPane.setId("plotPane");
             plotPane.getChildren().add(chart);
             parentSplitPane.getItems().add(plotPane);

@@ -63,7 +63,7 @@ public class Z031Controller implements Initializable {
         electricParametersVBox.getChildren().clear();
         if (electricParameters != null) {
             for (Attribute attribute : electricParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 30, true);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
                 electricParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 electricLabeledSpinnerList.add(labeledSpinner);
             }
@@ -75,7 +75,7 @@ public class Z031Controller implements Initializable {
         waterParametersVBox.getChildren().clear();
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 30, true);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
                 waterParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 waterLabeledSpinnerList.add(labeledSpinner);
             }
@@ -87,7 +87,7 @@ public class Z031Controller implements Initializable {
         z031ParametersVBox.getChildren().clear();
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 30);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60);
                 z031ParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 z031LabeledSpinnerList.add(labeledSpinner);
             }

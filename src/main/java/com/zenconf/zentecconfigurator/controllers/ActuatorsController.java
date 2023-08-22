@@ -1,6 +1,9 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Attribute;
+import com.zenconf.zentecconfigurator.models.Element;
+import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class ActuatorsController implements Initializable {
     private List<Actuator> actuatorsInScheme;
+    private MainParameters mainParameters;
 
     @FXML
     public VBox actuatorsSettingsVbox;
@@ -35,8 +39,10 @@ public class ActuatorsController implements Initializable {
                 if (actuatorsInScheme != null) {
                     fillActuatorsSettingsPane();
                 }
+
             }
         });
+        mainParameters = MainParameters.getMainParametersFromJson();
     }
 
     private void fillActuatorsSettingsPane() {
@@ -45,6 +51,13 @@ public class ActuatorsController implements Initializable {
             transparentPane.setVisible(true);
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
+
+            Actuator heatExchangerElement = new Actuator();
+            heatExchangerElement.setName("Теплообменники");
+            heatExchangerElement.setAttributes(mainParameters.getHeatExchangerAttributes());
+            ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerElement);
+            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
+
             for (Actuator actuatorInScheme : actuatorsInScheme) {
                 if (actuatorInScheme.getIsUsedDefault()) {
                     if (actuatorInScheme.getAttributes() != null) {

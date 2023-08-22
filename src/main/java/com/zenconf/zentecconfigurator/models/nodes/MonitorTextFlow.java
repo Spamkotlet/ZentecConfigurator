@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -76,8 +77,9 @@ public class MonitorTextFlow {
     }
 
     public void update() {
-        String value = element.getAttributeForMonitoring().readModbusParameter();
-        valueText.setText(value);
+        float value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
+//        valueText.setText(new DecimalFormat("#.00").format(value));
+        valueText.setText(String.format("%.2f", value));
         if (values.size() > 300) {
             series.getData().clear();
             values.remove(0);
@@ -85,9 +87,9 @@ public class MonitorTextFlow {
                 series.getData().add(new XYChart.Data<>(i, values.get(i)));
             }
         } else {
-            series.getData().add(new XYChart.Data<>(series.getData().size(), Float.valueOf(value)));
+            series.getData().add(new XYChart.Data<>(series.getData().size(), value));
         }
-        values.add(Float.valueOf(value));
+        values.add(value);
     }
 
     private void onClickToMonitorTextFlow() {

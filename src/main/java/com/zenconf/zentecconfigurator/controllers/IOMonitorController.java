@@ -132,7 +132,7 @@ public class IOMonitorController implements Initializable {
                     for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
                         Platform.runLater(monitorTextFlow::update);
                         try {
-                            Thread.sleep(20);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }

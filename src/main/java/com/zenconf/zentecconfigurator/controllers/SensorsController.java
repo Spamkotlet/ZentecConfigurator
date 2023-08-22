@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;

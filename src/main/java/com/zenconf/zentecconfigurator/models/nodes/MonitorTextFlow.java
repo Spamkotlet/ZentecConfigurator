@@ -18,6 +18,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MonitorTextFlow {
@@ -77,13 +78,16 @@ public class MonitorTextFlow {
     public void update() {
         String value = element.getAttributeForMonitoring().readModbusParameter();
         valueText.setText(value);
-        if (values.size() > 100) {
+        if (values.size() > 300) {
+            series.getData().clear();
             values.remove(0);
+            for (int i = 0; i < values.size(); i++) {
+                series.getData().add(new XYChart.Data<>(i, values.get(i)));
+            }
+        } else {
+            series.getData().add(new XYChart.Data<>(series.getData().size(), Float.valueOf(value)));
         }
         values.add(Float.valueOf(value));
-        for (int i = 0; i < values.size(); i++) {
-            series.getData().add(new XYChart.Data<>(i, values.get(i)));
-        }
     }
 
     private void onClickToMonitorTextFlow() {
@@ -98,6 +102,7 @@ public class MonitorTextFlow {
 
         LineChart<Number, Number> chart = new LineChart<>(new NumberAxis(), new NumberAxis());
         chart.setAnimated(false);
+        chart.setCreateSymbols(false);
         chart.getData().add(series);
 
         AnchorPane.setBottomAnchor(chart, 0d);

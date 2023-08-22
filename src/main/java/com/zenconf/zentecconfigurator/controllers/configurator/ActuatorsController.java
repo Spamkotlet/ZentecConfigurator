@@ -1,9 +1,9 @@
-package com.zenconf.zentecconfigurator.controllers;
+package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
-import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.Element;
 import com.zenconf.zentecconfigurator.models.MainParameters;
+import com.zenconf.zentecconfigurator.models.Parameter;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -32,6 +32,7 @@ public class ActuatorsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        mainParameters = MainController.mainParameters;
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 actuatorsInScheme = ChangeSchemeController.actuatorsInScheme;
@@ -39,10 +40,8 @@ public class ActuatorsController implements Initializable {
                 if (actuatorsInScheme != null) {
                     fillActuatorsSettingsPane();
                 }
-
             }
         });
-        mainParameters = MainParameters.getMainParametersFromJson();
     }
 
     private void fillActuatorsSettingsPane() {
@@ -52,10 +51,10 @@ public class ActuatorsController implements Initializable {
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
 
-            Actuator heatExchangerElement = new Actuator();
-            heatExchangerElement.setName("Теплообменники");
-            heatExchangerElement.setAttributes(mainParameters.getHeatExchangerAttributes());
-            ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerElement);
+            Parameter heatExchangerParameter = new Parameter();
+            heatExchangerParameter.setName("Теплообменники");
+            heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
+            ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
 
             for (Actuator actuatorInScheme : actuatorsInScheme) {

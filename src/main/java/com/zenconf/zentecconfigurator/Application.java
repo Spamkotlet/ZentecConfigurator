@@ -1,11 +1,9 @@
 package com.zenconf.zentecconfigurator;
 
-import com.zenconf.zentecconfigurator.controllers.IOMonitorController;
+import com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;

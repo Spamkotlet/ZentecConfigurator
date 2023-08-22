@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane fx:id="mainSplitPane" dividerPositions="0.2504" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ConfiguratorController">
+<SplitPane fx:id="mainSplitPane" dividerPositions="0.2504" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ConfiguratorController">
     <items>
         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="315.0">
             <content>
@@ -44,7 +44,7 @@
                                       </BorderPane>
                                       <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
                                           <bottom>
-                                              <Label text="Устройства" BorderPane.alignment="CENTER" />
+                                              <Label text="Исполнительные устройства" BorderPane.alignment="CENTER" />
                                           </bottom>
                                           <padding>
                                               <Insets bottom="10.0" top="10.0" />
@@ -56,6 +56,17 @@
                                               <Button fx:id="actuatorsButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
                                           </center>
                                       </BorderPane>
+                        <BorderPane layoutX="10.0" layoutY="475.0" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
+                           <bottom>
+                              <Label text="Периферия" BorderPane.alignment="CENTER" />
+                           </bottom>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                           <center>
+                              <Button fx:id="peripheryButton" mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
                                       <BorderPane minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0">
                                           <bottom>
                                               <Label text="Входы/выходы" BorderPane.alignment="CENTER" />

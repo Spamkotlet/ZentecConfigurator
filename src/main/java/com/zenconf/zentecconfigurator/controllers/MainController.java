@@ -1,6 +1,9 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.Application;
+import com.zenconf.zentecconfigurator.models.MainParameters;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -29,6 +34,7 @@ public class MainController extends CommonController implements Initializable {
     public Button goToJournalButton;
     @FXML
     public AnchorPane mainAnchorPane;
+    public static MainParameters mainParameters;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,7 +44,7 @@ public class MainController extends CommonController implements Initializable {
             goToHomeButton.getStyleClass().add("button-main-header-active");
         }
 
-        Node node = null;
+        Node node;
         try {
             node = createNewNode("home-page-view.fxml");
         } catch (IOException e) {
@@ -50,6 +56,8 @@ public class MainController extends CommonController implements Initializable {
         goToHelpButton.setOnAction(this::onClickHelpButton);
         goToSettingsButton.setOnAction(this::onClickSettingsButton);
         goToJournalButton.setOnAction(this::onClickJournalButton);
+
+        mainParameters = getMainParametersFromJson();
     }
 
     private void onClickHomeButton(ActionEvent actionEvent) {
@@ -198,7 +206,23 @@ public class MainController extends CommonController implements Initializable {
         mainAnchorPane.getChildren().add(node);
     }
 
-    public AnchorPane getMainAnchorPane() {
-        return mainAnchorPane;
+    private MainParameters getMainParametersFromJson() {
+        String file = "src/main_parameters.json";
+
+        MainParameters mainParameters;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return mainParameters;
     }
 }

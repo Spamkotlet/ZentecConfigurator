@@ -31,6 +31,8 @@ public class ConfiguratorController implements Initializable {
     @FXML
     public Button actuatorsButton;
     @FXML
+    public Button peripheryButton;
+    @FXML
     public Button ioButton;
 
     @FXML
@@ -44,6 +46,7 @@ public class ConfiguratorController implements Initializable {
         sensorsButton.setOnAction(this::onClickSensorsButton);
         actuatorsButton.setOnAction(this::onClickActuatorsButton);
         ioButton.setOnAction(this::onClickIOButton);
+        peripheryButton.setOnAction(this::onClickPeripheryButton);
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
         ImageView schemeImageView = new ImageView(schemeImage);
@@ -69,6 +72,14 @@ public class ConfiguratorController implements Initializable {
         actuatorsButton.setBackground(Background.EMPTY);
         actuatorsButton.setText("");
 
+        Image peripheryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/periphery.png")));
+        ImageView peripheryImageView = new ImageView(peripheryImage);
+        peripheryImageView.setFitHeight(80);
+        peripheryImageView.setFitWidth(80);
+        peripheryButton.graphicProperty().setValue(peripheryImageView);
+        peripheryButton.setBackground(Background.EMPTY);
+        peripheryButton.setText("");
+
         Image inOutsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png")));
         ImageView inOutsImageView = new ImageView(inOutsImage);
         inOutsImageView.setFitHeight(80);
@@ -83,7 +94,7 @@ public class ConfiguratorController implements Initializable {
         Node node = panels.get(button);
         if (node == null) {
             try {
-                node = createNewNode("change-scheme.fxml");
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -97,7 +108,7 @@ public class ConfiguratorController implements Initializable {
         Node node = panels.get(button);
         if (node == null) {
             try {
-                node = createNewNode("sensors-settings.fxml");
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -111,7 +122,21 @@ public class ConfiguratorController implements Initializable {
         Node node = panels.get(button);
         if (node == null) {
             try {
-                node = createNewNode("actuators-settings.fxml");
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            panels.put(button, node);
+        }
+        showNode(node);
+    }
+
+    private void onClickPeripheryButton(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        Node node = panels.get(button);
+        if (node == null) {
+            try {
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -125,7 +150,7 @@ public class ConfiguratorController implements Initializable {
         Node node = panels.get(button);
         if (node == null) {
             try {
-                node = createNewNode("io-monitor.fxml");
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -96,6 +96,112 @@
           "varType": "UINT8"
         }
       }
+    ],
+    "peripheryParameters": [
+      {
+        "name": "Модуль расширения 1",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 5445,
+              "varType": "BOOL"
+            },
+            "values": [
+              "Нет",
+              "Да"
+            ]
+          },
+          {
+            "name": "Адрес СМ 1",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 5444,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Модуль расширения 2",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 14,
+              "varType": "BOOL"
+            },
+            "values": [
+            "Нет",
+            "Да"
+          ]
+          },
+          {
+            "name": "Адрес СМ 2",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 64,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Пульт управления Z031",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 5169,
+              "varType": "BOOL"
+            },
+            "values": [
+              "Нет",
+              "Да"
+            ]
+          },
+          {
+            "name": "Адрес ПУ Z031",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 5168,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      }
+    ],
+    "alarms": [
+      {
+        "name": "Шифр аварии 1-32",
+        "modbusParameters": {
+          "address": 5152,
+          "varType": "UINT32"
+        }
+      },
+      {
+        "name": "Шифр аварии 33-64",
+        "modbusParameters": {
+          "address": 5150,
+          "varType": "UINT32"
+        }
+      },
+      {
+        "name": "Шифр предупреждений",
+        "modbusParameters": {
+          "address": 5148,
+          "varType": "UINT32"
+        }
+      }
     ]
   }
 }

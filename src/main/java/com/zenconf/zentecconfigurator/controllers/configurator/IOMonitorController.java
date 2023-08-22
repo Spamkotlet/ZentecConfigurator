@@ -1,8 +1,7 @@
-package com.zenconf.zentecconfigurator.controllers;
+package com.zenconf.zentecconfigurator.controllers.configurator;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.MainParameters;
@@ -11,7 +10,6 @@ import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
-import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -20,17 +18,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -65,6 +58,8 @@ public class IOMonitorController implements Initializable {
     public AnchorPane statusAnchorPane;
     @FXML
     public SplitPane verticalSplitPane;
+    @FXML
+    public GridPane alarmsGridPane;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -171,7 +166,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private void initializationPLCControlElements() {
-        mainParameters = MainParameters.getMainParametersFromJson();
+        mainParameters = MainController.mainParameters;
 
         startStopButton.setOnAction(e -> startStop());
 

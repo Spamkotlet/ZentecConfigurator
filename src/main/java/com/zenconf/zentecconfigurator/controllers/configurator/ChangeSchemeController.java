@@ -1,4 +1,4 @@
-package com.zenconf.zentecconfigurator.controllers;
+package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

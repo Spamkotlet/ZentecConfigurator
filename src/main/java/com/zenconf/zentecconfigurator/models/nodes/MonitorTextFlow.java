@@ -1,8 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Element;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -17,10 +15,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class MonitorTextFlow {
 
@@ -59,9 +56,7 @@ public class MonitorTextFlow {
         vBox.setFillWidth(true);
         vBox.setAlignment(Pos.CENTER);
         VBox.setVgrow(vBox, Priority.ALWAYS);
-        vBox.setOnMouseClicked(e -> {
-            onClickToMonitorTextFlow();
-        });
+        vBox.setOnMouseClicked(e -> onClickToMonitorTextFlow());
         return vBox;
     }
 
@@ -78,8 +73,7 @@ public class MonitorTextFlow {
 
     public void update() {
         float value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
-//        valueText.setText(new DecimalFormat("#.00").format(value));
-        valueText.setText(String.format("%.2f", value));
+        valueText.setText(String.format(Locale.ROOT, "%.2f", value));
         if (values.size() > 300) {
             series.getData().clear();
             values.remove(0);
@@ -122,9 +116,5 @@ public class MonitorTextFlow {
             plotPane.getChildren().add(chart);
             parentSplitPane.getItems().add(plotPane);
         }
-    }
-
-    public SplitPane getParentSplitPane() {
-        return parentSplitPane;
     }
 }

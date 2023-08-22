@@ -1,4 +1,4 @@
-package com.zenconf.zentecconfigurator.controllers;
+package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;

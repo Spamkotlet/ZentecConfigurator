@@ -254,6 +254,12 @@ public class IOMonitorController implements Initializable {
         startStopAttribute.writeModbusParameter(!startStopBoolean);
     }
 
+    private boolean isAlarmActive() {
+        boolean commonAlarm = Boolean.parseBoolean(mainParameters.getCommonAlarmAttribute().readModbusParameter());
+        int warnings = Integer.parseInt(mainParameters.getWarningsAttribute().readModbusParameter());
+        return commonAlarm || warnings > 0;
+    }
+
     private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {
         return FXCollections.observableArrayList(attributeValues);
     }

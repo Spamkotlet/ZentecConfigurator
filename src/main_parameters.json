@@ -136,9 +136,9 @@
               "varType": "BOOL"
             },
             "values": [
-            "Нет",
-            "Да"
-          ]
+              "Нет",
+              "Да"
+            ]
           },
           {
             "name": "Адрес СМ 2",
@@ -180,28 +180,33 @@
         ]
       }
     ],
-    "alarms": [
-      {
-        "name": "Шифр аварии 1-32",
-        "modbusParameters": {
-          "address": 5152,
-          "varType": "UINT32"
-        }
-      },
-      {
-        "name": "Шифр аварии 33-64",
-        "modbusParameters": {
-          "address": 5150,
-          "varType": "UINT32"
-        }
-      },
-      {
-        "name": "Шифр предупреждений",
-        "modbusParameters": {
-          "address": 5148,
-          "varType": "UINT32"
-        }
+    "commonAlarm": {
+      "name": "Общая авария",
+      "modbusParameters": {
+        "address": 5478,
+        "varType": "BOOL"
       }
-    ]
+    },
+    "alarms0": {
+      "name": "Шифр аварии 1-32",
+      "modbusParameters": {
+        "address": 5152,
+        "varType": "UINT32"
+      }
+    },
+    "alarms1": {
+      "name": "Шифр аварии 33-64",
+      "modbusParameters": {
+        "address": 5150,
+        "varType": "UINT32"
+      }
+    },
+    "warnings": {
+      "name": "Шифр предупреждений",
+      "modbusParameters": {
+        "address": 5148,
+        "varType": "UINT32"
+      }
+    }
   }
 }

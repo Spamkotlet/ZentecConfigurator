@@ -10,7 +10,10 @@ public class MainParameters {
     private Attribute statusAttribute;
     private List<Attribute> heatExchangerAttributes;
     private List<Parameter> peripheryParameters;
-    private List<Attribute> alarms;
+    private Attribute alarmsAttribute0;
+    private Attribute alarmsAttribute1;
+    private Attribute warningsAttribute;
+    private Attribute commonAlarmAttribute;
     private Attribute deviceAddressAttribute; // атрибут для проверки соединения
 
     public Attribute getStartStopAttribute() {
@@ -45,7 +48,20 @@ public class MainParameters {
         return peripheryParameters;
     }
 
-    public List<Attribute> getAlarms() {
-        return alarms;
+    public Attribute getAlarmsAttribute0() {
+        return alarmsAttribute0;
     }
+
+    public Attribute getAlarmsAttribute1() {
+        return alarmsAttribute1;
+    }
+
+    public Attribute getWarningsAttribute() {
+        return warningsAttribute;
+    }
+
+    public Attribute getCommonAlarmAttribute() {
+        return commonAlarmAttribute;
+    }
+
 }

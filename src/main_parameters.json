@@ -180,28 +180,28 @@
         ]
       }
     ],
-    "commonAlarm": {
+    "commonAlarmAttribute": {
       "name": "Общая авария",
       "modbusParameters": {
         "address": 5478,
         "varType": "BOOL"
       }
     },
-    "alarms0": {
+    "alarmsAttribute0": {
       "name": "Шифр аварии 1-32",
       "modbusParameters": {
         "address": 5152,
         "varType": "UINT32"
       }
     },
-    "alarms1": {
+    "alarmsAttribute1": {
       "name": "Шифр аварии 33-64",
       "modbusParameters": {
         "address": 5150,
         "varType": "UINT32"
       }
     },
-    "warnings": {
+    "warningsAttribute": {
       "name": "Шифр предупреждений",
       "modbusParameters": {
         "address": 5148,
@@ -210,3 +210,4 @@
     }
   }
 }
+

@@ -15,6 +15,8 @@ import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
 import jssc.SerialPortTimeoutException;
 
+import java.util.Arrays;
+
 // TODO: Сделать билдер
 
 public class ModbusUtilSingleton {
@@ -41,7 +43,7 @@ public class ModbusUtilSingleton {
 
     public void connect() {
         SerialParameters sp = new SerialParameters();
-        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
+//        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
         try {
             if (!device.equals("")) {
                 sp.setDevice(device);
@@ -108,7 +110,7 @@ public class ModbusUtilSingleton {
         try {
             master.connect();
             coilValue = master.readCoils(slaveId, address, 1)[0];
-            System.out.println("Address: " + address + ", Value: " + coilValue);
+//            System.out.println("Address: " + address + ", Value: " + coilValue);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
@@ -147,7 +149,12 @@ public class ModbusUtilSingleton {
             if (varType.equals(VarTypes.UINT8) || varType.equals(VarTypes.UINT16)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
             } else if (varType.equals(VarTypes.UINT32)) {
+                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 2)));
+                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 4)));
                 registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
+                System.out.println(registerValue);
+                registerValue = master.readHoldingRegisters(slaveId, address, 4)[0];
+                System.out.println(registerValue);
             } else if (varType.equals(VarTypes.SINT8)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
                 if (registerValue > Byte.MAX_VALUE) {
@@ -210,7 +217,7 @@ public class ModbusUtilSingleton {
             }
             registerValue = Float.intBitsToFloat(value);
 
-            System.out.println("Address: " + address + ", Value: " + registerValue);
+//            System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

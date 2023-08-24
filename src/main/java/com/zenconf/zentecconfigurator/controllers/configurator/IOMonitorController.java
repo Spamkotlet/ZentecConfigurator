@@ -7,6 +7,7 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
+import com.zenconf.zentecconfigurator.models.nodes.AlarmGridPane;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -60,6 +61,8 @@ public class IOMonitorController implements Initializable {
     public SplitPane verticalSplitPane;
     @FXML
     public GridPane alarmsGridPane;
+    @FXML
+    public VBox middleVBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -69,6 +72,10 @@ public class IOMonitorController implements Initializable {
 
     public static ScheduledExecutorService executor;
     private boolean pollingPreviousState = false;
+
+    private final int alarmsNumber0 = 0;
+    private final int alarmsNumber1 = 0;
+    private final int warningsNumber = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -132,6 +139,8 @@ public class IOMonitorController implements Initializable {
                             throw new RuntimeException(e);
                         }
                     }
+                    boolean isAlarmActive = isAlarmActive();
+                    System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
                     Platform.runLater(() -> updateStatusLabel());
                 }
             };
@@ -217,6 +226,8 @@ public class IOMonitorController implements Initializable {
                 }
             }
         }
+        AlarmGridPane alarmGridPane = new AlarmGridPane();
+        middleVBox.getChildren().add(alarmGridPane.createAlarmGridPane());
 
         actuatorsMonitorVBox.getChildren().clear();
         if (actuatorsInScheme != null) {
@@ -256,8 +267,13 @@ public class IOMonitorController implements Initializable {
 
     private boolean isAlarmActive() {
         boolean commonAlarm = Boolean.parseBoolean(mainParameters.getCommonAlarmAttribute().readModbusParameter());
+        int alarms0 = Integer.parseInt(mainParameters.getAlarmsAttribute0().readModbusParameter());
+        int alarms1 = Integer.parseInt(mainParameters.getAlarmsAttribute1().readModbusParameter());
         int warnings = Integer.parseInt(mainParameters.getWarningsAttribute().readModbusParameter());
-        return commonAlarm || warnings > 0;
+
+        System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
+
+        return commonAlarm && (warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1);
     }
 
     private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {

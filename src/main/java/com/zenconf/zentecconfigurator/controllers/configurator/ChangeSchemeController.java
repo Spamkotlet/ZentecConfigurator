@@ -198,7 +198,7 @@ public class ChangeSchemeController implements Initializable {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get(modbusUtilSingleton.readSingleModbusRegister(5299, VarTypes.UINT8));
+            selectedScheme = schemes.get((int) modbusUtilSingleton.readSingleModbusRegister(5299, VarTypes.UINT8));
         }
         return selectedScheme;
     }

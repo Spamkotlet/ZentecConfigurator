@@ -18,6 +18,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -35,6 +36,9 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public AnchorPane mainAnchorPane;
     public static MainParameters mainParameters;
+    public static List<String> alarms0;
+    public static List<String> alarms1;
+    public static List<String> warnings;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,6 +62,7 @@ public class MainController extends CommonController implements Initializable {
         goToJournalButton.setOnAction(this::onClickJournalButton);
 
         mainParameters = getMainParametersFromJson();
+        getAlarmsFromJson();
     }
 
     private void onClickHomeButton(ActionEvent actionEvent) {
@@ -225,4 +230,27 @@ public class MainController extends CommonController implements Initializable {
         }
         return mainParameters;
     }
+
+    private void getAlarmsFromJson() {
+        String file = "src/alarms_list.json";
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(file),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<>() {
+            });
+            alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
+            });
+            warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

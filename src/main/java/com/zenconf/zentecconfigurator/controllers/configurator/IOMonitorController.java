@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -59,23 +58,23 @@ public class IOMonitorController implements Initializable {
     public AnchorPane statusAnchorPane;
     @FXML
     public SplitPane verticalSplitPane;
+
     @FXML
-    public GridPane alarmsGridPane;
-    @FXML
-    public VBox middleVBox;
+    public VBox alarmsVBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
     List<Actuator> actuatorsInScheme = new ArrayList<>();
     List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
     private MainParameters mainParameters;
+    public AlarmGridPane alarmsGridPane;
 
     public static ScheduledExecutorService executor;
     private boolean pollingPreviousState = false;
 
-    private final int alarmsNumber0 = 0;
-    private final int alarmsNumber1 = 0;
-    private final int warningsNumber = 0;
+    private long alarmsNumber0 = 0;
+    private long alarmsNumber1 = 0;
+    private long warningsNumber = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -140,6 +139,9 @@ public class IOMonitorController implements Initializable {
                         }
                     }
                     boolean isAlarmActive = isAlarmActive();
+                    if (isAlarmActive) {
+                        Platform.runLater(alarmsGridPane::update);
+                    }
                     System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
                     Platform.runLater(() -> updateStatusLabel());
                 }
@@ -226,8 +228,9 @@ public class IOMonitorController implements Initializable {
                 }
             }
         }
-        AlarmGridPane alarmGridPane = new AlarmGridPane();
-        middleVBox.getChildren().add(alarmGridPane.createAlarmGridPane());
+        alarmsGridPane = new AlarmGridPane();
+        alarmsVBox.getChildren().clear();
+        alarmsVBox.getChildren().add(alarmsGridPane.createAlarmGridPane());
 
         actuatorsMonitorVBox.getChildren().clear();
         if (actuatorsInScheme != null) {
@@ -267,13 +270,19 @@ public class IOMonitorController implements Initializable {
 
     private boolean isAlarmActive() {
         boolean commonAlarm = Boolean.parseBoolean(mainParameters.getCommonAlarmAttribute().readModbusParameter());
-        int alarms0 = Integer.parseInt(mainParameters.getAlarmsAttribute0().readModbusParameter());
-        int alarms1 = Integer.parseInt(mainParameters.getAlarmsAttribute1().readModbusParameter());
-        int warnings = Integer.parseInt(mainParameters.getWarningsAttribute().readModbusParameter());
+        long alarms0 = Long.parseLong(mainParameters.getAlarmsAttribute0().readModbusParameter());
+        long alarms1 = Long.parseLong(mainParameters.getAlarmsAttribute1().readModbusParameter());
+        long warnings = Long.parseLong(mainParameters.getWarningsAttribute().readModbusParameter());
+
+        boolean isAlarmActive = commonAlarm && (warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1);
+
+        alarmsNumber0 = alarms0;
+        alarmsNumber1 = alarms1;
+        warningsNumber = warnings;
 
         System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
 
-        return commonAlarm && (warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1);
+        return isAlarmActive;
     }
 
     private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {

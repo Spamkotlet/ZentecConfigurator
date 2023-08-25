@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.utils.modbus;
 
-import com.intelligt.modbus.jlibmodbus.Modbus;
 import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusNumberException;
@@ -13,7 +12,6 @@ import com.intelligt.modbus.jlibmodbus.msg.response.ReadInputRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.serial.*;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
-import jssc.SerialPortTimeoutException;
 
 import java.util.Arrays;
 
@@ -142,19 +140,15 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public synchronized int readSingleModbusRegister(int address, VarTypes varType) {
-        int registerValue = 0;
+    public synchronized long readSingleModbusRegister(int address, VarTypes varType) {
+        long registerValue = 0;
         try {
             master.connect();
             if (varType.equals(VarTypes.UINT8) || varType.equals(VarTypes.UINT16)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
             } else if (varType.equals(VarTypes.UINT32)) {
-                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 2)));
-                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 4)));
-                registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
-                System.out.println(registerValue);
-                registerValue = master.readHoldingRegisters(slaveId, address, 4)[0];
-                System.out.println(registerValue);
+                int[] registerValues = master.readHoldingRegisters(slaveId, address, 2);
+                registerValue = (long) registerValues[0] * 65536 + (long) registerValues[1];
             } else if (varType.equals(VarTypes.SINT8)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
                 if (registerValue > Byte.MAX_VALUE) {

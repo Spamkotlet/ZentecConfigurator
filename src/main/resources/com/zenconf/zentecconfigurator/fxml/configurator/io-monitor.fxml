@@ -51,22 +51,27 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="95.0">
                      <children>
-                        <Button fx:id="startStopButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="89.0" text="Пуск/Стоп" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="startStopButton" mnemonicParsing="false" text="Пуск/Стоп" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="140.0">
                      <children>
-                        <ChoiceBox fx:id="controlModeChoiceBox" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ChoiceBox fx:id="controlModeChoiceBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="140.0">
                      <children>
-                        <ChoiceBox fx:id="seasonChoiceBox" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ChoiceBox fx:id="seasonChoiceBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="95.0">
                      <children>
-                        <Button fx:id="resetAlarmsButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="89.0" text="Сброс аварий" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="resetAlarmsButton" mnemonicParsing="false" text="Сброс аварий" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="680.0" layoutY="15.0" prefHeight="40.0" prefWidth="131.0">
+                     <children>
+                        <Button fx:id="clearJournalButton" mnemonicParsing="false" text="Очистка журнала" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -126,7 +131,7 @@
                                     </AnchorPane>
                                     <AnchorPane HBox.hgrow="ALWAYS">
                                        <children>
-                                          <VBox fx:id="alarmsVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <VBox fx:id="middleVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                    <children>

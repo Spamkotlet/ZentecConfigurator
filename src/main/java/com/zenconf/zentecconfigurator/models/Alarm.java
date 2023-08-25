@@ -5,11 +5,10 @@ import java.util.Date;
 public class Alarm {
 
     private int number;
-    private int index;
     private String description;
-    private Date datetime;
+    private String datetime;
 
-    public Alarm(int number, String description, Date datetime) {
+    public Alarm(int number, String description, String datetime) {
         this.number = number;
         this.description = description;
         this.datetime = datetime;
@@ -23,14 +22,6 @@ public class Alarm {
         this.number = number;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -39,11 +30,11 @@ public class Alarm {
         this.description = description;
     }
 
-    public Date getDatetime() {
+    public String getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(Date datetime) {
+    public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
 }

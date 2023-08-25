@@ -7,7 +7,7 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
-import com.zenconf.zentecconfigurator.models.nodes.AlarmGridPane;
+import com.zenconf.zentecconfigurator.models.nodes.AlarmTableView;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -49,6 +49,8 @@ public class IOMonitorController implements Initializable {
     @FXML
     public Button resetAlarmsButton;
     @FXML
+    public Button clearJournalButton;
+    @FXML
     public ChoiceBox<String> controlModeChoiceBox;
     @FXML
     public ChoiceBox<String> seasonChoiceBox;
@@ -58,7 +60,6 @@ public class IOMonitorController implements Initializable {
     public AnchorPane statusAnchorPane;
     @FXML
     public SplitPane verticalSplitPane;
-
     @FXML
     public VBox alarmsVBox;
 
@@ -67,7 +68,7 @@ public class IOMonitorController implements Initializable {
     List<Actuator> actuatorsInScheme = new ArrayList<>();
     List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
     private MainParameters mainParameters;
-    public AlarmGridPane alarmsGridPane;
+    public AlarmTableView alarmsTableView;
 
     public static ScheduledExecutorService executor;
     private boolean pollingPreviousState = false;
@@ -105,6 +106,10 @@ public class IOMonitorController implements Initializable {
             }
         });
 
+        alarmsTableView = new AlarmTableView();
+        alarmsVBox.getChildren().clear();
+        alarmsVBox.getChildren().add(alarmsTableView.createAlarmGridPane());
+
         statusLabel.textProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (!newVal.equals(oldVal)) {
@@ -140,7 +145,7 @@ public class IOMonitorController implements Initializable {
                     }
                     boolean isAlarmActive = isAlarmActive();
                     if (isAlarmActive) {
-                        Platform.runLater(alarmsGridPane::update);
+                        Platform.runLater(alarmsTableView::update);
                     }
                     System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
                     Platform.runLater(() -> updateStatusLabel());
@@ -176,6 +181,7 @@ public class IOMonitorController implements Initializable {
         });
     }
 
+    // Инициализация элементов управления контроллером
     private void initializationPLCControlElements() {
         mainParameters = MainController.mainParameters;
 
@@ -184,6 +190,12 @@ public class IOMonitorController implements Initializable {
         resetAlarmsButton.setOnAction(e -> {
             Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
             resetAlarmsAttribute.writeModbusParameter(true);
+        });
+
+        clearJournalButton.setOnAction(e -> {
+            Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
+            clearJournalAttribute.writeModbusParameter(true);
+            alarmsTableView.clear();
         });
 
         Attribute controlModeAttribute = mainParameters.getControlModeAttribute();
@@ -209,6 +221,7 @@ public class IOMonitorController implements Initializable {
         });
     }
 
+    // Инициализация элементов мониторинга состояния контроллера
     private void initializationPLCMonitoringElements() {
         monitorTextFlowList.clear();
         sensorsMonitorVBox.getChildren().clear();
@@ -228,9 +241,6 @@ public class IOMonitorController implements Initializable {
                 }
             }
         }
-        alarmsGridPane = new AlarmGridPane();
-        alarmsVBox.getChildren().clear();
-        alarmsVBox.getChildren().add(alarmsGridPane.createAlarmGridPane());
 
         actuatorsMonitorVBox.getChildren().clear();
         if (actuatorsInScheme != null) {
@@ -274,7 +284,7 @@ public class IOMonitorController implements Initializable {
         long alarms1 = Long.parseLong(mainParameters.getAlarmsAttribute1().readModbusParameter());
         long warnings = Long.parseLong(mainParameters.getWarningsAttribute().readModbusParameter());
 
-        boolean isAlarmActive = commonAlarm && (warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1);
+        boolean isAlarmActive = warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1;
 
         alarmsNumber0 = alarms0;
         alarmsNumber1 = alarms1;
@@ -291,9 +301,9 @@ public class IOMonitorController implements Initializable {
 
     private ObservableList<String> getSeasonsChoiceBoxItems() {
         List<String> seasonsString = new ArrayList<>();
-        List<Seasons> seasons = Arrays.asList(Seasons.values());
-        for (int i = 0; i < seasons.size(); i++) {
-            seasonsString.add(seasons.get(i).getDisplayValue());
+        Seasons[] seasons = Seasons.values();
+        for (Seasons season : seasons) {
+            seasonsString.add(season.getDisplayValue());
         }
         return FXCollections.observableArrayList(seasonsString);
     }

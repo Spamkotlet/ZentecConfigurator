@@ -5,6 +5,7 @@ import java.util.List;
 public class MainParameters {
     private Attribute startStopAttribute;
     private Attribute resetAlarmsAttribute;
+    private Attribute clearJournalAttribute;
     private Attribute controlModeAttribute;
     private Attribute seasonAttribute;
     private Attribute statusAttribute;
@@ -22,6 +23,10 @@ public class MainParameters {
 
     public Attribute getResetAlarmsAttribute() {
         return resetAlarmsAttribute;
+    }
+
+    public Attribute getClearJournalAttribute() {
+        return clearJournalAttribute;
     }
 
     public Attribute getControlModeAttribute() {

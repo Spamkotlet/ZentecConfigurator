@@ -42,6 +42,14 @@
         "varType": "BOOL"
       }
     },
+    "clearJournalAttribute": {
+      "name": "Очистка журнала",
+      "control": 3,
+      "modbusParameters": {
+        "address": 5125,
+        "varType": "BOOL"
+      }
+    },
     "seasonAttribute": {
       "name": "Режим работы",
       "control": 2,

@@ -13,8 +13,6 @@ import com.intelligt.modbus.jlibmodbus.serial.*;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
 
-import java.util.Arrays;
-
 // TODO: Сделать билдер
 
 public class ModbusUtilSingleton {
@@ -55,10 +53,6 @@ public class ModbusUtilSingleton {
                 testConnection();
             }
         } catch (SerialPortException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ошибка при подключении к контроллеру\n" + e.getMessage());
-            alert.setHeaderText("Ошибка Modbus");
-            alert.show();
             e.printStackTrace();
         }
     }
@@ -69,11 +63,13 @@ public class ModbusUtilSingleton {
             System.out.println(master.readHoldingRegisters(slaveId, 65520, 1)[0]);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Успешное подключение");
+            alert.setTitle("Успех");
             alert.show();
         } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Ошибка при подключении к контроллеру\n" + ex.getMessage());
             alert.setHeaderText("Ошибка Modbus");
+            alert.setTitle("Ошибка");
             alert.show();
         } finally {
             try {
@@ -82,7 +78,6 @@ public class ModbusUtilSingleton {
                 e1.printStackTrace();
             }
         }
-
     }
 
     public void disconnect() throws ModbusIOException {
@@ -209,7 +204,7 @@ public class ModbusUtilSingleton {
 
             byte[] bytes = registers.getBytes();
             int value = 0;
-            for (byte b: bytes) {
+            for (byte b : bytes) {
                 value = (value << 8) + (b & 0xFF);
             }
             registerValue = Float.intBitsToFloat(value);
@@ -313,12 +308,11 @@ public class ModbusUtilSingleton {
 
     private byte[] wordSwap(byte[] buf) {
         byte[] returnBuf = new byte[buf.length];
-        for (int i = 0; i < buf.length; i = i + 4)
-        {
-            returnBuf[i] = buf[i+2];
-            returnBuf[i+1] = buf[i+3];
-            returnBuf[i+2] = buf[i];
-            returnBuf[i+3] = buf[i+1];
+        for (int i = 0; i < buf.length; i = i + 4) {
+            returnBuf[i] = buf[i + 2];
+            returnBuf[i + 1] = buf[i + 3];
+            returnBuf[i + 2] = buf[i];
+            returnBuf[i + 3] = buf[i + 1];
         }
         return returnBuf;
     }

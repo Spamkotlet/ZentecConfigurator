@@ -71,8 +71,13 @@ public class MonitorTextFlow {
         return textFlow;
     }
 
-    public void update() {
-        float value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
+    public void update() throws Exception {
+        float value = 0.0f;
+        try {
+            value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         valueText.setText(String.format(Locale.ROOT, "%.2f", value));
         if (values.size() > 300) {
             series.getData().clear();

@@ -49,8 +49,6 @@ public class SettingsController implements Initializable {
     @FXML
     public ChoiceBox<VarFunctions> functionChoiceBox;
     @FXML
-    public TextFlow functionDescriptionTextFlow;
-    @FXML
     public ChoiceBox<VarTypes> varTypeChoiceBox;
 
     ModbusUtilSingleton modbusUtilSingleton;
@@ -61,7 +59,7 @@ public class SettingsController implements Initializable {
         baudRateChoiceBox.setItems(getBaudRateObservableList());
 
         SpinnerValueFactory<Integer> slaveIdSpinnerFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 247, modbusUtilSingleton.getSlaveId());
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 247, modbusUtilSingleton.getSlaveId());
         slaveIdSpinner.setValueFactory(slaveIdSpinnerFactory);
         baudRateChoiceBox.setValue(modbusUtilSingleton.getBaudRate());
         dataBitsChoiceBox.setItems(getDataBitsObservableList());
@@ -81,7 +79,6 @@ public class SettingsController implements Initializable {
         disconnectDeviceButton.setOnAction(this::disconnectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
         testModbusButton.setOnAction(this::testModbus);
-        functionDescriptionTextFlow.setAccessibleText("Описание функций");
     }
 
     private void connectDevice(ActionEvent actionEvent) {

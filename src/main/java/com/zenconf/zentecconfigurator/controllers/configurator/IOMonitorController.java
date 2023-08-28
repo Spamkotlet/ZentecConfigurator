@@ -140,7 +140,15 @@ public class IOMonitorController implements Initializable {
                 public void run(){
                     try {
                         for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
-                            Platform.runLater(monitorTextFlow::update);
+                            Platform.runLater(() -> {
+                                try {
+                                    monitorTextFlow.update();
+                                } catch (Exception e) {
+                                    System.out.println("Stop polling monitor");
+                                    stopPolling();
+                                    throw new RuntimeException(e);
+                                }
+                            });
                             try {
                                 Thread.sleep(100);
                             } catch (InterruptedException e) {
@@ -149,7 +157,15 @@ public class IOMonitorController implements Initializable {
                         }
                         boolean isAlarmActive = isAlarmActive();
                         if (isAlarmActive) {
-                            Platform.runLater(alarmsTableView::updateJournal);
+                            Platform.runLater(() -> {
+                                try {
+                                    alarmsTableView.updateJournal();
+                                } catch (Exception e) {
+                                    System.out.println("Stop polling journal");
+                                    stopPolling();
+                                    throw new RuntimeException(e);
+                                }
+                            });
                         }
                         System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
                         Platform.runLater(() -> updateStatusLabel());

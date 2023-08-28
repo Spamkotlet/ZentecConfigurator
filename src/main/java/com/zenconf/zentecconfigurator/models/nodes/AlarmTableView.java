@@ -91,7 +91,7 @@ public class AlarmTableView {
         return alarmsTableView;
     }
 
-    public void updateJournal() {
+    public void updateJournal() throws Exception {
         char[] binaryAlarms0 = getActiveAlarmsBits0();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd MMM yy");
         String dateString = formatter.format(new Date());

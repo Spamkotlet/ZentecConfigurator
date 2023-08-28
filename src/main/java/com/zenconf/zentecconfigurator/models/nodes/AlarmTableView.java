@@ -62,7 +62,7 @@ public class AlarmTableView {
     }
 
     private TableView<Alarm> createGridPane() {
-        alarmsTableView = new TableView<Alarm>();
+        alarmsTableView = new TableView<>();
         alarmsTableView.setPrefWidth(250);
         alarmsTableView.setPrefHeight(200);
         alarmsTableView.setPlaceholder(new Label("Аварий нет"));
@@ -92,9 +92,6 @@ public class AlarmTableView {
     }
 
     public void updateJournal() {
-//        alarmsTableView.getItems().clear();
-//        activeAlarmsList.clear();
-
         char[] binaryAlarms0 = getActiveAlarmsBits0();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd MMM yy");
         String dateString = formatter.format(new Date());
@@ -129,6 +126,7 @@ public class AlarmTableView {
         System.out.println("Active alarms list size:" + activeAlarmsList.size());
         ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
         alarmsTableView.setItems(alarms);
+        alarmsTableView.scrollTo(alarmsTableView.getItems().size());
     }
 
     public void resetAlarms() {

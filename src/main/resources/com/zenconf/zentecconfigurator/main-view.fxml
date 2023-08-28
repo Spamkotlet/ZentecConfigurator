@@ -21,13 +21,21 @@
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="goToJournalButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Журнал">
-               <HBox.margin>
-                  <Insets bottom="1.0" />
-               </HBox.margin>
+            <Button fx:id="goToConfiguratorButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Конфигуратор">
                <font>
                   <Font size="16.0" />
                </font>
+               <HBox.margin>
+                  <Insets bottom="1.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="goToZ031Button" layoutX="91.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="ПУ Z031">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="1.0" />
+               </HBox.margin>
             </Button>
             <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="goToHelpButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Справка">

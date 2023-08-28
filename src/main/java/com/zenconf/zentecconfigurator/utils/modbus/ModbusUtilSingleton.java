@@ -67,6 +67,9 @@ public class ModbusUtilSingleton {
         try {
             master.connect();
             System.out.println(master.readHoldingRegisters(slaveId, 65520, 1)[0]);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Успешное подключение");
+            alert.show();
         } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Ошибка при подключении к контроллеру\n" + ex.getMessage());

@@ -28,11 +28,11 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public Button goToHomeButton;
     @FXML
+    public Button goToConfiguratorButton;
+    @FXML
     public Button goToHelpButton;
     @FXML
     public Button goToSettingsButton;
-    @FXML
-    public Button goToJournalButton;
     @FXML
     public AnchorPane mainAnchorPane;
     public static MainParameters mainParameters;
@@ -59,7 +59,7 @@ public class MainController extends CommonController implements Initializable {
         goToHomeButton.setOnAction(this::onClickHomeButton);
         goToHelpButton.setOnAction(this::onClickHelpButton);
         goToSettingsButton.setOnAction(this::onClickSettingsButton);
-        goToJournalButton.setOnAction(this::onClickJournalButton);
+//        goToConfiguratorButton.setOnAction(this::onClickConfiguratorButton);
 
         mainParameters = getMainParametersFromJson();
         getAlarmsFromJson();
@@ -71,9 +71,9 @@ public class MainController extends CommonController implements Initializable {
             goToHelpButton.getStyleClass().remove("button-main-header-active");
         }
 
-        if (!goToJournalButton.getStyleClass().contains("button-main-header")) {
-            goToJournalButton.getStyleClass().add("button-main-header");
-            goToJournalButton.getStyleClass().remove("button-main-header-active");
+        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
+            goToConfiguratorButton.getStyleClass().add("button-main-header");
+            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
         }
 
         if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
@@ -99,7 +99,7 @@ public class MainController extends CommonController implements Initializable {
         showNode(node);
     }
 
-    private void onClickJournalButton(ActionEvent actionEvent) {
+    private void onClickConfiguratorButton(ActionEvent actionEvent) {
         if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
             goToHomeButton.getStyleClass().add("button-main-header");
             goToHomeButton.getStyleClass().remove("button-main-header-active");
@@ -115,16 +115,16 @@ public class MainController extends CommonController implements Initializable {
             goToSettingsButton.getStyleClass().remove("button-main-header-active");
         }
 
-        if (!goToJournalButton.getStyleClass().contains("button-main-header-active")) {
-            goToJournalButton.getStyleClass().remove("button-main-header");
-            goToJournalButton.getStyleClass().add("button-main-header-active");
+        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header-active")) {
+            goToConfiguratorButton.getStyleClass().remove("button-main-header");
+            goToConfiguratorButton.getStyleClass().add("button-main-header-active");
         }
 
         Button button = (Button) actionEvent.getSource();
         Node node = panels.get(button);
         if (node == null) {
             try {
-                node = createNewNode("journal.fxml");
+                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -139,9 +139,9 @@ public class MainController extends CommonController implements Initializable {
             goToHomeButton.getStyleClass().remove("button-main-header-active");
         }
 
-        if (!goToJournalButton.getStyleClass().contains("button-main-header")) {
-            goToJournalButton.getStyleClass().add("button-main-header");
-            goToJournalButton.getStyleClass().remove("button-main-header-active");
+        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
+            goToConfiguratorButton.getStyleClass().add("button-main-header");
+            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
         }
 
         if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
@@ -173,9 +173,9 @@ public class MainController extends CommonController implements Initializable {
             goToHomeButton.getStyleClass().remove("button-main-header-active");
         }
 
-        if (!goToJournalButton.getStyleClass().contains("button-main-header")) {
-            goToJournalButton.getStyleClass().add("button-main-header");
-            goToJournalButton.getStyleClass().remove("button-main-header-active");
+        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
+            goToConfiguratorButton.getStyleClass().add("button-main-header");
+            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
         }
 
         if (!goToHelpButton.getStyleClass().contains("button-main-header")) {

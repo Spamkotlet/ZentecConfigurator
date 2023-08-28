@@ -107,7 +107,7 @@ public class SettingsController implements Initializable {
         String[] devices = SerialPortList.getPortNames();
         ObservableList<String> devicesList = FXCollections.observableArrayList(devices);
         comPortChoiceBox.setItems(devicesList);
-        if (devicesList.size() > 0) {
+        if (!devicesList.isEmpty()) {
             comPortChoiceBox.setValue(devicesList.get(0));
         }
     }

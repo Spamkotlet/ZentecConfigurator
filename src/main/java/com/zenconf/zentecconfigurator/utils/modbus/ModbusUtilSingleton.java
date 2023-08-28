@@ -86,6 +86,7 @@ public class ModbusUtilSingleton {
         if (master != null) {
             if (master.isConnected()) {
                 master.disconnect();
+                master = null;
                 System.out.println("Успешное отключение");
             }
         }
@@ -155,7 +156,6 @@ public class ModbusUtilSingleton {
                     registerValue -= Byte.MAX_VALUE * 2 + 2;
                 }
             }
-            System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

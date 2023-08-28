@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
@@ -15,6 +16,7 @@ import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import jssc.SerialPortTimeoutException;
 
 import java.net.URL;
 import java.util.*;
@@ -134,21 +137,31 @@ public class IOMonitorController implements Initializable {
             executor = Executors.newSingleThreadScheduledExecutor();
             TimerTask timerTask = new TimerTask() {
                 @Override
-                public void run() {
-                    for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
-                        Platform.runLater(monitorTextFlow::update);
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                public void run(){
+                    try {
+                        for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
+                            Platform.runLater(monitorTextFlow::update);
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
+                        boolean isAlarmActive = isAlarmActive();
+                        if (isAlarmActive) {
+                            Platform.runLater(alarmsTableView::updateJournal);
+                        }
+                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
+                        Platform.runLater(() -> updateStatusLabel());
+                    } catch (Exception e) {
+                        stopPolling();
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Опрос контроллера завершился ошибкой");
+                        alert.setContentText("- установите соединение с контроллером");
+                        alert.show();
+                        e.printStackTrace();
                     }
-                    boolean isAlarmActive = isAlarmActive();
-                    if (isAlarmActive) {
-                        Platform.runLater(alarmsTableView::update);
-                    }
-                    System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
-                    Platform.runLater(() -> updateStatusLabel());
                 }
             };
 
@@ -186,17 +199,8 @@ public class IOMonitorController implements Initializable {
         mainParameters = MainController.mainParameters;
 
         startStopButton.setOnAction(e -> startStop());
-
-        resetAlarmsButton.setOnAction(e -> {
-            Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
-            resetAlarmsAttribute.writeModbusParameter(true);
-        });
-
-        clearJournalButton.setOnAction(e -> {
-            Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
-            clearJournalAttribute.writeModbusParameter(true);
-            alarmsTableView.clear();
-        });
+        resetAlarmsButton.setOnAction(this::onResetAlarmsButton);
+        clearJournalButton.setOnAction(this::onClearJournalButton);
 
         Attribute controlModeAttribute = mainParameters.getControlModeAttribute();
         List<String> controlModeValues = mainParameters.getControlModeAttribute().getValues();
@@ -293,6 +297,19 @@ public class IOMonitorController implements Initializable {
         System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
 
         return isAlarmActive;
+    }
+
+    private void onClearJournalButton(ActionEvent event) {
+        Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
+        clearJournalAttribute.writeModbusParameter(true);
+        alarmsTableView.clearJournal();
+        onResetAlarmsButton(event);
+    }
+
+    private void onResetAlarmsButton(ActionEvent event) {
+        Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
+        resetAlarmsAttribute.writeModbusParameter(true);
+        alarmsTableView.resetAlarms();
     }
 
     private ObservableList<String> getChoiceBoxStringItems(List<String> attributeValues) {

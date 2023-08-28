@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,10 @@ public class AlarmTableView {
     private final List<String> alarmsList0;
     private final List<String> alarmsList1;
     private final List<String> warningsList;
+    private final char[] activeAlarms0CharArray = new char[32];
+    private final char[] activeAlarms1CharArray = new char[32];
+    private final char[] activeWarningsCharArray = new char[32];
+    private int alarmsCount;
 
     public AlarmTableView() {
         MainParameters mainParameters = MainController.mainParameters;
@@ -37,6 +42,7 @@ public class AlarmTableView {
         alarmsList0 = MainController.alarms0;
         alarmsList1 = MainController.alarms1;
         warningsList = MainController.warnings;
+        Arrays.fill(activeAlarms0CharArray, '0');
     }
 
     public VBox createAlarmGridPane() {
@@ -85,47 +91,103 @@ public class AlarmTableView {
         return alarmsTableView;
     }
 
-    public void update() {
-        alarmsTableView.getItems().clear();
-        activeAlarmsList.clear();
+    public void updateJournal() {
+//        alarmsTableView.getItems().clear();
+//        activeAlarmsList.clear();
 
-        long alarms0 = Long.parseLong(alarmsAttribute0.readModbusParameter());
-        long alarms1 = Long.parseLong(alarmsAttribute1.readModbusParameter());
-        long warnings = Long.parseLong(warningsAttribute.readModbusParameter());
-        char[] binaryAlarms0 = alarmsToBinaryCharArray(alarms0);
-        char[] binaryAlarms1 = alarmsToBinaryCharArray(alarms1);
-        char[] binaryWarnings = alarmsToBinaryCharArray(warnings);
-        System.out.println(binaryAlarms0);
-        System.out.println(binaryAlarms1);
-        System.out.println(binaryWarnings);
+        char[] binaryAlarms0 = getActiveAlarmsBits0();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd MMM yy");
         String dateString = formatter.format(new Date());
         for (int i = 0; i < binaryAlarms0.length; i++) {
             if (binaryAlarms0[i] == '1') {
-                activeAlarmsList.add(new Alarm(activeAlarmsList.size(), alarmsList0.get(i), dateString));
+                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList0.get(i), dateString);
+                alarmsCount++;
+                activeAlarmsList.add(alarm);
                 System.out.println(alarmsList0.get(i));
             }
         }
+
+        char[] binaryAlarms1 = getActiveAlarmsBits1();
         for (int i = 0; i < binaryAlarms1.length; i++) {
             if (binaryAlarms1[i] == '1') {
-                activeAlarmsList.add(new Alarm(activeAlarmsList.size(), alarmsList1.get(i), dateString));
+                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList1.get(i), dateString);
+                alarmsCount++;
+                activeAlarmsList.add(alarm);
                 System.out.println(alarmsList1.get(i));
             }
         }
+
+        char[] binaryWarnings = getActiveWarningsBits();
         for (int i = 0; i < binaryWarnings.length; i++) {
             if (binaryWarnings[i] == '1') {
-                activeAlarmsList.add(new Alarm(activeAlarmsList.size(), warningsList.get(i), dateString));
+                Alarm alarm = new Alarm(activeAlarmsList.size(), warningsList.get(i), dateString);
+                alarmsCount++;
+                activeAlarmsList.add(alarm);
                 System.out.println(warningsList.get(i));
             }
         }
-
+        System.out.println("Active alarms list size:" + activeAlarmsList.size());
         ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
         alarmsTableView.setItems(alarms);
     }
 
-    public void clear() {
+    public void resetAlarms() {
+        Arrays.fill(activeAlarms0CharArray, '0');
+        Arrays.fill(activeAlarms1CharArray, '0');
+        Arrays.fill(activeWarningsCharArray, '0');
+    }
+
+    public void clearJournal() {
         alarmsTableView.getItems().clear();
         activeAlarmsList.clear();
+        alarmsCount = 0;
+        resetAlarms();
+    }
+
+    private char[] getActiveAlarmsBits0() {
+        long alarms0 = Long.parseLong(alarmsAttribute0.readModbusParameter());
+        char[] binaryAlarms0 = alarmsToBinaryCharArray(alarms0);
+
+        char[] newAlarms0CharArray = new char[32];
+        Arrays.fill(newAlarms0CharArray, '0');
+        for (int i = 0; i < binaryAlarms0.length; i++) {
+            if (binaryAlarms0[i] == '1' && activeAlarms0CharArray[i] == '0') {
+                activeAlarms0CharArray[i] = '1';
+                newAlarms0CharArray[i] = '1';
+            }
+        }
+        return newAlarms0CharArray;
+    }
+
+    private char[] getActiveAlarmsBits1() {
+        long alarms1 = Long.parseLong(alarmsAttribute1.readModbusParameter());
+        char[] binaryAlarms = alarmsToBinaryCharArray(alarms1);
+
+        char[] newAlarmsCharArray = new char[32];
+        Arrays.fill(newAlarmsCharArray, '0');
+        for (int i = 0; i < binaryAlarms.length; i++) {
+            if (binaryAlarms[i] == '1' && activeAlarms1CharArray[i] == '0') {
+                activeAlarms1CharArray[i] = '1';
+                newAlarmsCharArray[i] = '1';
+            }
+        }
+        System.out.println(newAlarmsCharArray);
+        return newAlarmsCharArray;
+    }
+
+    private char[] getActiveWarningsBits() {
+        long warnings = Long.parseLong(warningsAttribute.readModbusParameter());
+        char[] binaryWarnings = alarmsToBinaryCharArray(warnings);
+
+        char[] newAlarmsCharArray = new char[32];
+        Arrays.fill(newAlarmsCharArray, '0');
+        for (int i = 0; i < binaryWarnings.length; i++) {
+            if (binaryWarnings[i] == '1' && activeWarningsCharArray[i] == '0') {
+                activeWarningsCharArray[i] = '1';
+                newAlarmsCharArray[i] = '1';
+            }
+        }
+        return newAlarmsCharArray;
     }
 
     private char[] alarmsToBinaryCharArray(long alarmsNumber) {

@@ -16,6 +16,7 @@ import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -92,7 +93,11 @@ public class IOMonitorController implements Initializable {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
         initializationPollingElements();
-        initializationPLCControlElements();
+        try {
+            initializationPLCControlElements();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             // Событие на открытие окна
             if (newVal != null) {
@@ -107,7 +112,11 @@ public class IOMonitorController implements Initializable {
                     }
                 }
 
-                initializationPLCMonitoringElements();
+                try {
+                    initializationPLCMonitoringElements();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             // Событие на закрытие окна
@@ -135,6 +144,8 @@ public class IOMonitorController implements Initializable {
         });
     }
 
+    private Task<Void> task;
+
     private void startPolling() {
         ModbusMaster master = modbusUtilSingleton.getMaster();
         stopPolling();
@@ -148,15 +159,22 @@ public class IOMonitorController implements Initializable {
                 public void run(){
                     try {
                         for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
-                            Platform.runLater(() -> {
-                                try {
-                                    monitorTextFlow.update();
-                                } catch (Exception e) {
-                                    System.out.println("Stop polling monitor");
-                                    stopPolling();
-                                    throw new RuntimeException(e);
+                            task = new Task<Void>() {
+                                @Override
+                                protected Void call() throws Exception {
+                                    Platform.runLater(() -> {
+                                        try {
+                                            monitorTextFlow.update();
+                                        } catch (Exception e) {
+                                            System.out.println("Stop polling monitor");
+                                            stopPolling();
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
+                                    return null;
                                 }
-                            });
+                            };
+                            task.run();
                             try {
                                 Thread.sleep(100);
                             } catch (InterruptedException e) {
@@ -164,6 +182,7 @@ public class IOMonitorController implements Initializable {
                             }
                         }
                     } catch (Exception e) {
+                        System.out.println("Stop polling timer 1");
                         stopPolling();
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Ошибка");
@@ -179,23 +198,62 @@ public class IOMonitorController implements Initializable {
                 @Override
                 public void run() {
                     try {
-                        Platform.runLater(() -> updateCurrentSeason());
+                        task = new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                Platform.runLater(() -> {
+                                    try {
+                                        updateCurrentSeason();
+                                    } catch (Exception e) {
+                                        System.out.println("Stop polling season");
+                                        stopPolling();
+                                        throw new RuntimeException(e);
+                                    }
+                                });
+                                return null;
+                            }
+                        };
+                        task.run();
 
                         boolean isAlarmActive = isAlarmActive();
                         if (isAlarmActive) {
-                            Platform.runLater(() -> {
-                                try {
-                                    alarmsTableView.updateJournal();
-                                } catch (Exception e) {
-                                    System.out.println("Stop polling journal");
-                                    stopPolling();
-                                    throw new RuntimeException(e);
+                            task = new Task<Void>() {
+                                @Override
+                                protected Void call() throws Exception {
+                                    Platform.runLater(() -> {
+                                        try {
+                                            alarmsTableView.updateJournal();
+                                        } catch (Exception e) {
+                                            System.out.println("Stop polling journal");
+                                            stopPolling();
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
+                                    return null;
                                 }
-                            });
+                            };
+                            task.run();
                         }
 //                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
-                        Platform.runLater(() -> updateStatusLabel());
+                        task = new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                Platform.runLater(() -> {
+                                    try {
+                                        updateStatusLabel();
+                                    } catch (Exception e) {
+                                        System.out.println("Stop polling status");
+                                        stopPolling();
+                                        throw new RuntimeException(e);
+                                    }
+                                });
+                                return null;
+                            }
+                        };
+                        task.run();
+
                     } catch (Exception e) {
+                        System.out.println("Stop polling timer 2");
                         stopPolling();
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Ошибка");
@@ -221,7 +279,7 @@ public class IOMonitorController implements Initializable {
     private void stopPolling() {
         if (executor != null) {
             if (!executor.isShutdown()) {
-                executor.shutdown();
+                executor.shutdownNow();
             }
         }
         pollingStatusIndicatorCircle.setFill(new Color(0.831,0.831,0.831, 1f));
@@ -254,10 +312,16 @@ public class IOMonitorController implements Initializable {
     }
 
     // Инициализация элементов управления контроллером
-    private void initializationPLCControlElements() {
+    private void initializationPLCControlElements() throws Exception {
         mainParameters = MainController.mainParameters;
 
-        startStopButton.setOnAction(e -> startStop());
+        startStopButton.setOnAction(e -> {
+            try {
+                startStop();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         resetAlarmsButton.setOnAction(this::onResetAlarmsButton);
         clearJournalButton.setOnAction(this::onClearJournalButton);
 
@@ -290,7 +354,7 @@ public class IOMonitorController implements Initializable {
     }
 
     // Инициализация элементов мониторинга состояния контроллера
-    private void initializationPLCMonitoringElements() {
+    private void initializationPLCMonitoringElements() throws Exception {
         monitorTextFlowList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
@@ -328,7 +392,7 @@ public class IOMonitorController implements Initializable {
         }
     }
 
-    private synchronized void updateCurrentSeason() {
+    private synchronized void updateCurrentSeason() throws Exception {
         Attribute seasonAttribute = mainParameters.getSeasonAttribute();
         String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbusParameter()));
         char[] seasonBitsCharArray = String.format("%4s", binaryString).replace(' ', '0').toCharArray();
@@ -352,7 +416,7 @@ public class IOMonitorController implements Initializable {
         }
     }
 
-    private int getCurrentSeasonNumber(Attribute seasonAttribute) {
+    private int getCurrentSeasonNumber(Attribute seasonAttribute) throws Exception {
         int number = Integer.parseInt(seasonAttribute.readModbusParameter());
         int currentSeasonNumber = 0;
         if (number < 8) {
@@ -366,13 +430,13 @@ public class IOMonitorController implements Initializable {
         return currentSeasonNumber;
     }
 
-    private synchronized void updateStatusLabel() {
+    private synchronized void updateStatusLabel() throws Exception {
         List<String> statusList = mainParameters.getStatusAttribute().getValues();
         int statusNumber = Integer.parseInt(mainParameters.getStatusAttribute().readModbusParameter());
         statusLabel.setText(statusList.get(statusNumber));
     }
 
-    private synchronized void startStop() {
+    private synchronized void startStop() throws Exception {
         Attribute startStopAttribute = mainParameters.getStartStopAttribute();
         boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
         if (startStopBoolean) {
@@ -384,7 +448,7 @@ public class IOMonitorController implements Initializable {
         startStopAttribute.writeModbusParameter(!startStopBoolean);
     }
 
-    private boolean isAlarmActive() {
+    private boolean isAlarmActive() throws Exception {
         boolean commonAlarm = Boolean.parseBoolean(mainParameters.getCommonAlarmAttribute().readModbusParameter());
         long alarms0 = Long.parseLong(mainParameters.getAlarmsAttribute0().readModbusParameter());
         long alarms1 = Long.parseLong(mainParameters.getAlarmsAttribute1().readModbusParameter());

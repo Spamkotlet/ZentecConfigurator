@@ -13,13 +13,9 @@ public class MonitorValueText extends Text {
         this.setText(val1);
     }
 
-    public void update() {
+    public void update() throws Exception {
         float value = 0.0f;
-        try {
-            value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
-        } catch (Exception e) {
-            throw e;
-        }
+        value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
         this.setText(String.format(Locale.ROOT, "%.2f", value));
     }
 

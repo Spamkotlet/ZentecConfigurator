@@ -20,7 +20,7 @@ public class LabeledChoiceBox {
         this.attribute = attribute;
     }
 
-    public Node getChoiceBox() {
+    public Node getChoiceBox() throws Exception {
         String labelText = attribute.getName();
         List<String> attributeValues = attribute.getValues();
 
@@ -44,7 +44,7 @@ public class LabeledChoiceBox {
         return labelAnchor;
     }
 
-    private AnchorPane createChoiceBoxAnchor(List<String> attributeValues) {
+    private AnchorPane createChoiceBoxAnchor(List<String> attributeValues) throws Exception {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));

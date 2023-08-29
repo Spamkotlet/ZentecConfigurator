@@ -62,17 +62,25 @@ public class ChangeSchemeController implements Initializable {
             if (newVal != null) {
                 // Потом надо запихать в метод
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
-                selectedScheme = readSchemeNumberFromModbus();
+                try {
+                    selectedScheme = readSchemeNumberFromModbus();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
             }
         });
 
-        onOpenedChoiceSchemePane();
+        try {
+            onOpenedChoiceSchemePane();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         schemeNumberChoiceBox.setOnAction(this::onActionSchemeNumberChoiceBox);
     }
 
     // Что происходит при открытии экрана
-    protected void onOpenedChoiceSchemePane() {
+    protected void onOpenedChoiceSchemePane() throws Exception {
         schemes = getSchemesFromJson();
         actuatorList = getActuatorsFromJson();
         sensorList = getSensorsFromJson();
@@ -194,7 +202,7 @@ public class ChangeSchemeController implements Initializable {
     }
 
     // Чтение номера схемы из контроллера по Modbus
-    private Scheme readSchemeNumberFromModbus() {
+    private Scheme readSchemeNumberFromModbus() throws Exception {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {

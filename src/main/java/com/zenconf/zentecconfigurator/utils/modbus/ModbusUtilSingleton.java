@@ -117,42 +117,33 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public synchronized Object readModbus(int address, VarTypes varType) {
+    public synchronized Object readModbus(int address, VarTypes varType) throws Exception {
         Object value;
-        try {
-            if (varType.equals(VarTypes.BOOL)) {
-                value = readModbusCoil(address);
-            } else if (varType.equals(VarTypes.FLOAT)) {
-                value = readMultipleModbusRegister(address);
-            } else {
-                value = readSingleModbusRegister(address, varType);
-            }
-        } catch (Exception e) {
-            throw e;
+        if (varType.equals(VarTypes.BOOL)) {
+            value = readModbusCoil(address);
+        } else if (varType.equals(VarTypes.FLOAT)) {
+            value = readMultipleModbusRegister(address);
+        } else {
+            value = readSingleModbusRegister(address, varType);
         }
 
         return value;
     }
 
-    public synchronized boolean readModbusCoil(int address) {
+    public synchronized boolean readModbusCoil(int address) throws Exception {
         boolean coilValue = false;
-        try {
-            if (!master.isConnected()) {
-                master.connect();
-            }
-            coilValue = master.readCoils(slaveId, address, 1)[0];
+        if (!master.isConnected()) {
+            master.connect();
+        }
+        coilValue = master.readCoils(slaveId, address, 1)[0];
 //            System.out.println("Address: " + address + ", Value: " + coilValue);
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        //        finally {
 //            try {
 //                master.disconnect();
 //            } catch (ModbusIOException e1) {
 //                e1.printStackTrace();
 //            }
-        }
+//        }
         return coilValue;
     }
 
@@ -175,7 +166,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public synchronized long readSingleModbusRegister(int address, VarTypes varType) {
+    public synchronized long readSingleModbusRegister(int address, VarTypes varType) throws Exception {
         long registerValue = 0;
         try {
             if (!master.isConnected()) {
@@ -196,6 +187,7 @@ public class ModbusUtilSingleton {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
 //            try {
 //                master.disconnect();
@@ -230,7 +222,7 @@ public class ModbusUtilSingleton {
         }
     }
 
-    public synchronized float readMultipleModbusRegister(int address) {
+    public synchronized float readMultipleModbusRegister(int address) throws ModbusProtocolException, ModbusNumberException, ModbusIOException {
         float registerValue = 0;
         try {
             if (!master.isConnected()) {
@@ -256,6 +248,7 @@ public class ModbusUtilSingleton {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
 //            try {
 //                master.disconnect();

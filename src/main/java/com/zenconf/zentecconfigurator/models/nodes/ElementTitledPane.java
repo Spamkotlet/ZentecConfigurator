@@ -14,7 +14,7 @@ public class ElementTitledPane extends TitledPane {
 
     }
 
-    public ElementTitledPane(Element element) {
+    public ElementTitledPane(Element element) throws Exception {
 
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);

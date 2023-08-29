@@ -83,14 +83,10 @@ public class Attribute {
         this.modbusParameters = modbusParameter;
     }
 
-    public String readModbusParameter() {
+    public String readModbusParameter() throws Exception {
         String value;
         if (modbusUtilSingleton.getMaster() != null) {
-            try {
-                value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
-            } catch (Exception e) {
-                throw e;
-            }
+            value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
         } else {
             value = "0";
         }

@@ -1,6 +1,8 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
+import com.intelligt.modbus.jlibmodbus.exception.ModbusNumberException;
+import com.intelligt.modbus.jlibmodbus.exception.ModbusProtocolException;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
 import com.intelligt.modbus.jlibmodbus.utils.ModbusFunctionCode;
 import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
@@ -78,7 +80,14 @@ public class SettingsController implements Initializable {
         connectDeviceButton.setOnAction(this::connectDevice);
         disconnectDeviceButton.setOnAction(this::disconnectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
-        testModbusButton.setOnAction(this::testModbus);
+//        testModbusButton.setOnAction(this::testModbus);
+        testModbusButton.setOnAction(e -> {
+            try {
+                testModbus();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     private void connectDevice(ActionEvent actionEvent) {
@@ -109,7 +118,7 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void testModbus(ActionEvent actionEvent) {
+    private void testModbus() throws Exception {
         int address = Integer.parseInt(addressTextField.getText());
         VarTypes varType = varTypeChoiceBox.getValue();
         VarFunctions varFunction = functionChoiceBox.getValue();

@@ -21,7 +21,7 @@ public class SetpointSpinner {
         this.attribute = attribute;
     }
 
-    public Node getSpinner() {
+    public Node getSpinner() throws Exception {
         String labelText = attribute.getName();
         double minValue = attribute.getMinValue();
         double maxValue = attribute.getMaxValue();
@@ -71,7 +71,7 @@ public class SetpointSpinner {
         return labelAnchor;
     }
 
-    private AnchorPane createSpinnerAnchor(double minValue, double maxValue) {
+    private AnchorPane createSpinnerAnchor(double minValue, double maxValue) throws Exception {
         int initValue = 0;
         Spinner<Double> spinner = new Spinner<>(minValue, maxValue, initValue, 0.1);
         spinner.setEditable(true);

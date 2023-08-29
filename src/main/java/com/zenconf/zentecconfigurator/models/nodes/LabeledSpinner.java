@@ -54,7 +54,11 @@ public class LabeledSpinner {
 
         List<Node> nodes = new ArrayList<>();
         nodes.add(createLabel(labelText, false));
-        nodes.add(createSpinner(minValue, maxValue));
+        try {
+            nodes.add(createSpinner(minValue, maxValue));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", true));
         if (attribute.getDefaultValue() != null) {
             if (showDefaultValue) {
@@ -92,7 +96,7 @@ public class LabeledSpinner {
         return label;
     }
 
-    private Spinner<Integer> createSpinner (int minValue, int maxValue) {
+    private Spinner<Integer> createSpinner (int minValue, int maxValue) throws Exception {
         int initValue = 0;
 
         if (showDefaultValue) {
@@ -154,8 +158,13 @@ public class LabeledSpinner {
 
     public void readModbusValue() {
         SpinnerValueFactory<Integer> spinnerFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
+                null;
+        try {
+            spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                    attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         spinner.setValueFactory(spinnerFactory);
     }
 

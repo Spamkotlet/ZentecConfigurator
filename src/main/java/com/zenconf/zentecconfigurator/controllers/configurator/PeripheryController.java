@@ -45,8 +45,14 @@ public class PeripheryController implements Initializable {
 
             for (Parameter parameter : mainParameters.getPeripheryParameters()) {
                 if (parameter.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane = new ElementTitledPane(parameter);
-                    Platform.runLater(() -> peripherySettingsVbox.getChildren().add(elementTitledPane));
+                    ElementTitledPane elementTitledPane = null;
+                    try {
+                        elementTitledPane = new ElementTitledPane(parameter);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    ElementTitledPane finalElementTitledPane = elementTitledPane;
+                    Platform.runLater(() -> peripherySettingsVbox.getChildren().add(finalElementTitledPane));
                     try {
                         Thread.sleep(20);
                     } catch (InterruptedException e) {

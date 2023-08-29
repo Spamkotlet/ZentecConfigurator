@@ -54,14 +54,26 @@ public class ActuatorsController implements Initializable {
             Parameter heatExchangerParameter = new Parameter();
             heatExchangerParameter.setName("Теплообменники");
             heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
-            ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
-            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
+            ElementTitledPane heatExchangerTitledPane = null;
+            try {
+                heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
+            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
 
             for (Actuator actuatorInScheme : actuatorsInScheme) {
                 if (actuatorInScheme.getIsUsedDefault()) {
                     if (actuatorInScheme.getAttributes() != null) {
-                        ElementTitledPane elementTitledPane = new ElementTitledPane(actuatorInScheme);
-                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(elementTitledPane));
+                        ElementTitledPane elementTitledPane = null;
+                        try {
+                            elementTitledPane = new ElementTitledPane(actuatorInScheme);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        ElementTitledPane finalElementTitledPane = elementTitledPane;
+                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalElementTitledPane));
                         try {
                             Thread.sleep(20);
                         } catch (InterruptedException e) {

@@ -4,6 +4,7 @@ import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Alarm;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.MainParameters;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -139,9 +140,11 @@ public class AlarmTableView {
             }
         }
 //        System.out.println("Active alarms list size:" + activeAlarmsList.size());
-        ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
-        alarmsTableView.setItems(alarms);
-        alarmsTableView.scrollTo(alarmsTableView.getItems().size());
+        Platform.runLater(() -> {
+            ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
+            alarmsTableView.setItems(alarms);
+            alarmsTableView.scrollTo(alarmsTableView.getItems().size());
+        });
     }
 
     public void resetAlarms() {

@@ -156,112 +156,83 @@ public class IOMonitorController implements Initializable {
             executor = Executors.newSingleThreadScheduledExecutor();
             TimerTask timerTask = new TimerTask() {
                 @Override
-                public void run(){
-                    try {
-                        for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
-                            task = new Task<Void>() {
-                                @Override
-                                protected Void call() throws Exception {
-                                    Platform.runLater(() -> {
-                                        try {
-                                            monitorTextFlow.update();
-                                        } catch (Exception e) {
-                                            System.out.println("Stop polling monitor");
-                                            stopPolling();
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
-                                    return null;
+                public void run() {
+                        try {
+                            for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
+
+                                try {
+                                    monitorTextFlow.update();
+                                } catch (Exception e) {
+                                    System.out.println("Stop polling monitor");
+                                    stopPolling();
+                                    throw new RuntimeException(e);
                                 }
-                            };
-                            task.run();
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
+
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
+                        } catch (Exception e) {
+                            System.out.println("Stop polling timer 1");
+                            stopPolling();
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Ошибка");
+                            alert.setHeaderText("Опрос контроллера завершился ошибкой");
+                            alert.setContentText("- установите соединение с контроллером");
+                            alert.show();
+                            e.printStackTrace();
                         }
-                    } catch (Exception e) {
-                        System.out.println("Stop polling timer 1");
-                        stopPolling();
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText("Опрос контроллера завершился ошибкой");
-                        alert.setContentText("- установите соединение с контроллером");
-                        alert.show();
-                        e.printStackTrace();
-                    }
                 }
             };
 
             TimerTask timerTask1 = new TimerTask() {
                 @Override
                 public void run() {
-                    try {
-                        task = new Task<Void>() {
-                            @Override
-                            protected Void call() throws Exception {
-                                Platform.runLater(() -> {
-                                    try {
-                                        updateCurrentSeason();
-                                    } catch (Exception e) {
-                                        System.out.println("Stop polling season");
-                                        stopPolling();
-                                        throw new RuntimeException(e);
-                                    }
-                                });
-                                return null;
+                        try {
+                            try {
+                                updateCurrentSeason();
+                            } catch (Exception e) {
+                                System.out.println("Stop polling season");
+                                stopPolling();
+                                throw new RuntimeException(e);
                             }
-                        };
-                        task.run();
 
-                        boolean isAlarmActive = isAlarmActive();
-                        if (isAlarmActive) {
-                            task = new Task<Void>() {
-                                @Override
-                                protected Void call() throws Exception {
-                                    Platform.runLater(() -> {
-                                        try {
-                                            alarmsTableView.updateJournal();
-                                        } catch (Exception e) {
-                                            System.out.println("Stop polling journal");
-                                            stopPolling();
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
-                                    return null;
+
+                            boolean isAlarmActive = isAlarmActive();
+                            if (isAlarmActive) {
+                                try {
+                                    alarmsTableView.updateJournal();
+                                } catch (Exception e) {
+                                    System.out.println("Stop polling journal");
+                                    stopPolling();
+                                    throw new RuntimeException(e);
                                 }
-                            };
-                            task.run();
-                        }
-//                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
-                        task = new Task<Void>() {
-                            @Override
-                            protected Void call() throws Exception {
-                                Platform.runLater(() -> {
-                                    try {
-                                        updateStatusLabel();
-                                    } catch (Exception e) {
-                                        System.out.println("Stop polling status");
-                                        stopPolling();
-                                        throw new RuntimeException(e);
-                                    }
-                                });
-                                return null;
-                            }
-                        };
-                        task.run();
 
-                    } catch (Exception e) {
-                        System.out.println("Stop polling timer 2");
-                        stopPolling();
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText("Опрос контроллера завершился ошибкой");
-                        alert.setContentText("- установите соединение с контроллером");
-                        alert.show();
-                        e.printStackTrace();
-                    }
+
+                            }
+//                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
+
+                            try {
+                                updateStatusLabel();
+                            } catch (Exception e) {
+                                System.out.println("Stop polling status");
+                                stopPolling();
+                                throw new RuntimeException(e);
+                            }
+
+
+                        } catch (Exception e) {
+                            System.out.println("Stop polling timer 2");
+                            stopPolling();
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Ошибка");
+                            alert.setHeaderText("Опрос контроллера завершился ошибкой");
+                            alert.setContentText("- установите соединение с контроллером");
+                            alert.show();
+                            e.printStackTrace();
+                        }
                 }
             };
 
@@ -282,7 +253,7 @@ public class IOMonitorController implements Initializable {
                 executor.shutdownNow();
             }
         }
-        pollingStatusIndicatorCircle.setFill(new Color(0.831,0.831,0.831, 1f));
+        pollingStatusIndicatorCircle.setFill(new Color(0.831, 0.831, 0.831, 1f));
     }
 
     private void initializationPollingElements() {
@@ -396,24 +367,29 @@ public class IOMonitorController implements Initializable {
         Attribute seasonAttribute = mainParameters.getSeasonAttribute();
         String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbusParameter()));
         char[] seasonBitsCharArray = String.format("%4s", binaryString).replace(' ', '0').toCharArray();
-
+        String seasonText;
         if (seasonBitsCharArray[0] == '1') {
             if (seasonBitsCharArray[3] == '1') {
-                seasonLabel.setText("В (А)");
+                seasonText = "В (А)";
             } else if (seasonBitsCharArray[2] == '1') {
-                seasonLabel.setText("Н (А)");
+                seasonText = "Н (А)";
             } else if (seasonBitsCharArray[1] == '1') {
-                seasonLabel.setText("О (А)");
+                seasonText = "О (А)";
+            } else {
+                seasonText = "";
             }
         } else {
             if (seasonBitsCharArray[3] == '1') {
-                seasonLabel.setText("В");
+                seasonText = "В";
             } else if (seasonBitsCharArray[2] == '1') {
-                seasonLabel.setText("Н");
+                seasonText = "Н";
             } else if (seasonBitsCharArray[1] == '1') {
-                seasonLabel.setText("О");
+                seasonText = "О";
+            } else {
+                seasonText = "";
             }
         }
+        Platform.runLater(() -> seasonLabel.setText(seasonText));
     }
 
     private int getCurrentSeasonNumber(Attribute seasonAttribute) throws Exception {
@@ -433,7 +409,7 @@ public class IOMonitorController implements Initializable {
     private synchronized void updateStatusLabel() throws Exception {
         List<String> statusList = mainParameters.getStatusAttribute().getValues();
         int statusNumber = Integer.parseInt(mainParameters.getStatusAttribute().readModbusParameter());
-        statusLabel.setText(statusList.get(statusNumber));
+        Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
     }
 
     private synchronized void startStop() throws Exception {

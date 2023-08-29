@@ -14,3 +14,13 @@
     -fx-background-color: "#E9E9E9";
     -fx-background-radius: 0px;
 }
+
+.button-iomonitor-toolbar {
+    -fx-background-color: "#D4D4D4";
+    -fx-background-radius: 0px;
+}
+
+.button-iomonitor-toolbar:hover {
+    -fx-background-color: "#4f4f4f";
+    -fx-background-radius: 0px;
+}

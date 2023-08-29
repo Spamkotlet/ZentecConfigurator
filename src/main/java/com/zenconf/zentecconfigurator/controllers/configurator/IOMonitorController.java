@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
-import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
@@ -20,11 +19,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import jssc.SerialPortTimeoutException;
 
 import java.net.URL;
 import java.util.*;
@@ -60,11 +62,15 @@ public class IOMonitorController implements Initializable {
     @FXML
     public Label statusLabel;
     @FXML
+    public Label seasonLabel;
+    @FXML
     public AnchorPane statusAnchorPane;
     @FXML
     public SplitPane verticalSplitPane;
     @FXML
     public VBox alarmsVBox;
+    @FXML
+    public Circle pollingStatusIndicatorCircle;
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
@@ -130,9 +136,10 @@ public class IOMonitorController implements Initializable {
 
     private void startPolling() {
         ModbusMaster master = modbusUtilSingleton.getMaster();
+        stopPolling();
         if (master != null) {
 
-            stopPolling();
+            pollingStatusIndicatorCircle.setFill(Color.GREEN);
 
             executor = Executors.newSingleThreadScheduledExecutor();
             TimerTask timerTask = new TimerTask() {
@@ -155,6 +162,9 @@ public class IOMonitorController implements Initializable {
                                 throw new RuntimeException(e);
                             }
                         }
+
+                        Platform.runLater(() -> updateCurrentSeason());
+
                         boolean isAlarmActive = isAlarmActive();
                         if (isAlarmActive) {
                             Platform.runLater(() -> {
@@ -197,13 +207,29 @@ public class IOMonitorController implements Initializable {
                 executor.shutdown();
             }
         }
+        pollingStatusIndicatorCircle.setFill(new Color(0.831,0.831,0.831, 1f));
     }
 
     private void initializationPollingElements() {
+        Image startPollingImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/iomonitor/play.png")));
+        ImageView startPollingImageView = new ImageView(startPollingImage);
+        startPollingImageView.setFitHeight(35);
+        startPollingImageView.setFitWidth(35);
+        startPollingButton.graphicProperty().setValue(startPollingImageView);
+        startPollingButton.setText("");
+        startPollingButton.getStyleClass().add("button-iomonitor-toolbar");
         startPollingButton.setOnAction(e -> {
             startPolling();
             pollingPreviousState = true;
         });
+
+        Image stopPollingImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/iomonitor/stop.png")));
+        ImageView stopPollingImageView = new ImageView(stopPollingImage);
+        stopPollingImageView.setFitHeight(35);
+        stopPollingImageView.setFitWidth(35);
+        stopPollingButton.graphicProperty().setValue(stopPollingImageView);
+        stopPollingButton.setText("");
+        stopPollingButton.getStyleClass().add("button-iomonitor-toolbar");
         stopPollingButton.setOnAction(e -> {
             stopPolling();
             pollingPreviousState = false;
@@ -233,11 +259,16 @@ public class IOMonitorController implements Initializable {
         Attribute seasonAttribute = mainParameters.getSeasonAttribute();
         seasonChoiceBox.setItems(getSeasonsChoiceBoxItems());
         seasonChoiceBox.setValue(getSeasonsChoiceBoxItems()
-                .get(Integer.parseInt(seasonAttribute.readModbusParameter()))
+                .get(getCurrentSeasonNumber(seasonAttribute))
         );
         seasonChoiceBox.setOnAction(e -> {
-            seasonAttribute.writeModbusParameter(Seasons.values()[seasonChoiceBox.getSelectionModel().getSelectedIndex()].getNumber());
-            System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
+            try {
+                int seasonNumber = Math.max(Seasons.values()[seasonChoiceBox.getSelectionModel().getSelectedIndex()].getNumber(), 0);
+                seasonAttribute.writeModbusParameter(seasonNumber);
+                System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
@@ -278,6 +309,44 @@ public class IOMonitorController implements Initializable {
                 }
             }
         }
+    }
+
+    private synchronized void updateCurrentSeason() {
+        Attribute seasonAttribute = mainParameters.getSeasonAttribute();
+        String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbusParameter()));
+        char[] seasonBitsCharArray = String.format("%4s", binaryString).replace(' ', '0').toCharArray();
+
+        if (seasonBitsCharArray[0] == '1') {
+            if (seasonBitsCharArray[3] == '1') {
+                seasonLabel.setText("В (А)");
+            } else if (seasonBitsCharArray[2] == '1') {
+                seasonLabel.setText("Н (А)");
+            } else if (seasonBitsCharArray[1] == '1') {
+                seasonLabel.setText("О (А)");
+            }
+        } else {
+            if (seasonBitsCharArray[3] == '1') {
+                seasonLabel.setText("В");
+            } else if (seasonBitsCharArray[2] == '1') {
+                seasonLabel.setText("Н");
+            } else if (seasonBitsCharArray[1] == '1') {
+                seasonLabel.setText("О");
+            }
+        }
+    }
+
+    private int getCurrentSeasonNumber(Attribute seasonAttribute) {
+        int number = Integer.parseInt(seasonAttribute.readModbusParameter());
+        int currentSeasonNumber = 0;
+        if (number < 8) {
+            switch (number) {
+                case 2 -> currentSeasonNumber = 1;
+                case 4 -> currentSeasonNumber = 2;
+            }
+        } else {
+            currentSeasonNumber = 3;
+        }
+        return currentSeasonNumber;
     }
 
     private synchronized void updateStatusLabel() {
@@ -335,8 +404,8 @@ public class IOMonitorController implements Initializable {
     private ObservableList<String> getSeasonsChoiceBoxItems() {
         List<String> seasonsString = new ArrayList<>();
         Seasons[] seasons = Seasons.values();
-        for (Seasons season : seasons) {
-            seasonsString.add(season.getDisplayValue());
+        for (int i = 0; i < 4; i++) {
+            seasonsString.add(seasons[i].getDisplayValue());
         }
         return FXCollections.observableArrayList(seasonsString);
     }

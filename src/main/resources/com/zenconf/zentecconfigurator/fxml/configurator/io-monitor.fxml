@@ -7,28 +7,34 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="ioMonitorVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController">
+<VBox fx:id="ioMonitorVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController">
    <children>
-      <ToolBar prefHeight="40.0">
-        <items>
-            <Button fx:id="startPollingButton" mnemonicParsing="false" text="Старт" />
-            <Button fx:id="stopPollingButton" mnemonicParsing="false" text="Стоп" />
-        </items>
-      </ToolBar>
+      <HBox alignment="CENTER_LEFT" fillHeight="false" minHeight="-Infinity" prefHeight="40.0" spacing="5.0" style="-fx-background-color: #EAEAEA;">
+         <children>
+            <Button fx:id="startPollingButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-iomonitor-toolbar" text="Старт" />
+            <Button fx:id="stopPollingButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="Стоп" />
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Circle fx:id="pollingStatusIndicatorCircle" fill="#d4d4d4" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
       <AnchorPane minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #d4d4d4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane fx:id="statusAnchorPane" layoutX="420.0" layoutY="15.0" prefHeight="50.0" prefWidth="250.0">
                      <children>
-                        <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" text="Дежурный" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" text="***" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -43,6 +49,15 @@
                   <AnchorPane prefHeight="40.0" prefWidth="140.0">
                      <children>
                         <ChoiceBox fx:id="controlModeChoiceBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="statusAnchorPane1" layoutX="15.0" layoutY="15.0" prefHeight="40.0">
+                     <children>
+                        <Label fx:id="seasonLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="56.0" text="***" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="40.0" prefWidth="140.0">

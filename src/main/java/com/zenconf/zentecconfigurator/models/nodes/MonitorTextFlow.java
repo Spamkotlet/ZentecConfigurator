@@ -56,7 +56,7 @@ public class MonitorTextFlow {
         vBox.setFillWidth(true);
         vBox.setAlignment(Pos.CENTER);
         VBox.setVgrow(vBox, Priority.ALWAYS);
-        vBox.setOnMouseClicked(e -> onClickToMonitorTextFlow());
+//        vBox.setOnMouseClicked(e -> onClickToMonitorTextFlow());
         return vBox;
     }
 
@@ -79,16 +79,16 @@ public class MonitorTextFlow {
             throw new RuntimeException(e);
         }
         valueText.setText(String.format(Locale.ROOT, "%.2f", value));
-        if (values.size() > 300) {
-            series.getData().clear();
-            values.remove(0);
-            for (int i = 0; i < values.size(); i++) {
-                series.getData().add(new XYChart.Data<>(i, values.get(i)));
-            }
-        } else {
-            series.getData().add(new XYChart.Data<>(series.getData().size(), value));
-        }
-        values.add(value);
+//        if (values.size() > 300) {
+//            series.getData().clear();
+//            values.remove(0);
+//            for (int i = 0; i < values.size(); i++) {
+//                series.getData().add(new XYChart.Data<>(i, values.get(i)));
+//            }
+//        } else {
+//            series.getData().add(new XYChart.Data<>(series.getData().size(), value));
+//        }
+//        values.add(value);
     }
 
     private void onClickToMonitorTextFlow() {

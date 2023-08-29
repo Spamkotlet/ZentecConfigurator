@@ -9,6 +9,7 @@ import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.AlarmTableView;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
+import com.zenconf.zentecconfigurator.models.nodes.MonitorValueText;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.animation.FillTransition;
@@ -75,7 +76,7 @@ public class IOMonitorController implements Initializable {
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
     List<Actuator> actuatorsInScheme = new ArrayList<>();
-    List<MonitorTextFlow> monitorTextFlowList = new ArrayList<>();
+    List<MonitorValueText> monitorTextFlowList = new ArrayList<>();
     private MainParameters mainParameters;
     public AlarmTableView alarmsTableView;
 
@@ -146,7 +147,7 @@ public class IOMonitorController implements Initializable {
                 @Override
                 public void run(){
                     try {
-                        for (MonitorTextFlow monitorTextFlow : monitorTextFlowList) {
+                        for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
                             Platform.runLater(() -> {
                                 try {
                                     monitorTextFlow.update();
@@ -162,7 +163,22 @@ public class IOMonitorController implements Initializable {
                                 throw new RuntimeException(e);
                             }
                         }
+                    } catch (Exception e) {
+                        stopPolling();
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Опрос контроллера завершился ошибкой");
+                        alert.setContentText("- установите соединение с контроллером");
+                        alert.show();
+                        e.printStackTrace();
+                    }
+                }
+            };
 
+            TimerTask timerTask1 = new TimerTask() {
+                @Override
+                public void run() {
+                    try {
                         Platform.runLater(() -> updateCurrentSeason());
 
                         boolean isAlarmActive = isAlarmActive();
@@ -177,7 +193,7 @@ public class IOMonitorController implements Initializable {
                                 }
                             });
                         }
-                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
+//                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
                         Platform.runLater(() -> updateStatusLabel());
                     } catch (Exception e) {
                         stopPolling();
@@ -192,6 +208,7 @@ public class IOMonitorController implements Initializable {
             };
 
             executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
+            executor.scheduleWithFixedDelay(timerTask1, 1, 500, TimeUnit.MILLISECONDS);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ошибка");
@@ -286,7 +303,7 @@ public class IOMonitorController implements Initializable {
                     }
                     if (sensor.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
-                        monitorTextFlowList.add(monitorTextFlow);
+                        monitorTextFlowList.add(monitorTextFlow.getValueText());
                         sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }
                 }
@@ -303,7 +320,7 @@ public class IOMonitorController implements Initializable {
                     }
                     if (actuator.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
-                        monitorTextFlowList.add(monitorTextFlow);
+                        monitorTextFlowList.add(monitorTextFlow.getValueText());
                         actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }
                 }
@@ -379,7 +396,7 @@ public class IOMonitorController implements Initializable {
         alarmsNumber1 = alarms1;
         warningsNumber = warnings;
 
-        System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
+//        System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
 
         return isAlarmActive;
     }

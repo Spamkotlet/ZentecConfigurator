@@ -17,19 +17,19 @@ import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MonitorTextFlow {
 
     private final SplitPane parentSplitPane;
     private final Element element;
-    private final Text valueText = new Text("***");
+    private final MonitorValueText valueText = new MonitorValueText("***");
     private final List<Float> values = new ArrayList<>();
     XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
     public MonitorTextFlow(SplitPane parentSplitPane, Element element) {
         this.parentSplitPane = parentSplitPane;
         this.element = element;
+        valueText.setElement(element);
     }
 
     private Text createNameText() {
@@ -71,14 +71,7 @@ public class MonitorTextFlow {
         return textFlow;
     }
 
-    public void update() throws Exception {
-        float value = 0.0f;
-        try {
-            value = Float.parseFloat(element.getAttributeForMonitoring().readModbusParameter());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        valueText.setText(String.format(Locale.ROOT, "%.2f", value));
+    public void update(){
 //        if (values.size() > 300) {
 //            series.getData().clear();
 //            values.remove(0);
@@ -121,5 +114,9 @@ public class MonitorTextFlow {
             plotPane.getChildren().add(chart);
             parentSplitPane.getItems().add(plotPane);
         }
+    }
+
+    public MonitorValueText getValueText() {
+        return valueText;
     }
 }

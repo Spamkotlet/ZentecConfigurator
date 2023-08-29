@@ -77,7 +77,7 @@ public class ModbusUtilSingleton {
             alert.setHeaderText("Успешное подключение");
             alert.setTitle("Успех");
             alert.show();
-        } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException ex) {
+        } catch (Exception ex) {
             if (master != null) {
                 if (master.isConnected()) {
                     master.disconnect();
@@ -119,13 +119,18 @@ public class ModbusUtilSingleton {
 
     public synchronized Object readModbus(int address, VarTypes varType) {
         Object value;
-        if (varType.equals(VarTypes.BOOL)) {
-            value = readModbusCoil(address);
-        } else if (varType.equals(VarTypes.FLOAT)) {
-            value = readMultipleModbusRegister(address);
-        } else {
-            value = readSingleModbusRegister(address, varType);
+        try {
+            if (varType.equals(VarTypes.BOOL)) {
+                value = readModbusCoil(address);
+            } else if (varType.equals(VarTypes.FLOAT)) {
+                value = readMultipleModbusRegister(address);
+            } else {
+                value = readSingleModbusRegister(address, varType);
+            }
+        } catch (Exception e) {
+            throw e;
         }
+
         return value;
     }
 

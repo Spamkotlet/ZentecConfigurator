@@ -91,8 +91,13 @@ public class AlarmTableView {
         return alarmsTableView;
     }
 
-    public void updateJournal() throws Exception {
-        char[] binaryAlarms0 = getActiveAlarmsBits0();
+    public void updateJournal() {
+        char[] binaryAlarms0;
+        try {
+            binaryAlarms0 = getActiveAlarmsBits0();
+        } catch (Exception e) {
+            throw e;
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd MMM yy");
         String dateString = formatter.format(new Date());
         for (int i = 0; i < binaryAlarms0.length; i++) {
@@ -100,30 +105,40 @@ public class AlarmTableView {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList0.get(i), dateString);
                 alarmsCount++;
                 activeAlarmsList.add(alarm);
-                System.out.println(alarmsList0.get(i));
+//                System.out.println(alarmsList0.get(i));
             }
         }
 
-        char[] binaryAlarms1 = getActiveAlarmsBits1();
+        char[] binaryAlarms1;
+        try {
+            binaryAlarms1 = getActiveAlarmsBits1();
+        } catch (Exception e) {
+            throw e;
+        }
         for (int i = 0; i < binaryAlarms1.length; i++) {
             if (binaryAlarms1[i] == '1') {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList1.get(i), dateString);
                 alarmsCount++;
                 activeAlarmsList.add(alarm);
-                System.out.println(alarmsList1.get(i));
+//                System.out.println(alarmsList1.get(i));
             }
         }
 
-        char[] binaryWarnings = getActiveWarningsBits();
+        char[] binaryWarnings;
+        try {
+            binaryWarnings = getActiveWarningsBits();
+        } catch (Exception e) {
+            throw e;
+        }
         for (int i = 0; i < binaryWarnings.length; i++) {
             if (binaryWarnings[i] == '1') {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), warningsList.get(i), dateString);
                 alarmsCount++;
                 activeAlarmsList.add(alarm);
-                System.out.println(warningsList.get(i));
+//                System.out.println(warningsList.get(i));
             }
         }
-        System.out.println("Active alarms list size:" + activeAlarmsList.size());
+//        System.out.println("Active alarms list size:" + activeAlarmsList.size());
         ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
         alarmsTableView.setItems(alarms);
         alarmsTableView.scrollTo(alarmsTableView.getItems().size());

@@ -17,7 +17,7 @@ public class Attribute {
     private int maxValue;
     private List<String> values;
     private ModbusParameter modbusParameters;
-    private ModbusUtilSingleton modbusUtilSingleton;
+    private final ModbusUtilSingleton modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
     public void setName(String name) {
         this.name = name;
@@ -84,10 +84,13 @@ public class Attribute {
     }
 
     public String readModbusParameter() {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         String value;
         if (modbusUtilSingleton.getMaster() != null) {
-            value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+            try {
+                value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+            } catch (Exception e) {
+                throw e;
+            }
         } else {
             value = "0";
         }
@@ -95,7 +98,6 @@ public class Attribute {
     }
 
     public void writeModbusParameter(Object value) {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
             if (modbusParameters.getVarType().equals(VarTypes.BOOL)) {
                 modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), Boolean.parseBoolean(value.toString()));

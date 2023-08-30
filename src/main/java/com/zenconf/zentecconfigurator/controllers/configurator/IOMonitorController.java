@@ -157,89 +157,62 @@ public class IOMonitorController implements Initializable {
             TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
-                        try {
-                            for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
+                    try {
+                        for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
+                            monitorTextFlow.update();
 
-                                try {
-                                    monitorTextFlow.update();
-                                } catch (Exception e) {
-                                    System.out.println("Stop polling monitor");
-                                    stopPolling();
-                                    throw new RuntimeException(e);
-                                }
-
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
-                                }
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
                             }
-                        } catch (Exception e) {
-                            System.out.println("Stop polling timer 1");
-                            stopPolling();
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Stop polling timer 1");
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Ошибка");
                             alert.setHeaderText("Опрос контроллера завершился ошибкой");
                             alert.setContentText("- установите соединение с контроллером");
                             alert.show();
-                            e.printStackTrace();
-                        }
+                        });
+                        pollingPreviousState = false;
+                        stopPolling();
+                    }
                 }
             };
 
             TimerTask timerTask1 = new TimerTask() {
                 @Override
                 public void run() {
-                        try {
-                            try {
-                                updateCurrentSeason();
-                            } catch (Exception e) {
-                                System.out.println("Stop polling season");
-                                stopPolling();
-                                throw new RuntimeException(e);
-                            }
+                    try {
+                        updateCurrentSeason();
 
+                        boolean isAlarmActive = isAlarmActive();
+                        if (isAlarmActive) {
+                            alarmsTableView.updateJournal();
+                        }
 
-                            boolean isAlarmActive = isAlarmActive();
-                            if (isAlarmActive) {
-                                try {
-                                    alarmsTableView.updateJournal();
-                                } catch (Exception e) {
-                                    System.out.println("Stop polling journal");
-                                    stopPolling();
-                                    throw new RuntimeException(e);
-                                }
-
-
-                            }
-//                        System.out.println(new Date() + " Есть новые события: " + isAlarmActive);
-
-                            try {
-                                updateStatusLabel();
-                            } catch (Exception e) {
-                                System.out.println("Stop polling status");
-                                stopPolling();
-                                throw new RuntimeException(e);
-                            }
-
-
-                        } catch (Exception e) {
-                            System.out.println("Stop polling timer 2");
-                            stopPolling();
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                        updateStatusLabel();
+                    } catch (Exception e) {
+                        System.out.println("Stop polling timer 2");
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Ошибка");
                             alert.setHeaderText("Опрос контроллера завершился ошибкой");
                             alert.setContentText("- установите соединение с контроллером");
                             alert.show();
-                            e.printStackTrace();
-                        }
+                        });
+                        pollingPreviousState = false;
+                        stopPolling();
+                    }
                 }
             };
 
             executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
             executor.scheduleWithFixedDelay(timerTask1, 1, 500, TimeUnit.MILLISECONDS);
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка");
             alert.setHeaderText("Невозможно запустить опрос контроллера");
             alert.setContentText("- установите соединение с контроллером");

@@ -93,7 +93,7 @@ public class Attribute {
         return value;
     }
 
-    public void writeModbusParameter(Object value) {
+    public void writeModbusParameter(Object value) throws Exception {
         if (modbusUtilSingleton.getMaster() != null) {
             if (modbusParameters.getVarType().equals(VarTypes.BOOL)) {
                 modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), Boolean.parseBoolean(value.toString()));

@@ -17,10 +17,13 @@ import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LabeledSpinner {
 
     private Spinner<Integer> spinner;
+    private String errorText = "*";
+    private Label errorLabel;
     private final Attribute attribute;
     private int labelWidth = 200;
     private boolean showDefaultValue = false;
@@ -53,18 +56,22 @@ public class LabeledSpinner {
         int maxValue = attribute.getMaxValue();
 
         List<Node> nodes = new ArrayList<>();
-        nodes.add(createLabel(labelText, false));
+        nodes.add(createLabel(labelText, labelWidth, false));
         try {
             nodes.add(createSpinner(minValue, maxValue));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", true));
+
+        nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", 70, true));
         if (attribute.getDefaultValue() != null) {
             if (showDefaultValue) {
                 nodes.add(createDefaultValueLabel(attribute.getDefaultValue()));
             }
         }
+
+        errorLabel = createErrorLabel("(" + errorText + ")", 100, false);
+        nodes.add(errorLabel);
 
         return createHBoxForLabeledSpinner(nodes);
     }
@@ -85,7 +92,7 @@ public class LabeledSpinner {
         return hBox;
     }
 
-    private Label createLabel (String labelText, boolean isDisabled) {
+    private Label createLabel(String labelText, int labelWidth, boolean isDisabled) {
         Label label = new Label(labelText);
         label.setDisable(isDisabled);
         label.setPrefWidth(labelWidth);
@@ -96,7 +103,15 @@ public class LabeledSpinner {
         return label;
     }
 
-    private Spinner<Integer> createSpinner (int minValue, int maxValue) throws Exception {
+    private Label createErrorLabel(String labelText, int labelWidth, boolean isVisible) {
+        Label label = createLabel(labelText, labelWidth, false);
+        label.setVisible(isVisible);
+        label.setTextFill(Color.RED);
+
+        return label;
+    }
+
+    private Spinner<Integer> createSpinner(int minValue, int maxValue) throws Exception {
         int initValue = 0;
 
         if (showDefaultValue) {
@@ -139,6 +154,12 @@ public class LabeledSpinner {
             writeModbusValue();
         });
 
+        spinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (oldVal && !newVal) {
+                writeModbusValue();
+            }
+        });
+
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 writeModbusValue();
@@ -160,16 +181,30 @@ public class LabeledSpinner {
         SpinnerValueFactory<Integer> spinnerFactory =
                 null;
         try {
+            errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
         } catch (Exception e) {
+            errorText = "Ошибка чтения";
+            errorLabel.setText(errorText);
+            errorLabel.setVisible(true);
+            System.out.println("ErrorText: " + errorText);
             throw new RuntimeException(e);
         }
         spinner.setValueFactory(spinnerFactory);
     }
 
     public void writeModbusValue() {
-        attribute.writeModbusParameter(spinner.getValue().toString());
+        try {
+            errorLabel.setVisible(false);
+            attribute.writeModbusParameter(spinner.getValue().toString());
+        } catch (Exception e) {
+            errorText = "Ошибка записи";
+            errorLabel.setText(errorText);
+            errorLabel.setVisible(true);
+            System.out.println("ErrorText: " + errorText);
+            throw new RuntimeException(e);
+        }
         System.out.println("Value: " + spinner.getValue());
     }
 

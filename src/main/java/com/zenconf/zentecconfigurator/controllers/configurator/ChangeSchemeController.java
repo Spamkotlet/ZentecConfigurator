@@ -76,7 +76,13 @@ public class ChangeSchemeController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        schemeNumberChoiceBox.setOnAction(this::onActionSchemeNumberChoiceBox);
+        schemeNumberChoiceBox.setOnAction(e -> {
+            try {
+                onActionSchemeNumberChoiceBox();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     // Что происходит при открытии экрана
@@ -92,7 +98,7 @@ public class ChangeSchemeController implements Initializable {
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
-    private void onActionSchemeNumberChoiceBox(ActionEvent actionEvent) {
+    private void onActionSchemeNumberChoiceBox() throws Exception {
         String selectedSchemeName = "";
         if (previousScheme != null) {
             selectedSchemeName = previousScheme.getNumber() + 1 + " - " + previousScheme.getName();
@@ -107,7 +113,7 @@ public class ChangeSchemeController implements Initializable {
     }
 
     // Что происходит при выборе схемы из списка
-    protected void onSelectedSchemeNumber() {
+    protected void onSelectedSchemeNumber() throws Exception {
 
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
         sensorsInScheme = selectedScheme.getSensors();
@@ -138,7 +144,7 @@ public class ChangeSchemeController implements Initializable {
 
 
     // Заполнение панели устройствами и датчиками
-    private void fillingPane() {
+    private void fillingPane() throws Exception {
 
         schemeChoiceTitledPane.getContent();
         ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
@@ -154,8 +160,14 @@ public class ChangeSchemeController implements Initializable {
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-                SchemeTitledPane schemeTitledPane = new SchemeTitledPane(actuator);
-                Platform.runLater(() -> actuatorsVbox.getChildren().add(schemeTitledPane));
+                SchemeTitledPane schemeTitledPane = null;
+                try {
+                    schemeTitledPane = new SchemeTitledPane(actuator);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
+                Platform.runLater(() -> actuatorsVbox.getChildren().add(finalSchemeTitledPane));
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException e) {
@@ -166,7 +178,11 @@ public class ChangeSchemeController implements Initializable {
             ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
             if (sensorSchemeTitledPaneNodes != null) {
                 for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
-                    ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+                    try {
+                        ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     try {
                         Thread.sleep(20);
                     } catch (InterruptedException e) {
@@ -177,8 +193,14 @@ public class ChangeSchemeController implements Initializable {
 
             Platform.runLater(() -> sensorsVbox.getChildren().clear());
             for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-                SchemeTitledPane schemeTitledPane = new SchemeTitledPane(sensor);
-                Platform.runLater(() -> sensorsVbox.getChildren().add(schemeTitledPane));
+                SchemeTitledPane schemeTitledPane = null;
+                try {
+                    schemeTitledPane = new SchemeTitledPane(sensor);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
+                Platform.runLater(() -> sensorsVbox.getChildren().add(finalSchemeTitledPane));
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException e) {
@@ -194,7 +216,7 @@ public class ChangeSchemeController implements Initializable {
     }
 
     // Запись номера схемы в контроллер по Modbus
-    private void writeSchemeNumberByModbus() {
+    private void writeSchemeNumberByModbus() throws Exception {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
             modbusUtilSingleton.writeSingleModbusRegister(5299, selectedScheme.getNumber(), VarTypes.UINT8);

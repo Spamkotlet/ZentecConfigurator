@@ -162,7 +162,11 @@ public class Z031Controller implements Initializable {
             for (LabeledSpinner spinner: labeledSpinnerList) {
                 progress += progressStep;
                 if (varFunctions.equals(VarFunctions.WRITE)) {
-                    spinner.writeModbusValue();
+                    try {
+                        spinner.writeModbusValue();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 } else if (varFunctions.equals(VarFunctions.READ)) {
                     spinner.readModbusValue();
                 }

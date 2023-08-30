@@ -16,7 +16,6 @@ import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +23,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -77,7 +75,7 @@ public class IOMonitorController implements Initializable {
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
     List<Actuator> actuatorsInScheme = new ArrayList<>();
-    List<MonitorValueText> monitorTextFlowList = new ArrayList<>();
+    List<MonitorValueText> monitorValueTextList = new ArrayList<>();
     private MainParameters mainParameters;
     public AlarmTableView alarmsTableView;
 
@@ -148,7 +146,8 @@ public class IOMonitorController implements Initializable {
         ModbusMaster master = modbusUtilSingleton.getMaster();
         stopPolling();
         if (master != null) {
-
+            final int[] errorCounter = {0};
+            final int[] cycleCounter = {0};
             pollingStatusIndicatorCircle.setFill(Color.GREEN);
 
             executor = Executors.newSingleThreadScheduledExecutor();
@@ -156,39 +155,42 @@ public class IOMonitorController implements Initializable {
                 @Override
                 public void run() {
                     try {
-                        for (MonitorValueText monitorTextFlow : monitorTextFlowList) {
-                            monitorTextFlow.update();
+                        try {
+                            for (MonitorValueText monitorValueText : monitorValueTextList) {
+                                monitorValueText.update();
 
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
-                        }
 
-                        updateCurrentSeason();
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                            updateCurrentSeason();
 
-                        boolean isAlarmActive = isAlarmActive();
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        if (isAlarmActive) {
-                            alarmsTableView.updateJournal();
-                        }
+                            boolean isAlarmActive = isAlarmActive();
+                            if (isAlarmActive) {
+                                alarmsTableView.updateJournal();
+                            }
 
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                            updateStatusLabel();
+
+                            cycleCounter[0]++;
+                            if (cycleCounter[0] >= 10) {
+                                errorCounter[0] = 0;
+                                cycleCounter[0] = 0;
+                            }
+                            System.out.println("cycleCounter: " + cycleCounter[0]);
+                        } catch (Exception e) {
+                            errorCounter[0]++;
+                            if (errorCounter[0] >= 5) {
+                                cycleCounter[0] = 0;
+                                errorCounter[0] = 0;
+                                throw e;
+                            }
+
+                            System.out.println("errorCounter: " + errorCounter[0]);
                         }
-                        updateStatusLabel();
                     } catch (Exception e) {
                         System.out.println("Stop polling timer 1");
                         Platform.runLater(() -> {
@@ -260,8 +262,20 @@ public class IOMonitorController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        resetAlarmsButton.setOnAction(this::onResetAlarmsButton);
-        clearJournalButton.setOnAction(this::onClearJournalButton);
+        resetAlarmsButton.setOnAction(e -> {
+            try {
+                onResetAlarmsButton();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        clearJournalButton.setOnAction(e -> {
+            try {
+                onClearJournalButton();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         Attribute controlModeAttribute = mainParameters.getControlModeAttribute();
         List<String> controlModeValues = mainParameters.getControlModeAttribute().getValues();
@@ -271,7 +285,11 @@ public class IOMonitorController implements Initializable {
                         .get(Integer.parseInt(controlModeAttribute.readModbusParameter()))
         );
         controlModeChoiceBox.setOnAction(e -> {
-            controlModeAttribute.writeModbusParameter(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
+            try {
+                controlModeAttribute.writeModbusParameter(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             System.out.println("Index: " + controlModeValues.indexOf(controlModeChoiceBox.getValue()) + " Value: " + controlModeChoiceBox.getValue());
         });
 
@@ -285,7 +303,7 @@ public class IOMonitorController implements Initializable {
                 int seasonNumber = Math.max(Seasons.values()[seasonChoiceBox.getSelectionModel().getSelectedIndex()].getNumber(), 0);
                 seasonAttribute.writeModbusParameter(seasonNumber);
                 System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
-            } catch (ArrayIndexOutOfBoundsException ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
@@ -293,7 +311,7 @@ public class IOMonitorController implements Initializable {
 
     // Инициализация элементов мониторинга состояния контроллера
     private void initializationPLCMonitoringElements() throws Exception {
-        monitorTextFlowList.clear();
+        monitorValueTextList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
         if (sensorsInScheme != null) {
@@ -305,7 +323,7 @@ public class IOMonitorController implements Initializable {
                     }
                     if (sensor.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
-                        monitorTextFlowList.add(monitorTextFlow.getValueText());
+                        monitorValueTextList.add(monitorTextFlow.getValueText());
                         sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }
                 }
@@ -322,7 +340,7 @@ public class IOMonitorController implements Initializable {
                     }
                     if (actuator.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
-                        monitorTextFlowList.add(monitorTextFlow.getValueText());
+                        monitorValueTextList.add(monitorTextFlow.getValueText());
                         actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                     }
                 }
@@ -405,14 +423,14 @@ public class IOMonitorController implements Initializable {
         return isAlarmActive;
     }
 
-    private void onClearJournalButton(ActionEvent event) {
+    private void onClearJournalButton() throws Exception {
         Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
         clearJournalAttribute.writeModbusParameter(true);
         alarmsTableView.clearJournal();
-        onResetAlarmsButton(event);
+        onResetAlarmsButton();
     }
 
-    private void onResetAlarmsButton(ActionEvent event) {
+    private void onResetAlarmsButton() throws Exception {
         Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
         resetAlarmsAttribute.writeModbusParameter(true);
         alarmsTableView.resetAlarms();

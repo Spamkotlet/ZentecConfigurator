@@ -4,17 +4,23 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LabeledChoiceBox {
 
     private final Attribute attribute;
+    private String errorText = "*";
+    private Label errorLabel;
 
     public LabeledChoiceBox(Attribute attribute) {
         this.attribute = attribute;
@@ -23,40 +29,64 @@ public class LabeledChoiceBox {
     public Node getChoiceBox() throws Exception {
         String labelText = attribute.getName();
         List<String> attributeValues = attribute.getValues();
+        List<Node> nodes = new ArrayList<>();
 
-        AnchorPane labelAnchor = createLabelAnchor(labelText);
-        AnchorPane choiceBoxAnchor = createChoiceBoxAnchor(attributeValues);
+        nodes.add(createLabel(labelText));
+        errorLabel = createErrorLabel("(" + errorText + ")", 100, false);
+        nodes.add(createChoiceBoxAnchor(attributeValues));
+        nodes.add(errorLabel);
 
-        return createHBoxForLabeledChoiceBox(labelAnchor, choiceBoxAnchor);
+        return createHBoxForLabeledChoiceBox(nodes);
     }
 
-    private AnchorPane createLabelAnchor(String labelText) {
+    private Label createLabel(String labelText) {
         Label label = new Label(labelText);
         label.setPrefWidth(200);
-        AnchorPane labelAnchor = new AnchorPane();
 
-        labelAnchor.getChildren().add(label);
-        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
-        AnchorPane.setRightAnchor(labelAnchor, 0.0);
-        AnchorPane.setTopAnchor(labelAnchor, 0.0);
-        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
-
-        return labelAnchor;
+        return label;
     }
 
-    private AnchorPane createChoiceBoxAnchor(List<String> attributeValues) throws Exception {
+    private Label createErrorLabel(String labelText, int labelWidth, boolean isVisible) {
+        Label label = createLabel(labelText);
+        label.setPrefWidth(labelWidth);
+        label.setVisible(isVisible);
+        label.setTextFill(Color.RED);
+
+        return label;
+    }
+
+    private ChoiceBox<String> createChoiceBoxAnchor(List<String> attributeValues) throws Exception {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
 
         if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
-            choiceBox.setValue(
-                    getChoiceBoxItems(attributeValues)
-                            .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
-            );
+            try {
+                errorLabel.setVisible(false);
+                choiceBox.setValue(
+                        getChoiceBoxItems(attributeValues)
+                                .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
+                );
+            } catch (Exception ex) {
+                errorText = "Ошибка чтения";
+                errorLabel.setText(errorText);
+                errorLabel.setVisible(true);
+                System.out.println("ErrorText: " + errorText);
+                throw new RuntimeException(ex);
+            }
+
             choiceBox.setOnAction(e -> {
                 Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
-                attribute.writeModbusParameter(value);
+                try {
+                    errorLabel.setVisible(false);
+                    attribute.writeModbusParameter(value);
+                } catch (Exception ex) {
+                    errorText = "Ошибка записи";
+                    errorLabel.setText(errorText);
+                    errorLabel.setVisible(true);
+                    System.out.println("ErrorText: " + errorText);
+                    throw new RuntimeException(ex);
+                }
                 System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + value);
             });
         } else {
@@ -65,30 +95,39 @@ public class LabeledChoiceBox {
                             .get(Integer.parseInt(attribute.readModbusParameter()))
             );
             choiceBox.setOnAction(e -> {
-                attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
+                try {
+                    errorLabel.setVisible(false);
+                    attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
+                } catch (Exception ex) {
+                    errorText = "Ошибка записи";
+                    errorLabel.setText(errorText);
+                    errorLabel.setVisible(true);
+                    System.out.println("ErrorText: " + errorText);
+                    throw new RuntimeException(ex);
+                }
                 System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
             });
         }
 
-        AnchorPane choiceBoxAnchor = new AnchorPane();
-        choiceBoxAnchor.getChildren().add(choiceBox);
-        AnchorPane.setLeftAnchor(choiceBoxAnchor, 0.0);
-        AnchorPane.setRightAnchor(choiceBoxAnchor, 0.0);
-        AnchorPane.setTopAnchor(choiceBoxAnchor, 0.0);
-        AnchorPane.setBottomAnchor(choiceBoxAnchor, 0.0);
-
-        return choiceBoxAnchor;
+        return choiceBox;
     }
 
     private ObservableList<String> getChoiceBoxItems(List<String> attributeValues) {
         return FXCollections.observableArrayList(attributeValues);
     }
 
-    private HBox createHBoxForLabeledChoiceBox(Node... nodes) {
+    private HBox createHBoxForLabeledChoiceBox(List<Node> nodes) {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(nodes);
+        hBox.setFillHeight(true);
         hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(hBox, Priority.ALWAYS);
 
+        AnchorPane.setLeftAnchor(hBox, 0.0);
+        AnchorPane.setRightAnchor(hBox, 0.0);
+        AnchorPane.setTopAnchor(hBox, 0.0);
+        AnchorPane.setBottomAnchor(hBox, 0.0);
         return hBox;
     }
 }

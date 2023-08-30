@@ -149,7 +149,7 @@ public class ModbusUtilSingleton {
         return coilValue;
     }
 
-    public synchronized void writeModbusCoil(int address, boolean value) {
+    public synchronized void writeModbusCoil(int address, boolean value) throws Exception {
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -159,6 +159,7 @@ public class ModbusUtilSingleton {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
             try {
                 master.disconnect();
@@ -200,7 +201,7 @@ public class ModbusUtilSingleton {
         return registerValue;
     }
 
-    public synchronized void writeSingleModbusRegister(int address, int value, VarTypes varType) {
+    public synchronized void writeSingleModbusRegister(int address, int value, VarTypes varType) throws Exception {
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -215,16 +216,17 @@ public class ModbusUtilSingleton {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
-//            try {
-//                master.disconnect();
-//            } catch (ModbusIOException e1) {
-//                e1.printStackTrace();
-//            }
+            try {
+                master.disconnect();
+            } catch (ModbusIOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
-    public synchronized float readMultipleModbusRegister(int address) throws ModbusProtocolException, ModbusNumberException, ModbusIOException {
+    public synchronized float readMultipleModbusRegister(int address) throws Exception {
         float registerValue = 0;
         try {
             if (!master.isConnected()) {
@@ -262,7 +264,7 @@ public class ModbusUtilSingleton {
     }
 
     // Запись Дробный 4-байт
-    public synchronized void writeMultipleModbusRegister(int address, float value) {
+    public synchronized void writeMultipleModbusRegister(int address, float value) throws Exception {
         try {
             int intValue = Float.floatToIntBits(value);
             byte[] bytes = new byte[Float.BYTES];
@@ -284,12 +286,13 @@ public class ModbusUtilSingleton {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
-//            try {
-//                master.disconnect();
-//            } catch (ModbusIOException e1) {
-//                e1.printStackTrace();
-//            }
+            try {
+                master.disconnect();
+            } catch (ModbusIOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 

@@ -82,13 +82,21 @@ public class SetpointSpinner {
                         attribute.getMinValue(), attribute.getMaxValue(), Double.parseDouble(attribute.readModbusParameter()));
         spinner.setValueFactory(spinnerFactory);
         spinner.setOnMouseReleased(e -> {
-            attribute.writeModbusParameter(spinner.getValue().toString());
+            try {
+                attribute.writeModbusParameter(spinner.getValue().toString());
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             System.out.println("Value: " + spinner.getValue());
         });
 
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
+                try {
+                    attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 System.out.println("Value: " + spinner.getValue());
             }
         });

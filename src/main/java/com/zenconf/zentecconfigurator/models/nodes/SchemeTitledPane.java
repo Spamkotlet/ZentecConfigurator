@@ -25,7 +25,7 @@ public class SchemeTitledPane extends TitledPane {
     public SchemeTitledPane() {
     }
 
-    public SchemeTitledPane(Element element) {
+    public SchemeTitledPane(Element element) throws Exception {
         this.element = element;
         List<Attribute> elementAttributes = element.getAttributes();
         if (elementAttributes != null) {
@@ -43,7 +43,13 @@ public class SchemeTitledPane extends TitledPane {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
                     isUsedDefaultCheckBox = new CheckBox();
                     isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
-                    isUsedDefaultCheckBox.setOnAction(this::onSelectedCheckBox);
+                    isUsedDefaultCheckBox.setOnAction(e -> {
+                        try {
+                            onSelectedCheckBox();
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
                     isUsedDefaultCheckBox.setText("Используется");
                     anchorPane.getChildren().add(isUsedDefaultCheckBox);
                     inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
@@ -52,7 +58,13 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
                     isUsedDefaultChoiceBox.setItems(getElementTypes());
                     isUsedDefaultChoiceBox.setValue(getElementTypes().get(isInWorkInteger));
-                    isUsedDefaultChoiceBox.setOnAction(this::onSelectedChoiceBox);
+                    isUsedDefaultChoiceBox.setOnAction(e -> {
+                        try {
+                            onSelectedChoiceBox();
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
                     anchorPane.getChildren().add(isUsedDefaultChoiceBox);
                     inWorkAttribute.writeModbusParameter(isInWorkInteger);
                 }
@@ -73,7 +85,7 @@ public class SchemeTitledPane extends TitledPane {
         this.setContent(vBox);
     }
 
-    public void setAttributeIsUsedOff() {
+    public void setAttributeIsUsedOff() throws Exception {
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
@@ -85,14 +97,14 @@ public class SchemeTitledPane extends TitledPane {
         }
     }
 
-    private void onSelectedCheckBox(ActionEvent actionEvent) {
+    private void onSelectedCheckBox() throws Exception {
         if (inWorkAttribute != null) {
             inWorkAttribute.writeModbusParameter(isUsedDefaultCheckBox.isSelected());
             element.setIsUsedDefault(isUsedDefaultCheckBox.isSelected());
         }
     }
 
-    private void onSelectedChoiceBox(ActionEvent actionEvent) {
+    private void onSelectedChoiceBox() throws Exception {
         if (inWorkAttribute != null) {
             inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setIsUsedDefault(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0);

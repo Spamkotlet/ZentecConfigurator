@@ -144,8 +144,6 @@ public class IOMonitorController implements Initializable {
         });
     }
 
-    private Task<Void> task;
-
     private void startPolling() {
         ModbusMaster master = modbusUtilSingleton.getMaster();
         stopPolling();
@@ -167,6 +165,30 @@ public class IOMonitorController implements Initializable {
                                 throw new RuntimeException(e);
                             }
                         }
+
+                        updateCurrentSeason();
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        boolean isAlarmActive = isAlarmActive();
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if (isAlarmActive) {
+                            alarmsTableView.updateJournal();
+                        }
+
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        updateStatusLabel();
                     } catch (Exception e) {
                         System.out.println("Stop polling timer 1");
                         Platform.runLater(() -> {
@@ -182,35 +204,7 @@ public class IOMonitorController implements Initializable {
                 }
             };
 
-            TimerTask timerTask1 = new TimerTask() {
-                @Override
-                public void run() {
-                    try {
-                        updateCurrentSeason();
-
-                        boolean isAlarmActive = isAlarmActive();
-                        if (isAlarmActive) {
-                            alarmsTableView.updateJournal();
-                        }
-
-                        updateStatusLabel();
-                    } catch (Exception e) {
-                        System.out.println("Stop polling timer 2");
-                        Platform.runLater(() -> {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Ошибка");
-                            alert.setHeaderText("Опрос контроллера завершился ошибкой");
-                            alert.setContentText("- установите соединение с контроллером");
-                            alert.show();
-                        });
-                        pollingPreviousState = false;
-                        stopPolling();
-                    }
-                }
-            };
-
             executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
-            executor.scheduleWithFixedDelay(timerTask1, 1, 500, TimeUnit.MILLISECONDS);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка");
@@ -223,7 +217,7 @@ public class IOMonitorController implements Initializable {
     private void stopPolling() {
         if (executor != null) {
             if (!executor.isShutdown()) {
-                executor.shutdownNow();
+                executor.shutdown();
             }
         }
         pollingStatusIndicatorCircle.setFill(new Color(0.831, 0.831, 0.831, 1f));
@@ -398,7 +392,6 @@ public class IOMonitorController implements Initializable {
     }
 
     private boolean isAlarmActive() throws Exception {
-        boolean commonAlarm = Boolean.parseBoolean(mainParameters.getCommonAlarmAttribute().readModbusParameter());
         long alarms0 = Long.parseLong(mainParameters.getAlarmsAttribute0().readModbusParameter());
         long alarms1 = Long.parseLong(mainParameters.getAlarmsAttribute1().readModbusParameter());
         long warnings = Long.parseLong(mainParameters.getWarningsAttribute().readModbusParameter());
@@ -408,8 +401,6 @@ public class IOMonitorController implements Initializable {
         alarmsNumber0 = alarms0;
         alarmsNumber1 = alarms1;
         warningsNumber = warnings;
-
-//        System.out.println("alarms0: " + alarms0 + "; alarms1: " + alarms1 + "; warnings: " + warnings + "; commonAlarm: " + commonAlarm);
 
         return isAlarmActive;
     }

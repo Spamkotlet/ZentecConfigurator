@@ -11,7 +11,7 @@
       "name": "Пуск/стоп диспетчеризация",
       "control": 3,
       "modbusParameters": {
-        "address": 5116,
+        "address": 1101,
         "varType": "BOOL"
       }
     },
@@ -30,7 +30,7 @@
         "Elhart"
       ],
       "modbusParameters": {
-        "address": 5086,
+        "address": 1248,
         "varType": "UINT8"
       }
     },
@@ -38,7 +38,7 @@
       "name": "Сброс аварий",
       "control": 3,
       "modbusParameters": {
-        "address": 5121,
+        "address": 1102,
         "varType": "BOOL"
       }
     },
@@ -46,7 +46,7 @@
       "name": "Очистка журнала",
       "control": 3,
       "modbusParameters": {
-        "address": 5125,
+        "address": 1103,
         "varType": "BOOL"
       }
     },
@@ -60,15 +60,17 @@
         "АВТО"
       ],
       "modbusParameters": {
-        "address": 5105,
+        "address": 1247,
         "varType": "UINT8"
       }
     },
     "statusAttribute": {
       "name": "Статус системы",
       "values": [
+        "Ожидание",
         "Дежурный",
-        "Прогрев",
+        "Прогрев ВТО",
+        "Прогрев КЕ",
         "Подготовка",
         "Работа",
         "Продувка",
@@ -79,7 +81,7 @@
         "Критическая авария"
       ],
       "modbusParameters": {
-        "address": 5119,
+        "address": 1018,
         "varType": "UINT8"
       }
     },
@@ -88,10 +90,10 @@
         "name": "Время прогрева",
         "control": 1,
         "minValue": 0,
-        "maxValue": 255,
+        "maxValue": 999,
         "modbusParameters": {
-          "address": 5279,
-          "varType": "UINT8"
+          "address": 1368,
+          "varType": "UINT16"
         }
       },
       {
@@ -100,7 +102,31 @@
         "minValue": 0,
         "maxValue": 255,
         "modbusParameters": {
-          "address": 5278,
+          "address": 1367,
+          "varType": "UINT8"
+        }
+      }
+    ],
+    "valveHeatersAttributes": [
+      {
+        "name": "Обогрев KG",
+        "control": 2,
+        "values": [
+          "ОТКЛ",
+          "ВКЛ"
+        ],
+        "modbusParameters": {
+          "address": 1439,
+          "varType": "BOOL"
+        }
+      },
+      {
+        "name": "Время прогрева КЕ",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 1440,
           "varType": "UINT8"
         }
       }
@@ -113,12 +139,12 @@
             "name": "В работе",
             "control": 2,
             "modbusParameters": {
-              "address": 5445,
+              "address": 1441,
               "varType": "BOOL"
             },
             "values": [
-              "Нет",
-              "Да"
+              "НЕТ",
+              "ДА"
             ]
           },
           {
@@ -127,7 +153,7 @@
             "minValue": 1,
             "maxValue": 247,
             "modbusParameters": {
-              "address": 5444,
+              "address": 1442,
               "varType": "UINT8"
             }
           }
@@ -140,12 +166,12 @@
             "name": "В работе",
             "control": 2,
             "modbusParameters": {
-              "address": 14,
+              "address": 1480,
               "varType": "BOOL"
             },
             "values": [
-              "Нет",
-              "Да"
+              "НЕТ",
+              "ДА"
             ]
           },
           {
@@ -154,7 +180,7 @@
             "minValue": 1,
             "maxValue": 247,
             "modbusParameters": {
-              "address": 64,
+              "address": 1481,
               "varType": "UINT8"
             }
           }
@@ -167,12 +193,12 @@
             "name": "В работе",
             "control": 2,
             "modbusParameters": {
-              "address": 5169,
+              "address": 1534,
               "varType": "BOOL"
             },
             "values": [
-              "Нет",
-              "Да"
+              "НЕТ",
+              "ДА"
             ]
           },
           {
@@ -181,38 +207,31 @@
             "minValue": 1,
             "maxValue": 247,
             "modbusParameters": {
-              "address": 5168,
+              "address": 1533,
               "varType": "UINT8"
             }
           }
         ]
       }
     ],
-    "commonAlarmAttribute": {
-      "name": "Общая авария",
-      "modbusParameters": {
-        "address": 5478,
-        "varType": "BOOL"
-      }
-    },
     "alarmsAttribute0": {
       "name": "Шифр аварии 1-32",
       "modbusParameters": {
-        "address": 5152,
+        "address": 1050,
         "varType": "UINT32"
       }
     },
     "alarmsAttribute1": {
       "name": "Шифр аварии 33-64",
       "modbusParameters": {
-        "address": 5150,
+        "address": 1054,
         "varType": "UINT32"
       }
     },
     "warningsAttribute": {
       "name": "Шифр предупреждений",
       "modbusParameters": {
-        "address": 5148,
+        "address": 1066,
         "varType": "UINT32"
       }
     }

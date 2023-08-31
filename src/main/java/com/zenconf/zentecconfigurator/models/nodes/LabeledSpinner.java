@@ -138,7 +138,7 @@ public class LabeledSpinner {
 
                     @Override
                     public Integer fromString(String s) {
-                        if (s.matches("^[0-9]+$")) {
+                        if (s.matches("^-?[0-9]+$")) {
                             try {
                                 return Integer.valueOf(s);
                             } catch (NumberFormatException e) {

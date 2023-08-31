@@ -22,6 +22,7 @@
             <Button fx:id="startPollingButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-iomonitor-toolbar" text="Старт" />
             <Button fx:id="stopPollingButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="Стоп" />
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" text="Статус опроса" />
             <Circle fx:id="pollingStatusIndicatorCircle" fill="#d4d4d4" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
          <padding>

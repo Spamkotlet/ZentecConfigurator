@@ -16,7 +16,6 @@ import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -160,7 +159,7 @@ public class IOMonitorController implements Initializable {
                                 monitorValueText.update();
 
                                 try {
-                                    Thread.sleep(100);
+                                    Thread.sleep(50);
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
                                 }
@@ -317,9 +316,12 @@ public class IOMonitorController implements Initializable {
         if (sensorsInScheme != null) {
             for (Sensor sensor : sensorsInScheme) {
                 if (sensor.getIsUsedDefault()) {
-                    if (sensor.getAttributeForControlling() != null) {
-                        SetpointSpinner setpointSpinner = new SetpointSpinner(sensor.getAttributeForControlling());
-                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                    if (sensor.getAttributesForControlling() != null) {
+                        List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
+                        for (Attribute attribute : attributesForControlling) {
+                            SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                        }
                     }
                     if (sensor.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
@@ -334,9 +336,12 @@ public class IOMonitorController implements Initializable {
         if (actuatorsInScheme != null) {
             for (Actuator actuator : actuatorsInScheme) {
                 if (actuator.getIsUsedDefault()) {
-                    if (actuator.getAttributeForControlling() != null) {
-                        SetpointSpinner setpointSpinner = new SetpointSpinner(actuator.getAttributeForControlling());
-                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                    if (actuator.getAttributesForControlling() != null) {
+                        List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
+                        for (Attribute attribute : attributesForControlling) {
+                            SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                        }
                     }
                     if (actuator.getAttributeForMonitoring() != null) {
                         MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);

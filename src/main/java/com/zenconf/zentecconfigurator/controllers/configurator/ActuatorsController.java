@@ -63,6 +63,18 @@ public class ActuatorsController implements Initializable {
             ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
 
+            Parameter valveHeatersParameter = new Parameter();
+            valveHeatersParameter.setName("Обогрев клапанов");
+            valveHeatersParameter.setAttributes(mainParameters.getValveHeatersAttributes());
+            ElementTitledPane valveHeatersTitledPane = null;
+            try {
+                valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
+            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
+
             for (Actuator actuatorInScheme : actuatorsInScheme) {
                 if (actuatorInScheme.getIsUsedDefault()) {
                     if (actuatorInScheme.getAttributes() != null) {

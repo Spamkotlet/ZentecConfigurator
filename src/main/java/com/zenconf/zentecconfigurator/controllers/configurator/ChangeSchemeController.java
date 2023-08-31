@@ -10,7 +10,6 @@ import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import org.json.simple.JSONObject;
@@ -124,7 +123,7 @@ public class ChangeSchemeController implements Initializable {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
-                    actuatorInScheme.setAttributeForControlling(actuator.getAttributeForControlling());
+                    actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
                 }
             }
         }
@@ -134,7 +133,7 @@ public class ChangeSchemeController implements Initializable {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
-                    sensorInScheme.setAttributeForControlling(sensor.getAttributeForControlling());
+                    sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
                 }
             }
         }
@@ -219,7 +218,7 @@ public class ChangeSchemeController implements Initializable {
     private void writeSchemeNumberByModbus() throws Exception {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(5299, selectedScheme.getNumber(), VarTypes.UINT8);
+            modbusUtilSingleton.writeSingleModbusRegister(1436, selectedScheme.getNumber(), VarTypes.UINT8);
         }
     }
 
@@ -228,7 +227,7 @@ public class ChangeSchemeController implements Initializable {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get((int) modbusUtilSingleton.readSingleModbusRegister(5299, VarTypes.UINT8));
+            selectedScheme = schemes.get((int) modbusUtilSingleton.readSingleModbusRegister(1436, VarTypes.UINT8));
         }
         return selectedScheme;
     }

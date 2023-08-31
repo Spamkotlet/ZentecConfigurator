@@ -11,20 +11,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5363,
+            "address": 1270,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5359,
+            "address": 1272,
             "varType": "UINT8"
           },
           "values": [
@@ -39,27 +35,49 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5596,
-            "varType": "FLOAT"
+            "address": 1274,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1278,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1279,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура притока",
         "modbusParameters": {
-          "address": 5565,
-          "varType": "FLOAT"
+          "address": 1174,
+          "varType": "SINT16"
         }
       },
-      "attributeForControlling": {
-        "name": "Уставка температуры притока",
-        "minValue": 0,
-        "maxValue": 35,
-        "modbusParameters": {
-          "address": 5082,
-          "varType": "UINT8"
+      "attributesForControlling": [
+        {
+          "name": "Уставка температуры притока",
+          "minValue": 0,
+          "maxValue": 35,
+          "modbusParameters": {
+            "address": 1249,
+            "varType": "UINT8"
+          }
         }
-      }
+      ]
     },
     {
       "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
@@ -67,20 +85,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5386,
+            "address": 1300,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5384,
+            "address": 1301,
             "varType": "UINT8"
           },
           "values": [
@@ -95,16 +109,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5614,
-            "varType": "FLOAT"
+            "address": 1302,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1304,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1303,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура вытяжки",
         "modbusParameters": {
-          "address": 5581,
-          "varType": "FLOAT"
+          "address": 1164,
+          "varType": "SINT16"
         }
       }
     },
@@ -114,20 +148,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5377,
+            "address": 1320,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5375,
+            "address": 1321,
             "varType": "UINT8"
           },
           "values": [
@@ -142,16 +172,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5608,
-            "varType": "FLOAT"
+            "address": 1322,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1324,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1323,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура уличная",
         "modbusParameters": {
-          "address": 5573,
-          "varType": "FLOAT"
+          "address": 1170,
+          "varType": "SINT16"
         }
       }
     },
@@ -161,10 +211,8 @@
         {
           "name": "В работе",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5380,
+            "address": 1325,
             "varType": "UINT8"
           },
           "values": [
@@ -176,10 +224,8 @@
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5378,
+            "address": 1326,
             "varType": "UINT8"
           },
           "values": [
@@ -194,16 +240,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5610,
-            "varType": "FLOAT"
+            "address": 1327,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1329,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1328,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура комнатная",
         "modbusParameters": {
-          "address": 5577,
-          "varType": "FLOAT"
+          "address": 1168,
+          "varType": "SINT16"
         }
       }
     },
@@ -213,20 +279,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5374,
+            "address": 1305,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5368,
+            "address": 1308,
             "varType": "UINT8"
           },
           "values": [
@@ -241,16 +303,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5600,
-            "varType": "FLOAT"
+            "address": 1311,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1315,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1314,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура обратной воды 1",
         "modbusParameters": {
-          "address": 5571,
-          "varType": "FLOAT"
+          "address": 1172,
+          "varType": "SINT16"
         }
       }
     },
@@ -260,20 +342,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5373,
+            "address": 1306,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5367,
+            "address": 1309,
             "varType": "UINT8"
           },
           "values": [
@@ -288,16 +366,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5602,
-            "varType": "FLOAT"
+            "address": 1312,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1317,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1316,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура обратной воды 2",
         "modbusParameters": {
-          "address": 5569,
-          "varType": "FLOAT"
+          "address": 1160,
+          "varType": "SINT16"
         }
       }
     },
@@ -307,20 +405,16 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5372,
+            "address": 1307,
             "varType": "BOOL"
           }
         },
         {
           "name": "Тип датчика",
           "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
           "modbusParameters": {
-            "address": 5366,
+            "address": 1310,
             "varType": "UINT8"
           },
           "values": [
@@ -335,16 +429,36 @@
           "minValue": -50,
           "maxValue": 60,
           "modbusParameters": {
-            "address": 5604,
-            "varType": "FLOAT"
+            "address": 1313,
+            "varType": "SINT16"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1319,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1318,
+            "varType": "SINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Температура обратной воды 3",
         "modbusParameters": {
-          "address": 5567,
-          "varType": "FLOAT"
+          "address": 1162,
+          "varType": "SINT16"
         }
       }
     },
@@ -354,55 +468,60 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5383,
+            "address": 1289,
             "varType": "BOOL"
           }
         },
         {
-          "name": "Тип датчика",
-          "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
-          "modbusParameters": {
-            "address": 5381,
-            "varType": "UINT8"
-          },
-          "values": [
-            "PT1000",
-            "NTC10k",
-            "0..10 В"
-          ]
-        },
-        {
           "name": "Коррекция",
           "control": 1,
-          "minValue": -50,
-          "maxValue": 60,
+          "minValue": -32000,
+          "maxValue": 32000,
           "modbusParameters": {
-            "address": 5612,
-            "varType": "FLOAT"
+            "address": 1290,
+            "varType": "SINT16"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -32000,
+          "maxValue": 32000,
+          "modbusParameters": {
+            "address": 1294,
+            "varType": "SINT16"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -32000,
+          "maxValue": 32000,
+          "modbusParameters": {
+            "address": 1292,
+            "varType": "SINT16"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Давление",
         "modbusParameters": {
-          "address": 5579,
-          "varType": "FLOAT"
+          "address": 1166,
+          "varType": "SINT16"
         }
       },
-      "attributeForControlling": {
-        "name": "Уставка давления",
-        "minValue": 0,
-        "maxValue": 32000,
-        "modbusParameters": {
-          "address": 5108,
-          "varType": "UINT16"
+      "attributesForControlling": [
+        {
+          "name": "Уставка давления",
+          "minValue": 0,
+          "maxValue": 32000,
+          "modbusParameters": {
+            "address": 1252,
+            "varType": "UINT16"
+          }
         }
-      }
+      ]
     },
     {
       "name": "[ВЛАЖНОСТЬ] Датчик влажности",
@@ -410,55 +529,69 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5389,
+            "address": 1296,
             "varType": "BOOL"
           }
         },
         {
-          "name": "Тип датчика",
-          "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
-          "modbusParameters": {
-            "address": 5387,
-            "varType": "UINT8"
-          },
-          "values": [
-            "PT1000",
-            "NTC10k",
-            "0..10 В"
-          ]
-        },
-        {
           "name": "Коррекция",
           "control": 1,
-          "minValue": -50,
-          "maxValue": 60,
+          "minValue": -100,
+          "maxValue": 100,
           "modbusParameters": {
-            "address": 5592,
-            "varType": "FLOAT"
+            "address": 1297,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1299,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1298,
+            "varType": "UINT8"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "Влажность",
         "modbusParameters": {
-          "address": 5583,
-          "varType": "FLOAT"
+          "address": 1178,
+          "varType": "SINT16"
         }
       },
-      "attributeForControlling": {
-        "name": "Уставка влажности",
-        "minValue": 0,
-        "maxValue": 100,
-        "modbusParameters": {
-          "address": 5110,
-          "varType": "UINT8"
+      "attributesForControlling": [
+        {
+          "name": "Уставка влажности",
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1240,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Уставка влажности (осушение)",
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1241,
+            "varType": "UINT8"
+          }
         }
-      }
+      ]
     },
     {
       "name": "[CO2] Датчик углекислого газа",
@@ -466,55 +599,60 @@
         {
           "name": "В работе",
           "control": 0,
-          "minValue": 0,
-          "maxValue": 1,
           "modbusParameters": {
-            "address": 5327,
+            "address": 1282,
             "varType": "BOOL"
           }
         },
         {
-          "name": "Тип датчика",
-          "control": 2,
-          "minValue": 0,
-          "maxValue": 2,
-          "modbusParameters": {
-            "address": 5325,
-            "varType": "UINT8"
-          },
-          "values": [
-            "PT1000",
-            "NTC10k",
-            "0..10 В"
-          ]
-        },
-        {
           "name": "Коррекция",
           "control": 1,
-          "minValue": -50,
-          "maxValue": 60,
+          "minValue": -32000,
+          "maxValue": 32000,
           "modbusParameters": {
-            "address": 5594,
-            "varType": "FLOAT"
+            "address": 1283,
+            "varType": "SINT16"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1287,
+            "varType": "UINT16"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1285,
+            "varType": "UINT16"
           }
         }
       ],
       "attributeForMonitoring": {
         "name": "СО2",
         "modbusParameters": {
-          "address": 5561,
-          "varType": "FLOAT"
+          "address": 1180,
+          "varType": "SINT16"
         }
       },
-      "attributeForControlling": {
-        "name": "Уставка CO2",
-        "minValue": 0,
-        "maxValue": 32000,
-        "modbusParameters": {
-          "address": 5107,
-          "varType": "UINT16"
+      "attributesForControlling": [
+        {
+          "name": "Уставка CO2",
+          "minValue": 0,
+          "maxValue": 32000,
+          "modbusParameters": {
+            "address": 1254,
+            "varType": "UINT16"
+          }
         }
-      }
+      ]
     }
   ]
 }

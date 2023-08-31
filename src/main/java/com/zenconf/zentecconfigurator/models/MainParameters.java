@@ -10,11 +10,11 @@ public class MainParameters {
     private Attribute seasonAttribute;
     private Attribute statusAttribute;
     private List<Attribute> heatExchangerAttributes;
+    private List<Attribute> valveHeatersAttributes;
     private List<Parameter> peripheryParameters;
     private Attribute alarmsAttribute0;
     private Attribute alarmsAttribute1;
     private Attribute warningsAttribute;
-    private Attribute commonAlarmAttribute;
     private Attribute deviceAddressAttribute; // атрибут для проверки соединения
 
     public Attribute getStartStopAttribute() {
@@ -49,6 +49,10 @@ public class MainParameters {
         return heatExchangerAttributes;
     }
 
+    public List<Attribute> getValveHeatersAttributes() {
+        return valveHeatersAttributes;
+    }
+
     public List<Parameter> getPeripheryParameters() {
         return peripheryParameters;
     }
@@ -63,10 +67,6 @@ public class MainParameters {
 
     public Attribute getWarningsAttribute() {
         return warningsAttribute;
-    }
-
-    public Attribute getCommonAlarmAttribute() {
-        return commonAlarmAttribute;
     }
 
 }

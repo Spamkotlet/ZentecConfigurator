@@ -1,10 +1,7 @@
 package com.zenconf.zentecconfigurator.utils.modbus;
 
-import com.intelligt.modbus.jlibmodbus.Modbus;
 import com.intelligt.modbus.jlibmodbus.data.ModbusHoldingRegisters;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
-import com.intelligt.modbus.jlibmodbus.exception.ModbusNumberException;
-import com.intelligt.modbus.jlibmodbus.exception.ModbusProtocolException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.msg.request.ReadInputRegistersRequest;
@@ -14,7 +11,7 @@ import com.intelligt.modbus.jlibmodbus.serial.*;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
 
-// TODO: Сделать билдер
+import java.util.Arrays;
 
 public class ModbusUtilSingleton {
     private static ModbusUtilSingleton instance;
@@ -133,6 +130,7 @@ public class ModbusUtilSingleton {
 
     public synchronized boolean readModbusCoil(int address) throws Exception {
         boolean coilValue = false;
+        System.out.println("READ address: " + address + ", type: BOOL");
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -150,6 +148,8 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized void writeModbusCoil(int address, boolean value) throws Exception {
+        System.out.println("WRITE address: " + address + ", type: BOOL");
+
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -170,6 +170,8 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized long readSingleModbusRegister(int address, VarTypes varType) throws Exception {
+        System.out.println("READ address: " + address);
+
         long registerValue = 0;
         try {
             if (!master.isConnected()) {
@@ -181,10 +183,17 @@ public class ModbusUtilSingleton {
                 int[] registerValues = master.readHoldingRegisters(slaveId, address, 2);
                 registerValue = (long) registerValues[0] * 65536 + (long) registerValues[1];
             } else if (varType.equals(VarTypes.SINT8)) {
-                registerValue = master.readHoldingRegisters(slaveId, address, 2)[0];
+                registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
                 if (registerValue > Byte.MAX_VALUE) {
                     registerValue -= Byte.MAX_VALUE * 2 + 2;
                 }
+            } else if (varType.equals(VarTypes.SINT16)) {
+                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 1)));
+                registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
+                if (registerValue > 32767) {
+                    registerValue -= 32767 * 2 + 2;
+                }
+                System.out.println(registerValue);
             }
         } catch (RuntimeException e) {
             throw e;
@@ -202,6 +211,7 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized void writeSingleModbusRegister(int address, int value, VarTypes varType) throws Exception {
+        System.out.println("WRITE address: " + address);
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -227,6 +237,8 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized float readMultipleModbusRegister(int address) throws Exception {
+        System.out.println("READ address: " + address);
+
         float registerValue = 0;
         try {
             if (!master.isConnected()) {
@@ -246,8 +258,6 @@ public class ModbusUtilSingleton {
                 value = (value << 8) + (b & 0xFF);
             }
             registerValue = Float.intBitsToFloat(value);
-
-//            System.out.println("Address: " + address + ", Value: " + registerValue);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
@@ -265,6 +275,8 @@ public class ModbusUtilSingleton {
 
     // Запись Дробный 4-байт
     public synchronized void writeMultipleModbusRegister(int address, float value) throws Exception {
+        System.out.println("WRITE address: " + address);
+
         try {
             int intValue = Float.floatToIntBits(value);
             byte[] bytes = new byte[Float.BYTES];
@@ -302,10 +314,6 @@ public class ModbusUtilSingleton {
 
     public void setSlaveId(int slaveId) {
         this.slaveId = slaveId;
-    }
-
-    public String getDevice() {
-        return device;
     }
 
     public void setDevice(String device) {

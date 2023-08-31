@@ -110,9 +110,9 @@ public class Z031Controller implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            electricParameters = mapper.readValue(jsonObject.get("electric").toString(), new TypeReference<>() {
+            electricParameters = mapper.readValue(jsonObject.get("electric").toString(), new TypeReference<ElectricParameters>() {
             });
-            waterParameters = mapper.readValue(jsonObject.get("water").toString(), new TypeReference<>() {
+            waterParameters = mapper.readValue(jsonObject.get("water").toString(), new TypeReference<WaterParameters>() {
             });
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -130,7 +130,7 @@ public class LabeledSpinner {
         spinner.setPrefWidth(200);
         spinner.getValueFactory().setWrapAround(true);
         spinner.getValueFactory().setConverter(
-                new StringConverter<>() {
+                new StringConverter<Integer>() {
                     @Override
                     public String toString(Integer integer) {
                         return (integer == null) ? "0" : integer.toString();

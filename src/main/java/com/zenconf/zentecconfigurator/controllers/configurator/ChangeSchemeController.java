@@ -1,7 +1,5 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
@@ -13,8 +11,6 @@ import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,9 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
-import java.io.*;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -148,6 +142,7 @@ public class ChangeSchemeController implements Initializable {
 
         schemeChoiceTitledPane.getContent();
         ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
+        // Установка всех чекбоксов "Используется" в положение false
         if (actuatorSchemeTitledPaneNodes != null) {
             for (Node schemeTitledNode : actuatorSchemeTitledPaneNodes) {
                 ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();

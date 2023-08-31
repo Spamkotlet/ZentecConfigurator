@@ -6,10 +6,10 @@
   },
   "sensors": [
     {
-      "name": "[ПРИТОК] Температура приточного воздуха",
+      "name": "[РџР РРўРћРљ] РўРµРјРїРµСЂР°С‚СѓСЂР° РїСЂРёС‚РѕС‡РЅРѕРіРѕ РІРѕР·РґСѓС…Р°",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1270,
@@ -17,7 +17,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1272,
@@ -26,11 +26,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -50,7 +50,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -61,7 +61,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура притока",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РїСЂРёС‚РѕРєР°",
         "modbusParameters": {
           "address": 1174,
           "varType": "SINT16"
@@ -69,7 +69,7 @@
       },
       "attributesForControlling": [
         {
-          "name": "Уставка температуры притока",
+          "name": "РЈСЃС‚Р°РІРєР° С‚РµРјРїРµСЂР°С‚СѓСЂС‹ РїСЂРёС‚РѕРєР°",
           "minValue": 0,
           "maxValue": 35,
           "modbusParameters": {
@@ -80,10 +80,10 @@
       ]
     },
     {
-      "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+      "name": "[Р’Р«РўРЇР–РљРђ] РўРµРјРїРµСЂР°С‚СѓСЂР° РІС‹С‚СЏР¶РЅРѕРіРѕ РІРѕР·РґСѓС…Р°",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1300,
@@ -91,7 +91,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1301,
@@ -100,11 +100,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -114,7 +114,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -124,7 +124,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -135,7 +135,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура вытяжки",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РІС‹С‚СЏР¶РєРё",
         "modbusParameters": {
           "address": 1164,
           "varType": "SINT16"
@@ -143,10 +143,10 @@
       }
     },
     {
-      "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+      "name": "[РЈР›РР§РќРђРЇ] РўРµРјРїРµСЂР°С‚СѓСЂР° РЅР°СЂСѓР¶РЅРѕРіРѕ РІРѕР·РґСѓС…Р°",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1320,
@@ -154,7 +154,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1321,
@@ -163,11 +163,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -177,7 +177,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -187,7 +187,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -198,7 +198,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура уличная",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° СѓР»РёС‡РЅР°СЏ",
         "modbusParameters": {
           "address": 1170,
           "varType": "SINT16"
@@ -206,23 +206,23 @@
       }
     },
     {
-      "name": "[ПОМЕЩЕНИЕ] Температура в помещении",
+      "name": "[РџРћРњР•Р©Р•РќРР•] РўРµРјРїРµСЂР°С‚СѓСЂР° РІ РїРѕРјРµС‰РµРЅРёРё",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 2,
           "modbusParameters": {
             "address": 1325,
             "varType": "UINT8"
           },
           "values": [
-            "Нет",
-            "Внешний",
-            "ПУ Z031"
+            "РќРµС‚",
+            "Р’РЅРµС€РЅРёР№",
+            "РџРЈ Z031"
           ]
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1326,
@@ -231,11 +231,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -245,7 +245,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -255,7 +255,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -266,7 +266,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура комнатная",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РєРѕРјРЅР°С‚РЅР°СЏ",
         "modbusParameters": {
           "address": 1168,
           "varType": "SINT16"
@@ -274,10 +274,10 @@
       }
     },
     {
-      "name": "[ОБРАТКА 1] Температура обратной воды 1",
+      "name": "[РћР‘Р РђРўРљРђ 1] РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 1",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1305,
@@ -285,7 +285,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1308,
@@ -294,11 +294,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -308,7 +308,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -318,7 +318,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -329,7 +329,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура обратной воды 1",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 1",
         "modbusParameters": {
           "address": 1172,
           "varType": "SINT16"
@@ -337,10 +337,10 @@
       }
     },
     {
-      "name": "[ОБРАТКА 2] Температура обратной воды 2",
+      "name": "[РћР‘Р РђРўРљРђ 2] РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 2",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1306,
@@ -348,7 +348,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1309,
@@ -357,11 +357,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -371,7 +371,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -381,7 +381,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -392,7 +392,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура обратной воды 2",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 2",
         "modbusParameters": {
           "address": 1160,
           "varType": "SINT16"
@@ -400,10 +400,10 @@
       }
     },
     {
-      "name": "[ОБРАТКА 3] Температура обратной воды 3",
+      "name": "[РћР‘Р РђРўРљРђ 3] РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 3",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1307,
@@ -411,7 +411,7 @@
           }
         },
         {
-          "name": "Тип датчика",
+          "name": "РўРёРї РґР°С‚С‡РёРєР°",
           "control": 2,
           "modbusParameters": {
             "address": 1310,
@@ -420,11 +420,11 @@
           "values": [
             "PT1000",
             "NTC10k",
-            "0..10 В"
+            "0..10 Р’"
           ]
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
@@ -434,7 +434,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -444,7 +444,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -455,7 +455,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Температура обратной воды 3",
+        "name": "РўРµРјРїРµСЂР°С‚СѓСЂР° РѕР±СЂР°С‚РЅРѕР№ РІРѕРґС‹ 3",
         "modbusParameters": {
           "address": 1162,
           "varType": "SINT16"
@@ -463,10 +463,10 @@
       }
     },
     {
-      "name": "[ДАВЛЕНИЕ] Датчик давления",
+      "name": "[Р”РђР’Р›Р•РќРР•] Р”Р°С‚С‡РёРє РґР°РІР»РµРЅРёСЏ",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1289,
@@ -474,7 +474,7 @@
           }
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -32000,
           "maxValue": 32000,
@@ -484,7 +484,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": -32000,
           "maxValue": 32000,
@@ -494,7 +494,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": -32000,
           "maxValue": 32000,
@@ -505,7 +505,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Давление",
+        "name": "Р”Р°РІР»РµРЅРёРµ",
         "modbusParameters": {
           "address": 1166,
           "varType": "SINT16"
@@ -513,7 +513,7 @@
       },
       "attributesForControlling": [
         {
-          "name": "Уставка давления",
+          "name": "РЈСЃС‚Р°РІРєР° РґР°РІР»РµРЅРёСЏ",
           "minValue": 0,
           "maxValue": 32000,
           "modbusParameters": {
@@ -524,10 +524,10 @@
       ]
     },
     {
-      "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+      "name": "[Р’Р›РђР–РќРћРЎРўР¬] Р”Р°С‚С‡РёРє РІР»Р°Р¶РЅРѕСЃС‚Рё",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1296,
@@ -535,7 +535,7 @@
           }
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
@@ -545,7 +545,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
@@ -555,7 +555,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
@@ -566,7 +566,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Влажность",
+        "name": "Р’Р»Р°Р¶РЅРѕСЃС‚СЊ",
         "modbusParameters": {
           "address": 1178,
           "varType": "SINT16"
@@ -574,7 +574,7 @@
       },
       "attributesForControlling": [
         {
-          "name": "Уставка влажности",
+          "name": "РЈСЃС‚Р°РІРєР° РІР»Р°Р¶РЅРѕСЃС‚Рё",
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {
@@ -583,7 +583,7 @@
           }
         },
         {
-          "name": "Уставка влажности (осушение)",
+          "name": "РЈСЃС‚Р°РІРєР° РІР»Р°Р¶РЅРѕСЃС‚Рё (РѕСЃСѓС€РµРЅРёРµ)",
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {
@@ -594,10 +594,10 @@
       ]
     },
     {
-      "name": "[CO2] Датчик углекислого газа",
+      "name": "[CO2] Р”Р°С‚С‡РёРє СѓРіР»РµРєРёСЃР»РѕРіРѕ РіР°Р·Р°",
       "attributes": [
         {
-          "name": "В работе",
+          "name": "Р’ СЂР°Р±РѕС‚Рµ",
           "control": 0,
           "modbusParameters": {
             "address": 1282,
@@ -605,7 +605,7 @@
           }
         },
         {
-          "name": "Коррекция",
+          "name": "РљРѕСЂСЂРµРєС†РёСЏ",
           "control": 1,
           "minValue": -32000,
           "maxValue": 32000,
@@ -615,7 +615,7 @@
           }
         },
         {
-          "name": "Min 0..10 В",
+          "name": "Min 0..10 Р’",
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
@@ -625,7 +625,7 @@
           }
         },
         {
-          "name": "Max 0..10 В",
+          "name": "Max 0..10 Р’",
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
@@ -636,7 +636,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "СО2",
+        "name": "РЎРћ2",
         "modbusParameters": {
           "address": 1180,
           "varType": "SINT16"
@@ -644,7 +644,7 @@
       },
       "attributesForControlling": [
         {
-          "name": "Уставка CO2",
+          "name": "РЈСЃС‚Р°РІРєР° CO2",
           "minValue": 0,
           "maxValue": 32000,
           "modbusParameters": {

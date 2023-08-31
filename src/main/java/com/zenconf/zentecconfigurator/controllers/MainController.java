@@ -115,7 +115,7 @@ public class MainController extends CommonController implements Initializable {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(file),
-                            "windows-1251"))) {
+                            StandardCharsets.UTF_8))) {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 Object obj = parser.parse(reader);
@@ -161,16 +161,16 @@ public class MainController extends CommonController implements Initializable {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(file),
-                            "windows-1251"))) {
+                            StandardCharsets.UTF_8))) {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 Object obj = parser.parse(reader);
                 JSONObject jsonObject = (JSONObject) obj;
-                alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<>() {
+                alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<List<String>>() {
                 });
-                alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
+                alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<List<String>>() {
                 });
-                warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
+                warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<List<String>>() {
                 });
 
             } catch (Exception e) {
@@ -211,12 +211,12 @@ public class MainController extends CommonController implements Initializable {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(file),
-                            "windows-1251"))) {
+                            StandardCharsets.UTF_8))) {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 Object obj = parser.parse(reader);
                 JSONObject jsonObject = (JSONObject) obj;
-                actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
+                actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<List<Actuator>>() {
                 });
 
             } catch (Exception e) {
@@ -257,12 +257,12 @@ public class MainController extends CommonController implements Initializable {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(file),
-                            "windows-1251"))) {
+                            StandardCharsets.UTF_8))) {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 Object obj = parser.parse(reader);
                 JSONObject jsonObject = (JSONObject) obj;
-                sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
+                sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<List<Sensor>>() {
                 });
 
             } catch (Exception e) {
@@ -304,12 +304,12 @@ public class MainController extends CommonController implements Initializable {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(file),
-                            "windows-1251"))) {
+                            StandardCharsets.UTF_8))) {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 Object obj = parser.parse(reader);
                 JSONObject jsonObject = (JSONObject) obj;
-                schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
+                schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<List<Scheme>>() {
                 });
 
             } catch (Exception e) {

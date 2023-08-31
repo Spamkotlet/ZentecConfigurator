@@ -387,8 +387,12 @@ public class IOMonitorController implements Initializable {
         int currentSeasonNumber = 0;
         if (number < 8) {
             switch (number) {
-                case 2 -> currentSeasonNumber = 1;
-                case 4 -> currentSeasonNumber = 2;
+                case 2:
+                    currentSeasonNumber = 1;
+                    break;
+                case 4:
+                    currentSeasonNumber = 2;
+                    break;
             }
         } else {
             currentSeasonNumber = 3;

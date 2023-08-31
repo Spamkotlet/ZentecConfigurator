@@ -12,6 +12,7 @@ module com.zenconf.zentecconfigurator {
     requires json.simple;
     requires jlibmodbus;
     requires jssc;
+    requires org.apache.logging.log4j;
 
     opens com.zenconf.zentecconfigurator to javafx.fxml;
     opens com.zenconf.zentecconfigurator.models to com.fasterxml.jackson.databind;

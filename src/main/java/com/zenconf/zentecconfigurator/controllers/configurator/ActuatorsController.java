@@ -51,29 +51,31 @@ public class ActuatorsController implements Initializable {
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
 
-            Parameter heatExchangerParameter = new Parameter();
-            heatExchangerParameter.setName("Теплообменники");
-            heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
-            ElementTitledPane heatExchangerTitledPane = null;
-            try {
-                heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
-            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
+            if (mainParameters != null) {
+                Parameter heatExchangerParameter = new Parameter();
+                heatExchangerParameter.setName("Теплообменники");
+                heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
+                ElementTitledPane heatExchangerTitledPane = null;
+                try {
+                    heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
+                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
 
-            Parameter valveHeatersParameter = new Parameter();
-            valveHeatersParameter.setName("Обогрев клапанов");
-            valveHeatersParameter.setAttributes(mainParameters.getValveHeatersAttributes());
-            ElementTitledPane valveHeatersTitledPane = null;
-            try {
-                valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+                Parameter valveHeatersParameter = new Parameter();
+                valveHeatersParameter.setName("Обогрев клапанов");
+                valveHeatersParameter.setAttributes(mainParameters.getValveHeatersAttributes());
+                ElementTitledPane valveHeatersTitledPane = null;
+                try {
+                    valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
+                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
             }
-            ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
-            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
 
             for (Actuator actuatorInScheme : actuatorsInScheme) {
                 if (actuatorInScheme.getIsUsedDefault()) {

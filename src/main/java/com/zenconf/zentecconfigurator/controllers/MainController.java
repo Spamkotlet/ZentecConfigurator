@@ -3,7 +3,11 @@ package com.zenconf.zentecconfigurator.controllers;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.Application;
+import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.MainParameters;
+import com.zenconf.zentecconfigurator.models.Scheme;
+import com.zenconf.zentecconfigurator.models.Sensor;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
@@ -40,6 +46,10 @@ public class MainController extends CommonController implements Initializable {
     public static List<String> alarms0;
     public static List<String> alarms1;
     public static List<String> warnings;
+    public static List<Actuator> actuatorList;
+    public static List<Sensor> sensorList;
+    public static List<Scheme> schemes;
+    private static final Logger logger = LogManager.getLogger(MainController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,8 +63,11 @@ public class MainController extends CommonController implements Initializable {
         goToHelpButton.setOnAction(e -> onClickButton("Справка", "help-page-view.fxml"));
         goToSettingsButton.setOnAction(e -> onClickButton("Настройки", "settings.fxml"));
 
-        mainParameters = getMainParametersFromJson();
+        getMainParametersFromJson();
         getAlarmsFromJson();
+        getActuatorsFromJson();
+        getSensorsFromJson();
+        getSchemesFromJson();
     }
 
     private void onClickButton(String panelName, String resourcePath) {
@@ -80,45 +93,238 @@ public class MainController extends CommonController implements Initializable {
         mainAnchorPane.getChildren().add(node);
     }
 
-    private MainParameters getMainParametersFromJson() {
-        String file = "src/main_parameters.json";
+    private void getMainParametersFromJson() {
+        Thread thread;
+        Runnable task = () -> {
+            File dir1 = new File("");
+            String file = null;
+            try {
+                file = dir1.getCanonicalPath() + "\\main_parameters.json";
+            } catch (IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                logger.error(e.getMessage());
+                throw new RuntimeException(e);
+            }
 
-        MainParameters mainParameters;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return mainParameters;
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file),
+                            "windows-1251"))) {
+                JSONParser parser = new JSONParser();
+                ObjectMapper mapper = new ObjectMapper();
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj;
+                mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<MainParameters>() {
+                });
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            }
+        };
+        thread = new Thread(task);
+        thread.start();
     }
 
     private void getAlarmsFromJson() {
-        String file = "src/alarms_list.json";
+        Thread thread;
+        Runnable task = () -> {
+            File dir1 = new File("");
+            String file = null;
+            try {
+                file = dir1.getCanonicalPath() + "\\alarms_list.json";
+            } catch (IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                logger.error(e.getMessage());
+                throw new RuntimeException(e);
+            }
 
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<>() {
-            });
-            alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
-            });
-            warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file),
+                            "windows-1251"))) {
+                JSONParser parser = new JSONParser();
+                ObjectMapper mapper = new ObjectMapper();
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj;
+                alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<>() {
+                });
+                alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
+                });
+                warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
+                });
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            }
+        };
+        thread = new Thread(task);
+        thread.start();
+    }
+
+    private void getActuatorsFromJson() {
+        Thread thread;
+        Runnable task = () -> {
+            File dir1 = new File("");
+            String file = null;
+            try {
+                file = dir1.getCanonicalPath() + "\\actuators_attributes.json";
+            } catch (IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                logger.error(e.getMessage());
+                throw new RuntimeException(e);
+            }
+
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file),
+                            "windows-1251"))) {
+                JSONParser parser = new JSONParser();
+                ObjectMapper mapper = new ObjectMapper();
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj;
+                actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
+                });
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            }
+        };
+        thread = new Thread(task);
+        thread.start();
+    }
+
+    private void getSensorsFromJson() {
+        Thread thread;
+        Runnable task = () -> {
+            File dir1 = new File("");
+            String file = null;
+            try {
+                file = dir1.getCanonicalPath() + "\\sensors_attributes.json";
+            } catch (IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                logger.error(e.getMessage());
+                throw new RuntimeException(e);
+            }
+
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file),
+                            "windows-1251"))) {
+                JSONParser parser = new JSONParser();
+                ObjectMapper mapper = new ObjectMapper();
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj;
+                sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
+                });
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            }
+        };
+        thread = new Thread(task);
+        thread.start();
+    }
+
+    // Чтение файла со схемами schemes.json и сохранение схем
+    private void getSchemesFromJson() {
+        Thread thread;
+        Runnable task = () -> {
+            File dir1 = new File("");
+            String file = null;
+            try {
+                file = dir1.getCanonicalPath() + "\\schemes.json";
+            } catch (IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                logger.error(e.getMessage());
+                throw new RuntimeException(e);
+            }
+
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(file),
+                            "windows-1251"))) {
+                JSONParser parser = new JSONParser();
+                ObjectMapper mapper = new ObjectMapper();
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj;
+                schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
+                });
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Файл отсутствует");
+                    alert.setContentText(e.getMessage());
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            }
+        };
+        thread = new Thread(task);
+        thread.start();
     }
 }

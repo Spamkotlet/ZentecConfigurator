@@ -2,6 +2,7 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
@@ -86,9 +87,9 @@ public class ChangeSchemeController implements Initializable {
 
     // Что происходит при открытии экрана
     protected void onOpenedChoiceSchemePane() throws Exception {
-        schemes = getSchemesFromJson();
-        actuatorList = getActuatorsFromJson();
-        sensorList = getSensorsFromJson();
+        schemes = MainController.schemes;
+        actuatorList = MainController.actuatorList;
+        sensorList = MainController.sensorList;
 
         ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
 
@@ -239,65 +240,5 @@ public class ChangeSchemeController implements Initializable {
             schemeStrings.add(scheme.getNumber() + 1 + " - " + scheme.getName());
         }
         return FXCollections.observableArrayList(schemeStrings);
-    }
-
-    private List<Actuator> getActuatorsFromJson() {
-        String file = "src/actuators_attributes.json";
-
-        List<Actuator> actuators;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            actuators = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return actuators;
-    }
-
-    private List<Sensor> getSensorsFromJson() {
-        String file = "src/sensors_attributes.json";
-
-        List<Sensor> sensors;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        "windows-1251"))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            sensors = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return sensors;
-    }
-
-    // Чтение файла со схемами schemes.json и сохранение схем
-    private List<Scheme> getSchemesFromJson() {
-        String file = "src/schemes.json";
-        List<Scheme> schemes;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        "windows-1251"))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return schemes;
     }
 }

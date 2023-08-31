@@ -1,11 +1,13 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.Application;
+import com.zenconf.zentecconfigurator.models.nodes.mainview.HeaderConfiguratorButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,14 +16,11 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class HomePageController implements Initializable {
 
-    private final Map<Button, Node> panels = new HashMap<>();
+    public static final Map<String, Node> panels = new HashMap<>();
 
     @FXML
     public Button goToTestButton;
@@ -31,11 +30,17 @@ public class HomePageController implements Initializable {
     public Button goToZ031Button;
     @FXML
     public VBox mainViewVBox;
+    public static VBox mainViewVBox1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        goToConfiguratorButton.setOnAction(this::onClickConfiguratorButton);
-        goToZ031Button.setOnAction(this::onClickZ031Button);
+        mainViewVBox1 = mainViewVBox;
+
+        goToConfiguratorButton.setOnAction(e -> {
+            onClickButton("Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
+//            MainController.leftHeaderButtonsHBox1.getChildren().add(new HeaderConfiguratorButton());
+        });
+        goToZ031Button.setOnAction(e -> onClickButton("ПУ Z031", "/com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml"));
 
         Image testImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/test_button.png")));
         ImageView testImageView = new ImageView(testImage);
@@ -62,30 +67,15 @@ public class HomePageController implements Initializable {
         goToZ031Button.setText("");
     }
 
-    private void onClickConfiguratorButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
+    private void onClickButton(String panelName, String resourcePath) {
+        Node node = panels.get(panelName);
         if (node == null) {
             try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
+                node = createNewNode(resourcePath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickZ031Button(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
+            panels.put(panelName, node);
         }
         showNode(node);
     }

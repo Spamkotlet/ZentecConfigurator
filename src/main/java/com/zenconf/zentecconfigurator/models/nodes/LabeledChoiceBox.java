@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortException;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
@@ -67,7 +68,7 @@ public class LabeledChoiceBox {
                         getChoiceBoxItems(attributeValues)
                                 .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
                 );
-            } catch (Exception ex) {
+            } catch (SerialPortException ex) {
                 errorText = "Ошибка чтения";
                 errorLabel.setText(errorText);
                 errorLabel.setVisible(true);

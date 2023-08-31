@@ -6,13 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.SettingsController">
+<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.SettingsController">
     <content>
         <VBox minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
             <children>
@@ -133,64 +132,6 @@
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                     <children>
                                                         <Button fx:id="disconnectDeviceButton" mnemonicParsing="false" text="Отключиться" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                            </children>
-                                        </HBox>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                            <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="NEVER">
-                                                    <children>
-                                                        <Label alignment="CENTER" text="Адрес" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <Label alignment="CENTER" text="Значение" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <Label alignment="CENTER" text="Тип переменной" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <Label alignment="CENTER" text="Функция" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane layoutX="640.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <Label alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                            </children>
-                                        </HBox>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                            <children>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="NEVER">
-                                                    <children>
-                                                        <TextField fx:id="addressTextField" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <TextField fx:id="valueTextField" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <ChoiceBox fx:id="varTypeChoiceBox" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <ChoiceBox fx:id="functionChoiceBox" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                    <children>
-                                                        <Button fx:id="testModbusButton" mnemonicParsing="false" text="ТЕСТ" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                     </children>
                                                 </AnchorPane>
                                             </children>

@@ -7,6 +7,7 @@ import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
 import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -124,10 +125,12 @@ public class Z031Controller implements Initializable {
             Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
             thread.start();
         } catch (RuntimeException exception) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ошибка при записи в ПУ\n" + exception.getMessage());
-            alert.setHeaderText("Ошибка Modbus");
-            alert.show();
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Ошибка при записи в ПУ\n" + exception.getMessage());
+                alert.setHeaderText("Ошибка Modbus");
+                alert.show();
+            });
             throw exception;
         }
 
@@ -138,10 +141,12 @@ public class Z031Controller implements Initializable {
             Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
             thread.start();
         } catch (RuntimeException exception) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ошибка при чтении из ПУ\n" + exception.getMessage());
-            alert.setHeaderText("Ошибка Modbus");
-            alert.show();
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Ошибка при чтении из ПУ\n" + exception.getMessage());
+                alert.setHeaderText("Ошибка Modbus");
+                alert.show();
+            });
             throw exception;
         }
     }

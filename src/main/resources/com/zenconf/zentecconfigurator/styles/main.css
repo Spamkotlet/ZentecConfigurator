@@ -1,5 +1,8 @@
 .button-main-header {
     -fx-text-fill: "#E9E9E9";
+    -fx-font-size: 16px;
+    -fx-pref-height: 40px;
+    -fx-alignment: "center";
     -fx-background-color: "#343435";
     -fx-background-radius: 0px;
 }
@@ -10,6 +13,12 @@
 }
 
 .button-main-header-active {
+    -fx-text-fill: "#343435";
+    -fx-background-color: "#E9E9E9";
+    -fx-background-radius: 0px;
+}
+
+.button-main-header:focused {
     -fx-text-fill: "#343435";
     -fx-background-color: "#E9E9E9";
     -fx-background-radius: 0px;

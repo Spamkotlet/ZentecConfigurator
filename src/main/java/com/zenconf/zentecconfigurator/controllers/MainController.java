@@ -4,13 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.Application;
 import com.zenconf.zentecconfigurator.models.MainParameters;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -24,17 +24,18 @@ import java.util.ResourceBundle;
 
 public class MainController extends CommonController implements Initializable {
 
-    private final Map<Button, Node> panels = new HashMap<>();
+    private final Map<String, Node> panels = new HashMap<>();
     @FXML
     public Button goToHomeButton;
-    @FXML
-    public Button goToConfiguratorButton;
     @FXML
     public Button goToHelpButton;
     @FXML
     public Button goToSettingsButton;
     @FXML
     public AnchorPane mainAnchorPane;
+    @FXML
+    public HBox leftHeaderButtonsHBox;
+    public static HBox leftHeaderButtonsHBox1;
     public static MainParameters mainParameters;
     public static List<String> alarms0;
     public static List<String> alarms1;
@@ -42,161 +43,29 @@ public class MainController extends CommonController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        leftHeaderButtonsHBox1 = leftHeaderButtonsHBox;
 
-        if (!goToHomeButton.getStyleClass().contains("button-main-header-active")) {
-            goToHomeButton.getStyleClass().remove("button-main-header");
-            goToHomeButton.getStyleClass().add("button-main-header-active");
-        }
+        onClickButton("Домашняя", "home-page-view.fxml");
 
-        Node node;
-        try {
-            node = createNewNode("home-page-view.fxml");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        showNode(node);
-
-        goToHomeButton.setOnAction(this::onClickHomeButton);
-        goToHelpButton.setOnAction(this::onClickHelpButton);
-        goToSettingsButton.setOnAction(this::onClickSettingsButton);
-//        goToConfiguratorButton.setOnAction(this::onClickConfiguratorButton);
+        goToHomeButton.setOnAction(e -> {
+            onClickButton("Домашняя", "home-page-view.fxml");
+        });
+        goToHelpButton.setOnAction(e -> onClickButton("Справка", "help-page-view.fxml"));
+        goToSettingsButton.setOnAction(e -> onClickButton("Настройки", "settings.fxml"));
 
         mainParameters = getMainParametersFromJson();
         getAlarmsFromJson();
     }
 
-    private void onClickHomeButton(ActionEvent actionEvent) {
-        if (!goToHelpButton.getStyleClass().contains("button-main-header")) {
-            goToHelpButton.getStyleClass().add("button-main-header");
-            goToHelpButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
-            goToConfiguratorButton.getStyleClass().add("button-main-header");
-            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
-            goToSettingsButton.getStyleClass().add("button-main-header");
-            goToSettingsButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToHomeButton.getStyleClass().contains("button-main-header-active")) {
-            goToHomeButton.getStyleClass().remove("button-main-header");
-            goToHomeButton.getStyleClass().add("button-main-header-active");
-        }
-
-        Button button = (Button) actionEvent.getSource();
-        Node node = panels.get(button);
+    private void onClickButton(String panelName, String resourcePath) {
+        Node node = panels.get(panelName);
         if (node == null) {
             try {
-                node = createNewNode("home-page-view.fxml");
+                node = createNewNode(resourcePath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickConfiguratorButton(ActionEvent actionEvent) {
-        if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
-            goToHomeButton.getStyleClass().add("button-main-header");
-            goToHomeButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToHelpButton.getStyleClass().contains("button-main-header")) {
-            goToHelpButton.getStyleClass().add("button-main-header");
-            goToHelpButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
-            goToSettingsButton.getStyleClass().add("button-main-header");
-            goToSettingsButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header-active")) {
-            goToConfiguratorButton.getStyleClass().remove("button-main-header");
-            goToConfiguratorButton.getStyleClass().add("button-main-header-active");
-        }
-
-        Button button = (Button) actionEvent.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickHelpButton(ActionEvent actionEvent) {
-        if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
-            goToHomeButton.getStyleClass().add("button-main-header");
-            goToHomeButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
-            goToConfiguratorButton.getStyleClass().add("button-main-header");
-            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToSettingsButton.getStyleClass().contains("button-main-header")) {
-            goToSettingsButton.getStyleClass().add("button-main-header");
-            goToSettingsButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToHelpButton.getStyleClass().contains("button-main-header-active")) {
-            goToHelpButton.getStyleClass().remove("button-main-header");
-            goToHelpButton.getStyleClass().add("button-main-header-active");
-        }
-
-        Button button = (Button) actionEvent.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("help-page-view.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickSettingsButton(ActionEvent actionEvent) {
-        if (!goToHomeButton.getStyleClass().contains("button-main-header")) {
-            goToHomeButton.getStyleClass().add("button-main-header");
-            goToHomeButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToConfiguratorButton.getStyleClass().contains("button-main-header")) {
-            goToConfiguratorButton.getStyleClass().add("button-main-header");
-            goToConfiguratorButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToHelpButton.getStyleClass().contains("button-main-header")) {
-            goToHelpButton.getStyleClass().add("button-main-header");
-            goToHelpButton.getStyleClass().remove("button-main-header-active");
-        }
-
-        if (!goToSettingsButton.getStyleClass().contains("button-main-header-active")) {
-            goToSettingsButton.getStyleClass().remove("button-main-header");
-            goToSettingsButton.getStyleClass().add("button-main-header-active");
-        }
-
-        Button button = (Button) actionEvent.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("settings.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
+            panels.put(panelName, node);
         }
         showNode(node);
     }
@@ -252,5 +121,4 @@ public class MainController extends CommonController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 }

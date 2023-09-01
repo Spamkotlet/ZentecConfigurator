@@ -8,8 +8,11 @@ import com.intelligt.modbus.jlibmodbus.msg.request.ReadInputRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.request.WriteMultipleRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.response.ReadInputRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.serial.*;
+import com.zenconf.zentecconfigurator.controllers.SettingsController;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.scene.control.Alert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
@@ -23,6 +26,9 @@ public class ModbusUtilSingleton {
     private int dataBits = 8;
     private SerialPort.Parity parity = SerialPort.Parity.EVEN;
     private int stopBits = 1;
+
+    private static final Logger logger = LogManager.getLogger(ModbusUtilSingleton.class);
+
 
     public static ModbusUtilSingleton getInstance() {
         if (instance == null) {
@@ -70,7 +76,7 @@ public class ModbusUtilSingleton {
                     master.connect();
                 }
             }
-            System.out.println(master.readHoldingRegisters(slaveId, 65520, 1)[0]);
+            logger.info("Устройство подключено");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Успешное подключение");
             alert.setTitle("Успех");
@@ -81,8 +87,10 @@ public class ModbusUtilSingleton {
                     master.disconnect();
                 }
             }
+            String error = "Ошибка при подключении к контроллеру\n" + ex.getMessage();
+            logger.error(error);
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ошибка при подключении к контроллеру\n" + ex.getMessage());
+            alert.setContentText(error);
             alert.setHeaderText("Ошибка Modbus");
             alert.setTitle("Ошибка");
             alert.show();
@@ -102,6 +110,7 @@ public class ModbusUtilSingleton {
                     master.disconnect();
                 }
             }
+            logger.info("Устройство отключено");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Устройство отключено");
             alert.setTitle("Успех");
@@ -124,13 +133,23 @@ public class ModbusUtilSingleton {
         } else {
             value = readSingleModbusRegister(address, varType);
         }
-
+        logger.info("[ЧТЕНИЕ] address: " + address + " type: " + varType + " value: " + value);
         return value;
+    }
+
+    public synchronized void writeModbus(int address, VarTypes varType, Object value) throws Exception {
+        if (varType.equals(VarTypes.BOOL)) {
+            writeModbusCoil(address, Boolean.parseBoolean(value.toString()));
+        } else if (varType.equals(VarTypes.FLOAT)) {
+            writeMultipleModbusRegister(address, Float.parseFloat(value.toString()));
+        } else {
+            writeSingleModbusRegister(address, Integer.parseInt(value.toString()), varType);
+        }
+        logger.info("[ЗАПИСЬ] address: " + address + " type: " + varType + " value: " + value);
     }
 
     public synchronized boolean readModbusCoil(int address) throws Exception {
         boolean coilValue = false;
-        System.out.println("READ address: " + address + ", type: BOOL");
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -148,8 +167,6 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized void writeModbusCoil(int address, boolean value) throws Exception {
-        System.out.println("WRITE address: " + address + ", type: BOOL");
-
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -170,7 +187,6 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized long readSingleModbusRegister(int address, VarTypes varType) throws Exception {
-        System.out.println("READ address: " + address);
 
         long registerValue = 0;
         try {
@@ -211,7 +227,6 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized void writeSingleModbusRegister(int address, int value, VarTypes varType) throws Exception {
-        System.out.println("WRITE address: " + address);
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -237,8 +252,6 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized float readMultipleModbusRegister(int address) throws Exception {
-        System.out.println("READ address: " + address);
-
         float registerValue = 0;
         try {
             if (!master.isConnected()) {

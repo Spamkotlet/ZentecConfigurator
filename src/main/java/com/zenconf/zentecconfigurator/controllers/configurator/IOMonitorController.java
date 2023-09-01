@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
@@ -201,6 +202,11 @@ public class IOMonitorController implements Initializable {
                         });
                         pollingPreviousState = false;
                         stopPolling();
+                        try {
+                            modbusUtilSingleton.disconnect();
+                        } catch (ModbusIOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
             };

@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,13 +34,14 @@ public class HomePageController implements Initializable {
     public VBox mainViewVBox;
     public static VBox mainViewVBox1;
 
+    private static final Logger logger = LogManager.getLogger(HomePageController.class);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mainViewVBox1 = mainViewVBox;
 
         goToConfiguratorButton.setOnAction(e -> {
             onClickButton("Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
-//            MainController.leftHeaderButtonsHBox1.getChildren().add(new HeaderConfiguratorButton());
         });
         goToZ031Button.setOnAction(e -> onClickButton("ПУ Z031", "/com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml"));
 
@@ -77,6 +80,7 @@ public class HomePageController implements Initializable {
             }
             panels.put(panelName, node);
         }
+        logger.info("Открыть окно <" + panelName + ">");
         showNode(node);
     }
 

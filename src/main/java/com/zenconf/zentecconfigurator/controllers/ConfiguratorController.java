@@ -1,7 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class ConfiguratorController implements Initializable {
 
-    private final Map<Button, Node> panels = new HashMap<>();
+    private final Map<String, Node> panels = new HashMap<>();
 
     @FXML
     public Button schemeButton;
@@ -40,13 +41,25 @@ public class ConfiguratorController implements Initializable {
     @FXML
     public SplitPane mainSplitPane;
 
+    private static final Logger logger = LogManager.getLogger(ConfiguratorController.class);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        schemeButton.setOnAction(this::onClickSchemeButton);
-        sensorsButton.setOnAction(this::onClickSensorsButton);
-        actuatorsButton.setOnAction(this::onClickActuatorsButton);
-        ioButton.setOnAction(this::onClickIOButton);
-        peripheryButton.setOnAction(this::onClickPeripheryButton);
+        schemeButton.setOnAction(
+                e -> onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml")
+        );
+        sensorsButton.setOnAction(
+                e -> onClickButton("Датчики", "/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml")
+        );
+        actuatorsButton.setOnAction(
+                e -> onClickButton("Испонительные устройства", "/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml")
+        );
+        ioButton.setOnAction(
+                e -> onClickButton("Мониторинг", "/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml")
+        );
+        peripheryButton.setOnAction(
+                e -> onClickButton("Периферия", "/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml")
+        );
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
         ImageView schemeImageView = new ImageView(schemeImage);
@@ -89,73 +102,17 @@ public class ConfiguratorController implements Initializable {
         ioButton.setText("");
     }
 
-    private void onClickSchemeButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
+    private void onClickButton(String panelName, String resourcePath) {
+        Node node = panels.get(panelName);
         if (node == null) {
             try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+                node = createNewNode(resourcePath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            panels.put(button, node);
+            panels.put(panelName, node);
         }
-        showNode(node);
-    }
-
-    private void onClickSensorsButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickActuatorsButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickPeripheryButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
-        showNode(node);
-    }
-
-    private void onClickIOButton(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        Node node = panels.get(button);
-        if (node == null) {
-            try {
-                node = createNewNode("/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            panels.put(button, node);
-        }
+        logger.info("Открыть окно <" + panelName + ">");
         showNode(node);
     }
 

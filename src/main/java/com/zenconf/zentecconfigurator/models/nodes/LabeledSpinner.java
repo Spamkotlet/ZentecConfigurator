@@ -188,7 +188,6 @@ public class LabeledSpinner {
             errorText = "Ошибка чтения";
             errorLabel.setText(errorText);
             errorLabel.setVisible(true);
-            System.out.println("ErrorText: " + errorText);
             throw new RuntimeException(e);
         }
         spinner.setValueFactory(spinnerFactory);
@@ -202,10 +201,8 @@ public class LabeledSpinner {
             errorText = "Ошибка записи";
             errorLabel.setText(errorText);
             errorLabel.setVisible(true);
-            System.out.println("ErrorText: " + errorText);
             throw new RuntimeException(e);
         }
-        System.out.println("Value: " + spinner.getValue());
     }
 
     public void setDefaultValue() {

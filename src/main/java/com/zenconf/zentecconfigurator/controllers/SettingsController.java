@@ -10,8 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import jssc.SerialPortList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
@@ -37,8 +40,11 @@ public class SettingsController implements Initializable {
 
     ModbusUtilSingleton modbusUtilSingleton;
 
+    private static final Logger logger = LogManager.getLogger(SettingsController.class);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.info("Открыто окно <Настройки>");
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         baudRateChoiceBox.setItems(getBaudRateObservableList());
 
@@ -59,13 +65,25 @@ public class SettingsController implements Initializable {
     }
 
     private void connectDevice(ActionEvent actionEvent) {
+        String comPort = comPortChoiceBox.getValue();
+        int slaveId = slaveIdSpinner.getValue();
+        SerialPort.BaudRate baudRate = baudRateChoiceBox.getValue();
+        int dataBits = dataBitsChoiceBox.getValue();
+        SerialPort.Parity parity = parityChoiceBox.getValue();
+        int stopBits = stopBitsChoiceBox.getValue();
 
-        modbusUtilSingleton.setDevice(comPortChoiceBox.getValue());
-        modbusUtilSingleton.setSlaveId(slaveIdSpinner.getValue());
-        modbusUtilSingleton.setBaudRate(baudRateChoiceBox.getValue());
-        modbusUtilSingleton.setDataBits(dataBitsChoiceBox.getValue());
-        modbusUtilSingleton.setParity(parityChoiceBox.getValue());
-        modbusUtilSingleton.setStopBits(stopBitsChoiceBox.getValue());
+        logger.info("Подключиться к устройству. PORT: " + comPort +
+                "; ID: " + slaveId +
+                "; BAUD: " + baudRate +
+                "; DBITS: " + dataBits +
+                "; PARITY: " + parity +
+                "; SBITS: " + stopBits);
+        modbusUtilSingleton.setDevice(comPort);
+        modbusUtilSingleton.setSlaveId(slaveId);
+        modbusUtilSingleton.setBaudRate(baudRate);
+        modbusUtilSingleton.setDataBits(dataBits);
+        modbusUtilSingleton.setParity(parity);
+        modbusUtilSingleton.setStopBits(stopBits);
         modbusUtilSingleton.connect();
     }
 
@@ -84,6 +102,8 @@ public class SettingsController implements Initializable {
         if (!devicesList.isEmpty()) {
             comPortChoiceBox.setValue(devicesList.get(0));
         }
+
+        logger.info("Обновление COM-портов " + Arrays.toString(devices));
     }
 
     private ObservableList<SerialPort.BaudRate> getBaudRateObservableList() {

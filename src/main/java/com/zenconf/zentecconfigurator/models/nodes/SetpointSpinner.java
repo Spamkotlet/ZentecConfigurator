@@ -87,7 +87,6 @@ public class SetpointSpinner {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-            System.out.println("Value: " + spinner.getValue());
         });
 
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
@@ -97,7 +96,6 @@ public class SetpointSpinner {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("Value: " + spinner.getValue());
             }
         });
         spinner.editorProperty().get().setAlignment(Pos.CENTER);

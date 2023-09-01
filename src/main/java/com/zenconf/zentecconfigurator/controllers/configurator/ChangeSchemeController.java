@@ -96,11 +96,8 @@ public class ChangeSchemeController implements Initializable {
         String selectedSchemeName = "";
         if (previousScheme != null) {
             selectedSchemeName = previousScheme.getNumber() + 1 + " - " + previousScheme.getName();
-            System.out.println(schemeNumberChoiceBox.getValue());
-            System.out.println(selectedSchemeName);
         }
         if (!schemeNumberChoiceBox.getValue().equals(selectedSchemeName)) {
-            System.out.println("Выбор схемы");
             previousScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
             onSelectedSchemeNumber();
         }
@@ -214,7 +211,7 @@ public class ChangeSchemeController implements Initializable {
     private void writeSchemeNumberByModbus() throws Exception {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeSingleModbusRegister(1436, selectedScheme.getNumber(), VarTypes.UINT8);
+            modbusUtilSingleton.writeModbus(1436, VarTypes.UINT8, selectedScheme.getNumber());
         }
     }
 
@@ -223,7 +220,7 @@ public class ChangeSchemeController implements Initializable {
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get((int) modbusUtilSingleton.readSingleModbusRegister(1436, VarTypes.UINT8));
+            selectedScheme = schemes.get(Integer.parseInt(modbusUtilSingleton.readModbus(1436, VarTypes.UINT8).toString()));
         }
         return selectedScheme;
     }

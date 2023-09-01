@@ -72,7 +72,6 @@ public class LabeledChoiceBox {
                 errorText = "Ошибка чтения";
                 errorLabel.setText(errorText);
                 errorLabel.setVisible(true);
-                System.out.println("ErrorText: " + errorText);
                 throw new RuntimeException(ex);
             }
 
@@ -85,10 +84,8 @@ public class LabeledChoiceBox {
                     errorText = "Ошибка записи";
                     errorLabel.setText(errorText);
                     errorLabel.setVisible(true);
-                    System.out.println("ErrorText: " + errorText);
                     throw new RuntimeException(ex);
                 }
-                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + value);
             });
         } else {
             choiceBox.setValue(
@@ -103,10 +100,8 @@ public class LabeledChoiceBox {
                     errorText = "Ошибка записи";
                     errorLabel.setText(errorText);
                     errorLabel.setVisible(true);
-                    System.out.println("ErrorText: " + errorText);
                     throw new RuntimeException(ex);
                 }
-                System.out.println("Index: " + attributeValues.indexOf(choiceBox.getValue()) + " Value: " + choiceBox.getValue());
             });
         }
 

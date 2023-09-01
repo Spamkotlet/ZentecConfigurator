@@ -57,8 +57,8 @@ public class Z031Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        electricParameters = (ElectricParameters) getZ031ParametersFromJson().get(0);
-        waterParameters = (WaterParameters) getZ031ParametersFromJson().get(1);
+        electricParameters = MainController.electricParameters;
+        waterParameters = MainController.waterParameters;
 
         List<LabeledSpinner> electricLabeledSpinnerList = new ArrayList<>();
         electricParametersVBox.getChildren().clear();
@@ -95,29 +95,6 @@ public class Z031Controller implements Initializable {
         }
         readZ031ParametersButton.setOnAction(e -> readParameters(z031LabeledSpinnerList));
         readParameters(z031LabeledSpinnerList);
-    }
-
-    private List<Object> getZ031ParametersFromJson() {
-        String file = "src/z031_parameters.json";
-
-        ElectricParameters electricParameters;
-        WaterParameters waterParameters;
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(file),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            electricParameters = mapper.readValue(jsonObject.get("electric").toString(), new TypeReference<ElectricParameters>() {
-            });
-            waterParameters = mapper.readValue(jsonObject.get("water").toString(), new TypeReference<WaterParameters>() {
-            });
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return Arrays.asList(electricParameters, waterParameters);
     }
 
     private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {

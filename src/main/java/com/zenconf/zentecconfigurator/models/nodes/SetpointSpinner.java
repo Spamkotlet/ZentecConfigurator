@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 public class SetpointSpinner {
 
@@ -23,8 +24,8 @@ public class SetpointSpinner {
 
     public Node getSpinner() throws Exception {
         String labelText = attribute.getName();
-        double minValue = attribute.getMinValue();
-        double maxValue = attribute.getMaxValue();
+        int minValue = attribute.getMinValue();
+        int maxValue = attribute.getMaxValue();
 
         AnchorPane labelAnchor = createLabelAnchor(labelText);
         AnchorPane spinnerAnchor = createSpinnerAnchor(minValue, maxValue);
@@ -71,16 +72,17 @@ public class SetpointSpinner {
         return labelAnchor;
     }
 
-    private AnchorPane createSpinnerAnchor(double minValue, double maxValue) throws Exception {
+    private AnchorPane createSpinnerAnchor(int minValue, int maxValue) throws Exception {
         int initValue = 0;
-        Spinner<Double> spinner = new Spinner<>(minValue, maxValue, initValue, 0.1);
+        Spinner<Integer> spinner = new Spinner<>(minValue, maxValue, initValue, 0.1);
         spinner.setEditable(true);
         spinner.setPrefWidth(200);
         spinner.setPrefHeight(55);
-        SpinnerValueFactory<Double> spinnerFactory =
-                new SpinnerValueFactory.DoubleSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), Double.parseDouble(attribute.readModbusParameter()));
+        SpinnerValueFactory<Integer> spinnerFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
         spinner.setValueFactory(spinnerFactory);
+
         spinner.setOnMouseReleased(e -> {
             try {
                 attribute.writeModbusParameter(spinner.getValue().toString());
@@ -92,7 +94,7 @@ public class SetpointSpinner {
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 try {
-                    attribute.writeModbusParameter(Float.parseFloat(spinner.getValue().toString()));
+                    attribute.writeModbusParameter(Integer.parseInt(spinner.getValue().toString()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

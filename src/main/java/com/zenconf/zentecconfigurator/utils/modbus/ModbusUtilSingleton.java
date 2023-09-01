@@ -226,12 +226,10 @@ public class ModbusUtilSingleton {
                     registerValue -= Byte.MAX_VALUE * 2 + 2;
                 }
             } else if (varType.equals(VarTypes.SINT16)) {
-                System.out.println(Arrays.toString(master.readHoldingRegisters(slaveId, address, 1)));
                 registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
                 if (registerValue > 32767) {
                     registerValue -= 32767 * 2 + 2;
                 }
-                System.out.println(registerValue);
             }
         } catch (RuntimeException e) {
             throw e;
@@ -310,8 +308,6 @@ public class ModbusUtilSingleton {
 
     // Запись Дробный 4-байт
     public synchronized void writeMultipleModbusRegister(int address, float value) throws Exception {
-        System.out.println("WRITE address: " + address);
-
         try {
             int intValue = Float.floatToIntBits(value);
             byte[] bytes = new byte[Float.BYTES];

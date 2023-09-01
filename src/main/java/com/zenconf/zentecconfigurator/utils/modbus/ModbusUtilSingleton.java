@@ -8,8 +8,9 @@ import com.intelligt.modbus.jlibmodbus.msg.request.ReadInputRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.request.WriteMultipleRegistersRequest;
 import com.intelligt.modbus.jlibmodbus.msg.response.ReadInputRegistersResponse;
 import com.intelligt.modbus.jlibmodbus.serial.*;
-import com.zenconf.zentecconfigurator.controllers.SettingsController;
+import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 public class ModbusUtilSingleton {
     private static ModbusUtilSingleton instance;
 
-    private ModbusMaster master;
+    private static ModbusMaster master;
     private int slaveId = 1;
     private String device;
     private SerialPort.BaudRate baudRate = SerialPort.BaudRate.BAUD_RATE_115200;
@@ -63,44 +64,57 @@ public class ModbusUtilSingleton {
                 testConnection();
             }
         } catch (SerialPortException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (ModbusIOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void testConnection() throws ModbusIOException {
-        try {
-            if (master != null) {
-                if (!master.isConnected()) {
-                    master.connect();
-                }
-            }
-            logger.info("Устройство подключено");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Успешное подключение");
-            alert.setTitle("Успех");
-            alert.show();
-        } catch (Exception ex) {
-            if (master != null) {
-                if (master.isConnected()) {
-                    master.disconnect();
-                }
-            }
-            String error = "Ошибка при подключении к контроллеру\n" + ex.getMessage();
-            logger.error(error);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(error);
-            alert.setHeaderText("Ошибка Modbus");
-            alert.setTitle("Ошибка");
-            alert.show();
-        } finally {
-            try {
-                master.disconnect();
-            } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+        if (master != null) {
+            if (!master.isConnected()) {
+                Thread thread = getThread();
+                thread.start();
             }
         }
+    }
+
+    private Thread getThread() {
+        Thread thread;
+        Runnable task = () -> {
+            try {
+                logger.info("Подключение...");
+                master.connect();
+                MainController.mainParameters.getDeviceAddressAttribute().readModbusParameter();
+                Thread.sleep(1000);
+                logger.info("Устройство подключено");
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Успешное подключение");
+                    alert.setTitle("Успех");
+                    alert.show();
+                });
+            } catch (Exception e) {
+                String errorMessage = "Ошибка при подключении к контроллеру\n" + e.getMessage();
+                logger.error(errorMessage);
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(errorMessage);
+                    alert.setHeaderText("Ошибка Modbus");
+                    alert.setTitle("Ошибка");
+                    alert.show();
+                });
+                throw new RuntimeException(e);
+            } finally {
+                try {
+                    master.disconnect();
+                } catch (ModbusIOException e1) {
+                    logger.error(e1.getMessage());
+                }
+            }
+        };
+        thread = new Thread(task);
+        return thread;
     }
 
     public void disconnect() throws ModbusIOException {
@@ -125,27 +139,36 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized Object readModbus(int address, VarTypes varType) throws Exception {
-        Object value;
-        if (varType.equals(VarTypes.BOOL)) {
-            value = readModbusCoil(address);
-        } else if (varType.equals(VarTypes.FLOAT)) {
-            value = readMultipleModbusRegister(address);
-        } else {
-            value = readSingleModbusRegister(address, varType);
+        Object value = null;
+        try {
+            if (varType.equals(VarTypes.BOOL)) {
+                value = readModbusCoil(address);
+            } else if (varType.equals(VarTypes.FLOAT)) {
+                value = readMultipleModbusRegister(address);
+            } else {
+                value = readSingleModbusRegister(address, varType);
+            }
+        } catch (Exception e) {
+            logger.error("[ОШИБКА ЧТЕНИЯ] address: " + address + " type: " + varType + " value: " + value);
+            logger.error(e.getMessage());
+            throw new RuntimeException(e);
         }
-        logger.info("[ЧТЕНИЕ] address: " + address + " type: " + varType + " value: " + value);
         return value;
     }
 
-    public synchronized void writeModbus(int address, VarTypes varType, Object value) throws Exception {
-        if (varType.equals(VarTypes.BOOL)) {
-            writeModbusCoil(address, Boolean.parseBoolean(value.toString()));
-        } else if (varType.equals(VarTypes.FLOAT)) {
-            writeMultipleModbusRegister(address, Float.parseFloat(value.toString()));
-        } else {
-            writeSingleModbusRegister(address, Integer.parseInt(value.toString()), varType);
+    public synchronized void writeModbus(int address, VarTypes varType, Object value) {
+        try {
+            if (varType.equals(VarTypes.BOOL)) {
+                writeModbusCoil(address, Boolean.parseBoolean(value.toString()));
+            } else if (varType.equals(VarTypes.FLOAT)) {
+                writeMultipleModbusRegister(address, Float.parseFloat(value.toString()));
+            } else {
+                writeSingleModbusRegister(address, Integer.parseInt(value.toString()), varType);
+            }
+        } catch (Exception e) {
+            logger.error("[ОШИБКА ЗАПИСИ] address: " + address + " type: " + varType + " value: " + value);
+            logger.error(e.getMessage());
         }
-        logger.info("[ЗАПИСЬ] address: " + address + " type: " + varType + " value: " + value);
     }
 
     public synchronized boolean readModbusCoil(int address) throws Exception {
@@ -155,12 +178,11 @@ public class ModbusUtilSingleton {
                 master.connect();
             }
             coilValue = master.readCoils(slaveId, address, 1)[0];
-        }
-        finally {
+        } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
         return coilValue;
@@ -175,13 +197,13 @@ public class ModbusUtilSingleton {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw e;
         } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
     }
@@ -214,13 +236,13 @@ public class ModbusUtilSingleton {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw e;
         } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
         return registerValue;
@@ -240,13 +262,13 @@ public class ModbusUtilSingleton {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw e;
         } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
     }
@@ -274,13 +296,13 @@ public class ModbusUtilSingleton {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw e;
         } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
         return registerValue;
@@ -310,13 +332,13 @@ public class ModbusUtilSingleton {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw e;
         } finally {
             try {
                 master.disconnect();
             } catch (ModbusIOException e1) {
-                e1.printStackTrace();
+                logger.error(e1.getMessage());
             }
         }
     }

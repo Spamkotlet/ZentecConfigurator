@@ -108,6 +108,7 @@ public class ConfiguratorController implements Initializable {
             try {
                 node = createNewNode(resourcePath);
             } catch (IOException e) {
+                logger.error(e.getMessage());
                 throw new RuntimeException(e);
             }
             panels.put(panelName, node);

@@ -63,9 +63,7 @@ public class MainController extends CommonController implements Initializable {
 
         onClickButton("Домашняя", "home-page-view.fxml");
 
-        goToHomeButton.setOnAction(e -> {
-            onClickButton("Домашняя", "home-page-view.fxml");
-        });
+        goToHomeButton.setOnAction(e -> onClickButton("Домашняя", "home-page-view.fxml"));
         goToHelpButton.setOnAction(e -> onClickButton("Справка", "help-page-view.fxml"));
         goToSettingsButton.setOnAction(e -> onClickButton("Настройки", "settings.fxml"));
 
@@ -88,6 +86,7 @@ public class MainController extends CommonController implements Initializable {
             try {
                 node = createNewNode(resourcePath);
             } catch (IOException e) {
+                logger.error(e.getMessage());
                 throw new RuntimeException(e);
             }
             panels.put(panelName, node);
@@ -108,7 +107,7 @@ public class MainController extends CommonController implements Initializable {
 
     private void getMainParametersFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\main_parameters.json";
         } catch (IOException e) {
@@ -123,7 +122,7 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<MainParameters>() {
+            mainParameters = mapper.readValue(jsonObject.get("mainParameters").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");
@@ -134,6 +133,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);
@@ -142,7 +142,7 @@ public class MainController extends CommonController implements Initializable {
 
     private void getAlarmsFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\alarms_list.json";
         } catch (IOException e) {
@@ -157,11 +157,11 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<List<String>>() {
+            alarms0 = mapper.readValue(jsonObject.get("alarms0").toString(), new TypeReference<>() {
             });
-            alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<List<String>>() {
+            alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
             });
-            warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<List<String>>() {
+            warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");
@@ -172,6 +172,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);
@@ -180,7 +181,7 @@ public class MainController extends CommonController implements Initializable {
 
     private void getActuatorsFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\actuators_attributes.json";
         } catch (IOException e) {
@@ -195,9 +196,10 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<List<Actuator>>() {
+            actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
             });
 
+            logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
             logger.error(e.getMessage());
             Platform.runLater(() -> {
@@ -205,6 +207,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);
@@ -213,7 +216,7 @@ public class MainController extends CommonController implements Initializable {
 
     private void getSensorsFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\sensors_attributes.json";
         } catch (IOException e) {
@@ -228,7 +231,7 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<List<Sensor>>() {
+            sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");
@@ -239,6 +242,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);
@@ -248,7 +252,7 @@ public class MainController extends CommonController implements Initializable {
     // Чтение файла со схемами schemes.json и сохранение схем
     private void getSchemesFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\schemes.json";
         } catch (IOException e) {
@@ -263,7 +267,7 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<List<Scheme>>() {
+            schemes = mapper.readValue(jsonObject.get("schemes").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");
@@ -274,6 +278,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);
@@ -282,7 +287,7 @@ public class MainController extends CommonController implements Initializable {
 
     private void getZ031ParametersFromJson() {
         File dir1 = new File("");
-        String file = null;
+        String file;
         try {
             file = dir1.getCanonicalPath() + "\\settings\\z031_parameters.json";
         } catch (IOException e) {
@@ -297,9 +302,9 @@ public class MainController extends CommonController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
-            electricParameters = mapper.readValue(jsonObject.get("electric").toString(), new TypeReference<ElectricParameters>() {
+            electricParameters = mapper.readValue(jsonObject.get("electric").toString(), new TypeReference<>() {
             });
-            waterParameters = mapper.readValue(jsonObject.get("water").toString(), new TypeReference<WaterParameters>() {
+            waterParameters = mapper.readValue(jsonObject.get("water").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");
@@ -310,6 +315,7 @@ public class MainController extends CommonController implements Initializable {
                 alert.setTitle("Ошибка");
                 alert.setHeaderText("Файл отсутствует");
                 alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
             throw new RuntimeException(e);

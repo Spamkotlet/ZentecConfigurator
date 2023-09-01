@@ -8,9 +8,12 @@ import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.List;
@@ -29,6 +32,8 @@ public class ActuatorsController implements Initializable {
     public AnchorPane transparentPane;
     @FXML
     public ProgressBar progressBar;
+
+    private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,6 +55,7 @@ public class ActuatorsController implements Initializable {
             transparentPane.setVisible(true);
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
+            logger.info("Создание наполнения");
 
             if (mainParameters != null) {
                 Parameter heatExchangerParameter = new Parameter();
@@ -59,6 +65,7 @@ public class ActuatorsController implements Initializable {
                 try {
                     heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
                 ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
@@ -71,6 +78,7 @@ public class ActuatorsController implements Initializable {
                 try {
                     valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
                 ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
@@ -84,6 +92,16 @@ public class ActuatorsController implements Initializable {
                         try {
                             elementTitledPane = new ElementTitledPane(actuatorInScheme);
                         } catch (Exception e) {
+                            transparentPane.setVisible(false);
+                            progressBar.setVisible(false);
+                            logger.error(e.getMessage());
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Ошибка");
+                                alert.setHeaderText("Невозможно выполнить операцию");
+                                alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                                alert.show();
+                            });
                             throw new RuntimeException(e);
                         }
                         ElementTitledPane finalElementTitledPane = elementTitledPane;

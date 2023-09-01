@@ -1,7 +1,9 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Alarm;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
@@ -17,6 +19,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import jssc.SerialPortTimeoutException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,6 +54,8 @@ public class ChangeSchemeController implements Initializable {
     private List<Sensor> sensorList;
     private ModbusUtilSingleton modbusUtilSingleton;
 
+    private static final Logger logger = LogManager.getLogger(ChangeSchemeController.class);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -58,7 +65,9 @@ public class ChangeSchemeController implements Initializable {
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                 try {
                     selectedScheme = readSchemeNumberFromModbus();
+                    logger.info("Выбрана схема " + selectedScheme.getNumber() + " / " + selectedScheme.getName());
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
                 schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
@@ -68,12 +77,28 @@ public class ChangeSchemeController implements Initializable {
         try {
             onOpenedChoiceSchemePane();
         } catch (Exception e) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка");
+                alert.setHeaderText("Невозможно выполнить операцию");
+                alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                alert.show();
+            });
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
         schemeNumberChoiceBox.setOnAction(e -> {
             try {
                 onActionSchemeNumberChoiceBox();
             } catch (Exception ex) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Невозможно выполнить операцию");
+                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                    alert.show();
+                });
+                logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         });
@@ -151,11 +176,13 @@ public class ChangeSchemeController implements Initializable {
             transparentPane.setVisible(true);
             progressBar.setVisible(true);
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
+            logger.info("Создание наполнения");
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
                 SchemeTitledPane schemeTitledPane = null;
                 try {
                     schemeTitledPane = new SchemeTitledPane(actuator);
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
                 SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
@@ -173,6 +200,7 @@ public class ChangeSchemeController implements Initializable {
                     try {
                         ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
                     } catch (Exception e) {
+                        logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
                     try {
@@ -189,6 +217,7 @@ public class ChangeSchemeController implements Initializable {
                 try {
                     schemeTitledPane = new SchemeTitledPane(sensor);
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
                 SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;

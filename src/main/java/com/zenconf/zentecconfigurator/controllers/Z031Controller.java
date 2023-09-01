@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -54,6 +56,8 @@ public class Z031Controller implements Initializable {
     public ProgressBar progressBar;
     @FXML
     public AnchorPane transparentPane;
+
+    private final static Logger logger = LogManager.getLogger(Z031Controller.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,6 +103,7 @@ public class Z031Controller implements Initializable {
 
     private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
+            logger.info("Запись параметров в пульт");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
             thread.start();
         } catch (RuntimeException exception) {
@@ -108,6 +113,7 @@ public class Z031Controller implements Initializable {
                 alert.setHeaderText("Ошибка Modbus");
                 alert.show();
             });
+            logger.error(exception.getMessage());
             throw exception;
         }
 
@@ -115,6 +121,7 @@ public class Z031Controller implements Initializable {
 
     private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
+            logger.info("Запись параметров из пульта");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
             thread.start();
         } catch (RuntimeException exception) {
@@ -124,11 +131,13 @@ public class Z031Controller implements Initializable {
                 alert.setHeaderText("Ошибка Modbus");
                 alert.show();
             });
+            logger.error(exception.getMessage());
             throw exception;
         }
     }
 
     private void setDefaultParameters(List<LabeledSpinner> labeledSpinnerList) {
+        logger.info("Вернуть параметры по умолчанию");
         for (LabeledSpinner spinner : labeledSpinnerList) {
             spinner.setDefaultValue();
         }
@@ -147,6 +156,7 @@ public class Z031Controller implements Initializable {
                     try {
                         spinner.writeModbusValue();
                     } catch (Exception e) {
+                        logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
                 } else if (varFunctions.equals(VarFunctions.READ)) {

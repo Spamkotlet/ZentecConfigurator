@@ -86,7 +86,11 @@ public class Attribute {
     public String readModbusParameter() throws Exception {
         String value;
         if (modbusUtilSingleton.getMaster() != null) {
-            value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+            try {
+                value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
             value = "0";
         }
@@ -94,15 +98,12 @@ public class Attribute {
     }
 
     public void writeModbusParameter(Object value) throws Exception {
-        if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
-//            if (modbusParameters.getVarType().equals(VarTypes.BOOL)) {
-//                modbusUtilSingleton.writeModbusCoil(modbusParameters.getAddress(), Boolean.parseBoolean(value.toString()));
-//            } else if (modbusParameters.getVarType().equals(VarTypes.FLOAT)) {
-//                modbusUtilSingleton.writeMultipleModbusRegister(modbusParameters.getAddress(), Float.parseFloat(value.toString()));
-//            } else {
-//                modbusUtilSingleton.writeSingleModbusRegister(modbusParameters.getAddress(), Math.round(Float.parseFloat(value.toString())), modbusParameters.getVarType());
-//            }
+        try {
+            if (modbusUtilSingleton.getMaster() != null) {
+                modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

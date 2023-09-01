@@ -76,6 +76,7 @@ public class HomePageController implements Initializable {
             try {
                 node = createNewNode(resourcePath);
             } catch (IOException e) {
+                logger.error(e.getStackTrace());
                 throw new RuntimeException(e);
             }
             panels.put(panelName, node);

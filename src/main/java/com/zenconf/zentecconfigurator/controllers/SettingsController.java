@@ -91,6 +91,7 @@ public class SettingsController implements Initializable {
         try {
             modbusUtilSingleton.disconnect();
         } catch (ModbusIOException e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
     }

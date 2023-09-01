@@ -1,0 +1,1321 @@
+2023-09-01 21:13:47,840 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:13:48,041 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:13:48,227 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:13:48,230 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:13:48,248 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:13:48,275 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:13:48,286 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:13:48,378 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:13:49,083 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 21:15:43,688 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:15:43,866 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:15:44,054 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:15:44,056 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:15:44,073 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:15:44,101 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:15:44,109 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:15:44,144 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:15:47,212 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:15:54,039 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 21:15:56,257 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 21:15:57,074 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 21:15:57,674 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Периферия>
+2023-09-01 21:15:58,439 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Мониторинг>
+2023-09-01 21:44:49,534 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:44:49,722 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:44:49,910 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:44:49,912 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:44:49,922 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:44:49,930 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:44:49,960 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:44:49,967 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:44:50,003 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:44:56,072 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:44:56,076 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:44:59,080 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:45:03,669 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:45:03,679 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:45:16,458 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:45:17,275 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:45:19,201 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:45:19,202 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:48:53,547 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:48:53,727 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:48:53,912 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:48:53,914 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:48:53,923 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:48:53,930 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:48:53,960 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:48:53,967 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:48:54,004 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:48:55,158 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:48:55,159 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:48:56,081 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:48:58,009 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:48:58,016 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:48:59,621 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:49:00,397 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:49:02,016 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:49:02,016 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:49:46,415 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:49:46,621 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:49:46,806 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:49:46,809 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:49:46,820 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:49:46,829 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:49:46,866 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:49:46,874 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:49:46,920 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:49:47,585 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:49:47,587 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:49:49,679 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:49:51,304 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:49:51,313 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:49:52,698 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:49:53,255 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:49:55,041 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:49:55,041 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:50:19,019 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:50:19,207 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:50:19,393 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:50:19,395 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:50:19,405 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:50:19,416 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:50:19,447 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:50:19,455 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:50:19,484 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:50:20,544 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:50:20,546 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:50:21,500 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:50:23,131 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:50:23,139 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:50:24,514 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:50:25,664 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:50:27,287 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:50:27,287 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:50:58,234 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:50:58,416 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:50:58,556 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:50:58,559 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:50:58,570 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:50:58,578 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:50:58,605 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:50:58,613 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:50:58,653 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:51:00,071 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:51:00,073 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:51:00,946 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:51:02,563 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:51:02,572 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:51:04,084 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:51:04,818 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:51:06,524 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:51:06,524 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:51:41,956 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:51:42,132 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:51:42,278 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:51:42,280 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:51:42,290 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:51:42,296 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:51:42,321 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:51:42,329 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:51:42,369 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:51:43,439 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:51:43,441 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:51:44,199 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:51:45,509 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:51:45,518 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:51:47,023 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:51:47,620 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:51:49,162 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:51:49,162 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 21:52:49,935 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:52:51,508 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:52:53,534 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:52:53,534 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:52:55,909 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:52:56,921 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 21:52:57,621 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1436 type: UINT8 value: 10
+2023-09-01 21:52:57,622 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 21:52:57,639 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1436 type: UINT8 value: 10
+2023-09-01 21:52:57,639 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 10 / P(R)Е E OW
+2023-09-01 21:52:57,640 INFO c.z.z.c.c.ChangeSchemeController [Thread-4] Создание наполнения
+2023-09-01 21:52:57,659 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1436 type: UINT8 value: 10
+2023-09-01 21:52:57,684 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1384 type: BOOL value: true
+2023-09-01 21:52:57,724 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1392 type: BOOL value: true
+2023-09-01 21:52:57,764 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1401 type: BOOL value: false
+2023-09-01 21:52:57,806 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1410 type: BOOL value: false
+2023-09-01 21:52:57,929 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1361 type: BOOL value: false
+2023-09-01 21:52:57,969 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1533 type: BOOL value: false
+2023-09-01 21:52:58,009 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1270 type: BOOL value: true
+2023-09-01 21:52:58,051 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1320 type: BOOL value: true
+2023-09-01 21:52:58,089 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1325 type: UINT8 value: 0
+2023-09-01 21:52:58,129 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1300 type: BOOL value: true
+2023-09-01 21:52:58,169 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1289 type: BOOL value: false
+2023-09-01 21:52:58,209 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1296 type: BOOL value: false
+2023-09-01 21:52:58,249 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ЗАПИСЬ] address: 1282 type: BOOL value: false
+2023-09-01 21:53:12,594 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:53:13,710 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:53:16,456 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:53:16,459 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:55:23,543 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:55:23,723 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:55:23,886 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:55:23,888 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:55:23,897 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:55:23,904 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:55:23,930 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:55:23,939 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:55:24,002 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:55:24,891 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:55:24,893 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:55:26,239 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:55:27,947 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:55:28,963 ERROR c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Ошибка при подключении к контроллеру
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:55:33,276 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:55:33,294 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 65520 type: UINT8 value: 1
+2023-09-01 21:55:33,294 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 21:56:02,356 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 21:56:03,356 ERROR c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Ошибка при подключении к контроллеру
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 21:56:05,462 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 21:56:09,806 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 21:56:09,989 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 21:56:10,156 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 21:56:10,158 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 21:56:10,168 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 21:56:10,175 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 21:56:10,201 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 21:56:10,209 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 21:56:10,242 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 21:56:11,491 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 21:56:11,493 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 21:56:12,486 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 21:56:15,904 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:03:43,187 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:03:43,363 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:03:43,516 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:03:43,518 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:03:43,527 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:03:43,534 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:03:43,564 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:03:43,571 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:03:43,607 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:03:44,916 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:03:44,918 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:03:46,032 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:03:48,851 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:03:48,859 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] Устройство подключено
+2023-09-01 22:03:48,891 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortException: Port name - COM5; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 22:05:13,667 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:05:13,844 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:05:14,015 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:05:14,017 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:05:14,026 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:05:14,033 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:05:14,061 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:05:14,068 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:05:14,103 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:05:15,326 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:05:15,328 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:05:16,266 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:05:19,620 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:06:30,474 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:06:30,659 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:06:30,807 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:06:30,810 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:06:30,820 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:06:30,827 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:06:30,855 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:06:30,862 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:06:30,901 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:06:32,014 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:06:32,017 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:06:33,055 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:06:34,786 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:06:48,595 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:06:48,596 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру
+java.io.IOException: jssc.SerialPortException: Port name - COM5; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 22:06:49,596 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM4; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:07:27,951 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:07:28,132 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:07:28,285 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:07:28,287 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:07:28,296 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:07:28,303 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:07:28,329 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:07:28,337 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:07:28,371 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:07:29,345 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:07:29,346 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:07:30,244 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:07:33,016 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:07:45,305 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:07:45,306 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortException: Port name - COM4; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 22:07:46,306 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:08:40,557 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:08:40,738 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:08:40,890 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:08:40,893 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:08:40,902 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:08:40,909 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:08:40,936 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:08:40,943 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:08:40,979 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:08:42,825 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:08:42,826 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:08:44,397 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:08:46,858 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:08:47,869 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM4; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:08:54,910 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:08:55,911 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:10:53,483 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:10:53,665 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:10:53,831 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:10:53,832 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:10:53,842 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:10:53,849 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:10:53,875 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:10:53,883 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:10:53,920 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:10:55,311 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:10:55,314 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:10:56,181 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:10:58,424 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:10:59,440 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:11:07,019 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:11:08,024 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:11:14,973 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:11:15,974 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - CNCA0; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:11:19,639 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:11:19,643 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] Ошибка при подключении к контроллеру1
+checksum error: received 11700, calculated 13232
+2023-09-01 22:11:22,891 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:11:22,893 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] Ошибка при подключении к контроллеру1
+checksum error: received 11700, calculated 13232
+2023-09-01 22:11:29,061 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:11:30,068 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:12:35,368 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:12:37,547 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:12:38,553 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-10] Ошибка при подключении к контроллеру1
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:12:41,747 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:13:17,773 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:13:17,952 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:13:18,109 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:13:18,111 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:13:18,121 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:13:18,128 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:13:18,154 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:13:18,162 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:13:18,198 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:13:29,140 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:13:29,142 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:13:30,014 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:13:35,095 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:13:36,111 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру
+java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:13:40,422 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:13:40,423 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру
+com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:13:46,801 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:13:46,819 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] [ЧТЕНИЕ] address: 65520 type: UINT8 value: 1
+2023-09-01 22:13:49,821 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] Устройство подключено
+2023-09-01 22:14:53,632 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:14:54,435 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 22:14:55,171 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1436 type: UINT8 value: 10
+2023-09-01 22:14:55,171 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 22:14:55,191 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1436 type: UINT8 value: 10
+2023-09-01 22:14:55,191 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 10 / P(R)Е E OW
+2023-09-01 22:14:55,192 INFO c.z.z.c.c.ChangeSchemeController [Thread-7] Создание наполнения
+2023-09-01 22:14:55,211 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1436 type: UINT8 value: 10
+2023-09-01 22:14:55,233 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1384 type: BOOL value: true
+2023-09-01 22:14:55,272 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1392 type: BOOL value: true
+2023-09-01 22:14:55,312 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1401 type: BOOL value: false
+2023-09-01 22:14:55,351 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1410 type: BOOL value: false
+2023-09-01 22:14:55,476 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1361 type: BOOL value: false
+2023-09-01 22:14:55,516 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1533 type: BOOL value: false
+2023-09-01 22:14:55,556 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1270 type: BOOL value: true
+2023-09-01 22:14:55,596 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1320 type: BOOL value: true
+2023-09-01 22:14:55,636 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1325 type: UINT8 value: 0
+2023-09-01 22:14:55,676 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1300 type: BOOL value: true
+2023-09-01 22:14:55,716 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1289 type: BOOL value: false
+2023-09-01 22:14:55,757 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1296 type: BOOL value: false
+2023-09-01 22:14:55,796 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ЗАПИСЬ] address: 1282 type: BOOL value: false
+2023-09-01 22:15:20,734 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1384 type: BOOL value: false
+2023-09-01 22:15:20,752 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1392 type: BOOL value: false
+2023-09-01 22:15:20,772 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1401 type: BOOL value: false
+2023-09-01 22:15:20,792 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1410 type: BOOL value: false
+2023-09-01 22:15:20,812 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1361 type: BOOL value: false
+2023-09-01 22:15:20,832 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1533 type: BOOL value: false
+2023-09-01 22:15:20,832 INFO c.z.z.c.c.ChangeSchemeController [Thread-8] Создание наполнения
+2023-09-01 22:15:20,852 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЗАПИСЬ] address: 1436 type: UINT8 value: 5
+2023-09-01 22:15:20,872 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1384 type: BOOL value: true
+2023-09-01 22:15:20,912 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1392 type: BOOL value: false
+2023-09-01 22:15:20,952 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1401 type: BOOL value: false
+2023-09-01 22:15:20,991 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1410 type: BOOL value: false
+2023-09-01 22:15:21,096 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1361 type: BOOL value: false
+2023-09-01 22:15:21,132 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1533 type: BOOL value: false
+2023-09-01 22:15:21,172 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1270 type: BOOL value: false
+2023-09-01 22:15:21,212 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1320 type: BOOL value: false
+2023-09-01 22:15:21,252 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1325 type: UINT8 value: 0
+2023-09-01 22:15:21,291 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1300 type: BOOL value: false
+2023-09-01 22:15:21,332 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1289 type: BOOL value: false
+2023-09-01 22:15:21,372 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1296 type: BOOL value: false
+2023-09-01 22:15:21,412 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1282 type: BOOL value: false
+2023-09-01 22:15:21,451 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1270 type: BOOL value: true
+2023-09-01 22:15:21,493 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1320 type: BOOL value: true
+2023-09-01 22:15:21,533 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1325 type: UINT8 value: 0
+2023-09-01 22:15:21,592 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1289 type: BOOL value: false
+2023-09-01 22:15:21,632 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1296 type: BOOL value: false
+2023-09-01 22:15:21,672 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ЗАПИСЬ] address: 1282 type: BOOL value: false
+2023-09-01 22:17:17,977 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 22:17:17,979 INFO c.z.z.c.c.SensorsController [Thread-9] Создание наполнения
+2023-09-01 22:17:17,997 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1272 type: UINT8 value: 1
+2023-09-01 22:17:18,017 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1274 type: SINT8 value: 0
+2023-09-01 22:17:18,037 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1278 type: SINT8 value: 65250
+2023-09-01 22:17:18,057 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1279 type: SINT8 value: 60
+2023-09-01 22:17:18,097 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1321 type: UINT8 value: 0
+2023-09-01 22:17:18,117 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1322 type: SINT8 value: 0
+2023-09-01 22:17:18,137 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1324 type: SINT8 value: 65250
+2023-09-01 22:17:18,157 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ЧТЕНИЕ] address: 1323 type: SINT8 value: 60
+2023-09-01 22:17:19,410 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 22:17:19,411 INFO c.z.z.c.c.ActuatorsController [Thread-10] Создание наполнения
+2023-09-01 22:17:19,431 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1368 type: UINT16 value: 300
+2023-09-01 22:17:19,451 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1367 type: UINT8 value: 30
+2023-09-01 22:17:19,471 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1439 type: BOOL value: false
+2023-09-01 22:17:19,491 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1440 type: UINT8 value: 0
+2023-09-01 22:17:19,511 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1376 type: UINT8 value: 30
+2023-09-01 22:17:19,531 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1375 type: BOOL value: false
+2023-09-01 22:17:19,571 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1383 type: UINT8 value: 30
+2023-09-01 22:17:19,591 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1381 type: UINT8 value: 60
+2023-09-01 22:17:19,611 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1380 type: UINT8 value: 80
+2023-09-01 22:17:19,631 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1382 type: UINT8 value: 99
+2023-09-01 22:17:19,671 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1333 type: UINT8 value: 1
+2023-09-01 22:17:19,711 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] [ЧТЕНИЕ] address: 1333 type: UINT8 value: 1
+2023-09-01 22:17:25,146 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Периферия>
+2023-09-01 22:17:25,147 INFO c.z.z.c.c.PeripheryController [Thread-11] Создание наполнения
+2023-09-01 22:17:25,166 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1441 type: BOOL value: false
+2023-09-01 22:17:25,186 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1442 type: UINT8 value: 247
+2023-09-01 22:17:25,226 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1480 type: BOOL value: false
+2023-09-01 22:17:25,246 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1481 type: UINT8 value: 246
+2023-09-01 22:17:25,286 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1534 type: BOOL value: false
+2023-09-01 22:17:25,306 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-11] [ЧТЕНИЕ] address: 1533 type: UINT8 value: 1
+2023-09-01 22:17:26,916 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов управления контроллером
+2023-09-01 22:17:26,936 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1248 type: UINT8 value: 2
+2023-09-01 22:17:26,956 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:26,972 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Мониторинг>
+2023-09-01 22:17:26,973 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 22:17:26,973 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов мониторинга состояния контроллера
+2023-09-01 22:17:26,996 INFO c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ЧТЕНИЕ] address: 1249 type: UINT8 value: 22
+2023-09-01 22:17:28,116 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 22:17:28,116 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Старт опроса
+2023-09-01 22:17:28,156 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:28,251 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:28,321 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:28,391 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:28,457 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:28,526 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:28,596 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:28,616 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:28,636 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:28,656 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:28,676 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:29,216 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:29,306 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:29,376 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:29,446 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:29,516 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:29,586 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:29,657 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:29,677 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:29,697 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:29,716 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:29,737 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:30,276 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:30,366 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:30,436 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:30,501 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:30,571 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:30,637 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:30,706 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:30,727 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:30,746 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:30,766 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:30,786 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:31,326 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:31,416 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:31,482 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:31,552 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:31,621 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:31,691 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:31,761 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:31,781 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:31,801 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:31,821 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:31,841 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:32,381 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:32,471 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:32,541 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:32,606 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:32,676 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:32,742 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:32,814 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:32,831 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:32,851 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:32,871 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:32,891 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:33,431 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:33,521 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:33,591 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:33,661 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:33,731 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:33,801 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:33,872 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:33,892 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:33,912 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:33,932 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:33,952 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:34,491 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:34,581 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:34,651 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:34,716 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:34,786 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:34,856 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:34,927 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:34,947 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:34,968 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:34,987 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:35,007 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:35,546 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:35,637 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:35,707 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:35,778 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:35,846 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:35,916 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:35,986 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:36,006 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:36,026 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:36,047 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:36,066 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:36,607 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:36,696 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:36,766 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:36,836 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:36,906 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:36,976 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:37,046 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:37,066 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:37,086 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:37,106 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:37,126 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:37,666 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:37,752 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:37,821 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:37,891 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:37,961 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:38,031 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:38,101 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:38,121 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:38,141 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:38,161 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:38,181 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:38,721 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:38,811 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:38,881 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:38,951 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:39,021 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:39,091 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:39,161 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:39,181 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:39,201 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:39,221 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:39,241 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:39,781 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:39,871 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:39,941 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:40,011 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:40,081 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:40,151 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:40,221 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:40,241 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:40,261 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:40,281 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:40,301 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:40,841 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:40,931 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:41,001 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:41,071 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:41,137 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:41,206 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:41,276 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:41,296 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:41,316 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:41,336 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:41,356 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:41,896 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:41,986 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:42,056 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:42,121 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:42,191 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:42,261 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:42,331 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:42,351 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:42,371 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:42,391 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:42,411 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:42,951 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:43,041 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:43,111 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:43,181 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:43,251 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:43,321 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:43,391 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:43,411 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:43,432 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:43,451 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:43,471 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:44,012 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:44,102 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:44,168 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:44,241 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:44,311 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:44,381 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:44,451 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:44,471 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:44,491 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:44,511 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:44,531 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:45,071 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:45,162 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:45,232 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:45,301 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:45,371 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:45,441 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:45,512 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:45,531 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:45,551 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:45,571 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:45,591 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:46,131 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:46,221 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:46,291 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:46,361 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:46,431 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:46,501 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:46,572 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:46,592 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:46,612 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:46,632 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:46,652 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:47,191 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:47,281 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:47,351 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:47,421 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:47,491 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:47,561 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:47,631 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:47,651 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:47,671 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:47,691 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:47,711 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:48,251 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:48,341 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:48,411 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:48,481 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:48,551 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:48,621 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:48,691 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:48,711 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:48,731 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:48,751 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:48,771 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:49,311 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:49,402 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:49,471 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:49,541 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:49,611 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:49,682 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:49,751 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:49,771 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:49,791 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:49,811 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:49,831 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:50,371 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:50,461 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:50,531 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:50,601 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:50,671 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:50,741 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:50,811 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:50,831 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:50,851 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:50,871 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:50,891 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:51,431 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:51,521 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:51,591 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:51,661 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:51,735 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:51,806 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:51,871 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:51,891 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:51,911 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:51,931 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:51,951 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:52,491 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:52,581 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:52,651 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:52,721 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:52,791 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:52,862 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:52,931 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:52,951 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:52,971 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:52,991 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:53,011 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:53,547 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:53,636 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:53,706 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:53,776 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:53,846 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:53,916 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:53,986 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:54,006 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:54,026 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:54,046 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:54,066 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:54,597 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:54,687 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:54,756 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:54,826 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:54,896 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:54,966 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:55,037 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:55,057 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:55,077 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:55,096 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:55,117 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:55,656 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:55,746 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:55,816 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:55,886 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:55,956 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:56,026 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:56,096 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:56,116 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:56,136 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:56,156 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:56,176 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:56,716 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:56,806 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:56,876 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:56,946 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:57,016 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:57,086 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:57,156 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:57,176 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:57,196 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:57,216 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:57,236 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:57,776 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:57,866 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:57,936 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:58,006 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:58,076 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:58,146 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:58,216 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:58,232 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:58,251 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:58,271 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:58,291 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:58,831 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:58,921 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:17:58,991 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:17:59,056 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:59,126 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:17:59,196 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:17:59,266 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:17:59,286 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:17:59,306 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:17:59,326 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:17:59,346 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:17:59,886 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:17:59,976 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:18:00,047 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:18:00,116 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:00,186 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:00,251 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:18:00,321 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:18:00,341 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:18:00,361 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:18:00,381 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:18:00,402 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:18:00,942 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:18:01,027 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:18:01,096 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:18:01,166 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:01,236 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:01,306 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:18:01,371 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:18:01,392 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:18:01,411 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:18:01,431 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:18:01,451 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:18:01,991 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:18:02,081 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:18:02,151 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:18:02,221 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:02,291 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:02,361 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:18:02,426 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:18:02,446 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:18:02,466 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:18:02,486 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:18:02,506 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:18:03,043 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:18:03,126 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:18:03,196 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:18:03,266 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:03,336 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1214 type: UINT16 value: 0
+2023-09-01 22:18:03,406 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1210 type: UINT16 value: 0
+2023-09-01 22:18:03,476 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1247 type: UINT8 value: 1
+2023-09-01 22:18:03,496 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1050 type: UINT32 value: 0
+2023-09-01 22:18:03,516 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1054 type: UINT32 value: 0
+2023-09-01 22:18:03,536 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1066 type: UINT32 value: 0
+2023-09-01 22:18:03,556 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1018 type: UINT8 value: 1
+2023-09-01 22:18:04,096 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1174 type: SINT16 value: 278
+2023-09-01 22:18:04,186 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1170 type: SINT16 value: 0
+2023-09-01 22:18:04,257 INFO c.z.z.u.m.ModbusUtilSingleton [pool-3-thread-1] [ЧТЕНИЕ] address: 1204 type: UINT16 value: 0
+2023-09-01 22:26:24,026 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:26:24,207 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:26:24,358 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:26:24,361 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:26:24,370 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:26:24,377 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:26:24,404 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:26:24,412 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:26:24,450 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:26:25,721 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:26:25,724 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:26:26,896 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:26:40,292 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 22:27:09,632 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:27:09,814 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:27:09,975 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:27:09,977 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:27:09,988 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:27:09,995 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:27:10,019 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:27:10,026 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:27:10,062 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:27:11,210 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:27:11,211 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:27:12,058 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:27:17,023 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:27:19,043 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:27:22,070 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 22:27:26,648 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:27:49,815 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:31:49,996 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:31:50,535 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:31:53,014 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Устройство подключено
+2023-09-01 22:31:53,555 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] Устройство подключено
+2023-09-01 22:32:00,191 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:32:00,193 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] Ошибка при подключении к контроллеру
+com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:32:02,307 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:32:02,308 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] Ошибка при подключении к контроллеру
+com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:32:22,840 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:32:23,040 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:32:23,213 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:32:23,215 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:32:23,225 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:32:23,235 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:32:23,261 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:32:23,269 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:32:23,309 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:32:24,529 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:32:24,532 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:32:25,439 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:32:28,436 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:32:29,471 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 22:32:33,651 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:32:34,655 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:32:34,659 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:32:34,659 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:32:35,661 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Устройство подключено
+2023-09-01 22:37:16,262 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:37:17,050 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 22:37:18,727 ERROR c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:37:18,730 ERROR c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] [ОШИБКА ЧТЕНИЯ] address: 1436 type: UINT8 value: null
+2023-09-01 22:37:18,730 ERROR c.z.z.u.m.ModbusUtilSingleton [JavaFX Application Thread] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:37:18,731 ERROR c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Cannot invoke "Object.toString()" because the return value of "com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton.readModbus(int, com.zenconf.zentecconfigurator.models.enums.VarTypes)" is null
+2023-09-01 22:37:18,731 ERROR c.z.z.c.ConfiguratorController [JavaFX Application Thread] 
+/C:/Users/spamk/IdeaProjects/ZentecConfigurator/target/classes/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml
+
+2023-09-01 22:37:23,136 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:37:24,673 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:37:26,210 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:41:08,552 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:41:08,742 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:41:08,931 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:41:08,934 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:41:08,946 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:41:08,955 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:41:08,987 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:41:08,995 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:41:09,035 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:41:10,268 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:41:10,270 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:41:12,030 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:41:14,024 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:41:23,090 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:41:23,091 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortException: Port name - CNCA0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 22:41:23,094 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:41:23,094 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortException: Port name - CNCA0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 22:41:24,094 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:41:24,095 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 22:41:24,097 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:41:24,097 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:41:25,097 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Устройство подключено
+2023-09-01 22:41:28,984 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:41:28,986 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] [Ljava.lang.StackTraceElement;@4e01edb8
+2023-09-01 22:41:50,108 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:41:50,291 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:41:50,466 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:41:50,468 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:41:50,478 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:41:50,484 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:41:50,512 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:41:50,520 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:41:50,557 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:41:51,422 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:41:51,424 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:41:52,383 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:41:54,243 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:41:54,250 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:42:53,654 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:42:53,830 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:42:54,002 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:42:54,004 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:42:54,013 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:42:54,020 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:42:54,047 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:42:54,055 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:42:54,098 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:42:55,245 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:42:55,248 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:42:56,404 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:42:57,929 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:42:57,938 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:43:51,354 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:43:51,568 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:43:51,745 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:43:51,747 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:43:51,757 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:43:51,764 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:43:51,798 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:43:51,808 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:43:51,847 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:43:52,811 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:43:52,814 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:43:54,551 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:43:56,236 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:43:56,243 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:43:56,244 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:43:56,244 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [Ljava.lang.Throwable;@4fca9ffd
+2023-09-01 22:43:56,244 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 22:45:14,769 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:45:14,955 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:45:14,957 ERROR c.z.z.c.MainController [Thread-3] C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters1.json
+2023-09-01 22:45:14,958 ERROR c.z.z.c.MainController [Thread-3] C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters1.json
+2023-09-01 22:45:14,959 ERROR c.z.z.c.MainController [Thread-3] [Ljava.lang.Throwable;@41c399c9
+2023-09-01 22:45:14,959 ERROR c.z.z.c.MainController [Thread-3] null
+2023-09-01 22:45:14,960 ERROR c.z.z.c.MainController [Thread-3] [Ljava.lang.StackTraceElement;@45d1ee0
+2023-09-01 22:45:15,171 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:46:26,549 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:46:26,729 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:46:26,731 ERROR c.z.z.c.MainController [Thread-3] C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters1.json
+2023-09-01 22:46:26,941 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:46:31,684 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 22:50:37,299 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:50:37,486 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:50:37,488 ERROR c.z.z.c.MainController [Thread-3] C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters1.json
+2023-09-01 22:50:37,698 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:50:38,788 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 22:53:04,530 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:53:04,716 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:53:04,925 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:53:04,928 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:53:04,940 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:53:04,949 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:53:04,982 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:53:04,991 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:53:05,038 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:53:05,988 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:53:05,990 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:53:07,084 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:53:08,277 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:54:07,061 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:54:07,243 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:54:07,413 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:54:07,415 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:54:07,425 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:54:07,432 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:54:07,458 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:54:07,466 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:54:07,508 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:54:08,924 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:54:08,926 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:54:09,878 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:54:12,710 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:54:12,719 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 22:54:13,725 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:54:13,729 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:54:13,729 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:54:16,731 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 22:56:11,514 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:56:11,705 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:56:11,863 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:56:11,865 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:56:11,874 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:56:11,880 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:56:11,909 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:56:11,916 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:56:11,953 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:56:12,830 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:56:12,832 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:56:13,798 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:56:15,378 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:56:15,385 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 22:56:16,393 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:56:16,398 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:56:16,398 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:56:19,400 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 22:57:06,964 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 22:57:07,151 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 22:57:07,310 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 22:57:07,312 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 22:57:07,321 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 22:57:07,328 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 22:57:07,358 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 22:57:07,365 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 22:57:07,402 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 22:57:08,460 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 22:57:08,462 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 22:57:09,331 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 22:57:11,425 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 22:57:11,432 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 22:57:12,438 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:57:12,442 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 22:57:12,443 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 22:57:15,444 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 23:00:19,261 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:00:19,444 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:00:19,603 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:00:19,605 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:00:19,614 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:00:19,620 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:00:19,649 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:00:19,657 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:00:19,692 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:00:20,722 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:00:20,724 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:00:21,635 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:00:23,059 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:00:23,065 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:00:24,071 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:00:24,075 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:00:24,075 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:00:25,077 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 23:03:03,558 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:03:03,737 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:03:03,900 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:03:03,903 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:03:03,913 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:03:03,920 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:03:03,947 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:03:03,954 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:03:03,997 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:03:04,827 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:03:04,831 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:03:06,129 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:03:08,999 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:03:09,008 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:03:10,013 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:03:10,018 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:03:10,018 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:03:10,018 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:03:20,733 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:03:20,733 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Подключение...
+2023-09-01 23:03:20,734 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 23:03:23,713 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:03:23,714 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] Подключение...
+2023-09-01 23:03:43,764 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCB0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:03:43,764 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] java.io.IOException: jssc.SerialPortException: Port name - CNCA0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:43,765 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:03:43,765 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] java.io.IOException: jssc.SerialPortException: Port name - CNCA0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:43,765 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-7] Подключение...
+2023-09-01 23:03:43,765 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortException: Port name - CNCA0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:43,765 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] java.io.IOException: jssc.SerialPortException: Port name - CNCB0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:43,766 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:03:43,766 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] java.io.IOException: jssc.SerialPortException: Port name - CNCB0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:43,766 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortException: Port name - CNCB0; Method name - readBytes(); Exception type - Port not opened.
+2023-09-01 23:03:56,300 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:03:56,301 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-8] Подключение...
+2023-09-01 23:03:57,303 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:03:57,306 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:03:57,306 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:03:57,306 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:04:00,370 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:04:00,371 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-9] Подключение...
+2023-09-01 23:04:00,371 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 23:04:04,006 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:04:04,007 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] Подключение...
+2023-09-01 23:04:07,029 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-10] Устройство подключено
+2023-09-01 23:04:58,228 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:04:58,406 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:04:58,561 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:04:58,564 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:04:58,573 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:04:58,580 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:04:58,609 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:04:58,618 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:04:58,652 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:04:59,592 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:04:59,595 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:05:00,540 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:05:02,648 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:05:02,656 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:05:03,662 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:05:03,667 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:05:03,667 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:05:03,667 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:05:52,522 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:05:52,707 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:05:52,871 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:05:52,873 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:05:52,881 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:05:52,889 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:05:52,916 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:05:52,924 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:05:52,953 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:05:53,799 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:05:53,801 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:05:54,644 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:05:56,129 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM1; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:05:56,136 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:05:57,141 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:05:57,145 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:05:57,146 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:05:57,146 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру
+java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM1; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:06:02,041 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM4; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:06:02,042 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Подключение...
+2023-09-01 23:06:02,042 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-5] Ошибка при подключении к контроллеру
+com.intelligt.modbus.jlibmodbus.serial.SerialPortException: jssc.SerialPortException: Port name - COM4; Method name - openPort(); Exception type - Port busy.
+2023-09-01 23:06:04,854 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:06:04,855 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] Подключение...
+2023-09-01 23:06:05,873 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-6] Устройство подключено
+2023-09-01 23:06:10,143 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:06:11,273 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 23:06:11,832 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:06:11,852 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:06:11,853 INFO c.z.z.c.c.ChangeSchemeController [Thread-7] Создание наполнения
+2023-09-01 23:06:13,683 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:06:13,686 INFO c.z.z.c.c.SensorsController [Thread-8] Создание наполнения
+2023-09-01 23:06:15,261 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:06:15,282 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:06:21,990 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:06:21,993 INFO c.z.z.c.c.SensorsController [Thread-9] Создание наполнения
+2023-09-01 23:06:22,993 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:06:22,993 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ОШИБКА ЧТЕНИЯ] address: 1272 type: UINT8 value: null
+2023-09-01 23:06:22,993 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:06:22,993 ERROR c.z.z.c.c.SensorsController [Thread-9] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:10:37,118 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:10:37,309 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:10:37,492 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:10:37,495 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:10:37,505 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:10:37,516 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:10:37,542 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:10:37,550 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:10:37,592 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:10:52,432 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:10:52,434 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:10:53,659 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:10:54,985 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: CNCA0; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:10:54,994 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:10:55,999 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - CNCA0; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:10:56,001 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:10:56,001 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - CNCA0; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:10:56,001 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру
+java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - CNCA0; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:11:05,890 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:11:05,891 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Подключение...
+2023-09-01 23:11:06,911 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Устройство подключено
+2023-09-01 23:11:08,473 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:11:09,313 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 23:11:10,420 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:11:10,440 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:11:10,441 INFO c.z.z.c.c.ChangeSchemeController [Thread-6] Создание наполнения
+2023-09-01 23:11:16,905 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:11:16,907 INFO c.z.z.c.c.SensorsController [Thread-7] Создание наполнения
+2023-09-01 23:11:17,911 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:11:17,911 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] [ОШИБКА ЧТЕНИЯ] address: 1272 type: UINT8 value: null
+2023-09-01 23:11:17,911 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-7] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:11:17,911 ERROR c.z.z.c.c.SensorsController [Thread-7] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:16:44,814 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:17:34,168 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:17:34,357 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:17:34,520 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:17:34,522 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:17:34,531 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:17:34,538 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:17:34,566 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:17:34,573 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:17:34,608 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:19:33,371 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:19:33,556 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:19:33,715 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:19:33,718 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:19:33,727 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:19:33,734 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:19:33,760 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:19:33,769 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:19:33,807 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:19:35,139 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:19:35,141 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:19:38,733 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:19:40,342 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:19:40,349 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:19:41,371 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 23:19:42,748 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:19:43,480 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 23:19:44,170 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:19:44,189 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:19:44,190 INFO c.z.z.c.c.ChangeSchemeController [Thread-5] Создание наполнения
+2023-09-01 23:19:45,530 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:19:45,533 INFO c.z.z.c.c.SensorsController [Thread-6] Создание наполнения
+2023-09-01 23:19:46,413 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 23:19:46,414 INFO c.z.z.c.c.ActuatorsController [Thread-7] Создание наполнения
+2023-09-01 23:19:47,582 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Периферия>
+2023-09-01 23:19:47,584 INFO c.z.z.c.c.PeripheryController [Thread-8] Создание наполнения
+2023-09-01 23:19:48,394 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов управления контроллером
+2023-09-01 23:19:48,450 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Мониторинг>
+2023-09-01 23:19:48,451 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:19:48,451 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов мониторинга состояния контроллера
+2023-09-01 23:19:50,978 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:19:50,978 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Старт опроса
+2023-09-01 23:19:55,808 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:20:00,948 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:20:00,949 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:20:00,950 INFO c.z.z.c.c.SensorsController [Thread-9] Создание наполнения
+2023-09-01 23:20:01,951 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:20:01,953 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] [ОШИБКА ЧТЕНИЯ] address: 1272 type: UINT8 value: null
+2023-09-01 23:20:01,953 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-9] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:20:01,953 ERROR c.z.z.c.c.SensorsController [Thread-9] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:20:30,772 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 23:20:30,776 INFO c.z.z.c.c.ActuatorsController [Thread-10] Создание наполнения
+2023-09-01 23:21:07,982 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Периферия>
+2023-09-01 23:21:07,984 INFO c.z.z.c.c.PeripheryController [Thread-11] Создание наполнения
+2023-09-01 23:21:22,503 INFO c.z.z.Application [JavaFX Application Thread] IOMonitorController.executor остановлен
+2023-09-01 23:21:22,503 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто
+2023-09-01 23:22:27,847 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:22:28,042 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:22:28,232 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:22:28,235 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:22:28,245 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:22:28,252 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:22:28,286 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:22:28,294 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:22:28,340 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:23:04,872 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:23:04,874 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:23:05,740 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:23:07,321 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:23:07,329 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:23:08,353 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Устройство подключено
+2023-09-01 23:23:09,724 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:23:10,790 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 23:23:11,702 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:23:11,722 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:23:11,723 INFO c.z.z.c.c.ChangeSchemeController [Thread-5] Создание наполнения
+2023-09-01 23:23:16,095 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:23:16,097 INFO c.z.z.c.c.SensorsController [Thread-6] Создание наполнения
+2023-09-01 23:23:17,099 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:23:17,102 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] [ОШИБКА ЧТЕНИЯ] address: 1272 type: UINT8 value: null
+2023-09-01 23:23:17,102 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-6] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:23:17,102 ERROR c.z.z.c.c.SensorsController [Thread-6] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:23:21,014 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 23:23:21,016 INFO c.z.z.c.c.ActuatorsController [Thread-7] Создание наполнения
+2023-09-01 23:23:24,057 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Периферия>
+2023-09-01 23:23:24,058 INFO c.z.z.c.c.PeripheryController [Thread-8] Создание наполнения
+2023-09-01 23:23:25,281 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов управления контроллером
+2023-09-01 23:23:41,436 INFO c.z.z.Application [JavaFX Application Thread] Приложение запускается
+2023-09-01 23:23:41,621 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:23:41,804 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\main_parameters.json (Найден и загружен)
+2023-09-01 23:23:41,806 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\alarms_list.json (Найден и загружен)
+2023-09-01 23:23:41,815 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\actuators_attributes.json (Найден и загружен)
+2023-09-01 23:23:41,823 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\sensors_attributes.json (Найден и загружен)
+2023-09-01 23:23:41,849 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\schemes.json (Найден и загружен)
+2023-09-01 23:23:41,856 INFO c.z.z.c.MainController [Thread-3] Файл C:\Users\spamk\IdeaProjects\ZentecConfigurator\settings\z031_parameters.json (Найден и загружен)
+2023-09-01 23:23:41,895 INFO c.z.z.Application [JavaFX Application Thread] Приложение запущено
+2023-09-01 23:23:42,888 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Открыто окно <Настройки>
+2023-09-01 23:23:42,891 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Настройки>
+2023-09-01 23:23:43,740 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Обновление COM-портов [CNCA0, CNCB0, COM1, COM4, COM5]
+2023-09-01 23:23:44,941 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:23:44,949 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-4] Подключение...
+2023-09-01 23:24:15,400 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:15,402 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] [ОШИБКА ЧТЕНИЯ] address: 65520 type: UINT8 value: null
+2023-09-01 23:24:15,402 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:15,402 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-4] Ошибка при подключении к контроллеру
+java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:27,415 INFO c.z.z.c.SettingsController [JavaFX Application Thread] Подключиться к устройству. PORT: COM5; ID: 1; BAUD: 115200; DBITS: 8; PARITY: 2; SBITS: 1
+2023-09-01 23:24:27,415 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Подключение...
+2023-09-01 23:24:28,433 INFO c.z.z.u.m.ModbusUtilSingleton [Thread-5] Устройство подключено
+2023-09-01 23:24:29,998 INFO c.z.z.c.MainController [JavaFX Application Thread] Открыть окно <Домашняя>
+2023-09-01 23:24:30,571 INFO c.z.z.c.HomePageController [JavaFX Application Thread] Открыть окно <Конфигуратор>
+2023-09-01 23:24:31,257 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Выбор схемы>
+2023-09-01 23:24:31,277 INFO c.z.z.c.c.ChangeSchemeController [JavaFX Application Thread] Выбрана схема 5 / (V)Е ED OW
+2023-09-01 23:24:31,278 INFO c.z.z.c.c.ChangeSchemeController [Thread-6] Создание наполнения
+2023-09-01 23:24:34,088 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов управления контроллером
+2023-09-01 23:24:34,146 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Мониторинг>
+2023-09-01 23:24:34,148 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:24:34,148 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Инициализация элементов мониторинга состояния контроллера
+2023-09-01 23:24:35,814 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:24:35,814 INFO c.z.z.c.c.IOMonitorController [JavaFX Application Thread] Стоп опроса
+2023-09-01 23:24:35,815 INFO c.z.z.c.c.SensorsController [Thread-7] Создание наполнения
+2023-09-01 23:24:44,530 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Датчики>
+2023-09-01 23:24:44,532 INFO c.z.z.c.c.SensorsController [Thread-8] Создание наполнения
+2023-09-01 23:24:45,533 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:45,533 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] [ОШИБКА ЧТЕНИЯ] address: 1272 type: UINT8 value: null
+2023-09-01 23:24:45,533 ERROR c.z.z.u.m.ModbusUtilSingleton [Thread-8] java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:45,533 ERROR c.z.z.c.c.SensorsController [Thread-8] java.lang.RuntimeException: com.intelligt.modbus.jlibmodbus.exception.ModbusIOException: java.io.IOException: jssc.SerialPortTimeoutException: Port name - COM5; Method name - readBytes(); Serial port operation timeout (1000 ms).
+2023-09-01 23:24:47,280 INFO c.z.z.c.ConfiguratorController [JavaFX Application Thread] Открыть окно <Испонительные устройства>
+2023-09-01 23:24:47,281 INFO c.z.z.c.c.ActuatorsController [Thread-9] Создание наполнения
+2023-09-01 23:24:58,196 INFO c.z.z.Application [JavaFX Application Thread] Приложение закрыто

@@ -27,6 +27,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.*;
@@ -72,6 +74,8 @@ public class IOMonitorController implements Initializable {
     @FXML
     public Circle pollingStatusIndicatorCircle;
 
+    private final static Logger logger = LogManager.getLogger(IOMonitorController.class);
+
     ModbusUtilSingleton modbusUtilSingleton;
     List<Sensor> sensorsInScheme = new ArrayList<>();
     List<Actuator> actuatorsInScheme = new ArrayList<>();
@@ -94,6 +98,7 @@ public class IOMonitorController implements Initializable {
         try {
             initializationPLCControlElements();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
         ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
@@ -113,6 +118,14 @@ public class IOMonitorController implements Initializable {
                 try {
                     initializationPLCMonitoringElements();
                 } catch (Exception e) {
+                    logger.error(e.getMessage());
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Невозможно выполнить операцию");
+                        alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                        alert.show();
+                    });
                     throw new RuntimeException(e);
                 }
             }
@@ -126,28 +139,17 @@ public class IOMonitorController implements Initializable {
         alarmsTableView = new AlarmTableView();
         alarmsVBox.getChildren().clear();
         alarmsVBox.getChildren().add(alarmsTableView.createAlarmGridPane());
-
-        statusLabel.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                if (!newVal.equals(oldVal)) {
-                    FillTransition fillTransition = new FillTransition(Duration.seconds(1.0), statusAnchorPane.getShape());
-                    fillTransition.setDelay(Duration.seconds(1.0));
-                    fillTransition.setAutoReverse(true);
-                    fillTransition.setFromValue(Color.GRAY);
-                    fillTransition.setToValue(Color.RED);
-                    fillTransition.setCycleCount(3);
-                    fillTransition.play();
-                }
-            }
-        });
     }
 
     private void startPolling() {
         ModbusMaster master = modbusUtilSingleton.getMaster();
         stopPolling();
         if (master != null) {
+            logger.info("Старт опроса");
             final int[] errorCounter = {0};
             final int[] cycleCounter = {0};
+            int cycleNumber = 10;
+            int errorNumber = 5;
             pollingStatusIndicatorCircle.setFill(Color.GREEN);
 
             executor = Executors.newSingleThreadScheduledExecutor();
@@ -176,20 +178,20 @@ public class IOMonitorController implements Initializable {
                             updateStatusLabel();
 
                             cycleCounter[0]++;
-                            if (cycleCounter[0] >= 10) {
+                            if (cycleCounter[0] >= cycleNumber) {
                                 errorCounter[0] = 0;
                                 cycleCounter[0] = 0;
                             }
-                            System.out.println("cycleCounter: " + cycleCounter[0]);
                         } catch (Exception e) {
                             errorCounter[0]++;
-                            if (errorCounter[0] >= 5) {
+                            if (errorCounter[0] >= errorNumber) {
                                 cycleCounter[0] = 0;
                                 errorCounter[0] = 0;
+                                logger.error("Достигнут лимит ошибок во время опроса");
+                                logger.error(e.getMessage());
                                 throw e;
                             }
-
-                            System.out.println("errorCounter: " + errorCounter[0]);
+                            logger.warn("Количество ошибок во время опроса: " + errorCounter[0]/errorNumber);
                         }
                     } catch (Exception e) {
                         System.out.println("Stop polling timer 1");
@@ -200,6 +202,7 @@ public class IOMonitorController implements Initializable {
                             alert.setContentText("- установите соединение с контроллером");
                             alert.show();
                         });
+                        logger.error(e.getMessage());
                         pollingPreviousState = false;
                         stopPolling();
                         try {
@@ -218,10 +221,12 @@ public class IOMonitorController implements Initializable {
             alert.setHeaderText("Невозможно запустить опрос контроллера");
             alert.setContentText("- установите соединение с контроллером");
             alert.show();
+            logger.error("Невозможно запустить опрос контроллера - установите соединение с контроллером");
         }
     }
 
     private void stopPolling() {
+        logger.info("Стоп опроса");
         if (executor != null) {
             if (!executor.isShutdown()) {
                 executor.shutdown();
@@ -258,12 +263,15 @@ public class IOMonitorController implements Initializable {
 
     // Инициализация элементов управления контроллером
     private void initializationPLCControlElements() throws Exception {
+        logger.info("Инициализация элементов управления контроллером");
+
         mainParameters = MainController.mainParameters;
 
         startStopButton.setOnAction(e -> {
             try {
                 startStop();
             } catch (Exception ex) {
+                logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         });
@@ -271,6 +279,7 @@ public class IOMonitorController implements Initializable {
             try {
                 onResetAlarmsButton();
             } catch (Exception ex) {
+                logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         });
@@ -278,6 +287,7 @@ public class IOMonitorController implements Initializable {
             try {
                 onClearJournalButton();
             } catch (Exception ex) {
+                logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         });
@@ -293,6 +303,7 @@ public class IOMonitorController implements Initializable {
             try {
                 controlModeAttribute.writeModbusParameter(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
             } catch (Exception ex) {
+                logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
             System.out.println("Index: " + controlModeValues.indexOf(controlModeChoiceBox.getValue()) + " Value: " + controlModeChoiceBox.getValue());
@@ -309,6 +320,7 @@ public class IOMonitorController implements Initializable {
                 seasonAttribute.writeModbusParameter(seasonNumber);
                 System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
             } catch (Exception ex) {
+                logger.error(ex.getMessage());
                 ex.printStackTrace();
             }
         });
@@ -316,6 +328,7 @@ public class IOMonitorController implements Initializable {
 
     // Инициализация элементов мониторинга состояния контроллера
     private void initializationPLCMonitoringElements() throws Exception {
+        logger.info("Инициализация элементов мониторинга состояния контроллера");
         monitorValueTextList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
@@ -413,6 +426,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private synchronized void startStop() throws Exception {
+        logger.info("Нажата кнопка <ПУСК/СТОП>");
         Attribute startStopAttribute = mainParameters.getStartStopAttribute();
         boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
         if (startStopBoolean) {
@@ -439,6 +453,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private void onClearJournalButton() throws Exception {
+        logger.info("Очистка журнала");
         Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
         clearJournalAttribute.writeModbusParameter(true);
         alarmsTableView.clearJournal();
@@ -446,6 +461,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private void onResetAlarmsButton() throws Exception {
+        logger.info("Сброс аварий");
         Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
         resetAlarmsAttribute.writeModbusParameter(true);
         alarmsTableView.resetAlarms();

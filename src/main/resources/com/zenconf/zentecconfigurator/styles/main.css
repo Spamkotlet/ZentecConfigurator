@@ -33,3 +33,18 @@
     -fx-background-color: "#4f4f4f";
     -fx-background-radius: 0px;
 }
+
+.button-configurator {
+    -fx-background-color: "#F4F4F4";
+    -fx-background-radius: 0px;
+}
+
+.button-configurator:hover {
+    -fx-background-color: "#E6E6E6";
+    -fx-background-radius: 0px;
+}
+
+.button-configurator-active {
+    -fx-background-color: "#CDCDCD";
+    -fx-background-radius: 0px;
+}

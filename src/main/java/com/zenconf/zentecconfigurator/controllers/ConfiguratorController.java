@@ -1,16 +1,19 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.Application;
+import com.zenconf.zentecconfigurator.models.Scheme;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,80 +29,223 @@ public class ConfiguratorController implements Initializable {
     private final Map<String, Node> panels = new HashMap<>();
 
     @FXML
-    public Button schemeButton;
+    public ImageView schemeImageView;
     @FXML
-    public Button sensorsButton;
+    public ImageView sensorsImageView;
     @FXML
-    public Button actuatorsButton;
+    public ImageView actuatorsImageView;
     @FXML
-    public Button peripheryButton;
+    public ImageView peripheryImageView;
     @FXML
-    public Button ioButton;
+    public ImageView ioImageView;
+
+    @FXML
+    public BorderPane schemeBorderPane;
+    @FXML
+    public BorderPane sensorsBorderPane;
+    @FXML
+    public BorderPane actuatorsBorderPane;
+    @FXML
+    public BorderPane peripheryBorderPane;
+    @FXML
+    public BorderPane ioBorderPane;
 
     @FXML
     public AnchorPane splitPaneRight;
     @FXML
     public SplitPane mainSplitPane;
 
+    static BooleanProperty isEnabled = new SimpleBooleanProperty();
+
     private static final Logger logger = LogManager.getLogger(ConfiguratorController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        schemeButton.setOnAction(
-                e -> onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml")
-        );
-        sensorsButton.setOnAction(
-                e -> onClickButton("Датчики", "/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml")
-        );
-        actuatorsButton.setOnAction(
-                e -> onClickButton("Испонительные устройства", "/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml")
-        );
-        ioButton.setOnAction(
-                e -> onClickButton("Мониторинг", "/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml")
-        );
-        peripheryButton.setOnAction(
-                e -> onClickButton("Периферия", "/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml")
-        );
+        schemeBorderPane.onMouseClickedProperty()
+                .setValue(
+                        e -> {
+                            onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+                            if (!schemeBorderPane.getStyleClass().contains("button-configurator-active")) {
+                                schemeBorderPane.getStyleClass().remove("button-configurator");
+                                schemeBorderPane.getStyleClass().add("button-configurator-active");
+                            }
+
+                            if (!sensorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                sensorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                sensorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!actuatorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                actuatorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                actuatorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!ioBorderPane.getStyleClass().contains("button-configurator")) {
+                                ioBorderPane.getStyleClass().remove("button-configurator-active");
+                                ioBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
+                                peripheryBorderPane.getStyleClass().remove("button-configurator-active");
+                                peripheryBorderPane.getStyleClass().add("button-configurator");
+                            }
+                        }
+                );
+        sensorsBorderPane.onMouseClickedProperty()
+                .setValue(
+                        e -> {
+                            onClickButton("Датчики", "/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml");
+                            if (!sensorsBorderPane.getStyleClass().contains("button-configurator-active")) {
+                                sensorsBorderPane.getStyleClass().remove("button-configurator");
+                                sensorsBorderPane.getStyleClass().add("button-configurator-active");
+                            }
+
+                            if (!schemeBorderPane.getStyleClass().contains("button-configurator")) {
+                                schemeBorderPane.getStyleClass().remove("button-configurator-active");
+                                schemeBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!actuatorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                actuatorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                actuatorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!ioBorderPane.getStyleClass().contains("button-configurator")) {
+                                ioBorderPane.getStyleClass().remove("button-configurator-active");
+                                ioBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
+                                peripheryBorderPane.getStyleClass().remove("button-configurator-active");
+                                peripheryBorderPane.getStyleClass().add("button-configurator");
+                            }
+                        }
+                );
+        actuatorsBorderPane.onMouseClickedProperty()
+                .setValue(
+                        e -> {
+                            onClickButton("Испонительные устройства", "/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml");
+                            if (!actuatorsBorderPane.getStyleClass().contains("button-configurator-active")) {
+                                actuatorsBorderPane.getStyleClass().remove("button-configurator");
+                                actuatorsBorderPane.getStyleClass().add("button-configurator-active");
+                            }
+
+                            if (!sensorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                sensorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                sensorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!schemeBorderPane.getStyleClass().contains("button-configurator")) {
+                                schemeBorderPane.getStyleClass().remove("button-configurator-active");
+                                schemeBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!ioBorderPane.getStyleClass().contains("button-configurator")) {
+                                ioBorderPane.getStyleClass().remove("button-configurator-active");
+                                ioBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
+                                peripheryBorderPane.getStyleClass().remove("button-configurator-active");
+                                peripheryBorderPane.getStyleClass().add("button-configurator");
+                            }
+                        }
+                );
+        ioBorderPane.onMouseClickedProperty()
+                .setValue(
+                        e -> {
+                            onClickButton("Мониторинг", "/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml");
+                            if (!ioBorderPane.getStyleClass().contains("button-configurator-active")) {
+                                ioBorderPane.getStyleClass().remove("button-configurator");
+                                ioBorderPane.getStyleClass().add("button-configurator-active");
+                            }
+
+                            if (!sensorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                sensorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                sensorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!schemeBorderPane.getStyleClass().contains("button-configurator")) {
+                                schemeBorderPane.getStyleClass().remove("button-configurator-active");
+                                schemeBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!actuatorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                actuatorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                actuatorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
+                                peripheryBorderPane.getStyleClass().remove("button-configurator-active");
+                                peripheryBorderPane.getStyleClass().add("button-configurator");
+                            }
+                        }
+                );
+        peripheryBorderPane.onMouseClickedProperty()
+                .setValue(
+                        e -> {
+                            onClickButton("Периферия", "/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml");
+                            if (!peripheryBorderPane.getStyleClass().contains("button-configurator-active")) {
+                                peripheryBorderPane.getStyleClass().remove("button-configurator");
+                                peripheryBorderPane.getStyleClass().add("button-configurator-active");
+                            }
+
+                            if (!sensorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                sensorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                sensorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!schemeBorderPane.getStyleClass().contains("button-configurator")) {
+                                schemeBorderPane.getStyleClass().remove("button-configurator-active");
+                                schemeBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!actuatorsBorderPane.getStyleClass().contains("button-configurator")) {
+                                actuatorsBorderPane.getStyleClass().remove("button-configurator-active");
+                                actuatorsBorderPane.getStyleClass().add("button-configurator");
+                            }
+
+                            if (!ioBorderPane.getStyleClass().contains("button-configurator")) {
+                                ioBorderPane.getStyleClass().remove("button-configurator-active");
+                                ioBorderPane.getStyleClass().add("button-configurator");
+                            }
+                        }
+                );
+
+        sensorsBorderPane.disableProperty().bind(isEnabled.not());
+        actuatorsBorderPane.disableProperty().bind(isEnabled.not());
+        peripheryBorderPane.disableProperty().bind(isEnabled.not());
+        ioBorderPane.disableProperty().bind(isEnabled.not());
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
-        ImageView schemeImageView = new ImageView(schemeImage);
         schemeImageView.setFitHeight(80);
         schemeImageView.setFitWidth(80);
-        schemeButton.graphicProperty().setValue(schemeImageView);
-        schemeButton.setBackground(Background.EMPTY);
-        schemeButton.setText("");
+        schemeImageView.setMouseTransparent(true);
+        schemeImageView.setImage(schemeImage);
 
         Image sensorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/sensors_button.png")));
-        ImageView sensorsImageView = new ImageView(sensorsImage);
         sensorsImageView.setFitHeight(80);
         sensorsImageView.setFitWidth(80);
-        sensorsButton.graphicProperty().setValue(sensorsImageView);
-        sensorsButton.setBackground(Background.EMPTY);
-        sensorsButton.setText("");
+        sensorsImageView.setMouseTransparent(true);
+        sensorsImageView.setImage(sensorsImage);
 
         Image actuatorsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/actuators_button.png")));
-        ImageView actuatorsImageView = new ImageView(actuatorsImage);
         actuatorsImageView.setFitHeight(80);
         actuatorsImageView.setFitWidth(80);
-        actuatorsButton.graphicProperty().setValue(actuatorsImageView);
-        actuatorsButton.setBackground(Background.EMPTY);
-        actuatorsButton.setText("");
+        actuatorsImageView.setMouseTransparent(true);
+        actuatorsImageView.setImage(actuatorsImage);
 
         Image peripheryImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/periphery.png")));
-        ImageView peripheryImageView = new ImageView(peripheryImage);
         peripheryImageView.setFitHeight(80);
         peripheryImageView.setFitWidth(80);
-        peripheryButton.graphicProperty().setValue(peripheryImageView);
-        peripheryButton.setBackground(Background.EMPTY);
-        peripheryButton.setText("");
+        peripheryImageView.setMouseTransparent(true);
+        peripheryImageView.setImage(peripheryImage);
 
-        Image inOutsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png")));
-        ImageView inOutsImageView = new ImageView(inOutsImage);
-        inOutsImageView.setFitHeight(80);
-        inOutsImageView.setFitWidth(80);
-        ioButton.graphicProperty().setValue(inOutsImageView);
-        ioButton.setBackground(Background.EMPTY);
-        ioButton.setText("");
+        Image ioImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/io_button.png")));
+        ioImageView.setFitHeight(80);
+        ioImageView.setFitWidth(80);
+        ioImageView.setMouseTransparent(true);
+        ioImageView.setImage(ioImage);
     }
 
     private void onClickButton(String panelName, String resourcePath) {
@@ -125,5 +271,9 @@ public class ConfiguratorController implements Initializable {
     private void showNode(Node node) {
         splitPaneRight.getChildren().clear();
         splitPaneRight.getChildren().add(node);
+    }
+
+    public static void selectScheme() {
+        isEnabled.setValue(true);
     }
 }

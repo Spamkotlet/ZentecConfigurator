@@ -1,9 +1,8 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
-import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
-import com.zenconf.zentecconfigurator.models.Alarm;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
@@ -19,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import jssc.SerialPortTimeoutException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,7 +44,7 @@ public class ChangeSchemeController implements Initializable {
     public ProgressBar progressBar;
 
     private List<Scheme> schemes;
-    protected static Scheme selectedScheme = null;
+    public static Scheme selectedScheme = null;
     private Scheme previousScheme = null;
     protected static List<Sensor> sensorsInScheme;
     protected static List<Actuator> actuatorsInScheme;
@@ -65,6 +63,7 @@ public class ChangeSchemeController implements Initializable {
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                 try {
                     selectedScheme = readSchemeNumberFromModbus();
+                    ConfiguratorController.selectScheme();
                     logger.info("Выбрана схема " + selectedScheme.getNumber() + " / " + selectedScheme.getName());
                 } catch (Exception e) {
                     logger.error(e.getMessage());
@@ -87,8 +86,10 @@ public class ChangeSchemeController implements Initializable {
             logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
+
         schemeNumberChoiceBox.setOnAction(e -> {
             try {
+                ConfiguratorController.selectScheme();
                 onActionSchemeNumberChoiceBox();
             } catch (Exception ex) {
                 Platform.runLater(() -> {

@@ -18,10 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ConfiguratorController implements Initializable {
 

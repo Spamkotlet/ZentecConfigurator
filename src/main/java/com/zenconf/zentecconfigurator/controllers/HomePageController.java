@@ -22,8 +22,6 @@ public class HomePageController implements Initializable {
     public static final Map<String, Node> panels = new HashMap<>();
 
     @FXML
-    public Button goToTestButton;
-    @FXML
     public Button goToConfiguratorButton;
     @FXML
     public Button goToZ031Button;
@@ -37,33 +35,23 @@ public class HomePageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mainViewVBox1 = mainViewVBox;
 
-        goToConfiguratorButton.setOnAction(e -> {
-            onClickButton("Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml");
-        });
+        goToConfiguratorButton.setOnAction(e -> onClickButton("Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml"));
         goToZ031Button.setOnAction(e -> onClickButton("ПУ Z031", "/com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml"));
-
-        Image testImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/test_button.png")));
-        ImageView testImageView = new ImageView(testImage);
-        testImageView.setFitHeight(80);
-        testImageView.setFitWidth(80);
-        goToTestButton.graphicProperty().setValue(testImageView);
-        goToTestButton.setStyle("-fx-background-color: #BFBFBF;");
-        goToTestButton.setText("");
 
         Image configuratorImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/configurator_button.png")));
         ImageView configuratorImageView = new ImageView(configuratorImage);
-        configuratorImageView.setFitHeight(80);
-        configuratorImageView.setFitWidth(80);
+        configuratorImageView.setFitHeight(120);
+        configuratorImageView.setFitWidth(120);
         goToConfiguratorButton.graphicProperty().setValue(configuratorImageView);
-        goToConfiguratorButton.setStyle("-fx-background-color: #BFBFBF;");
+        goToConfiguratorButton.getStyleClass().add("button-home-page");
         goToConfiguratorButton.setText("");
 
         Image Z031Image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/z031_button.png")));
         ImageView Z031ImageView = new ImageView(Z031Image);
-        Z031ImageView.setFitHeight(80);
-        Z031ImageView.setFitWidth(80);
+        Z031ImageView.setFitHeight(120);
+        Z031ImageView.setFitWidth(120);
         goToZ031Button.graphicProperty().setValue(Z031ImageView);
-        goToZ031Button.setStyle("-fx-background-color: #BFBFBF;");
+        goToZ031Button.getStyleClass().add("button-home-page");
         goToZ031Button.setText("");
     }
 

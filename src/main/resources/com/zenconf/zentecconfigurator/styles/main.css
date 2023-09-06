@@ -48,3 +48,13 @@
     -fx-background-color: "#CDCDCD";
     -fx-background-radius: 0px;
 }
+
+.button-home-page {
+    -fx-background-color: "#B5B5B5";
+    -fx-background-radius: 0px;
+}
+
+.button-home-page:hover {
+    -fx-background-color: "#5E5E5E";
+    -fx-background-radius: 0px;
+}

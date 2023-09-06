@@ -1,8 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.Application;
-import com.zenconf.zentecconfigurator.models.Scheme;
-import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -14,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,6 +53,8 @@ public class ConfiguratorController implements Initializable {
     public AnchorPane splitPaneRight;
     @FXML
     public SplitPane mainSplitPane;
+    @FXML
+    public VBox disabledButtonsVBox;
 
     static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
@@ -212,10 +213,7 @@ public class ConfiguratorController implements Initializable {
                         }
                 );
 
-        sensorsBorderPane.disableProperty().bind(isEnabled.not());
-        actuatorsBorderPane.disableProperty().bind(isEnabled.not());
-        peripheryBorderPane.disableProperty().bind(isEnabled.not());
-        ioBorderPane.disableProperty().bind(isEnabled.not());
+        disabledButtonsVBox.visibleProperty().bind(isEnabled);
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
         schemeImageView.setFitHeight(80);

@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortException;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.Element;
@@ -14,7 +15,7 @@ public class ElementTitledPane extends TitledPane {
 
     }
 
-    public ElementTitledPane(Element element) throws Exception {
+    public ElementTitledPane(Element element) throws Exception, SerialPortException {
 
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);

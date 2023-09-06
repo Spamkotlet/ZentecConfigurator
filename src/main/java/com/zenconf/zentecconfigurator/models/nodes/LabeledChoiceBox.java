@@ -34,7 +34,7 @@ public class LabeledChoiceBox {
 
         nodes.add(createLabel(labelText));
         errorLabel = createErrorLabel("(" + errorText + ")", 100, false);
-        nodes.add(createChoiceBoxAnchor(attributeValues));
+        nodes.add(createChoiceBox(attributeValues));
         nodes.add(errorLabel);
 
         return createHBoxForLabeledChoiceBox(nodes);
@@ -56,56 +56,68 @@ public class LabeledChoiceBox {
         return label;
     }
 
-    private ChoiceBox<String> createChoiceBoxAnchor(List<String> attributeValues) throws Exception {
+    private ChoiceBox<String> createChoiceBox(List<String> attributeValues) throws Exception {
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
 
-        if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
-            try {
-                errorLabel.setVisible(false);
-                choiceBox.setValue(
-                        getChoiceBoxItems(attributeValues)
-                                .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
-                );
-            } catch (SerialPortException ex) {
-                errorText = "Ошибка чтения";
-                errorLabel.setText(errorText);
-                errorLabel.setVisible(true);
-                throw new RuntimeException(ex);
+        try {
+            if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
+                try {
+                    errorLabel.setVisible(false);
+                    choiceBox.setValue(
+                            getChoiceBoxItems(attributeValues)
+                                    .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
+                    );
+                } catch (Exception ex) {
+                    errorText = "Ошибка чтения";
+                    errorLabel.setText(errorText);
+                    errorLabel.setVisible(true);
+                    throw new RuntimeException(ex);
+                }
+
+                choiceBox.setOnAction(e -> {
+                    Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
+                    try {
+                        errorLabel.setVisible(false);
+                        attribute.writeModbusParameter(value);
+                    } catch (Exception ex) {
+                        errorText = "Ошибка записи";
+                        errorLabel.setText(errorText);
+                        errorLabel.setVisible(true);
+                        throw new RuntimeException(ex);
+                    }
+                });
+            } else {
+                try {
+                    errorLabel.setVisible(false);
+                    choiceBox.setValue(
+                            getChoiceBoxItems(attributeValues)
+                                    .get(Integer.parseInt(attribute.readModbusParameter()))
+                    );
+                } catch (Exception ex) {
+                    errorText = "Ошибка чтения";
+                    errorLabel.setText(errorText);
+                    errorLabel.setVisible(true);
+                    throw new RuntimeException(ex);
+                }
+                choiceBox.setOnAction(e -> {
+                    try {
+                        errorLabel.setVisible(false);
+                        attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
+                    } catch (Exception ex) {
+                        errorText = "Ошибка записи";
+                        errorLabel.setText(errorText);
+                        errorLabel.setVisible(true);
+                        throw new RuntimeException(ex);
+                    }
+                });
             }
-
-            choiceBox.setOnAction(e -> {
-                Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
-                try {
-                    errorLabel.setVisible(false);
-                    attribute.writeModbusParameter(value);
-                } catch (Exception ex) {
-                    errorText = "Ошибка записи";
-                    errorLabel.setText(errorText);
-                    errorLabel.setVisible(true);
-                    throw new RuntimeException(ex);
-                }
-            });
-        } else {
-            choiceBox.setValue(
-                    getChoiceBoxItems(attributeValues)
-                            .get(Integer.parseInt(attribute.readModbusParameter()))
-            );
-            choiceBox.setOnAction(e -> {
-                try {
-                    errorLabel.setVisible(false);
-                    attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
-                } catch (Exception ex) {
-                    errorText = "Ошибка записи";
-                    errorLabel.setText(errorText);
-                    errorLabel.setVisible(true);
-                    throw new RuntimeException(ex);
-                }
-            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            return choiceBox;
         }
-
-        return choiceBox;
     }
 
     private ObservableList<String> getChoiceBoxItems(List<String> attributeValues) {

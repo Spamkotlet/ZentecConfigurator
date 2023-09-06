@@ -139,7 +139,7 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized Object readModbus(int address, VarTypes varType) throws Exception {
-        Object value = null;
+        Object value = "0";
         try {
             if (varType.equals(VarTypes.BOOL)) {
                 value = readModbusCoil(address);
@@ -151,12 +151,12 @@ public class ModbusUtilSingleton {
         } catch (Exception e) {
             logger.error("[ОШИБКА ЧТЕНИЯ] address: " + address + " type: " + varType + " value: " + value);
             logger.error(e.getMessage());
-            throw new RuntimeException(e);
+            throw new Exception(e);
         }
         return value;
     }
 
-    public synchronized void writeModbus(int address, VarTypes varType, Object value) {
+    public synchronized void writeModbus(int address, VarTypes varType, Object value) throws Exception {
         try {
             if (varType.equals(VarTypes.BOOL)) {
                 writeModbusCoil(address, Boolean.parseBoolean(value.toString()));
@@ -168,6 +168,7 @@ public class ModbusUtilSingleton {
         } catch (Exception e) {
             logger.error("[ОШИБКА ЗАПИСИ] address: " + address + " type: " + varType + " value: " + value);
             logger.error(e.getMessage());
+            throw new Exception(e);
         }
     }
 
@@ -178,6 +179,11 @@ public class ModbusUtilSingleton {
                 master.connect();
             }
             coilValue = master.readCoils(slaveId, address, 1)[0];
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            throw e;
         } finally {
             try {
                 master.disconnect();

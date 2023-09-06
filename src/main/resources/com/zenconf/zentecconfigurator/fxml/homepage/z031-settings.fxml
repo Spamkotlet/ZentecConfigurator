@@ -14,18 +14,6 @@
    <children>
       <VBox fx:id="z031VBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0">
          <children>
-            <AnchorPane minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ababab;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <children>
-                        <AnchorPane prefHeight="50.0" prefWidth="50.0" HBox.hgrow="NEVER" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

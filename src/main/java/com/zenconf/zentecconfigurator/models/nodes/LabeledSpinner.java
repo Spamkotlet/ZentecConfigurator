@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortException;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

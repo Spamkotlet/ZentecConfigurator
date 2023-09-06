@@ -59,6 +59,7 @@ public class ConfiguratorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
         schemeBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {

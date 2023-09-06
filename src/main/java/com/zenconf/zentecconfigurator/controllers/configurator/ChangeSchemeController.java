@@ -184,6 +184,8 @@ public class ChangeSchemeController implements Initializable {
                     schemeTitledPane = new SchemeTitledPane(actuator);
                 } catch (Exception e) {
                     logger.error(e.getMessage());
+                    transparentPane.setVisible(false);
+                    progressBar.setVisible(false);
                     throw new RuntimeException(e);
                 }
                 SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
@@ -201,6 +203,8 @@ public class ChangeSchemeController implements Initializable {
                     try {
                         ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
                     } catch (Exception e) {
+                        transparentPane.setVisible(false);
+                        progressBar.setVisible(false);
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
@@ -218,6 +222,8 @@ public class ChangeSchemeController implements Initializable {
                 try {
                     schemeTitledPane = new SchemeTitledPane(sensor);
                 } catch (Exception e) {
+                    transparentPane.setVisible(false);
+                    progressBar.setVisible(false);
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
@@ -232,6 +238,11 @@ public class ChangeSchemeController implements Initializable {
 
             transparentPane.setVisible(false);
             progressBar.setVisible(false);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         };
         thread = new Thread(task);
         thread.start();

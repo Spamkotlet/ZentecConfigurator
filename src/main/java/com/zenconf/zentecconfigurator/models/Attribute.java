@@ -84,26 +84,14 @@ public class Attribute {
     }
 
     public String readModbusParameter() throws Exception {
-        String value;
-        if (modbusUtilSingleton.getMaster() != null) {
-            try {
-                value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            value = "0";
-        }
+        String value = "0";
+        value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
         return value;
     }
 
     public void writeModbusParameter(Object value) throws Exception {
-        try {
-            if (modbusUtilSingleton.getMaster() != null) {
-                modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        if (modbusUtilSingleton.getMaster() != null) {
+            modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
         }
     }
 }

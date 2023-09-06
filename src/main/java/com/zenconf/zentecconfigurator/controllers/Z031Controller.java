@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
+import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
@@ -106,7 +107,7 @@ public class Z031Controller implements Initializable {
             logger.info("Запись параметров в пульт");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
             thread.start();
-        } catch (RuntimeException exception) {
+        } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Ошибка при записи в ПУ\n" + exception.getMessage());
@@ -121,10 +122,10 @@ public class Z031Controller implements Initializable {
 
     private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
-            logger.info("Запись параметров из пульта");
+            logger.info("Чтение параметров из пульта");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
             thread.start();
-        } catch (RuntimeException exception) {
+        } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Ошибка при чтении из ПУ\n" + exception.getMessage());
@@ -150,20 +151,42 @@ public class Z031Controller implements Initializable {
             progressBar.setVisible(true);
             double progress = 0;
             double progressStep = 1d / labeledSpinnerList.size();
-            for (LabeledSpinner spinner: labeledSpinnerList) {
-                progress += progressStep;
-                if (varFunctions.equals(VarFunctions.WRITE)) {
+            try {
+                for (LabeledSpinner spinner: labeledSpinnerList) {
+                    progress += progressStep;
+                    if (varFunctions.equals(VarFunctions.WRITE)) {
+                        try {
+                            spinner.writeModbusValue();
+                        } catch (Exception e) {
+                            logger.error(e.getMessage());
+                            throw new RuntimeException(e);
+                        }
+                    } else if (varFunctions.equals(VarFunctions.READ)) {
+                        spinner.readModbusValue();
+                    }
+                    progressBar.setProgress(progress);
+
                     try {
-                        spinner.writeModbusValue();
-                    } catch (Exception e) {
-                        logger.error(e.getMessage());
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                } else if (varFunctions.equals(VarFunctions.READ)) {
-                    spinner.readModbusValue();
                 }
-                progressBar.setProgress(progress);
+            } catch (Exception e) {
+                progressBar.setProgress(0.0);
+                progressBar.setVisible(false);
+                transparentPane.setVisible(false);
+                logger.error(e.getMessage());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Невозможно выполнить операцию");
+                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                    alert.show();
+                });
+                throw new RuntimeException(e);
             }
+
             progressBar.setProgress(0.0);
             progressBar.setVisible(false);
             transparentPane.setVisible(false);

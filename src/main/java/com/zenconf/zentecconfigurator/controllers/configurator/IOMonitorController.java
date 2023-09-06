@@ -191,7 +191,7 @@ public class IOMonitorController implements Initializable {
                                 logger.error(e.getMessage());
                                 throw e;
                             }
-                            logger.warn("Количество ошибок во время опроса: " + errorCounter[0]/errorNumber);
+                            logger.warn("Количество ошибок во время опроса: " + errorCounter[0] + "/" + errorNumber);
                         }
                     } catch (Exception e) {
                         System.out.println("Stop polling timer 1");

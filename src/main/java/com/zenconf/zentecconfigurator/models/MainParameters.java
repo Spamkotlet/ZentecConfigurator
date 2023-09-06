@@ -15,7 +15,8 @@ public class MainParameters {
     private Attribute alarmsAttribute0;
     private Attribute alarmsAttribute1;
     private Attribute warningsAttribute;
-    private Attribute deviceAddressAttribute; // атрибут для проверки соединения
+    private Attribute deviceAddressAttribute; // атрибут для проверки соединения M245
+    private Attribute indexHMIAttribute; // атрибут для проверки соединения Z031
 
     public Attribute getStartStopAttribute() {
         return startStopAttribute;
@@ -69,4 +70,7 @@ public class MainParameters {
         return warningsAttribute;
     }
 
+    public Attribute getIndexHMIAttribute() {
+        return indexHMIAttribute;
+    }
 }

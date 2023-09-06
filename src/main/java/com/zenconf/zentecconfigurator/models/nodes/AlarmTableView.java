@@ -33,7 +33,6 @@ public class AlarmTableView {
     private final char[] activeAlarms0CharArray = new char[32];
     private final char[] activeAlarms1CharArray = new char[32];
     private final char[] activeWarningsCharArray = new char[32];
-    private int alarmsCount;
 
     public AlarmTableView() {
         MainParameters mainParameters = MainController.mainParameters;
@@ -71,21 +70,21 @@ public class AlarmTableView {
         // Столбец с номером аварии
         TableColumn<Alarm, Integer> numberColumn = new TableColumn<>("№");
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        numberColumn.setPrefWidth(80);
-        numberColumn.setResizable(false);
+        numberColumn.setPrefWidth(30);
+        numberColumn.setResizable(true);
         alarmsTableView.getColumns().add(numberColumn);
 
         // Столбец с описанием аварии
         TableColumn<Alarm, String> descriptionColumn = new TableColumn<>("Описание");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        descriptionColumn.setPrefWidth(200);
+        descriptionColumn.setPrefWidth(250);
         alarmsTableView.getColumns().add(descriptionColumn);
 
         // Столбец с датой
         TableColumn<Alarm, String> dateColumn = new TableColumn<>("Время");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("datetime"));
-        dateColumn.setPrefWidth(150);
-        dateColumn.setResizable(false);
+        dateColumn.setPrefWidth(100);
+        dateColumn.setResizable(true);
         alarmsTableView.getColumns().add(dateColumn);
 
         VBox.setVgrow(alarmsTableView, Priority.ALWAYS);
@@ -94,52 +93,33 @@ public class AlarmTableView {
 
     public void updateJournal() throws Exception {
         char[] binaryAlarms0;
-        try {
-            binaryAlarms0 = getActiveAlarmsBits0();
-        } catch (Exception e) {
-            throw e;
-        }
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd MMM yy");
+        binaryAlarms0 = getActiveAlarmsBits0();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.MM.yy");
         String dateString = formatter.format(new Date());
         for (int i = 0; i < binaryAlarms0.length; i++) {
             if (binaryAlarms0[i] == '1') {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList0.get(i), dateString);
-                alarmsCount++;
                 activeAlarmsList.add(alarm);
-//                System.out.println(alarmsList0.get(i));
             }
         }
 
         char[] binaryAlarms1;
-        try {
-            binaryAlarms1 = getActiveAlarmsBits1();
-        } catch (Exception e) {
-            throw e;
-        }
+        binaryAlarms1 = getActiveAlarmsBits1();
         for (int i = 0; i < binaryAlarms1.length; i++) {
             if (binaryAlarms1[i] == '1') {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList1.get(i), dateString);
-                alarmsCount++;
                 activeAlarmsList.add(alarm);
-//                System.out.println(alarmsList1.get(i));
             }
         }
 
         char[] binaryWarnings;
-        try {
-            binaryWarnings = getActiveWarningsBits();
-        } catch (Exception e) {
-            throw e;
-        }
+        binaryWarnings = getActiveWarningsBits();
         for (int i = 0; i < binaryWarnings.length; i++) {
             if (binaryWarnings[i] == '1') {
                 Alarm alarm = new Alarm(activeAlarmsList.size(), warningsList.get(i), dateString);
-                alarmsCount++;
                 activeAlarmsList.add(alarm);
-//                System.out.println(warningsList.get(i));
             }
         }
-//        System.out.println("Active alarms list size:" + activeAlarmsList.size());
         Platform.runLater(() -> {
             ObservableList<Alarm> alarms = FXCollections.observableArrayList(activeAlarmsList);
             alarmsTableView.setItems(alarms);
@@ -156,7 +136,6 @@ public class AlarmTableView {
     public void clearJournal() {
         alarmsTableView.getItems().clear();
         activeAlarmsList.clear();
-        alarmsCount = 0;
         resetAlarms();
     }
 
@@ -187,7 +166,6 @@ public class AlarmTableView {
                 newAlarmsCharArray[i] = '1';
             }
         }
-        System.out.println(newAlarmsCharArray);
         return newAlarmsCharArray;
     }
 

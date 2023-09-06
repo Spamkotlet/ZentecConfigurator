@@ -7,6 +7,13 @@
         "varType": "UINT8"
       }
     },
+    "indexHMIAttribute": {
+      "name": "Индекс HMI",
+      "modbusParameters": {
+        "address": 65488,
+        "varType": "UINT16"
+      }
+    },
     "startStopAttribute": {
       "name": "Пуск/стоп диспетчеризация",
       "control": 3,

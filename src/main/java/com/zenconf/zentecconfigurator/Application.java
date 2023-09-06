@@ -4,11 +4,13 @@ import com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorControll
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Application extends javafx.application.Application {
 
@@ -23,6 +25,8 @@ public class Application extends javafx.application.Application {
         stage.setMinHeight(800);
         stage.setMinWidth(1200);
         stage.setTitle("Zentec Configurator");
+        Image iconImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/icon.png")));
+        stage.getIcons().add(iconImage);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

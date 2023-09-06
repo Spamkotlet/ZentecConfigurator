@@ -57,63 +57,67 @@ public class ActuatorsController implements Initializable {
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
             logger.info("Создание наполнения");
 
-            if (mainParameters != null) {
-                Parameter heatExchangerParameter = new Parameter();
-                heatExchangerParameter.setName("Теплообменники");
-                heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
-                ElementTitledPane heatExchangerTitledPane = null;
-                try {
-                    heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
-                } catch (Exception e) {
-                    logger.error(e.getMessage());
-                    throw new RuntimeException(e);
-                }
-                ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
-                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
+            try {
+                if (mainParameters != null) {
+                    Parameter heatExchangerParameter = new Parameter();
+                    heatExchangerParameter.setName("Теплообменники");
+                    heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
+                    ElementTitledPane heatExchangerTitledPane = null;
+                    try {
+                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                    } catch (Exception e) {
+                        logger.error(e.getMessage());
+                        throw new RuntimeException(e);
+                    }
+                    ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
+                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
 
-                Parameter valveHeatersParameter = new Parameter();
-                valveHeatersParameter.setName("Обогрев клапанов");
-                valveHeatersParameter.setAttributes(mainParameters.getValveHeatersAttributes());
-                ElementTitledPane valveHeatersTitledPane = null;
-                try {
-                    valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
-                } catch (Exception e) {
-                    logger.error(e.getMessage());
-                    throw new RuntimeException(e);
+                    Parameter valveHeatersParameter = new Parameter();
+                    valveHeatersParameter.setName("Обогрев клапанов");
+                    valveHeatersParameter.setAttributes(mainParameters.getValveHeatersAttributes());
+                    ElementTitledPane valveHeatersTitledPane = null;
+                    try {
+                        valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+                    } catch (Exception e) {
+                        logger.error(e.getMessage());
+                        throw new RuntimeException(e);
+                    }
+                    ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
+                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
                 }
-                ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
-                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
-            }
 
-            for (Actuator actuatorInScheme : actuatorsInScheme) {
-                if (actuatorInScheme.getIsUsedDefault()) {
-                    if (actuatorInScheme.getAttributes() != null) {
-                        ElementTitledPane elementTitledPane = null;
-                        try {
-                            elementTitledPane = new ElementTitledPane(actuatorInScheme);
-                        } catch (Exception e) {
-                            transparentPane.setVisible(false);
-                            progressBar.setVisible(false);
-                            logger.error(e.getMessage());
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Ошибка");
-                                alert.setHeaderText("Невозможно выполнить операцию");
-                                alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                                alert.show();
-                            });
-                            throw new RuntimeException(e);
-                        }
-                        ElementTitledPane finalElementTitledPane = elementTitledPane;
-                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalElementTitledPane));
-                        try {
-                            Thread.sleep(20);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                for (Actuator actuatorInScheme : actuatorsInScheme) {
+                    if (actuatorInScheme.getIsUsedDefault()) {
+                        if (actuatorInScheme.getAttributes() != null) {
+                            ElementTitledPane elementTitledPane = null;
+                            try {
+                                elementTitledPane = new ElementTitledPane(actuatorInScheme);
+                            } catch (Exception e) {
+                                transparentPane.setVisible(false);
+                                progressBar.setVisible(false);
+                                logger.error(e.getMessage());
+                                throw new RuntimeException(e);
+                            }
+                            ElementTitledPane finalElementTitledPane = elementTitledPane;
+                            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalElementTitledPane));
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
+            } catch (Exception e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Невозможно выполнить операцию");
+                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                    alert.show();
+                });
             }
+
 
             transparentPane.setVisible(false);
             progressBar.setVisible(false);

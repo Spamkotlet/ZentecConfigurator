@@ -190,7 +190,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Дополнительный приточный вентилятор",
+        "name": "Доп. приточный вентилятор",
         "modbusParameters": {
           "address": 1208,
           "varType": "UINT16"
@@ -262,7 +262,7 @@
         }
       ],
       "attributeForMonitoring": {
-        "name": "Дополнительный вытяжной вентилятор",
+        "name": "Доп. вытяжной вентилятор",
         "modbusParameters": {
           "address": 1218,
           "varType": "UINT16"

@@ -1,8 +1,10 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.controllers.configurator.ChangeSchemeController;
+import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
+import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,8 +102,25 @@ public class SchemeTitledPane extends TitledPane {
 
     private void onSelectedCheckBox() throws Exception {
         if (inWorkAttribute != null) {
-            inWorkAttribute.writeModbusParameter(isUsedDefaultCheckBox.isSelected());
-            element.setIsUsedDefault(isUsedDefaultCheckBox.isSelected());
+            boolean isUsed = isUsedDefaultCheckBox.isSelected();
+            inWorkAttribute.writeModbusParameter(isUsed);
+            element.setIsUsedDefault(isUsed);
+            if (element.getClass().equals(Actuator.class)
+                    && !ChangeSchemeController.actuatorsInScheme.contains((Actuator) element)) {
+                if (isUsed) {
+                    ChangeSchemeController.actuatorsInScheme.add((Actuator) element);
+                } else {
+                    ChangeSchemeController.actuatorsInScheme.remove((Actuator) element);
+                }
+            } else if (element.getClass().equals(Sensor.class)
+                    && !ChangeSchemeController.sensorsInScheme.contains((Sensor) element)) {
+                if (isUsed) {
+                    ChangeSchemeController.sensorsInScheme.add((Sensor) element);
+                } else {
+                    ChangeSchemeController.sensorsInScheme.remove((Sensor) element);
+                }
+            }
+            System.out.println(ChangeSchemeController.actuatorsInScheme.toString());
         }
     }
 

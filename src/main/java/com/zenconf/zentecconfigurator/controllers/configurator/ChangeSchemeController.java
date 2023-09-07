@@ -46,8 +46,8 @@ public class ChangeSchemeController implements Initializable {
     private List<Scheme> schemes;
     public static Scheme selectedScheme = null;
     private Scheme previousScheme = null;
-    protected static List<Sensor> sensorsInScheme;
-    protected static List<Actuator> actuatorsInScheme;
+    public static List<Sensor> sensorsInScheme;
+    public static List<Actuator> actuatorsInScheme;
     private ModbusUtilSingleton modbusUtilSingleton;
 
     private static final Logger logger = LogManager.getLogger(ChangeSchemeController.class);

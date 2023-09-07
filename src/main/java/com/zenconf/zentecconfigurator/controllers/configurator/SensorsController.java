@@ -28,6 +28,9 @@ public class SensorsController implements Initializable {
     @FXML
     public ProgressBar progressBar;
 
+    private int sensorsUsedNumber = 0;
+    private int sensorsUsedNumberPrev = 0;
+
     private static final Logger logger = LogManager.getLogger(SensorsController.class);
 
     @Override
@@ -35,7 +38,16 @@ public class SensorsController implements Initializable {
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.sensorsInScheme != null) {
-                    fillSensorsSettingsPane();
+                    for (Sensor sensor: ChangeSchemeController.sensorsInScheme) {
+                        if (sensor.getIsUsedDefault()) {
+                            sensorsUsedNumber++;
+                        }
+                    }
+                    if (sensorsUsedNumber != sensorsUsedNumberPrev) {
+                        sensorsUsedNumberPrev = sensorsUsedNumber;
+                        fillSensorsSettingsPane();
+                    }
+                    sensorsUsedNumber = 0;
                 }
             }
         });

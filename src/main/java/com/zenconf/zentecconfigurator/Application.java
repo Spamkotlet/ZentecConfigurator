@@ -25,8 +25,6 @@ public class Application extends javafx.application.Application {
         stage.setMinHeight(800);
         stage.setMinWidth(1200);
         stage.setTitle("Zentec Configurator");
-        Image iconImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/icon.png")));
-        stage.getIcons().add(iconImage);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

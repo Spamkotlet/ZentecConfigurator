@@ -30,6 +30,9 @@ public class ActuatorsController implements Initializable {
     @FXML
     public ProgressBar progressBar;
 
+    private int devicesUsedNumber = 0;
+    private int devicesUsedNumberPrev = 0;
+
     private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
 
     @Override
@@ -37,7 +40,16 @@ public class ActuatorsController implements Initializable {
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.actuatorsInScheme != null) {
-                    fillActuatorsSettingsPane();
+                    for (Actuator actuator: ChangeSchemeController.actuatorsInScheme) {
+                        if (actuator.getIsUsedDefault()) {
+                            devicesUsedNumber++;
+                        }
+                    }
+                    if (devicesUsedNumber != devicesUsedNumberPrev) {
+                        devicesUsedNumberPrev = devicesUsedNumber;
+                        fillActuatorsSettingsPane();
+                    }
+                    devicesUsedNumber = 0;
                 }
             }
         });

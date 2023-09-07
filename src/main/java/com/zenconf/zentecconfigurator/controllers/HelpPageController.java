@@ -17,6 +17,6 @@ public class HelpPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         WebEngine webEngine = helpPageWebView.getEngine();
-        webEngine.load("https://docs.oracle.com/javafx/2/webview/jfxpub-webview.htm");
+        webEngine.load("https://spamkotlet.github.io/ZentecConfigurator/");
     }
 }

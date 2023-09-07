@@ -9,12 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import jssc.SerialPortList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
@@ -58,6 +61,13 @@ public class SettingsController implements Initializable {
         parityChoiceBox.setValue(modbusUtilSingleton.getParity());
         stopBitsChoiceBox.setItems(getStopBitsObservableList());
         stopBitsChoiceBox.setValue(modbusUtilSingleton.getStopBits());
+
+        Image refreshComPortsImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/refresh.png")));
+        ImageView refreshComPortsImageView = new ImageView(refreshComPortsImage);
+        refreshComPortsImageView.setFitHeight(15);
+        refreshComPortsImageView.setFitWidth(15);
+        refreshComPortsButton.graphicProperty().setValue(refreshComPortsImageView);
+        refreshComPortsButton.setText("");
 
         connectDeviceButton.setOnAction(this::connectDevice);
         disconnectDeviceButton.setOnAction(this::disconnectDevice);

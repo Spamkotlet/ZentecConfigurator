@@ -99,6 +99,11 @@ public class IOMonitorController implements Initializable {
             initializationPLCControlElements();
         } catch (Exception e) {
             logger.error(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Невозможно выполнить операцию");
+            alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+            alert.show();
             throw new RuntimeException(e);
         }
         ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {

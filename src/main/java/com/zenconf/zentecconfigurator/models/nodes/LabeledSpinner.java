@@ -51,18 +51,14 @@ public class LabeledSpinner {
         this.readingByInitialization = readingByInitialization;
     }
 
-    public Node getSpinner() {
+    public Node getSpinner() throws Exception {
         String labelText = attribute.getName();
         int minValue = attribute.getMinValue();
         int maxValue = attribute.getMaxValue();
 
         List<Node> nodes = new ArrayList<>();
         nodes.add(createLabel(labelText, labelWidth, false));
-        try {
-            nodes.add(createSpinner(minValue, maxValue));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        nodes.add(createSpinner(minValue, maxValue));
 
         nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", 70, true));
         if (attribute.getDefaultValue() != null) {

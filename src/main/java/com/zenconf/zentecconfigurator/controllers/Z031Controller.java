@@ -70,7 +70,11 @@ public class Z031Controller implements Initializable {
         if (electricParameters != null) {
             for (Attribute attribute : electricParameters.getAttributes()) {
                 LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
-                electricParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                try {
+                    electricParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 electricLabeledSpinnerList.add(labeledSpinner);
             }
         }
@@ -82,7 +86,11 @@ public class Z031Controller implements Initializable {
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
                 LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
-                waterParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                try {
+                    waterParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 waterLabeledSpinnerList.add(labeledSpinner);
             }
         }
@@ -94,7 +102,11 @@ public class Z031Controller implements Initializable {
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
                 LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60);
-                z031ParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                try {
+                    z031ParametersVBox.getChildren().add(labeledSpinner.getSpinner());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 z031LabeledSpinnerList.add(labeledSpinner);
             }
         }

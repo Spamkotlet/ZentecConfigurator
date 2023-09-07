@@ -94,8 +94,8 @@ public class IOMonitorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
-        initializationPollingElements();
         try {
+            initializationPollingElements();
             initializationPLCControlElements();
         } catch (Exception e) {
             logger.error(e.getMessage());

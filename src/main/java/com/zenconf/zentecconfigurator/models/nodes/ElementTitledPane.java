@@ -15,7 +15,7 @@ public class ElementTitledPane extends TitledPane {
 
     }
 
-    public ElementTitledPane(Element element) throws Exception, SerialPortException {
+    public ElementTitledPane(Element element) throws Exception {
 
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);

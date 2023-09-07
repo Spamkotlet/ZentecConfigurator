@@ -6,33 +6,6 @@
   },
   "actuators": [
     {
-      "name": "Воздушный клапан",
-      "attributes": [
-        {
-          "name": "Время открытия заслонки",
-          "control": 1,
-          "minValue": 0,
-          "maxValue": 255,
-          "modbusParameters": {
-            "address": 1376,
-            "varType": "UINT8"
-          }
-        },
-        {
-          "name": "Сигнал на привод 0..10В",
-          "control": 2,
-          "modbusParameters": {
-            "address": 1375,
-            "varType": "BOOL"
-          },
-          "values": [
-            "Прямой",
-            "Инверсный"
-          ]
-        }
-      ]
-    },
-    {
       "name": "Приточный вентилятор",
       "attributes": [
         {

@@ -59,18 +59,18 @@ public class ActuatorsController implements Initializable {
 
             try {
                 if (mainParameters != null) {
-                    Parameter heatExchangerParameter = new Parameter();
-                    heatExchangerParameter.setName("Теплообменники");
-                    heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
-                    ElementTitledPane heatExchangerTitledPane = null;
+                    Parameter valveParameter = new Parameter();
+                    valveParameter.setName("Воздушный клапан");
+                    valveParameter.setAttributes(mainParameters.getValveAttributes());
+                    ElementTitledPane valveTitledPane = null;
                     try {
-                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                        valveTitledPane = new ElementTitledPane(valveParameter);
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
-                    ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
-                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
+                    ElementTitledPane finalValveTitledPane = valveTitledPane;
+                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveTitledPane));
 
                     Parameter valveHeatersParameter = new Parameter();
                     valveHeatersParameter.setName("Обогрев клапанов");
@@ -84,6 +84,19 @@ public class ActuatorsController implements Initializable {
                     }
                     ElementTitledPane finalValveHeatersTitledPane = valveHeatersTitledPane;
                     Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersTitledPane));
+
+                    Parameter heatExchangerParameter = new Parameter();
+                    heatExchangerParameter.setName("Теплообменники");
+                    heatExchangerParameter.setAttributes(mainParameters.getHeatExchangerAttributes());
+                    ElementTitledPane heatExchangerTitledPane = null;
+                    try {
+                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                    } catch (Exception e) {
+                        logger.error(e.getMessage());
+                        throw new RuntimeException(e);
+                    }
+                    ElementTitledPane finalHeatExchangerTitledPane = heatExchangerTitledPane;
+                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerTitledPane));
                 }
 
                 for (Actuator actuatorInScheme : actuatorsInScheme) {

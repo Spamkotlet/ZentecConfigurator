@@ -179,7 +179,7 @@ public class ChangeSchemeController implements Initializable {
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
             logger.info("Создание наполнения");
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-                SchemeTitledPane schemeTitledPane = null;
+                SchemeTitledPane schemeTitledPane;
                 try {
                     schemeTitledPane = new SchemeTitledPane(actuator);
                 } catch (Exception e) {
@@ -218,7 +218,7 @@ public class ChangeSchemeController implements Initializable {
 
             Platform.runLater(() -> sensorsVbox.getChildren().clear());
             for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-                SchemeTitledPane schemeTitledPane = null;
+                SchemeTitledPane schemeTitledPane;
                 try {
                     schemeTitledPane = new SchemeTitledPane(sensor);
                 } catch (Exception e) {

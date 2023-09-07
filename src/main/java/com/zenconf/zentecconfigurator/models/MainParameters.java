@@ -11,6 +11,7 @@ public class MainParameters {
     private Attribute statusAttribute;
     private List<Attribute> heatExchangerAttributes;
     private List<Attribute> valveHeatersAttributes;
+    private List<Attribute> valveAttributes;
     private List<Parameter> peripheryParameters;
     private Attribute alarmsAttribute0;
     private Attribute alarmsAttribute1;
@@ -72,5 +73,9 @@ public class MainParameters {
 
     public Attribute getIndexHMIAttribute() {
         return indexHMIAttribute;
+    }
+
+    public List<Attribute> getValveAttributes() {
+        return valveAttributes;
     }
 }

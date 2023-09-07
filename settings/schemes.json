@@ -5,10 +5,6 @@
             "name": "(V)E",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -64,10 +60,6 @@
             "number": "1",
             "name": "(V)Е OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -133,10 +125,6 @@
             "name": "(V)Е OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -200,10 +188,6 @@
             "number": "3",
             "name": "(V)Е E OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -273,10 +257,6 @@
             "name": "(V)Е E OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -344,10 +324,6 @@
             "number": "5",
             "name": "(V)Е ED OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -421,10 +397,6 @@
             "name": "(V)Е ED OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -497,10 +469,6 @@
             "name": "P(R)E",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -564,10 +532,6 @@
             "number": "8",
             "name": "P(R)Е OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -641,10 +605,6 @@
             "name": "P(R)Е OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -716,10 +676,6 @@
             "number": "10",
             "name": "P(R)Е E OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -797,10 +753,6 @@
             "name": "P(R)Е E OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -876,10 +828,6 @@
             "number": "12",
             "name": "P(R)Е ED OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -961,10 +909,6 @@
             "name": "P(R)Е ED OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1045,10 +989,6 @@
             "name": "P(R)Е EPR OW",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1124,10 +1064,6 @@
             "number": "15",
             "name": "P(R)Е EPR OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -1205,10 +1141,6 @@
             "name": "SЕ",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1272,10 +1204,6 @@
             "number": "17",
             "name": "SЕ OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -1349,10 +1277,6 @@
             "name": "SЕ OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1425,10 +1349,6 @@
             "name": "SЕ Е",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1496,10 +1416,6 @@
             "number": "20",
             "name": "SЕ Е OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -1577,10 +1493,6 @@
             "name": "SЕ Е OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1657,10 +1569,6 @@
             "name": "(V)W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1720,10 +1628,6 @@
             "number": "23",
             "name": "(V)W OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -1793,10 +1697,6 @@
             "name": "(V)W OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -1864,10 +1764,6 @@
             "number": "25",
             "name": "(V)W E OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -1941,10 +1837,6 @@
             "name": "(V)W E OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2016,10 +1908,6 @@
             "number": "27",
             "name": "(V)W ED OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -2097,10 +1985,6 @@
             "name": "(V)W ED OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2177,10 +2061,6 @@
             "name": "P(R)W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2248,10 +2128,6 @@
             "number": "30",
             "name": "P(R)W OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -2329,10 +2205,6 @@
             "name": "P(R)W OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2408,10 +2280,6 @@
             "number": "32",
             "name": "P(R)W E OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -2493,10 +2361,6 @@
             "name": "P(R)W E OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2576,10 +2440,6 @@
             "number": "34",
             "name": "P(R)W ED OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -2665,10 +2525,6 @@
             "name": "P(R)W ED OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2753,10 +2609,6 @@
             "name": "P(R)W EPR OW",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2836,10 +2688,6 @@
             "number": "37",
             "name": "P(R)W EPR OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -2921,10 +2769,6 @@
             "name": "SW",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -2992,10 +2836,6 @@
             "number": "39",
             "name": "SW OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -3073,10 +2913,6 @@
             "name": "SW OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3153,10 +2989,6 @@
             "name": "SW Е",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3228,10 +3060,6 @@
             "number": "42",
             "name": "SW Е OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -3313,10 +3141,6 @@
             "name": "SW Е OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3397,10 +3221,6 @@
             "name": "(V)Е E",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3460,10 +3280,6 @@
             "number": "45",
             "name": "(V)Е ED",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -3529,10 +3345,6 @@
             "name": "(V)Е W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3597,10 +3409,6 @@
             "name": "(V)W E",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3664,10 +3472,6 @@
             "number": "48",
             "name": "(V)W ED",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -3737,10 +3541,6 @@
             "name": "(V)W W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3808,10 +3608,6 @@
             "number": "50",
             "name": "C W-E-W",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -3885,10 +3681,6 @@
             "name": "C W-E-OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -3960,10 +3752,6 @@
             "number": "52",
             "name": "C W-E-OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4037,10 +3825,6 @@
             "name": "C E-E-W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4108,10 +3892,6 @@
             "number": "54",
             "name": "C E-E-OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4181,10 +3961,6 @@
             "name": "C E-E-OW",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4252,10 +4028,6 @@
             "number": "56",
             "name": "CP(X) W-E-W",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4337,10 +4109,6 @@
             "name": "CP(X) W-E-OF",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4420,10 +4188,6 @@
             "number": "58",
             "name": "CP(X) W-E-OW",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4505,10 +4269,6 @@
             "name": "CP(X) E-E-W",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4584,10 +4344,6 @@
             "number": "60",
             "name": "CP(X) E-E-OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4665,10 +4421,6 @@
             "name": "CP(X) E-E-OW",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4744,10 +4496,6 @@
             "number": "62",
             "name": "P(R) SW W",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4828,10 +4576,6 @@
             "number": "63",
             "name": "P(R)W W OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -4917,10 +4661,6 @@
             "name": "V",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -4972,10 +4712,6 @@
             "number": "65",
             "name": "SP",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -5040,10 +4776,6 @@
             "number": "66",
             "name": "PSE",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -5113,10 +4845,6 @@
             "name": "SV",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -5176,10 +4904,6 @@
             "number": "68",
             "name": "SV-OF",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
@@ -5249,10 +4973,6 @@
             "name": "P(R)Е E",
             "actuators": [
                 {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
-                {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true
                 },
@@ -5320,10 +5040,6 @@
             "number": "70",
             "name": "P(R)W W",
             "actuators": [
-                {
-                    "name": "Воздушный клапан",
-                    "isUsedDefault": true
-                },
                 {
                     "name": "Приточный вентилятор",
                     "isUsedDefault": true

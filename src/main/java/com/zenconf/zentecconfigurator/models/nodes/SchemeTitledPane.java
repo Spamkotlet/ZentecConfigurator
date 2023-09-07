@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.controllers.configurator.ChangeSchemeController;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
 import com.zenconf.zentecconfigurator.models.enums.Controls;

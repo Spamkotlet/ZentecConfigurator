@@ -3,7 +3,6 @@ package com.zenconf.zentecconfigurator.models.nodes;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Alarm;
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.MainParameters;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,10 +34,9 @@ public class AlarmTableView {
     private final char[] activeWarningsCharArray = new char[32];
 
     public AlarmTableView() {
-        MainParameters mainParameters = MainController.mainParameters;
-        alarmsAttribute0 = mainParameters.getAlarmsAttribute0();
-        alarmsAttribute1 = mainParameters.getAlarmsAttribute1();
-        warningsAttribute = mainParameters.getWarningsAttribute();
+        alarmsAttribute0 = MainController.mainParameters.getAlarmsAttribute0();
+        alarmsAttribute1 = MainController.mainParameters.getAlarmsAttribute1();
+        warningsAttribute = MainController.mainParameters.getWarningsAttribute();
         alarmsList0 = MainController.alarms0;
         alarmsList1 = MainController.alarms1;
         warningsList = MainController.warnings;

@@ -1,10 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
-import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
@@ -18,24 +15,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 // TODO: Добавить сравнение параметров после записи с прочитанными из пульта. Помечать поля где расхождение
 public class Z031Controller implements Initializable {
-
-    private ElectricParameters electricParameters;
-    private WaterParameters waterParameters;
 
     @FXML
     public VBox electricParametersVBox;
@@ -62,8 +49,8 @@ public class Z031Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        electricParameters = MainController.electricParameters;
-        waterParameters = MainController.waterParameters;
+        ElectricParameters electricParameters = MainController.electricParameters;
+        WaterParameters waterParameters = MainController.waterParameters;
 
         List<LabeledSpinner> electricLabeledSpinnerList = new ArrayList<>();
         electricParametersVBox.getChildren().clear();

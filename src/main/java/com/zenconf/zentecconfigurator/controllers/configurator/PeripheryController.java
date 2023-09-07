@@ -1,7 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.MainController;
-import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Parameter;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
@@ -27,18 +26,12 @@ public class PeripheryController implements Initializable {
     public AnchorPane transparentPane;
     @FXML
     public ProgressBar progressBar;
-    private MainParameters mainParameters;
 
     private static final Logger logger = LogManager.getLogger(PeripheryController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainParameters = MainController.mainParameters;
-        peripheryVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                fillPeripherySettingsPane();
-            }
-        });
+        fillPeripherySettingsPane();
     }
 
     private void fillPeripherySettingsPane() {
@@ -49,9 +42,9 @@ public class PeripheryController implements Initializable {
             Platform.runLater(() -> peripherySettingsVbox.getChildren().clear());
             logger.info("Создание наполнения");
 
-            for (Parameter parameter : mainParameters.getPeripheryParameters()) {
+            for (Parameter parameter : MainController.mainParameters.getPeripheryParameters()) {
                 if (parameter.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane = null;
+                    ElementTitledPane elementTitledPane;
                     try {
                         elementTitledPane = new ElementTitledPane(parameter);
                         ElementTitledPane finalElementTitledPane1 = elementTitledPane;
@@ -70,7 +63,7 @@ public class PeripheryController implements Initializable {
                         throw new RuntimeException(e);
                     }
                     try {
-                        Thread.sleep(20);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

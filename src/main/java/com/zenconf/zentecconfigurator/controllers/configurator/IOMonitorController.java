@@ -5,7 +5,6 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.AlarmTableView;
@@ -13,7 +12,6 @@ import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
 import com.zenconf.zentecconfigurator.models.nodes.MonitorValueText;
 import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
-import javafx.animation.FillTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +24,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,10 +74,7 @@ public class IOMonitorController implements Initializable {
     private final static Logger logger = LogManager.getLogger(IOMonitorController.class);
 
     ModbusUtilSingleton modbusUtilSingleton;
-    List<Sensor> sensorsInScheme = new ArrayList<>();
-    List<Actuator> actuatorsInScheme = new ArrayList<>();
     List<MonitorValueText> monitorValueTextList = new ArrayList<>();
-    private MainParameters mainParameters;
     public AlarmTableView alarmsTableView;
 
     public static ScheduledExecutorService executor;
@@ -109,10 +103,8 @@ public class IOMonitorController implements Initializable {
         ioMonitorVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             // Событие на открытие окна
             if (newVal != null) {
-                sensorsInScheme = ChangeSchemeController.sensorsInScheme;
-                actuatorsInScheme = ChangeSchemeController.actuatorsInScheme;
 
-                if (sensorsInScheme != null || actuatorsInScheme != null) {
+                if (ChangeSchemeController.sensorsInScheme != null || ChangeSchemeController.actuatorsInScheme != null) {
                     if (pollingPreviousState) {
                         startPolling();
                     } else {
@@ -167,7 +159,7 @@ public class IOMonitorController implements Initializable {
                                 monitorValueText.update();
 
                                 try {
-                                    Thread.sleep(50);
+                                    Thread.sleep(100);
                                 } catch (InterruptedException e) {
                                     throw new RuntimeException(e);
                                 }
@@ -270,8 +262,6 @@ public class IOMonitorController implements Initializable {
     private void initializationPLCControlElements() throws Exception {
         logger.info("Инициализация элементов управления контроллером");
 
-        mainParameters = MainController.mainParameters;
-
         startStopButton.setOnAction(e -> {
             try {
                 startStop();
@@ -297,8 +287,8 @@ public class IOMonitorController implements Initializable {
             }
         });
 
-        Attribute controlModeAttribute = mainParameters.getControlModeAttribute();
-        List<String> controlModeValues = mainParameters.getControlModeAttribute().getValues();
+        Attribute controlModeAttribute = MainController.mainParameters.getControlModeAttribute();
+        List<String> controlModeValues = MainController.mainParameters.getControlModeAttribute().getValues();
         controlModeChoiceBox.setItems(getChoiceBoxStringItems(controlModeValues));
         controlModeChoiceBox.setValue(
                 getChoiceBoxStringItems(controlModeValues)
@@ -314,7 +304,7 @@ public class IOMonitorController implements Initializable {
             System.out.println("Index: " + controlModeValues.indexOf(controlModeChoiceBox.getValue()) + " Value: " + controlModeChoiceBox.getValue());
         });
 
-        Attribute seasonAttribute = mainParameters.getSeasonAttribute();
+        Attribute seasonAttribute = MainController.mainParameters.getSeasonAttribute();
         seasonChoiceBox.setItems(getSeasonsChoiceBoxItems());
         seasonChoiceBox.setValue(getSeasonsChoiceBoxItems()
                 .get(getCurrentSeasonNumber(seasonAttribute))
@@ -326,7 +316,7 @@ public class IOMonitorController implements Initializable {
                 System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
             } catch (Exception ex) {
                 logger.error(ex.getMessage());
-                ex.printStackTrace();
+                throw new RuntimeException(ex);
             }
         });
     }
@@ -337,8 +327,8 @@ public class IOMonitorController implements Initializable {
         monitorValueTextList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
-        if (sensorsInScheme != null) {
-            for (Sensor sensor : sensorsInScheme) {
+        if (ChangeSchemeController.sensorsInScheme != null) {
+            for (Sensor sensor : ChangeSchemeController.sensorsInScheme) {
                 if (sensor.getIsUsedDefault()) {
                     if (sensor.getAttributesForControlling() != null) {
                         List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
@@ -357,8 +347,8 @@ public class IOMonitorController implements Initializable {
         }
 
         actuatorsMonitorVBox.getChildren().clear();
-        if (actuatorsInScheme != null) {
-            for (Actuator actuator : actuatorsInScheme) {
+        if (ChangeSchemeController.actuatorsInScheme != null) {
+            for (Actuator actuator : ChangeSchemeController.actuatorsInScheme) {
                 if (actuator.getIsUsedDefault()) {
                     if (actuator.getAttributesForControlling() != null) {
                         List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
@@ -378,7 +368,7 @@ public class IOMonitorController implements Initializable {
     }
 
     private synchronized void updateCurrentSeason() throws Exception {
-        Attribute seasonAttribute = mainParameters.getSeasonAttribute();
+        Attribute seasonAttribute = MainController.mainParameters.getSeasonAttribute();
         String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbusParameter()));
         char[] seasonBitsCharArray = String.format("%4s", binaryString).replace(' ', '0').toCharArray();
         String seasonText;
@@ -425,14 +415,14 @@ public class IOMonitorController implements Initializable {
     }
 
     private synchronized void updateStatusLabel() throws Exception {
-        List<String> statusList = mainParameters.getStatusAttribute().getValues();
-        int statusNumber = Integer.parseInt(mainParameters.getStatusAttribute().readModbusParameter());
+        List<String> statusList = MainController.mainParameters.getStatusAttribute().getValues();
+        int statusNumber = Integer.parseInt(MainController.mainParameters.getStatusAttribute().readModbusParameter());
         Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
     }
 
     private synchronized void startStop() throws Exception {
         logger.info("Нажата кнопка <ПУСК/СТОП>");
-        Attribute startStopAttribute = mainParameters.getStartStopAttribute();
+        Attribute startStopAttribute = MainController.mainParameters.getStartStopAttribute();
         boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
         if (startStopBoolean) {
             startStopAttribute.writeModbusParameter(startStopBoolean);
@@ -444,9 +434,9 @@ public class IOMonitorController implements Initializable {
     }
 
     private boolean isAlarmActive() throws Exception {
-        long alarms0 = Long.parseLong(mainParameters.getAlarmsAttribute0().readModbusParameter());
-        long alarms1 = Long.parseLong(mainParameters.getAlarmsAttribute1().readModbusParameter());
-        long warnings = Long.parseLong(mainParameters.getWarningsAttribute().readModbusParameter());
+        long alarms0 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute0().readModbusParameter());
+        long alarms1 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute1().readModbusParameter());
+        long warnings = Long.parseLong(MainController.mainParameters.getWarningsAttribute().readModbusParameter());
 
         boolean isAlarmActive = warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1;
 
@@ -459,7 +449,7 @@ public class IOMonitorController implements Initializable {
 
     private void onClearJournalButton() throws Exception {
         logger.info("Очистка журнала");
-        Attribute clearJournalAttribute = mainParameters.getClearJournalAttribute();
+        Attribute clearJournalAttribute = MainController.mainParameters.getClearJournalAttribute();
         clearJournalAttribute.writeModbusParameter(true);
         alarmsTableView.clearJournal();
         onResetAlarmsButton();
@@ -467,7 +457,7 @@ public class IOMonitorController implements Initializable {
 
     private void onResetAlarmsButton() throws Exception {
         logger.info("Сброс аварий");
-        Attribute resetAlarmsAttribute = mainParameters.getResetAlarmsAttribute();
+        Attribute resetAlarmsAttribute = MainController.mainParameters.getResetAlarmsAttribute();
         resetAlarmsAttribute.writeModbusParameter(true);
         alarmsTableView.resetAlarms();
     }

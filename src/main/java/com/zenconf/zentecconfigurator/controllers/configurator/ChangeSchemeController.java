@@ -48,8 +48,6 @@ public class ChangeSchemeController implements Initializable {
     private Scheme previousScheme = null;
     protected static List<Sensor> sensorsInScheme;
     protected static List<Actuator> actuatorsInScheme;
-    private List<Actuator> actuatorList;
-    private List<Sensor> sensorList;
     private ModbusUtilSingleton modbusUtilSingleton;
 
     private static final Logger logger = LogManager.getLogger(ChangeSchemeController.class);
@@ -59,7 +57,6 @@ public class ChangeSchemeController implements Initializable {
 
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                // Потом надо запихать в метод
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                 try {
                     selectedScheme = readSchemeNumberFromModbus();
@@ -74,7 +71,7 @@ public class ChangeSchemeController implements Initializable {
         });
 
         try {
-            onOpenedChoiceSchemePane();
+            onOpenedChangeSchemeVBox();
         } catch (Exception e) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -106,10 +103,8 @@ public class ChangeSchemeController implements Initializable {
     }
 
     // Что происходит при открытии экрана
-    protected void onOpenedChoiceSchemePane() throws Exception {
+    protected void onOpenedChangeSchemeVBox() throws Exception {
         schemes = MainController.schemes;
-        actuatorList = MainController.actuatorList;
-        sensorList = MainController.sensorList;
 
         ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
 
@@ -137,7 +132,7 @@ public class ChangeSchemeController implements Initializable {
         actuatorsInScheme = selectedScheme.getActuators();
 
         for (Actuator actuatorInScheme : actuatorsInScheme) {
-            for (Actuator actuator : actuatorList) {
+            for (Actuator actuator : MainController.actuatorList) {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
@@ -147,7 +142,7 @@ public class ChangeSchemeController implements Initializable {
         }
 
         for (Sensor sensorInScheme : sensorsInScheme) {
-            for (Sensor sensor : sensorList) {
+            for (Sensor sensor : MainController.sensorList) {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
@@ -191,7 +186,7 @@ public class ChangeSchemeController implements Initializable {
                 SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
                 Platform.runLater(() -> actuatorsVbox.getChildren().add(finalSchemeTitledPane));
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -209,7 +204,7 @@ public class ChangeSchemeController implements Initializable {
                         throw new RuntimeException(e);
                     }
                     try {
-                        Thread.sleep(20);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -230,7 +225,7 @@ public class ChangeSchemeController implements Initializable {
                 SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
                 Platform.runLater(() -> sensorsVbox.getChildren().add(finalSchemeTitledPane));
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

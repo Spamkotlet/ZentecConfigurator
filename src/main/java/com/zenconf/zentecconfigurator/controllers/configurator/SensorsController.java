@@ -13,12 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SensorsController implements Initializable {
-
-    private List<Sensor> sensorsInScheme;
 
     @FXML
     public VBox sensorsSettingsVbox;
@@ -37,8 +34,7 @@ public class SensorsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                sensorsInScheme = ChangeSchemeController.sensorsInScheme;
-                if (sensorsInScheme != null) {
+                if (ChangeSchemeController.sensorsInScheme != null) {
                     fillSensorsSettingsPane();
                 }
             }
@@ -53,7 +49,7 @@ public class SensorsController implements Initializable {
             Platform.runLater(() -> sensorsSettingsVbox.getChildren().clear());
             logger.info("Создание наполнения");
 
-            for (Sensor sensorInScheme : sensorsInScheme) {
+            for (Sensor sensorInScheme : ChangeSchemeController.sensorsInScheme) {
                 if (sensorInScheme.getIsUsedDefault()) {
                     if (sensorInScheme.getAttributes() != null) {
                         ElementTitledPane elementTitledPane;
@@ -75,7 +71,7 @@ public class SensorsController implements Initializable {
                         ElementTitledPane finalElementTitledPane = elementTitledPane;
                         Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementTitledPane));
                         try {
-                            Thread.sleep(20);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }

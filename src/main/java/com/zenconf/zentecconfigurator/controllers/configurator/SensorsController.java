@@ -1,7 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.models.Sensor;
-import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
+import com.zenconf.zentecconfigurator.models.nodes.ElementPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +35,7 @@ public class SensorsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Sensors initialize");
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.sensorsInScheme != null) {
@@ -64,9 +65,9 @@ public class SensorsController implements Initializable {
             for (Sensor sensorInScheme : ChangeSchemeController.sensorsInScheme) {
                 if (sensorInScheme.getIsUsedDefault()) {
                     if (sensorInScheme.getAttributes() != null) {
-                        ElementTitledPane elementTitledPane;
+                        ElementPane elementPane;
                         try {
-                            elementTitledPane = new ElementTitledPane(sensorInScheme);
+                            elementPane = new ElementPane(sensorInScheme);
                         } catch (Exception e) {
                             transparentPane.setVisible(false);
                             progressBar.setVisible(false);
@@ -80,8 +81,8 @@ public class SensorsController implements Initializable {
                             });
                             throw new RuntimeException(e);
                         }
-                        ElementTitledPane finalElementTitledPane = elementTitledPane;
-                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementTitledPane));
+                        ElementPane finalElementPane = elementPane;
+                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementPane));
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {

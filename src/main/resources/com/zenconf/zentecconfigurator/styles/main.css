@@ -58,3 +58,12 @@
     -fx-background-color: "#5E5E5E";
     -fx-background-radius: 0px;
 }
+
+.element-pane-header {
+    -fx-background-color: "#CDCDCD";
+    -fx-font-weight: bold;
+}
+
+.element-pane-border {
+    -fx-border-color: "#C8C8C8";
+}

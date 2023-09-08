@@ -23,6 +23,7 @@ import java.util.*;
 public class ConfiguratorController implements Initializable {
 
     private final Map<String, Node> panels = new HashMap<>();
+    private Node activePanel = null;
 
     @FXML
     public ImageView schemeImageView;
@@ -255,18 +256,25 @@ public class ConfiguratorController implements Initializable {
             }
             panels.put(panelName, node);
         }
-        logger.info("Открыть окно <" + panelName + ">");
-        showNode(node);
+
+        if (activePanel != node) {
+            logger.info("Открыть окно <" + panelName + ">");
+            showNode(node);
+        }
     }
 
     private Node createNewNode(String resourcePath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
+        System.out.println("newNode");
         return loader.load();
     }
 
     private void showNode(Node node) {
-        splitPaneRight.getChildren().clear();
+        if (activePanel != null) {
+            splitPaneRight.getChildren().remove(activePanel);
+        }
         splitPaneRight.getChildren().add(node);
+        activePanel = node;
     }
 
     public static void selectScheme() {

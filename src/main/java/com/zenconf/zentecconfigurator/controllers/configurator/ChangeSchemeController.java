@@ -6,7 +6,7 @@ import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
-import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
+import com.zenconf.zentecconfigurator.models.nodes.SchemePane;
 
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
@@ -30,8 +30,6 @@ public class ChangeSchemeController implements Initializable {
 
     @FXML
     public ChoiceBox<String> schemeNumberChoiceBox;
-    @FXML
-    public TitledPane schemeChoiceTitledPane;
     @FXML
     public VBox actuatorsVbox;
     @FXML
@@ -158,12 +156,11 @@ public class ChangeSchemeController implements Initializable {
     // Заполнение панели устройствами и датчиками
     private void fillingPane() throws Exception {
 
-        schemeChoiceTitledPane.getContent();
-        ObservableList<Node> actuatorSchemeTitledPaneNodes = actuatorsVbox.getChildren();
+        ObservableList<Node> actuatorSchemePaneNodes = actuatorsVbox.getChildren();
         // Установка всех чекбоксов "Используется" в положение false
-        if (actuatorSchemeTitledPaneNodes != null) {
-            for (Node schemeTitledNode : actuatorSchemeTitledPaneNodes) {
-                ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+        if (actuatorSchemePaneNodes != null) {
+            for (Node schemeNode : actuatorSchemePaneNodes) {
+                ((SchemePane) schemeNode).setAttributeIsUsedOff();
             }
         }
 
@@ -174,17 +171,17 @@ public class ChangeSchemeController implements Initializable {
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
             logger.info("Создание наполнения");
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-                SchemeTitledPane schemeTitledPane;
+                SchemePane schemePane;
                 try {
-                    schemeTitledPane = new SchemeTitledPane(actuator);
+                    schemePane = new SchemePane(actuator);
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                     transparentPane.setVisible(false);
                     progressBar.setVisible(false);
                     throw new RuntimeException(e);
                 }
-                SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
-                Platform.runLater(() -> actuatorsVbox.getChildren().add(finalSchemeTitledPane));
+                SchemePane finalSchemePane = schemePane;
+                Platform.runLater(() -> actuatorsVbox.getChildren().add(finalSchemePane));
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -192,11 +189,11 @@ public class ChangeSchemeController implements Initializable {
                 }
             }
 
-            ObservableList<Node> sensorSchemeTitledPaneNodes = sensorsVbox.getChildren();
-            if (sensorSchemeTitledPaneNodes != null) {
-                for (Node schemeTitledNode : sensorSchemeTitledPaneNodes) {
+            ObservableList<Node> sensorSchemePaneNodes = sensorsVbox.getChildren();
+            if (sensorSchemePaneNodes != null) {
+                for (Node schemeNode : sensorSchemePaneNodes) {
                     try {
-                        ((SchemeTitledPane) schemeTitledNode).setAttributeIsUsedOff();
+                        ((SchemePane) schemeNode).setAttributeIsUsedOff();
                     } catch (Exception e) {
                         transparentPane.setVisible(false);
                         progressBar.setVisible(false);
@@ -213,17 +210,17 @@ public class ChangeSchemeController implements Initializable {
 
             Platform.runLater(() -> sensorsVbox.getChildren().clear());
             for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-                SchemeTitledPane schemeTitledPane;
+                SchemePane schemePane;
                 try {
-                    schemeTitledPane = new SchemeTitledPane(sensor);
+                    schemePane = new SchemePane(sensor);
                 } catch (Exception e) {
                     transparentPane.setVisible(false);
                     progressBar.setVisible(false);
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
-                SchemeTitledPane finalSchemeTitledPane = schemeTitledPane;
-                Platform.runLater(() -> sensorsVbox.getChildren().add(finalSchemeTitledPane));
+                SchemePane finalSchemePane = schemePane;
+                Platform.runLater(() -> sensorsVbox.getChildren().add(finalSchemePane));
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {

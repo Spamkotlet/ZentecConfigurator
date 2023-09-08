@@ -2,7 +2,8 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Parameter;
-import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
+import com.zenconf.zentecconfigurator.models.nodes.ElementPane;
+import com.zenconf.zentecconfigurator.models.nodes.ElementPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,11 +45,11 @@ public class PeripheryController implements Initializable {
 
             for (Parameter parameter : MainController.mainParameters.getPeripheryParameters()) {
                 if (parameter.getAttributes() != null) {
-                    ElementTitledPane elementTitledPane;
+                    ElementPane elementPane;
                     try {
-                        elementTitledPane = new ElementTitledPane(parameter);
-                        ElementTitledPane finalElementTitledPane1 = elementTitledPane;
-                        Platform.runLater(() -> peripherySettingsVbox.getChildren().add(finalElementTitledPane1));
+                        elementPane = new ElementPane(parameter);
+                        ElementPane finalElementPane1 = elementPane;
+                        Platform.runLater(() -> peripherySettingsVbox.getChildren().add(finalElementPane1));
                     } catch (Exception e) {
                         transparentPane.setVisible(false);
                         progressBar.setVisible(false);

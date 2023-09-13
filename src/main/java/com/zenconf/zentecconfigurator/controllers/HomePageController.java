@@ -10,14 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class HomePageController implements Initializable {
+public class HomePageController extends CommonController implements Initializable {
 
     public static final Map<String, Node> panels = new HashMap<>();
 
@@ -28,8 +26,6 @@ public class HomePageController implements Initializable {
     @FXML
     public VBox mainViewVBox;
     public static VBox mainViewVBox1;
-
-    private static final Logger logger = LogManager.getLogger(HomePageController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +55,7 @@ public class HomePageController implements Initializable {
         Node node = panels.get(panelName);
         if (node == null) {
             try {
-                node = createNewNode(resourcePath);
+                node = createChildNode(resourcePath);
             } catch (IOException e) {
                 logger.error(e.getStackTrace());
                 throw new RuntimeException(e);
@@ -70,9 +66,12 @@ public class HomePageController implements Initializable {
         showNode(node);
     }
 
-    private Node createNewNode(String resourcePath) throws IOException {
+    private Node createChildNode(String resourcePath) throws IOException {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
-        return loader.load();
+        Node node = loader.load();
+        CommonController controller = loader.getController();
+        controller.setPrimaryStage(this.getPrimaryStage());
+        return node;
     }
 
     private void showNode(Node node) {

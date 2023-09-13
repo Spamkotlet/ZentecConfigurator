@@ -8,14 +8,11 @@ import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 // TODO: Добавить сравнение параметров после записи с прочитанными из пульта. Помечать поля где расхождение
-public class Z031Controller implements Initializable {
+public class Z031Controller extends CommonController implements Initializable {
 
     @FXML
     public VBox electricParametersVBox;
@@ -45,8 +42,6 @@ public class Z031Controller implements Initializable {
     public ProgressBar progressBar;
     @FXML
     public AnchorPane transparentPane;
-
-    private final static Logger logger = LogManager.getLogger(Z031Controller.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

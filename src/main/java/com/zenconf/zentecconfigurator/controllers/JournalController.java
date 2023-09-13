@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class JournalController implements Initializable {
+public class JournalController extends CommonController implements Initializable {
 
     @FXML
     public GridPane journalGridPane;

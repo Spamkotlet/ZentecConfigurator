@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
@@ -17,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ActuatorsController implements Initializable {
+public class ActuatorsController extends CommonController implements Initializable {
     @FXML
     public VBox actuatorsSettingsVbox;
     @FXML
@@ -35,7 +36,6 @@ public class ActuatorsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Actuators initialize");
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.actuatorsInScheme != null) {
@@ -67,57 +67,53 @@ public class ActuatorsController implements Initializable {
                     Parameter valveParameter = new Parameter();
                     valveParameter.setName("Воздушный клапан");
                     valveParameter.setAttributes(MainController.mainParameters.getValveAttributes());
-                    ElementTitledPane valvePane;
+                    ElementTitledPane valveTitledPane;
                     try {
-                        valvePane = new ElementTitledPane(valveParameter);
+                        valveTitledPane = new ElementTitledPane(valveParameter);
+                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
-                    ElementTitledPane finalValvePane = valvePane;
-                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValvePane));
 
                     Parameter valveHeatersParameter = new Parameter();
                     valveHeatersParameter.setName("Обогрев клапанов");
                     valveHeatersParameter.setAttributes(MainController.mainParameters.getValveHeatersAttributes());
-                    ElementTitledPane valveHeatersPane;
+                    ElementTitledPane valveHeatersTitledPane;
                     try {
-                        valveHeatersPane = new ElementTitledPane(valveHeatersParameter);
+                        valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveHeatersTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
-                    ElementTitledPane finalValveHeatersPane = valveHeatersPane;
-                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalValveHeatersPane));
 
                     Parameter heatExchangerParameter = new Parameter();
                     heatExchangerParameter.setName("Теплообменники");
                     heatExchangerParameter.setAttributes(MainController.mainParameters.getHeatExchangerAttributes());
-                    ElementTitledPane heatExchangerPane;
+                    ElementTitledPane heatExchangerTitledPane;
                     try {
-                        heatExchangerPane = new ElementTitledPane(heatExchangerParameter);
+                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                        Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
-                    ElementTitledPane finalHeatExchangerPane = heatExchangerPane;
-                    Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalHeatExchangerPane));
                 }
 
                 for (Actuator actuatorInScheme : ChangeSchemeController.actuatorsInScheme) {
                     if (actuatorInScheme.getIsUsedDefault()) {
                         if (actuatorInScheme.getAttributes() != null) {
-                            ElementTitledPane ElementTitledPane;
+                            ElementTitledPane actuatorTitledPane;
                             try {
-                                ElementTitledPane = new ElementTitledPane(actuatorInScheme);
+                                actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
+                                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
                             } catch (Exception e) {
                                 transparentPane.setVisible(false);
                                 progressBar.setVisible(false);
                                 logger.error(e.getMessage());
                                 throw new RuntimeException(e);
                             }
-                            ElementTitledPane finalElementTitledPane = ElementTitledPane;
-                            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(finalElementTitledPane));
                             try {
                                 Thread.sleep(100);
                             } catch (InterruptedException e) {

@@ -12,15 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import jssc.SerialPortList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class SettingsController implements Initializable {
+public class SettingsController extends CommonController implements Initializable {
 
     @FXML
     public ChoiceBox<String> comPortChoiceBox;
@@ -42,8 +40,6 @@ public class SettingsController implements Initializable {
     public Button refreshComPortsButton;
 
     ModbusUtilSingleton modbusUtilSingleton;
-
-    private static final Logger logger = LogManager.getLogger(SettingsController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

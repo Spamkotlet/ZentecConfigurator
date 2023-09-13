@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
@@ -9,13 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SensorsController implements Initializable {
+public class SensorsController extends CommonController implements Initializable {
 
     @FXML
     public VBox sensorsSettingsVbox;
@@ -31,11 +30,8 @@ public class SensorsController implements Initializable {
     private int sensorsUsedNumber = 0;
     private int sensorsUsedNumberPrev = 0;
 
-    private static final Logger logger = LogManager.getLogger(SensorsController.class);
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Sensors initialize");
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.sensorsInScheme != null) {
@@ -65,9 +61,10 @@ public class SensorsController implements Initializable {
             for (Sensor sensorInScheme : ChangeSchemeController.sensorsInScheme) {
                 if (sensorInScheme.getIsUsedDefault()) {
                     if (sensorInScheme.getAttributes() != null) {
-                        ElementTitledPane ElementTitledPane;
+                        ElementTitledPane sensorTitledPane;
                         try {
-                            ElementTitledPane = new ElementTitledPane(sensorInScheme);
+                            sensorTitledPane = new ElementTitledPane(sensorInScheme);
+                            Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(sensorTitledPane));
                         } catch (Exception e) {
                             transparentPane.setVisible(false);
                             progressBar.setVisible(false);
@@ -81,8 +78,6 @@ public class SensorsController implements Initializable {
                             });
                             throw new RuntimeException(e);
                         }
-                        ElementTitledPane finalElementTitledPane = ElementTitledPane;
-                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementTitledPane));
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {

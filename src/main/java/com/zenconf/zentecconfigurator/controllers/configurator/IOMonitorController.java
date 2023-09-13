@@ -2,6 +2,7 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
@@ -24,8 +25,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.*;
@@ -33,7 +32,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class IOMonitorController implements Initializable {
+public class IOMonitorController extends CommonController implements Initializable {
 
     @FXML
     public Button startPollingButton;
@@ -70,8 +69,6 @@ public class IOMonitorController implements Initializable {
     public VBox alarmsVBox;
     @FXML
     public Circle pollingStatusIndicatorCircle;
-
-    private final static Logger logger = LogManager.getLogger(IOMonitorController.class);
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<MonitorValueText> monitorValueTextList = new ArrayList<>();

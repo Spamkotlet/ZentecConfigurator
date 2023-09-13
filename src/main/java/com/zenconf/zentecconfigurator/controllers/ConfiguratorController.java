@@ -1,29 +1,19 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.zenconf.zentecconfigurator.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class ConfiguratorController implements Initializable {
-
-    private final Map<String, Node> panels = new HashMap<>();
-    private Node activePanel = null;
+public class ConfiguratorController extends CommonController implements Initializable {
 
     @FXML
     public ImageView schemeImageView;
@@ -56,15 +46,13 @@ public class ConfiguratorController implements Initializable {
 
     static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
-    private static final Logger logger = LogManager.getLogger(ConfiguratorController.class);
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+        onCreateChildNode(splitPaneRight, "Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
         schemeBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onClickButton("Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+                            onCreateChildNode(splitPaneRight, "Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
                             if (!schemeBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 schemeBorderPane.getStyleClass().remove("button-configurator");
                                 schemeBorderPane.getStyleClass().add("button-configurator-active");
@@ -94,7 +82,7 @@ public class ConfiguratorController implements Initializable {
         sensorsBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onClickButton("Датчики", "/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml");
+                            onCreateChildNode(splitPaneRight, "Датчики", "/com/zenconf/zentecconfigurator/fxml/configurator/sensors-settings.fxml");
                             if (!sensorsBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 sensorsBorderPane.getStyleClass().remove("button-configurator");
                                 sensorsBorderPane.getStyleClass().add("button-configurator-active");
@@ -124,7 +112,7 @@ public class ConfiguratorController implements Initializable {
         actuatorsBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onClickButton("Испонительные устройства", "/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml");
+                            onCreateChildNode(splitPaneRight, "Испонительные устройства", "/com/zenconf/zentecconfigurator/fxml/configurator/actuators-settings.fxml");
                             if (!actuatorsBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 actuatorsBorderPane.getStyleClass().remove("button-configurator");
                                 actuatorsBorderPane.getStyleClass().add("button-configurator-active");
@@ -154,7 +142,7 @@ public class ConfiguratorController implements Initializable {
         ioBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onClickButton("Мониторинг", "/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml");
+                            onCreateChildNode(splitPaneRight, "Мониторинг", "/com/zenconf/zentecconfigurator/fxml/configurator/io-monitor.fxml");
                             if (!ioBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 ioBorderPane.getStyleClass().remove("button-configurator");
                                 ioBorderPane.getStyleClass().add("button-configurator-active");
@@ -184,7 +172,7 @@ public class ConfiguratorController implements Initializable {
         peripheryBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onClickButton("Периферия", "/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml");
+                            onCreateChildNode(splitPaneRight, "Периферия", "/com/zenconf/zentecconfigurator/fxml/configurator/periphery.fxml");
                             if (!peripheryBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 peripheryBorderPane.getStyleClass().remove("button-configurator");
                                 peripheryBorderPane.getStyleClass().add("button-configurator-active");
@@ -243,38 +231,6 @@ public class ConfiguratorController implements Initializable {
         ioImageView.setFitWidth(80);
         ioImageView.setMouseTransparent(true);
         ioImageView.setImage(ioImage);
-    }
-
-    private void onClickButton(String panelName, String resourcePath) {
-        Node node = panels.get(panelName);
-        if (node == null) {
-            try {
-                node = createNewNode(resourcePath);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                throw new RuntimeException(e);
-            }
-            panels.put(panelName, node);
-        }
-
-        if (activePanel != node) {
-            logger.info("Открыть окно <" + panelName + ">");
-            showNode(node);
-        }
-    }
-
-    private Node createNewNode(String resourcePath) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
-        System.out.println("newNode");
-        return loader.load();
-    }
-
-    private void showNode(Node node) {
-        if (activePanel != null) {
-            splitPaneRight.getChildren().remove(activePanel);
-        }
-        splitPaneRight.getChildren().add(node);
-        activePanel = node;
     }
 
     public static void selectScheme() {

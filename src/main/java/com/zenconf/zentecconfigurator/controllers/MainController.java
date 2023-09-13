@@ -2,7 +2,6 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zenconf.zentecconfigurator.Application;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Scheme;
@@ -11,30 +10,23 @@ import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MainController extends CommonController implements Initializable {
 
-    private final Map<String, Node> panels = new HashMap<>();
     @FXML
     public Button goToHomeButton;
     @FXML
@@ -55,17 +47,16 @@ public class MainController extends CommonController implements Initializable {
     public static List<Scheme> schemes;
     public static ElectricParameters electricParameters;
     public static WaterParameters waterParameters;
-    private static final Logger logger = LogManager.getLogger(MainController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         leftHeaderButtonsHBox1 = leftHeaderButtonsHBox;
 
-        onClickButton("Домашняя", "home-page-view.fxml");
+        onCreateChildNode(mainAnchorPane, "Домашняя", "home-page-view.fxml");
 
-        goToHomeButton.setOnAction(e -> onClickButton("Домашняя", "home-page-view.fxml"));
-        goToHelpButton.setOnAction(e -> onClickButton("Справка", "help-page-view.fxml"));
-        goToSettingsButton.setOnAction(e -> onClickButton("Настройки", "settings.fxml"));
+        goToHomeButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Домашняя", "home-page-view.fxml"));
+        goToHelpButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Справка", "help-page-view.fxml"));
+        goToSettingsButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Настройки", "settings.fxml"));
 
         Thread thread;
         Runnable task = () -> {
@@ -78,31 +69,6 @@ public class MainController extends CommonController implements Initializable {
         };
         thread = new Thread(task);
         thread.start();
-    }
-
-    private void onClickButton(String panelName, String resourcePath) {
-        Node node = panels.get(panelName);
-        if (node == null) {
-            try {
-                node = createNewNode(resourcePath);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                throw new RuntimeException(e);
-            }
-            panels.put(panelName, node);
-        }
-        logger.info("Открыть окно <" + panelName + ">");
-        showNode(node);
-    }
-
-    private Node createNewNode(String resourcePath) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
-        return loader.load();
-    }
-
-    private void showNode(Node node) {
-        mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(node);
     }
 
     private void getMainParametersFromJson() {

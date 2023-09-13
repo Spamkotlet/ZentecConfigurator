@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Parameter;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
@@ -10,13 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PeripheryController implements Initializable {
+public class PeripheryController extends CommonController implements Initializable {
 
     @FXML
     public VBox peripherySettingsVbox;
@@ -26,8 +25,6 @@ public class PeripheryController implements Initializable {
     public AnchorPane transparentPane;
     @FXML
     public ProgressBar progressBar;
-
-    private static final Logger logger = LogManager.getLogger(PeripheryController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
+import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
@@ -11,22 +12,20 @@ import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ChangeSchemeController implements Initializable {
+public class ChangeSchemeController extends CommonController implements Initializable {
 
     @FXML
     public ChoiceBox<String> schemeNumberChoiceBox;
@@ -40,6 +39,9 @@ public class ChangeSchemeController implements Initializable {
     public AnchorPane transparentPane;
     @FXML
     public ProgressBar progressBar;
+    private Thread thread;
+    @FXML
+    public Button cancelLoadButton;
 
     private List<Scheme> schemes;
     public static Scheme selectedScheme = null;
@@ -48,10 +50,14 @@ public class ChangeSchemeController implements Initializable {
     public static List<Actuator> actuatorsInScheme;
     private ModbusUtilSingleton modbusUtilSingleton;
 
-    private static final Logger logger = LogManager.getLogger(ChangeSchemeController.class);
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        cancelLoadButton.setOnAction(e -> {
+            thread.stop();
+            progressBar.setVisible(false);
+            transparentPane.setVisible(false);
+        });
 
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -164,24 +170,23 @@ public class ChangeSchemeController implements Initializable {
             }
         }
 
-        Thread thread;
         Runnable task = () -> {
-            transparentPane.setVisible(true);
             progressBar.setVisible(true);
+            transparentPane.setVisible(true);
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
             logger.info("Создание наполнения");
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
-                SchemeTitledPane SchemeTitledPane;
+                SchemeTitledPane actuatorTitledPane;
                 try {
-                    SchemeTitledPane = new SchemeTitledPane(actuator);
+                    actuatorTitledPane = new SchemeTitledPane(actuator);
+                    Platform.runLater(() -> actuatorsVbox.getChildren().add(actuatorTitledPane));
                 } catch (Exception e) {
                     logger.error(e.getMessage());
-                    transparentPane.setVisible(false);
                     progressBar.setVisible(false);
+                    transparentPane.setVisible(false);
                     throw new RuntimeException(e);
                 }
-                SchemeTitledPane finalSchemeTitledPane = SchemeTitledPane;
-                Platform.runLater(() -> actuatorsVbox.getChildren().add(finalSchemeTitledPane));
+
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -195,8 +200,8 @@ public class ChangeSchemeController implements Initializable {
                     try {
                         ((SchemeTitledPane) schemeNode).setAttributeIsUsedOff();
                     } catch (Exception e) {
-                        transparentPane.setVisible(false);
                         progressBar.setVisible(false);
+                        transparentPane.setVisible(false);
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
@@ -210,17 +215,16 @@ public class ChangeSchemeController implements Initializable {
 
             Platform.runLater(() -> sensorsVbox.getChildren().clear());
             for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
-                SchemeTitledPane SchemeTitledPane;
+                SchemeTitledPane sensorTitledPane;
                 try {
-                    SchemeTitledPane = new SchemeTitledPane(sensor);
+                    sensorTitledPane = new SchemeTitledPane(sensor);
+                    Platform.runLater(() -> sensorsVbox.getChildren().add(sensorTitledPane));
                 } catch (Exception e) {
-                    transparentPane.setVisible(false);
                     progressBar.setVisible(false);
+                    transparentPane.setVisible(false);
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
-                SchemeTitledPane finalSchemeTitledPane = SchemeTitledPane;
-                Platform.runLater(() -> sensorsVbox.getChildren().add(finalSchemeTitledPane));
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -228,8 +232,8 @@ public class ChangeSchemeController implements Initializable {
                 }
             }
 
-            transparentPane.setVisible(false);
             progressBar.setVisible(false);
+            transparentPane.setVisible(false);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.intelligt.modbus.jlibmodbus.serial.SerialPortException;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,7 +17,6 @@ import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LabeledSpinner {
 
@@ -184,6 +182,7 @@ public class LabeledSpinner {
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             errorLabel.setText(errorText);
+            errorLabel.setTooltip(new Tooltip("Ошибка чтения!"));
             errorLabel.setVisible(true);
             throw new RuntimeException(e);
         }

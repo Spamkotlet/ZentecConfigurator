@@ -1,7 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.models.Sensor;
-import com.zenconf.zentecconfigurator.models.nodes.ElementPane;
+import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -65,9 +65,9 @@ public class SensorsController implements Initializable {
             for (Sensor sensorInScheme : ChangeSchemeController.sensorsInScheme) {
                 if (sensorInScheme.getIsUsedDefault()) {
                     if (sensorInScheme.getAttributes() != null) {
-                        ElementPane elementPane;
+                        ElementTitledPane ElementTitledPane;
                         try {
-                            elementPane = new ElementPane(sensorInScheme);
+                            ElementTitledPane = new ElementTitledPane(sensorInScheme);
                         } catch (Exception e) {
                             transparentPane.setVisible(false);
                             progressBar.setVisible(false);
@@ -81,8 +81,8 @@ public class SensorsController implements Initializable {
                             });
                             throw new RuntimeException(e);
                         }
-                        ElementPane finalElementPane = elementPane;
-                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementPane));
+                        ElementTitledPane finalElementTitledPane = ElementTitledPane;
+                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalElementTitledPane));
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {

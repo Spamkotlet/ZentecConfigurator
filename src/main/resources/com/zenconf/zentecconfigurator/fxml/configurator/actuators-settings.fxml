@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -29,7 +28,5 @@
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane fx:id="transparentPane" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d4d4d4;" visible="false" />
-      <ProgressBar fx:id="progressBar" prefWidth="200.0" visible="false" />
    </children>
 </StackPane>

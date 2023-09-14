@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.*;
 
@@ -265,4 +267,5 @@ public class ConfiguratorController extends CommonController implements Initiali
     public static void selectScheme() {
         isEnabled.setValue(true);
     }
+
 }

@@ -17,8 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,11 +35,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
     public VBox sensorsVbox;
     @FXML
     public VBox changeSchemeVBox;
-    @FXML
-    public AnchorPane transparentPane;
-    @FXML
-    public ProgressBar progressBar;
-    private Thread thread;
 
     private List<Scheme> schemes;
     public static Scheme selectedScheme = null;
@@ -163,8 +158,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         }
 
         Runnable task = () -> {
-            progressBar.setVisible(true);
-            transparentPane.setVisible(true);
+            Platform.runLater(this::showLoadWindow);
             Platform.runLater(() -> actuatorsVbox.getChildren().clear());
             logger.info("Создание наполнения");
             for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
@@ -174,8 +168,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     Platform.runLater(() -> actuatorsVbox.getChildren().add(actuatorTitledPane));
                 } catch (Exception e) {
                     logger.error(e.getMessage());
-                    progressBar.setVisible(false);
-                    transparentPane.setVisible(false);
+                    Platform.runLater(this::closeLoadWindow);
                     throw new RuntimeException(e);
                 }
 
@@ -192,8 +185,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     try {
                         ((SchemeTitledPane) schemeNode).setAttributeIsUsedOff();
                     } catch (Exception e) {
-                        progressBar.setVisible(false);
-                        transparentPane.setVisible(false);
+                        Platform.runLater(this::closeLoadWindow);
                         logger.error(e.getMessage());
                         throw new RuntimeException(e);
                     }
@@ -212,8 +204,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     sensorTitledPane = new SchemeTitledPane(sensor);
                     Platform.runLater(() -> sensorsVbox.getChildren().add(sensorTitledPane));
                 } catch (Exception e) {
-                    progressBar.setVisible(false);
-                    transparentPane.setVisible(false);
+                    Platform.runLater(this::closeLoadWindow);
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
@@ -224,16 +215,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 }
             }
 
-            progressBar.setVisible(false);
-            transparentPane.setVisible(false);
+            Platform.runLater(this::closeLoadWindow);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         };
-        thread = new Thread(task);
-        thread.start();
+        loadingThread = new Thread(task);
+        loadingThread.start();
     }
 
     // Запись номера схемы в контроллер по Modbus

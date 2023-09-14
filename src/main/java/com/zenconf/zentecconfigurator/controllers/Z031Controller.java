@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -100,8 +101,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Запись параметров в пульт");
-            Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
-            thread.start();
+            loadingThread = getThread(labeledSpinnerList, VarFunctions.WRITE);
+            loadingThread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -118,8 +119,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Чтение параметров из пульта");
-            Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
-            thread.start();
+            loadingThread = getThread(labeledSpinnerList, VarFunctions.READ);
+            loadingThread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -142,13 +143,14 @@ public class Z031Controller extends CommonController implements Initializable {
     private Thread getThread(List<LabeledSpinner> labeledSpinnerList, VarFunctions varFunctions) {
         Thread thread;
         Runnable task = () -> {
-            transparentPane.setVisible(true);
-            progressBar.setVisible(true);
-            double progress = 0;
-            double progressStep = 1d / labeledSpinnerList.size();
+//            transparentPane.setVisible(true);
+//            progressBar.setVisible(true);
+//            double progress = 0;
+//            double progressStep = 1d / labeledSpinnerList.size();
+            Platform.runLater(() -> this.showProgressWindow(labeledSpinnerList.size()));
             try {
                 for (LabeledSpinner spinner: labeledSpinnerList) {
-                    progress += progressStep;
+//                    progress += progressStep;
                     if (varFunctions.equals(VarFunctions.WRITE)) {
                         try {
                             spinner.writeModbusValue();
@@ -159,7 +161,7 @@ public class Z031Controller extends CommonController implements Initializable {
                     } else if (varFunctions.equals(VarFunctions.READ)) {
                         spinner.readModbusValue();
                     }
-                    progressBar.setProgress(progress);
+                    Platform.runLater(this::updateProgress);
 
                     try {
                         Thread.sleep(20);
@@ -168,9 +170,10 @@ public class Z031Controller extends CommonController implements Initializable {
                     }
                 }
             } catch (Exception e) {
-                progressBar.setProgress(0.0);
-                progressBar.setVisible(false);
-                transparentPane.setVisible(false);
+//                progressBar.setProgress(0.0);
+//                progressBar.setVisible(false);
+//                transparentPane.setVisible(false);
+                Platform.runLater(this::closeLoadWindow);
                 logger.error(e.getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -181,10 +184,11 @@ public class Z031Controller extends CommonController implements Initializable {
                 });
                 throw new RuntimeException(e);
             }
-
-            progressBar.setProgress(0.0);
-            progressBar.setVisible(false);
-            transparentPane.setVisible(false);
+//
+//            progressBar.setProgress(0.0);
+//            progressBar.setVisible(false);
+//            transparentPane.setVisible(false);
+            Platform.runLater(this::closeLoadWindow);
         };
         thread = new Thread(task);
         return thread;

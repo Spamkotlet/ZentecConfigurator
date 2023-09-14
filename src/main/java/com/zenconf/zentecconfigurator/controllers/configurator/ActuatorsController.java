@@ -9,9 +9,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,11 +22,6 @@ public class ActuatorsController extends CommonController implements Initializab
     public VBox actuatorsSettingsVbox;
     @FXML
     public VBox actuatorsVBox;
-
-    @FXML
-    public AnchorPane transparentPane;
-    @FXML
-    public ProgressBar progressBar;
 
     private int devicesUsedNumber = 0;
     private int devicesUsedNumberPrev = 0;
@@ -55,10 +49,8 @@ public class ActuatorsController extends CommonController implements Initializab
     }
 
     private void fillActuatorsSettingsPane() {
-        Thread thread;
         Runnable task = () -> {
-            transparentPane.setVisible(true);
-            progressBar.setVisible(true);
+            Platform.runLater(this::showLoadWindow);
             Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
             logger.info("Создание наполнения");
 
@@ -109,8 +101,7 @@ public class ActuatorsController extends CommonController implements Initializab
                                 actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
                                 Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
                             } catch (Exception e) {
-                                transparentPane.setVisible(false);
-                                progressBar.setVisible(false);
+                                Platform.runLater(this::closeLoadWindow);
                                 logger.error(e.getMessage());
                                 throw new RuntimeException(e);
                             }
@@ -132,10 +123,9 @@ public class ActuatorsController extends CommonController implements Initializab
                 });
             }
 
-            transparentPane.setVisible(false);
-            progressBar.setVisible(false);
+            Platform.runLater(this::closeLoadWindow);
         };
-        thread = new Thread(task);
-        thread.start();
+        loadingThread = new Thread(task);
+        loadingThread.start();
     }
 }

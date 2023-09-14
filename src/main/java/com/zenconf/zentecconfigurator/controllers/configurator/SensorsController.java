@@ -7,9 +7,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +20,6 @@ public class SensorsController extends CommonController implements Initializable
 
     @FXML
     private VBox sensorsVBox;
-
-    @FXML
-    public AnchorPane transparentPane;
-    @FXML
-    public ProgressBar progressBar;
 
     private int sensorsUsedNumber = 0;
     private int sensorsUsedNumberPrev = 0;
@@ -51,10 +45,8 @@ public class SensorsController extends CommonController implements Initializable
     }
 
     private void fillSensorsSettingsPane() {
-        Thread thread;
         Runnable task = () -> {
-            transparentPane.setVisible(true);
-            progressBar.setVisible(true);
+            Platform.runLater(this::showLoadWindow);
             Platform.runLater(() -> sensorsSettingsVbox.getChildren().clear());
             logger.info("Создание наполнения");
 
@@ -66,8 +58,7 @@ public class SensorsController extends CommonController implements Initializable
                             sensorTitledPane = new ElementTitledPane(sensorInScheme);
                             Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(sensorTitledPane));
                         } catch (Exception e) {
-                            transparentPane.setVisible(false);
-                            progressBar.setVisible(false);
+                            Platform.runLater(this::closeLoadWindow);
                             logger.error(e.getMessage());
                             Platform.runLater(() -> {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -86,11 +77,9 @@ public class SensorsController extends CommonController implements Initializable
                     }
                 }
             }
-
-            transparentPane.setVisible(false);
-            progressBar.setVisible(false);
+            Platform.runLater(this::closeLoadWindow);
         };
-        thread = new Thread(task);
-        thread.start();
+        loadingThread = new Thread(task);
+        loadingThread.start();
     }
 }

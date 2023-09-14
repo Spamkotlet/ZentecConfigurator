@@ -43,7 +43,7 @@
                </font></Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="mainAnchorPane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <AnchorPane fx:id="mainControllerAnchorPane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="16.0" spacing="5.0">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">

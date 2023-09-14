@@ -40,8 +40,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
     @FXML
     public ProgressBar progressBar;
     private Thread thread;
-    @FXML
-    public Button cancelLoadButton;
 
     private List<Scheme> schemes;
     public static Scheme selectedScheme = null;
@@ -52,12 +50,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        cancelLoadButton.setOnAction(e -> {
-            thread.stop();
-            progressBar.setVisible(false);
-            transparentPane.setVisible(false);
-        });
 
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {

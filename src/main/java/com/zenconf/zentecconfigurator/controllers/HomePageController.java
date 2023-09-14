@@ -17,7 +17,7 @@ import java.util.*;
 
 public class HomePageController extends CommonController implements Initializable {
 
-    public static final Map<String, Node> panels = new HashMap<>();
+//    public static final Map<String, Node> panels = new HashMap<>();
 
     @FXML
     public Button goToConfiguratorButton;
@@ -26,13 +26,15 @@ public class HomePageController extends CommonController implements Initializabl
     @FXML
     public VBox mainViewVBox;
     public static VBox mainViewVBox1;
+    private AnchorPane mainAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mainViewVBox1 = mainViewVBox;
+        mainAnchorPane = MainController.mainAnchorPane1;
 
-        goToConfiguratorButton.setOnAction(e -> onClickButton("Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml"));
-        goToZ031Button.setOnAction(e -> onClickButton("ПУ Z031", "/com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml"));
+        goToConfiguratorButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Конфигуратор", "/com/zenconf/zentecconfigurator/fxml/homepage/configurator-view.fxml"));
+        goToZ031Button.setOnAction(e -> onCreateChildNode(mainAnchorPane, "ПУ Z031", "/com/zenconf/zentecconfigurator/fxml/homepage/z031-settings.fxml"));
 
         Image configuratorImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/configurator_button.png")));
         ImageView configuratorImageView = new ImageView(configuratorImage);
@@ -51,32 +53,32 @@ public class HomePageController extends CommonController implements Initializabl
         goToZ031Button.setText("");
     }
 
-    private void onClickButton(String panelName, String resourcePath) {
-        Node node = panels.get(panelName);
-        if (node == null) {
-            try {
-                node = createChildNode(resourcePath);
-            } catch (IOException e) {
-                logger.error(e.getStackTrace());
-                throw new RuntimeException(e);
-            }
-            panels.put(panelName, node);
-        }
-        logger.info("Открыть окно <" + panelName + ">");
-        showNode(node);
-    }
-
-    private Node createChildNode(String resourcePath) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
-        Node node = loader.load();
-        CommonController controller = loader.getController();
-        controller.setPrimaryStage(this.getPrimaryStage());
-        return node;
-    }
-
-    private void showNode(Node node) {
-        AnchorPane mainAnchorPane = (AnchorPane) mainViewVBox.getParent();
-        mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(node);
-    }
+//    private void onClickButton(String panelName, String resourcePath) {
+//        Node node = panels.get(panelName);
+//        if (node == null) {
+//            try {
+//                node = createChildNode(resourcePath);
+//            } catch (IOException e) {
+//                logger.error(e.getStackTrace());
+//                throw new RuntimeException(e);
+//            }
+//            panels.put(panelName, node);
+//        }
+//        logger.info("Открыть окно <" + panelName + ">");
+//        showNode(node);
+//    }
+//
+//    private Node createChildNode(String resourcePath) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
+//        Node node = loader.load();
+//        CommonController controller = loader.getController();
+//        controller.setPrimaryStage(this.getPrimaryStage());
+//        return node;
+//    }
+//
+//    private void showNode(Node node) {
+//        AnchorPane mainAnchorPane = (AnchorPane) mainViewVBox.getParent();
+//        mainAnchorPane.getChildren().clear();
+//        mainAnchorPane.getChildren().add(node);
+//    }
 }

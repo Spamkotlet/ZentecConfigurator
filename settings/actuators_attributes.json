@@ -639,7 +639,7 @@
           "name": "В работе",
           "control": 0,
           "modbusParameters": {
-            "address": 1533,
+            "address": 1017,
             "varType": "BOOL"
           }
         },
@@ -647,7 +647,7 @@
           "name": "Маска режима",
           "control": 2,
           "modbusParameters": {
-            "address": 1535,
+            "address": 1557,
             "varType": "UINT8"
           },
           "values": [

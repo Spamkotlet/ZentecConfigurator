@@ -11,6 +11,7 @@ import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,7 +23,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MainController extends CommonController implements Initializable {
@@ -34,7 +37,8 @@ public class MainController extends CommonController implements Initializable {
     @FXML
     public Button goToSettingsButton;
     @FXML
-    public AnchorPane mainAnchorPane;
+    public AnchorPane mainControllerAnchorPane;
+    public static AnchorPane mainAnchorPane1;
     @FXML
     public HBox leftHeaderButtonsHBox;
     public static HBox leftHeaderButtonsHBox1;
@@ -48,15 +52,19 @@ public class MainController extends CommonController implements Initializable {
     public static ElectricParameters electricParameters;
     public static WaterParameters waterParameters;
 
+    public static final Map<String, Node> panels = new HashMap<>();
+    public static Node activePanel = null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         leftHeaderButtonsHBox1 = leftHeaderButtonsHBox;
+        mainAnchorPane1 = mainControllerAnchorPane;
 
-        onCreateChildNode(mainAnchorPane, "Домашняя", "home-page-view.fxml");
+        onCreateChildNode(mainControllerAnchorPane, "Домашняя", "home-page-view.fxml");
 
-        goToHomeButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Домашняя", "home-page-view.fxml"));
-        goToHelpButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Справка", "help-page-view.fxml"));
-        goToSettingsButton.setOnAction(e -> onCreateChildNode(mainAnchorPane, "Настройки", "settings.fxml"));
+        goToHomeButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Домашняя", "home-page-view.fxml"));
+        goToHelpButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Справка", "help-page-view.fxml"));
+        goToSettingsButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Настройки", "settings.fxml"));
 
         Thread thread;
         Runnable task = () -> {

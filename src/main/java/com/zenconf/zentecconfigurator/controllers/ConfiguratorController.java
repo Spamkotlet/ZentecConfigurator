@@ -48,7 +48,7 @@ public class ConfiguratorController extends CommonController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        onCreateChildNode(splitPaneRight, "Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+        openChangeSchemeView();
         schemeBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
@@ -231,6 +231,35 @@ public class ConfiguratorController extends CommonController implements Initiali
         ioImageView.setFitWidth(80);
         ioImageView.setMouseTransparent(true);
         ioImageView.setImage(ioImage);
+    }
+
+    private void openChangeSchemeView() {
+        onCreateChildNode(splitPaneRight, "Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+
+        if (!schemeBorderPane.getStyleClass().contains("button-configurator-active")) {
+            schemeBorderPane.getStyleClass().remove("button-configurator");
+            schemeBorderPane.getStyleClass().add("button-configurator-active");
+        }
+
+        if (!sensorsBorderPane.getStyleClass().contains("button-configurator")) {
+            sensorsBorderPane.getStyleClass().remove("button-configurator-active");
+            sensorsBorderPane.getStyleClass().add("button-configurator");
+        }
+
+        if (!actuatorsBorderPane.getStyleClass().contains("button-configurator")) {
+            actuatorsBorderPane.getStyleClass().remove("button-configurator-active");
+            actuatorsBorderPane.getStyleClass().add("button-configurator");
+        }
+
+        if (!ioBorderPane.getStyleClass().contains("button-configurator")) {
+            ioBorderPane.getStyleClass().remove("button-configurator-active");
+            ioBorderPane.getStyleClass().add("button-configurator");
+        }
+
+        if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
+            peripheryBorderPane.getStyleClass().remove("button-configurator-active");
+            peripheryBorderPane.getStyleClass().add("button-configurator");
+        }
     }
 
     public static void selectScheme() {

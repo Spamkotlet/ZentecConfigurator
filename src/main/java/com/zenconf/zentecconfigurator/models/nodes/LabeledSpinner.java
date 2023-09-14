@@ -182,7 +182,6 @@ public class LabeledSpinner {
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             errorLabel.setText(errorText);
-            errorLabel.setTooltip(new Tooltip("Ошибка чтения!"));
             errorLabel.setVisible(true);
             throw new RuntimeException(e);
         }

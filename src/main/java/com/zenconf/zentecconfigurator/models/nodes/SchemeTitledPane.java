@@ -8,20 +8,24 @@ import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TitledPane;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SchemeTitledPane extends TitledPane {
 
     private Element element;
     private CheckBox isUsedDefaultCheckBox;
+    private Label errorLabel;
+    private String errorText = "*";
     private ChoiceBox<String> isUsedDefaultChoiceBox;
     private Attribute inWorkAttribute = null;
 
@@ -39,7 +43,8 @@ public class SchemeTitledPane extends TitledPane {
             }
         }
 
-        AnchorPane anchorPane = new AnchorPane();
+        List<Node> nodes = new ArrayList<>();
+        errorLabel = createErrorLabel("(" + errorText + ")");
 
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
@@ -48,13 +53,19 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
                     isUsedDefaultCheckBox.setOnAction(e -> {
                         try {
+                            errorLabel.setVisible(false);
                             onSelectedCheckBox();
                         } catch (Exception ex) {
-                            throw new RuntimeException(ex);
+                            errorText = "Ошибка записи";
+                            errorLabel.setText(errorText);
+                            errorLabel.setVisible(true);
+//                            throw new RuntimeException(ex);
                         }
                     });
                     isUsedDefaultCheckBox.setText("Используется");
-                    anchorPane.getChildren().add(isUsedDefaultCheckBox);
+
+                    nodes.add(isUsedDefaultCheckBox);
+
                     inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
@@ -63,12 +74,16 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultChoiceBox.setValue(getElementTypes().get(isInWorkInteger));
                     isUsedDefaultChoiceBox.setOnAction(e -> {
                         try {
+                            errorLabel.setVisible(false);
                             onSelectedChoiceBox();
                         } catch (Exception ex) {
-                            throw new RuntimeException(ex);
+                            errorText = "Ошибка записи";
+                            errorLabel.setText(errorText);
+                            errorLabel.setVisible(true);
+//                            throw new RuntimeException(ex);
                         }
                     });
-                    anchorPane.getChildren().add(isUsedDefaultChoiceBox);
+                    nodes.add(isUsedDefaultChoiceBox);
                     inWorkAttribute.writeModbusParameter(isInWorkInteger);
                 }
             }
@@ -77,15 +92,44 @@ public class SchemeTitledPane extends TitledPane {
             isUsedDefaultCheckBox.setSelected(true);
             isUsedDefaultCheckBox.setText("Используется");
             isUsedDefaultCheckBox.setDisable(true);
-            anchorPane.getChildren().add(isUsedDefaultCheckBox);
+            errorLabel.setVisible(false);
+            nodes.add(isUsedDefaultCheckBox);
         }
+        nodes.add(errorLabel);
 
         VBox vBox = new VBox();
-        vBox.getChildren().add(anchorPane);
+        vBox.getChildren().add(createHBox(nodes));
         vBox.setAlignment(Pos.CENTER);
 
         this.setText(element.getName());
         this.setContent(vBox);
+    }
+
+    private Label createErrorLabel(String labelText) {
+        Label label = new Label(labelText);
+        label.setPrefWidth(100);
+        label.setVisible(false);
+        label.setTextFill(Color.RED);
+
+        return label;
+    }
+
+    private HBox createHBox(List<Node> nodes) {
+        HBox hBox = new HBox();
+        if (!nodes.isEmpty()) {
+            hBox.getChildren().addAll(nodes);
+        }
+        hBox.setFillHeight(true);
+        hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(hBox, Priority.ALWAYS);
+
+        AnchorPane.setLeftAnchor(hBox, 0.0);
+        AnchorPane.setRightAnchor(hBox, 0.0);
+        AnchorPane.setTopAnchor(hBox, 0.0);
+        AnchorPane.setBottomAnchor(hBox, 0.0);
+
+        return hBox;
     }
 
     public void setAttributeIsUsedOff() throws Exception {
@@ -120,11 +164,11 @@ public class SchemeTitledPane extends TitledPane {
                     ChangeSchemeController.sensorsInScheme.remove((Sensor) element);
                 }
             }
-            System.out.println(ChangeSchemeController.actuatorsInScheme.toString());
         }
     }
 
     private void onSelectedChoiceBox() throws Exception {
+        errorLabel.setVisible(false);
         if (inWorkAttribute != null) {
             inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setIsUsedDefault(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0);

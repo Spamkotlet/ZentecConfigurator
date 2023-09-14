@@ -9,23 +9,23 @@ import java.util.Map;
 
 public class HeaderConfiguratorButton extends Button {
 
-    private Map<String, Node> panels = new HashMap<>();
+//    private Map<String, Node> panels = new HashMap<>();
 
     public HeaderConfiguratorButton() {
         super("Конфигуратор");
         super.getStyleClass().add("button-main-header");
         super.setFocused(true);
-        panels = HomePageController.panels;
+//        panels = HomePageController.panels;
         super.setOnAction(e -> {
             onClick("Конфигуратор");
         });
     }
 
     private void onClick(String panelName) {
-        Node node = panels.get(panelName);
-        if (node != null) {
-            showNode(node);
-        }
+//        Node node = panels.get(panelName);
+//        if (node != null) {
+//            showNode(node);
+//        }
     }
 
     private void showNode(Node node) {

@@ -80,6 +80,80 @@
       ]
     },
     {
+      "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+      "attributes": [
+        {
+          "name": "В работе",
+          "control": 0,
+          "modbusParameters": {
+            "address": 1271,
+            "varType": "BOOL"
+          }
+        },
+        {
+          "name": "Тип датчика",
+          "control": 2,
+          "modbusParameters": {
+            "address": 1273,
+            "varType": "UINT8"
+          },
+          "values": [
+            "PT1000",
+            "NTC10k",
+            "0..10 В"
+          ]
+        },
+        {
+          "name": "Коррекция",
+          "control": 1,
+          "minValue": -50,
+          "maxValue": 60,
+          "modbusParameters": {
+            "address": 1275,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Min 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1281,
+            "varType": "SINT8"
+          }
+        },
+        {
+          "name": "Max 0..10 В",
+          "control": 1,
+          "minValue": -100,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1280,
+            "varType": "SINT8"
+          }
+        }
+      ],
+      "attributeForMonitoring": {
+        "name": "Температура притока (доводчик)",
+        "modbusParameters": {
+          "address": 1176,
+          "varType": "SINT16"
+        }
+      },
+      "attributesForControlling": [
+        {
+          "name": "Уставка доводчик",
+          "minValue": 0,
+          "maxValue": 35,
+          "modbusParameters": {
+            "address": 1242,
+            "varType": "UINT8"
+          }
+        }
+      ]
+    },
+    {
       "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
       "attributes": [
         {

@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -101,8 +100,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Запись параметров в пульт");
-            loadingThread = getThread(labeledSpinnerList, VarFunctions.WRITE);
-            loadingThread.start();
+//            loadingThread = getThread(labeledSpinnerList, VarFunctions.WRITE);
+//            loadingThread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -119,8 +118,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Чтение параметров из пульта");
-            loadingThread = getThread(labeledSpinnerList, VarFunctions.READ);
-            loadingThread.start();
+//            loadingThread = getThread(labeledSpinnerList, VarFunctions.READ);
+//            loadingThread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -143,11 +142,6 @@ public class Z031Controller extends CommonController implements Initializable {
     private Thread getThread(List<LabeledSpinner> labeledSpinnerList, VarFunctions varFunctions) {
         Thread thread;
         Runnable task = () -> {
-//            transparentPane.setVisible(true);
-//            progressBar.setVisible(true);
-//            double progress = 0;
-//            double progressStep = 1d / labeledSpinnerList.size();
-            Platform.runLater(() -> this.showProgressWindow(labeledSpinnerList.size()));
             try {
                 for (LabeledSpinner spinner: labeledSpinnerList) {
 //                    progress += progressStep;
@@ -161,7 +155,7 @@ public class Z031Controller extends CommonController implements Initializable {
                     } else if (varFunctions.equals(VarFunctions.READ)) {
                         spinner.readModbusValue();
                     }
-                    Platform.runLater(this::updateProgress);
+//                    Platform.runLater(this::updateProgress);
 
                     try {
                         Thread.sleep(20);
@@ -173,7 +167,7 @@ public class Z031Controller extends CommonController implements Initializable {
 //                progressBar.setProgress(0.0);
 //                progressBar.setVisible(false);
 //                transparentPane.setVisible(false);
-                Platform.runLater(this::closeLoadWindow);
+//                Platform.runLater(() -> closeLoadWindow(Thread.currentThread()));
                 logger.error(e.getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -188,7 +182,7 @@ public class Z031Controller extends CommonController implements Initializable {
 //            progressBar.setProgress(0.0);
 //            progressBar.setVisible(false);
 //            transparentPane.setVisible(false);
-            Platform.runLater(this::closeLoadWindow);
+//            Platform.runLater(() -> closeLoadWindow(Thread.currentThread()));
         };
         thread = new Thread(task);
         return thread;

@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,13 +22,8 @@ public abstract class CommonController {
 
     private Stage primaryStage;
     private Stage window;
-    protected Thread loadingThread;
     private ProgressBar progressBar;
     private Label progressLabel;
-    private int progressSize;
-    private double progressStep;
-    private double currentProgress;
-
 
     protected static final Logger logger = LogManager.getLogger();
 
@@ -77,13 +73,17 @@ public abstract class CommonController {
     }
 
     // Показать простое модальное окно на время загрузки наполнения
-    protected void showLoadWindow() {
+    protected void showLoadWindow(Task<?> task) {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("loading-view.fxml"));
         Parent parent;
         try {
             parent = loader.load();
             Button cancelLoadButton = (Button) parent.lookup("#cancelLoadButton");
-            cancelLoadButton.setOnAction(e -> closeLoadWindow());
+            cancelLoadButton.setOnAction(e -> closeLoadWindow(task));
+            progressBar = (ProgressBar) parent.lookup("#progressBar");
+            progressBar.progressProperty().bind(task.progressProperty());
+            progressLabel = (Label) parent.lookup("#progressLabel");
+            progressLabel.textProperty().bind(task.messageProperty());
             window = new Stage();
             window.initModality(Modality.APPLICATION_MODAL);
             window.initStyle(StageStyle.UNDECORATED);
@@ -95,41 +95,12 @@ public abstract class CommonController {
     }
 
     // Закрыть модальное окно
-    protected void closeLoadWindow() {
-        loadingThread.stop();
-        if (progressBar != null) {
-            progressBar.setProgress(0.0);
-            progressBar = null;
-        }
+    protected void closeLoadWindow(Task<?> task) {
         window.close();
-    }
-
-    // Показать модальное окно с выводом прогресса на время загрузки наполнения
-    protected void showProgressWindow(int progressSize) {
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource("loading-progress-view.fxml"));
-        Parent parent;
-        try {
-            parent = loader.load();
-            Button cancelLoadButton = (Button) parent.lookup("#cancelLoadButton");
-            cancelLoadButton.setOnAction(e -> closeLoadWindow());
-            progressBar= null;
-            progressBar = (ProgressBar) parent.lookup("#progressBar");
-            progressBar.setProgress(0.0);
-            progressLabel = (Label) parent.lookup("#progressLabel");
-            this.progressSize = progressSize;
-            this.progressStep = 1d / progressSize;
-            window = new Stage();
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.initStyle(StageStyle.UNDECORATED);
-            window.setScene(new Scene(parent, 300, 100));
-            window.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        task.cancel(true);
+        if (progressBar != null) {
+            progressBar.progressProperty().unbind();
+            progressLabel.textProperty().unbind();
         }
-    }
-
-    protected void updateProgress() {
-        currentProgress += progressStep;
-        progressBar.setProgress(currentProgress);
     }
 }

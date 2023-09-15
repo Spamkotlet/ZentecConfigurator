@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.*;
@@ -54,7 +53,7 @@ public class ConfiguratorController extends CommonController implements Initiali
         schemeBorderPane.onMouseClickedProperty()
                 .setValue(
                         e -> {
-                            onCreateChildNode(splitPaneRight, "Выбор схемы", "/com/zenconf/zentecconfigurator/fxml/configurator/change-scheme.fxml");
+                            openChangeSchemeView();
                             if (!schemeBorderPane.getStyleClass().contains("button-configurator-active")) {
                                 schemeBorderPane.getStyleClass().remove("button-configurator");
                                 schemeBorderPane.getStyleClass().add("button-configurator-active");

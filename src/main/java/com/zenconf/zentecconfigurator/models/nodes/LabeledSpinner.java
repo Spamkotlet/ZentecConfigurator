@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -55,19 +56,22 @@ public class LabeledSpinner {
         int maxValue = attribute.getMaxValue();
 
         List<Node> nodes = new ArrayList<>();
-        nodes.add(createLabel(labelText, labelWidth, false));
+        // Label с названием атрибута
+        nodes.add(createLabel(labelText, labelWidth));
+        // Label с ошибкой
+        errorLabel = createErrorLabel("(" + errorText + ")");
+        // Спиннер
         nodes.add(createSpinner(minValue, maxValue));
-
-        nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", 70, true));
+        // Label c диапазоном
+        nodes.add(createLabel("[" + minValue + " ... " + maxValue + "]", true));
         if (attribute.getDefaultValue() != null) {
             if (showDefaultValue) {
+                // Label со значением по умолчанию
                 nodes.add(createDefaultValueLabel(attribute.getDefaultValue()));
             }
         }
 
-        errorLabel = createErrorLabel("(" + errorText + ")", 100, false);
         nodes.add(errorLabel);
-
         return createHBoxForLabeledSpinner(nodes);
     }
 
@@ -87,10 +91,9 @@ public class LabeledSpinner {
         return hBox;
     }
 
-    private Label createLabel(String labelText, int labelWidth, boolean isDisabled) {
+    private Label createLabel(String labelText) {
         Label label = new Label(labelText);
-        label.setDisable(isDisabled);
-        label.setPrefWidth(labelWidth);
+        label.setWrapText(true);
         if (attribute.getDescription() != null) {
             label.setTooltip(new Tooltip(attribute.getDescription()));
         }
@@ -98,9 +101,23 @@ public class LabeledSpinner {
         return label;
     }
 
-    private Label createErrorLabel(String labelText, int labelWidth, boolean isVisible) {
-        Label label = createLabel(labelText, labelWidth, false);
-        label.setVisible(isVisible);
+    private Label createLabel(String labelText, boolean isDisabled) {
+        Label label = createLabel(labelText);
+        label.setDisable(isDisabled);
+
+        return label;
+    }
+
+    private Label createLabel(String labelText, int labelWidth) {
+        Label label = createLabel(labelText, false);
+        label.setPrefWidth(labelWidth);
+
+        return label;
+    }
+
+    private Label createErrorLabel(String labelText) {
+        Label label = createLabel(labelText);
+        label.setVisible(false);
         label.setTextFill(Color.RED);
 
         return label;
@@ -116,7 +133,14 @@ public class LabeledSpinner {
         }
 
         if (readingByInitialization) {
-            initValue = (int) Double.parseDouble(attribute.readModbusParameter());
+            try {
+                errorLabel.setVisible(false);
+                initValue = (int) Double.parseDouble(attribute.readModbusParameter());
+            } catch (Exception e) {
+                errorText = "Ошибка чтения";
+                Platform.runLater(() -> errorLabel.setText(errorText));
+                errorLabel.setVisible(true);
+            }
         }
 
         spinner = new Spinner<>(minValue, maxValue, initValue);
@@ -173,15 +197,15 @@ public class LabeledSpinner {
     }
 
     public void readModbusValue() {
-        SpinnerValueFactory<Integer> spinnerFactory =
-                null;
+
+        SpinnerValueFactory<Integer> spinnerFactory = null;
         try {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
         } catch (Exception e) {
             errorText = "Ошибка чтения";
-            errorLabel.setText(errorText);
+            Platform.runLater(() -> errorLabel.setText(errorText));
             errorLabel.setVisible(true);
             throw new RuntimeException(e);
         }
@@ -189,15 +213,19 @@ public class LabeledSpinner {
     }
 
     public void writeModbusValue() {
-        try {
-            errorLabel.setVisible(false);
-            attribute.writeModbusParameter(spinner.getValue().toString());
-        } catch (Exception e) {
-            errorText = "Ошибка записи";
-            errorLabel.setText(errorText);
-            errorLabel.setVisible(true);
-            throw new RuntimeException(e);
-        }
+        Runnable task = () -> {
+            try {
+                errorLabel.setVisible(false);
+                attribute.writeModbusParameter(spinner.getValue().toString());
+            } catch (Exception e) {
+                errorText = "Ошибка записи";
+                Platform.runLater(() -> errorLabel.setText(errorText));
+                errorLabel.setVisible(true);
+                throw new RuntimeException(e);
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 
     public void setDefaultValue() {

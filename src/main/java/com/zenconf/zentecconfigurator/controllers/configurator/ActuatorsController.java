@@ -6,15 +6,16 @@ import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActuatorsController extends CommonController implements Initializable {
@@ -33,7 +34,7 @@ public class ActuatorsController extends CommonController implements Initializab
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 if (ChangeSchemeController.actuatorsInScheme != null) {
-                    for (Actuator actuator: ChangeSchemeController.actuatorsInScheme) {
+                    for (Actuator actuator : ChangeSchemeController.actuatorsInScheme) {
                         if (actuator.getIsUsedDefault()) {
                             devicesUsedNumber++;
                         }
@@ -49,83 +50,104 @@ public class ActuatorsController extends CommonController implements Initializab
     }
 
     private void fillActuatorsSettingsPane() {
-        Runnable task = () -> {
-            Platform.runLater(this::showLoadWindow);
-            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().clear());
-            logger.info("Создание наполнения");
+        Task<Void> fillingPaneTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> {
+                    showLoadWindow(this);
 
-            try {
+                    actuatorsSettingsVbox.getChildren().clear();
+                });
+
+                List<Actuator> actuators = ChangeSchemeController.actuatorsInScheme;
+                int actuatorsDone = 0;
+                int actuatorsMax = actuators.size() + 3;
                 if (MainController.mainParameters != null) {
                     Parameter valveParameter = new Parameter();
                     valveParameter.setName("Воздушный клапан");
                     valveParameter.setAttributes(MainController.mainParameters.getValveAttributes());
-                    ElementTitledPane valveTitledPane;
+                    ElementTitledPane valveTitledPane = new ElementTitledPane(valveParameter);
                     try {
-                        valveTitledPane = new ElementTitledPane(valveParameter);
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
-                        throw new RuntimeException(e);
+                        throw e;
                     }
+                    actuatorsDone++;
 
                     Parameter valveHeatersParameter = new Parameter();
                     valveHeatersParameter.setName("Обогрев клапанов");
                     valveHeatersParameter.setAttributes(MainController.mainParameters.getValveHeatersAttributes());
-                    ElementTitledPane valveHeatersTitledPane;
+                    ElementTitledPane valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
                     try {
-                        valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveHeatersTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
-                        throw new RuntimeException(e);
+                        throw e;
                     }
+                    actuatorsDone++;
 
                     Parameter heatExchangerParameter = new Parameter();
                     heatExchangerParameter.setName("Теплообменники");
                     heatExchangerParameter.setAttributes(MainController.mainParameters.getHeatExchangerAttributes());
-                    ElementTitledPane heatExchangerTitledPane;
+                    ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
                     try {
-                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
                     } catch (Exception e) {
                         logger.error(e.getMessage());
-                        throw new RuntimeException(e);
+                        throw e;
                     }
+                    actuatorsDone++;
                 }
 
-                for (Actuator actuatorInScheme : ChangeSchemeController.actuatorsInScheme) {
+                for (Actuator actuatorInScheme : actuators) {
                     if (actuatorInScheme.getIsUsedDefault()) {
+                        actuatorsDone++;
+                        updateMessage("Загрузка...: " + actuatorsDone + "/" + actuatorsMax);
+                        updateProgress(actuatorsDone, actuatorsMax);
                         if (actuatorInScheme.getAttributes() != null) {
-                            ElementTitledPane actuatorTitledPane;
+                            ElementTitledPane actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
                             try {
-                                actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
                                 Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
                             } catch (Exception e) {
-                                Platform.runLater(this::closeLoadWindow);
                                 logger.error(e.getMessage());
-                                throw new RuntimeException(e);
+                                throw e;
                             }
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
+                            Thread.sleep(100);
                         }
                     }
                 }
-            } catch (Exception e) {
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                System.out.println("Задача fillingPaneTask выполнена успешно");
+                Platform.runLater(() -> closeLoadWindow(this));
+            }
+
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+                System.out.println("Задача fillingPaneTask прервана");
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                System.out.println("Задача fillingPaneTask завершилась ошибкой");
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");
                     alert.setHeaderText("Невозможно выполнить операцию");
                     alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
                     alert.show();
+                    closeLoadWindow(this);
                 });
             }
-
-            Platform.runLater(this::closeLoadWindow);
         };
-        loadingThread = new Thread(task);
-        loadingThread.start();
+        Thread fillingPaneThread = new Thread(fillingPaneTask);
+        fillingPaneThread.start();
     }
 }

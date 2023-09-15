@@ -65,7 +65,6 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setText("Используется");
 
                     nodes.add(isUsedDefaultCheckBox);
-
                     inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;

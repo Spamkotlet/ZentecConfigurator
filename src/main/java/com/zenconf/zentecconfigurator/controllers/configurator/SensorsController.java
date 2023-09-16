@@ -11,8 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SensorsController extends CommonController implements Initializable {
 
@@ -22,24 +21,16 @@ public class SensorsController extends CommonController implements Initializable
     @FXML
     private VBox sensorsVBox;
 
-    private int sensorsUsedNumber = 0;
-    private int sensorsUsedNumberPrev = 0;
+    private final List<Sensor> sensorsUsed = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                if (ChangeSchemeController.sensorsInScheme != null) {
-                    for (Sensor sensor : ChangeSchemeController.sensorsInScheme) {
-                        if (sensor.getIsUsedDefault()) {
-                            sensorsUsedNumber++;
-                        }
-                    }
-                    if (sensorsUsedNumber != sensorsUsedNumberPrev) {
-                        sensorsUsedNumberPrev = sensorsUsedNumber;
+            if (!Objects.equals(newVal, oldVal)) {
+                if (ChangeSchemeController.sensorsUsed != null) {
+                    if (!ChangeSchemeController.sensorsUsed.equals(this.sensorsUsed)) {
                         fillSensorsSettingsPane();
                     }
-                    sensorsUsedNumber = 0;
                 }
             }
         });
@@ -55,10 +46,10 @@ public class SensorsController extends CommonController implements Initializable
                     sensorsSettingsVbox.getChildren().clear();
                 });
 
-                List<Sensor> sensors = ChangeSchemeController.sensorsInScheme;
+                List<Sensor> sensors = ChangeSchemeController.sensorsUsed;
                 int sensorsDone = 0;
                 int sensorsMax = sensors.size();
-                for (Sensor sensorInScheme : ChangeSchemeController.sensorsInScheme) {
+                for (Sensor sensorInScheme : ChangeSchemeController.sensorsUsed) {
                     if (sensorInScheme.getIsUsedDefault()) {
                         sensorsDone++;
                         updateMessage("Загрузка...: " + sensorsDone + "/" + sensorsMax);
@@ -107,5 +98,9 @@ public class SensorsController extends CommonController implements Initializable
         };
         Thread fillingPaneThread = new Thread(fillingPaneTask);
         fillingPaneThread.start();
+        fillingPaneTask.setOnSucceeded(e -> {
+            sensorsUsed.clear();
+            sensorsUsed.addAll(ChangeSchemeController.sensorsUsed);
+        });
     }
 }

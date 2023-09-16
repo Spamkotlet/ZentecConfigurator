@@ -55,6 +55,8 @@ public class MainController extends CommonController implements Initializable {
 
     public static final Map<String, Node> panels = new HashMap<>();
     public static Node activePanel = null;
+    public static Stage primaryStage;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

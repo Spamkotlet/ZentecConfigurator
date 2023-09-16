@@ -39,13 +39,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
     private Scheme previousScheme = null;
     public static List<Sensor> sensorsInScheme;
     public static List<Actuator> actuatorsInScheme;
+    public static List<Sensor> sensorsUsed = new ArrayList<>();
+    public static List<Actuator> actuatorsUsed = new ArrayList<>();
     private ModbusUtilSingleton modbusUtilSingleton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
-            if (!Objects.equals(newVal, oldVal)) {
+            if (newVal != null) {
                 ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                 try {
                     selectedScheme = readSchemeNumberFromModbus();
@@ -124,10 +126,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
         sensorsInScheme = selectedScheme.getSensors();
         actuatorsInScheme = selectedScheme.getActuators();
+        sensorsUsed = new ArrayList<>();
+        actuatorsUsed = new ArrayList<>();
 
         for (Actuator actuatorInScheme : actuatorsInScheme) {
             for (Actuator actuator : MainController.actuatorList) {
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
+                    if (actuatorInScheme.getIsUsedDefault()) {
+                        actuatorsUsed.add(actuatorInScheme);
+                    }
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
@@ -138,6 +145,9 @@ public class ChangeSchemeController extends CommonController implements Initiali
         for (Sensor sensorInScheme : sensorsInScheme) {
             for (Sensor sensor : MainController.sensorList) {
                 if (sensorInScheme.getName().equals(sensor.getName())) {
+                    if (sensorInScheme.getIsUsedDefault()) {
+                        sensorsUsed.add(sensorInScheme);
+                    }
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
@@ -155,12 +165,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
         System.out.println("fillingPane");
 
         // Задача по установке всех чекбоксов в исходное положение
-        Task<Void> setAttributeIsUsedOffTask = new Task<Void>() {
+        Task<Void> setAttributeIsUsedOffTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                Platform.runLater(() -> {
-                    showLoadWindow(this);
-                });
+                Platform.runLater(() -> showLoadWindow(this));
 
                 updateMessage("Загрузка...");
                 // Установка всех чекбоксов "Используется" в положение false
@@ -211,7 +219,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         setAttributeIsUsedOffThread.start();
 
         // Задача по наполнению экрана
-        Task<Void> loadActuatorsAndSensorsTask = new Task<Void>() {
+        Task<Void> loadActuatorsAndSensorsTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 Platform.runLater(() -> {
@@ -287,16 +295,18 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         };
         Thread loadActuatorsAndSensorsThread = new Thread(loadActuatorsAndSensorsTask);
-        setAttributeIsUsedOffTask.setOnSucceeded(e -> {
-            loadActuatorsAndSensorsThread.start();
-        });
+        setAttributeIsUsedOffTask.setOnSucceeded(e -> loadActuatorsAndSensorsThread.start());
     }
 
     // Запись номера схемы в контроллер по Modbus
     private void writeSchemeNumberByModbus() throws Exception {
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbus(1436, VarTypes.UINT8, selectedScheme.getNumber());
+            try {
+                modbusUtilSingleton.writeModbus(1436, VarTypes.UINT8, selectedScheme.getNumber());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -305,7 +315,11 @@ public class ChangeSchemeController extends CommonController implements Initiali
         selectedScheme = schemes.get(0);
         modbusUtilSingleton = ModbusUtilSingleton.getInstance();
         if (modbusUtilSingleton.getMaster() != null) {
-            selectedScheme = schemes.get(Integer.parseInt(modbusUtilSingleton.readModbus(1436, VarTypes.UINT8).toString()));
+            try {
+                selectedScheme = schemes.get(Integer.parseInt(modbusUtilSingleton.readModbus(1436, VarTypes.UINT8).toString()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return selectedScheme;
     }

@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,8 +25,7 @@ public class ActuatorsController extends CommonController implements Initializab
     @FXML
     public VBox actuatorsVBox;
 
-    private int devicesUsedNumber = 0;
-    private int devicesUsedNumberPrev = 0;
+    private final List<Actuator> actuatorsUsed = new ArrayList<>();
 
     private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
 
@@ -33,17 +33,10 @@ public class ActuatorsController extends CommonController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                if (ChangeSchemeController.actuatorsInScheme != null) {
-                    for (Actuator actuator : ChangeSchemeController.actuatorsInScheme) {
-                        if (actuator.getIsUsedDefault()) {
-                            devicesUsedNumber++;
-                        }
-                    }
-                    if (devicesUsedNumber != devicesUsedNumberPrev) {
-                        devicesUsedNumberPrev = devicesUsedNumber;
+                if (ChangeSchemeController.actuatorsUsed != null) {
+                    if (!ChangeSchemeController.actuatorsUsed.equals(this.actuatorsUsed)) {
                         fillActuatorsSettingsPane();
                     }
-                    devicesUsedNumber = 0;
                 }
             }
         });
@@ -59,7 +52,7 @@ public class ActuatorsController extends CommonController implements Initializab
                     actuatorsSettingsVbox.getChildren().clear();
                 });
 
-                List<Actuator> actuators = ChangeSchemeController.actuatorsInScheme;
+                List<Actuator> actuators = ChangeSchemeController.actuatorsUsed;
                 int actuatorsDone = 0;
                 int actuatorsMax = actuators.size() + 3;
                 if (MainController.mainParameters != null) {
@@ -149,5 +142,9 @@ public class ActuatorsController extends CommonController implements Initializab
         };
         Thread fillingPaneThread = new Thread(fillingPaneTask);
         fillingPaneThread.start();
+        fillingPaneTask.setOnSucceeded(e -> {
+            actuatorsUsed.clear();
+            actuatorsUsed.addAll(ChangeSchemeController.actuatorsUsed);
+        });
     }
 }

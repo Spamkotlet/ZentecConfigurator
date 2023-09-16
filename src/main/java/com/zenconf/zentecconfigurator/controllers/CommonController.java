@@ -20,16 +20,12 @@ import java.io.IOException;
 
 public abstract class CommonController {
 
-    private Stage primaryStage;
     private Stage window;
+    private Stage primaryStage;
     private ProgressBar progressBar;
     private Label progressLabel;
 
     protected static final Logger logger = LogManager.getLogger();
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -40,7 +36,7 @@ public abstract class CommonController {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource(resourcePath));
         Node node = loader.load();
         CommonController controller = loader.getController();
-        controller.setPrimaryStage(this.getPrimaryStage());
+        controller.setPrimaryStage(MainController.primaryStage);
         return node;
     }
 
@@ -88,6 +84,8 @@ public abstract class CommonController {
             window.initModality(Modality.APPLICATION_MODAL);
             window.initStyle(StageStyle.UNDECORATED);
             window.setScene(new Scene(parent, 300, 100));
+            window.setX(primaryStage.getWidth() / 2 + primaryStage.getX());
+            window.setY(primaryStage.getHeight() / 2 + primaryStage.getY());
             window.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

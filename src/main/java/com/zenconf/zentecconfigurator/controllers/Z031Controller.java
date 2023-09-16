@@ -6,6 +6,7 @@ import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -100,8 +101,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Запись параметров в пульт");
-//            loadingThread = getThread(labeledSpinnerList, VarFunctions.WRITE);
-//            loadingThread.start();
+            Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
+            thread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -118,8 +119,8 @@ public class Z031Controller extends CommonController implements Initializable {
     private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
         try {
             logger.info("Чтение параметров из пульта");
-//            loadingThread = getThread(labeledSpinnerList, VarFunctions.READ);
-//            loadingThread.start();
+            Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
+            thread.start();
         } catch (Exception exception) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -141,10 +142,17 @@ public class Z031Controller extends CommonController implements Initializable {
 
     private Thread getThread(List<LabeledSpinner> labeledSpinnerList, VarFunctions varFunctions) {
         Thread thread;
-        Runnable task = () -> {
-            try {
+        Task<Void> fillingPaneTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> showLoadWindow(this));
+
+                int parametersDone = 0;
+                int parametersMax = labeledSpinnerList.size();
                 for (LabeledSpinner spinner: labeledSpinnerList) {
-//                    progress += progressStep;
+                    parametersDone++;
+                    updateMessage("Загрузка...: " + parametersDone + "/" + parametersMax);
+                    updateProgress(parametersDone, parametersMax);
                     if (varFunctions.equals(VarFunctions.WRITE)) {
                         try {
                             spinner.writeModbusValue();
@@ -155,36 +163,39 @@ public class Z031Controller extends CommonController implements Initializable {
                     } else if (varFunctions.equals(VarFunctions.READ)) {
                         spinner.readModbusValue();
                     }
-//                    Platform.runLater(this::updateProgress);
-
-                    try {
-                        Thread.sleep(20);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Thread.sleep(50);
                 }
-            } catch (Exception e) {
-//                progressBar.setProgress(0.0);
-//                progressBar.setVisible(false);
-//                transparentPane.setVisible(false);
-//                Platform.runLater(() -> closeLoadWindow(Thread.currentThread()));
-                logger.error(e.getMessage());
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                System.out.println("Задача fillingPaneTask выполнена успешно");
+                Platform.runLater(() -> closeLoadWindow(this));
+            }
+
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+                System.out.println("Задача fillingPaneTask прервана");
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                System.out.println("Задача fillingPaneTask завершилась ошибкой");
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");
                     alert.setHeaderText("Невозможно выполнить операцию");
                     alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
                     alert.show();
+                    closeLoadWindow(this);
                 });
-                throw new RuntimeException(e);
             }
-//
-//            progressBar.setProgress(0.0);
-//            progressBar.setVisible(false);
-//            transparentPane.setVisible(false);
-//            Platform.runLater(() -> closeLoadWindow(Thread.currentThread()));
         };
-        thread = new Thread(task);
+        thread = new Thread(fillingPaneTask);
         return thread;
     }
 }

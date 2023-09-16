@@ -148,19 +148,17 @@ public class SchemeTitledPane extends TitledPane {
             boolean isUsed = isUsedDefaultCheckBox.isSelected();
             inWorkAttribute.writeModbusParameter(isUsed);
             element.setIsUsedDefault(isUsed);
-            if (element.getClass().equals(Actuator.class)
-                    && !ChangeSchemeController.actuatorsInScheme.contains((Actuator) element)) {
-                if (isUsed) {
-                    ChangeSchemeController.actuatorsInScheme.add((Actuator) element);
+            if (element.getClass().equals(Actuator.class)) {
+                if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
+                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
                 } else {
-                    ChangeSchemeController.actuatorsInScheme.remove((Actuator) element);
+                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
                 }
-            } else if (element.getClass().equals(Sensor.class)
-                    && !ChangeSchemeController.sensorsInScheme.contains((Sensor) element)) {
-                if (isUsed) {
-                    ChangeSchemeController.sensorsInScheme.add((Sensor) element);
+            } else if (element.getClass().equals(Sensor.class)) {
+                if (!ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
+                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
                 } else {
-                    ChangeSchemeController.sensorsInScheme.remove((Sensor) element);
+                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
                 }
             }
         }
@@ -169,8 +167,22 @@ public class SchemeTitledPane extends TitledPane {
     private void onSelectedChoiceBox() throws Exception {
         errorLabel.setVisible(false);
         if (inWorkAttribute != null) {
+            boolean isUsed = isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0;
             inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
-            element.setIsUsedDefault(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0);
+            element.setIsUsedDefault(isUsed);
+            if (element.getClass().equals(Actuator.class)) {
+                if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
+                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
+                } else {
+                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
+                }
+            } else if (element.getClass().equals(Sensor.class)) {
+                if (!ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
+                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
+                } else {
+                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
+                }
+            }
         }
     }
 

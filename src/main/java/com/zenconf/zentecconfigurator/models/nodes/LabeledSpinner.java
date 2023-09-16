@@ -140,6 +140,7 @@ public class LabeledSpinner {
                 errorText = "Ошибка чтения";
                 Platform.runLater(() -> errorLabel.setText(errorText));
                 errorLabel.setVisible(true);
+//                throw e;
             }
         }
 
@@ -169,9 +170,7 @@ public class LabeledSpinner {
                 }
         );
 
-        spinner.setOnMouseReleased(e -> {
-            writeModbusValue();
-        });
+        spinner.setOnMouseReleased(e -> writeModbusValue());
 
         spinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (oldVal && !newVal) {
@@ -197,8 +196,7 @@ public class LabeledSpinner {
     }
 
     public void readModbusValue() {
-
-        SpinnerValueFactory<Integer> spinnerFactory = null;
+        SpinnerValueFactory<Integer> spinnerFactory;
         try {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
@@ -213,19 +211,15 @@ public class LabeledSpinner {
     }
 
     public void writeModbusValue() {
-        Runnable task = () -> {
-            try {
-                errorLabel.setVisible(false);
-                attribute.writeModbusParameter(spinner.getValue().toString());
-            } catch (Exception e) {
-                errorText = "Ошибка записи";
-                Platform.runLater(() -> errorLabel.setText(errorText));
-                errorLabel.setVisible(true);
-                throw new RuntimeException(e);
-            }
-        };
-        Thread thread = new Thread(task);
-        thread.start();
+        try {
+            errorLabel.setVisible(false);
+            attribute.writeModbusParameter(spinner.getValue().toString());
+        } catch (Exception e) {
+            errorText = "Ошибка записи";
+            Platform.runLater(() -> errorLabel.setText(errorText));
+            errorLabel.setVisible(true);
+            throw new RuntimeException(e);
+        }
     }
 
     public void setDefaultValue() {

@@ -15,8 +15,6 @@ import javafx.scene.control.Alert;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-
 public class ModbusUtilSingleton {
     private static ModbusUtilSingleton instance;
 
@@ -46,7 +44,7 @@ public class ModbusUtilSingleton {
         SerialParameters sp = new SerialParameters();
 //        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
         try {
-            if (!device.equals("")) {
+            if (!device.isEmpty()) {
                 sp.setDevice(device);
                 sp.setBaudRate(baudRate);
                 sp.setDataBits(dataBits);
@@ -123,6 +121,7 @@ public class ModbusUtilSingleton {
                 if (master.isConnected()) {
                     master.disconnect();
                 }
+                master = null;
             }
             logger.info("Устройство отключено");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -173,7 +172,7 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized boolean readModbusCoil(int address) throws Exception {
-        boolean coilValue = false;
+        boolean coilValue;
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -278,7 +277,7 @@ public class ModbusUtilSingleton {
     }
 
     public synchronized float readMultipleModbusRegister(int address) throws Exception {
-        float registerValue = 0;
+        float registerValue;
         try {
             if (!master.isConnected()) {
                 master.connect();
@@ -391,16 +390,5 @@ public class ModbusUtilSingleton {
 
     public ModbusMaster getMaster() {
         return master;
-    }
-
-    private byte[] wordSwap(byte[] buf) {
-        byte[] returnBuf = new byte[buf.length];
-        for (int i = 0; i < buf.length; i = i + 4) {
-            returnBuf[i] = buf[i + 2];
-            returnBuf[i + 1] = buf[i + 3];
-            returnBuf[i + 2] = buf[i];
-            returnBuf[i + 3] = buf[i + 1];
-        }
-        return returnBuf;
     }
 }

@@ -142,21 +142,20 @@ public class SchemePane extends VBox {
             inWorkAttribute.writeModbusParameter(isUsed);
             element.setIsUsedDefault(isUsed);
             if (element.getClass().equals(Actuator.class)
-                    && !ChangeSchemeController.actuatorsInScheme.contains((Actuator) element)) {
+                    && !ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
                 if (isUsed) {
-                    ChangeSchemeController.actuatorsInScheme.add((Actuator) element);
+                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
                 } else {
-                    ChangeSchemeController.actuatorsInScheme.remove((Actuator) element);
+                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)
-                    && !ChangeSchemeController.sensorsInScheme.contains((Sensor) element)) {
+                    && !ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
                 if (isUsed) {
-                    ChangeSchemeController.sensorsInScheme.add((Sensor) element);
+                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
                 } else {
-                    ChangeSchemeController.sensorsInScheme.remove((Sensor) element);
+                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
                 }
             }
-            System.out.println(ChangeSchemeController.actuatorsInScheme.toString());
         }
     }
 

@@ -25,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.*;
@@ -102,7 +101,7 @@ public class IOMonitorController extends CommonController implements Initializab
             // Событие на открытие окна
             if (newVal != null) {
 
-                if (ChangeSchemeController.sensorsInScheme != null || ChangeSchemeController.actuatorsInScheme != null) {
+                if (ChangeSchemeController.sensorsUsed != null || ChangeSchemeController.actuatorsUsed != null) {
                     if (pollingPreviousState) {
                         startPolling();
                     } else {
@@ -325,41 +324,37 @@ public class IOMonitorController extends CommonController implements Initializab
         monitorValueTextList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
-        if (ChangeSchemeController.sensorsInScheme != null) {
-            for (Sensor sensor : ChangeSchemeController.sensorsInScheme) {
-                if (sensor.getIsUsedDefault()) {
-                    if (sensor.getAttributesForControlling() != null) {
-                        List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
-                        for (Attribute attribute : attributesForControlling) {
-                            SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
-                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
-                        }
+        if (ChangeSchemeController.sensorsUsed != null) {
+            for (Sensor sensor : ChangeSchemeController.sensorsUsed) {
+                if (sensor.getAttributesForControlling() != null) {
+                    List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
+                    for (Attribute attribute : attributesForControlling) {
+                        SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
-                    if (sensor.getAttributeForMonitoring() != null) {
-                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
-                        monitorValueTextList.add(monitorTextFlow.getValueText());
-                        sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
-                    }
+                }
+                if (sensor.getAttributeForMonitoring() != null) {
+                    MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
+                    monitorValueTextList.add(monitorTextFlow.getValueText());
+                    sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                 }
             }
         }
 
         actuatorsMonitorVBox.getChildren().clear();
-        if (ChangeSchemeController.actuatorsInScheme != null) {
-            for (Actuator actuator : ChangeSchemeController.actuatorsInScheme) {
-                if (actuator.getIsUsedDefault()) {
-                    if (actuator.getAttributesForControlling() != null) {
-                        List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
-                        for (Attribute attribute : attributesForControlling) {
-                            SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
-                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
-                        }
+        if (ChangeSchemeController.actuatorsUsed != null) {
+            for (Actuator actuator : ChangeSchemeController.actuatorsUsed) {
+                if (actuator.getAttributesForControlling() != null) {
+                    List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
+                    for (Attribute attribute : attributesForControlling) {
+                        SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
-                    if (actuator.getAttributeForMonitoring() != null) {
-                        MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
-                        monitorValueTextList.add(monitorTextFlow.getValueText());
-                        actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
-                    }
+                }
+                if (actuator.getAttributeForMonitoring() != null) {
+                    MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
+                    monitorValueTextList.add(monitorTextFlow.getValueText());
+                    actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                 }
             }
         }

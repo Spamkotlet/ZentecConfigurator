@@ -68,7 +68,7 @@ public class SchemePane extends VBox {
                     });
                     isUsedDefaultCheckBox.setText("Используется");
                     secondVBox.getChildren().add(isUsedDefaultCheckBox);
-                    inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
+                    inWorkAttribute.writeModbus(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
@@ -82,7 +82,7 @@ public class SchemePane extends VBox {
                         }
                     });
                     secondVBox.getChildren().add(isUsedDefaultChoiceBox);
-                    inWorkAttribute.writeModbusParameter(isInWorkInteger);
+                    inWorkAttribute.writeModbus(isInWorkInteger);
                 }
             }
         } else {
@@ -128,9 +128,9 @@ public class SchemePane extends VBox {
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
-                    inWorkAttribute.writeModbusParameter(false);
+                    inWorkAttribute.writeModbus(false);
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
-                    inWorkAttribute.writeModbusParameter(0);
+                    inWorkAttribute.writeModbus(0);
                 }
             }
         }
@@ -139,7 +139,7 @@ public class SchemePane extends VBox {
     private void onSelectedCheckBox() throws Exception {
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultCheckBox.isSelected();
-            inWorkAttribute.writeModbusParameter(isUsed);
+            inWorkAttribute.writeModbus(isUsed);
             element.setIsUsedDefault(isUsed);
             if (element.getClass().equals(Actuator.class)
                     && !ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
@@ -161,7 +161,7 @@ public class SchemePane extends VBox {
 
     private void onSelectedChoiceBox() throws Exception {
         if (inWorkAttribute != null) {
-            inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
+            inWorkAttribute.writeModbus(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setIsUsedDefault(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0);
         }
     }

@@ -16,7 +16,7 @@ public class MonitorValueText extends Text {
 
     public void update() throws Exception {
         float value = 0.0f;
-        value = (float) Integer.parseInt(element.getAttributeForMonitoring().readModbusParameter()) / 10;
+        value = (float) Integer.parseInt(element.getAttributeForMonitoring().readModbus()) / 10;
         float finalValue = value;
         Platform.runLater(() -> this.setText(String.format(Locale.ROOT, "%.2f", finalValue)));
     }

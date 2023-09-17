@@ -1,7 +1,6 @@
 package com.zenconf.zentecconfigurator.models;
 
 import com.zenconf.zentecconfigurator.models.enums.Controls;
-import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 
@@ -83,13 +82,13 @@ public class Attribute {
         this.modbusParameters = modbusParameter;
     }
 
-    public String readModbusParameter() throws Exception {
+    public String readModbus() throws Exception {
         String value = "0";
         value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
         return value;
     }
 
-    public void writeModbusParameter(Object value) throws Exception {
+    public void writeModbus(Object value) throws Exception {
         if (modbusUtilSingleton.getMaster() != null) {
             modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
         }

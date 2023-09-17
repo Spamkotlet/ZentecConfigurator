@@ -45,7 +45,7 @@ public class ConfiguratorController extends CommonController implements Initiali
     @FXML
     public VBox disabledButtonsVBox;
 
-    static BooleanProperty isEnabled = new SimpleBooleanProperty();
+//    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -201,7 +201,7 @@ public class ConfiguratorController extends CommonController implements Initiali
                         }
                 );
 
-        disabledButtonsVBox.visibleProperty().bind(isEnabled);
+//        disabledButtonsVBox.visibleProperty().bind(isEnabled);
 
         Image schemeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/zenconf/zentecconfigurator/graphics/scheme_button.png")));
         schemeImageView.setFitHeight(80);
@@ -263,8 +263,8 @@ public class ConfiguratorController extends CommonController implements Initiali
         }
     }
 
-    public static void selectScheme() {
-        isEnabled.setValue(true);
-    }
+//    public static void selectScheme() {
+//        isEnabled.setValue(true);
+//    }
 
 }

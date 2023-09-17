@@ -138,7 +138,7 @@ public class AlarmTableView {
     }
 
     private char[] getActiveAlarmsBits0() throws Exception {
-        long alarms0 = Long.parseLong(alarmsAttribute0.readModbusParameter());
+        long alarms0 = Long.parseLong(alarmsAttribute0.readModbus());
         char[] binaryAlarms0 = alarmsToBinaryCharArray(alarms0);
 
         char[] newAlarms0CharArray = new char[32];
@@ -153,7 +153,7 @@ public class AlarmTableView {
     }
 
     private char[] getActiveAlarmsBits1() throws Exception {
-        long alarms1 = Long.parseLong(alarmsAttribute1.readModbusParameter());
+        long alarms1 = Long.parseLong(alarmsAttribute1.readModbus());
         char[] binaryAlarms = alarmsToBinaryCharArray(alarms1);
 
         char[] newAlarmsCharArray = new char[32];
@@ -168,7 +168,7 @@ public class AlarmTableView {
     }
 
     private char[] getActiveWarningsBits() throws Exception {
-        long warnings = Long.parseLong(warningsAttribute.readModbusParameter());
+        long warnings = Long.parseLong(warningsAttribute.readModbus());
         char[] binaryWarnings = alarmsToBinaryCharArray(warnings);
 
         char[] newAlarmsCharArray = new char[32];

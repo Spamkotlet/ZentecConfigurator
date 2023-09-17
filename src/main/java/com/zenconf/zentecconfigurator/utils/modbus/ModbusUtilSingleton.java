@@ -83,7 +83,7 @@ public class ModbusUtilSingleton {
             try {
                 logger.info("Подключение...");
                 master.connect();
-                MainController.mainParameters.getDeviceAddressAttribute().readModbusParameter();
+                MainController.mainParameters.getDeviceAddressAttribute().readModbus();
                 Thread.sleep(1000);
                 logger.info("Устройство подключено");
                 Platform.runLater(() -> {

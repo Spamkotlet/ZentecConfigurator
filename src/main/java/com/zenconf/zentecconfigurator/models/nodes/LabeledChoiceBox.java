@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.intelligt.modbus.jlibmodbus.serial.SerialPortException;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import javafx.collections.FXCollections;
@@ -67,7 +66,7 @@ public class LabeledChoiceBox {
                     errorLabel.setVisible(false);
                     choiceBox.setValue(
                             getChoiceBoxItems(attributeValues)
-                                    .get(attribute.readModbusParameter().equals("true") ? 1 : 0)
+                                    .get(attribute.readModbus().equals("true") ? 1 : 0)
                     );
                 } catch (Exception ex) {
                     errorText = "Ошибка чтения";
@@ -80,7 +79,7 @@ public class LabeledChoiceBox {
                     Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
                     try {
                         errorLabel.setVisible(false);
-                        attribute.writeModbusParameter(value);
+                        attribute.writeModbus(value);
                     } catch (Exception ex) {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);
@@ -93,7 +92,7 @@ public class LabeledChoiceBox {
                     errorLabel.setVisible(false);
                     choiceBox.setValue(
                             getChoiceBoxItems(attributeValues)
-                                    .get(Integer.parseInt(attribute.readModbusParameter()))
+                                    .get(Integer.parseInt(attribute.readModbus()))
                     );
                 } catch (Exception ex) {
                     errorText = "Ошибка чтения";
@@ -104,7 +103,7 @@ public class LabeledChoiceBox {
                 choiceBox.setOnAction(e -> {
                     try {
                         errorLabel.setVisible(false);
-                        attribute.writeModbusParameter(attributeValues.indexOf(choiceBox.getValue()));
+                        attribute.writeModbus(attributeValues.indexOf(choiceBox.getValue()));
                     } catch (Exception ex) {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);

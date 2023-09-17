@@ -135,7 +135,7 @@ public class LabeledSpinner {
         if (readingByInitialization) {
             try {
                 errorLabel.setVisible(false);
-                initValue = (int) Double.parseDouble(attribute.readModbusParameter());
+                initValue = (int) Double.parseDouble(attribute.readModbus());
             } catch (Exception e) {
                 errorText = "Ошибка чтения";
                 Platform.runLater(() -> errorLabel.setText(errorText));
@@ -200,7 +200,7 @@ public class LabeledSpinner {
         try {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                    attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
+                    attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));
@@ -213,7 +213,7 @@ public class LabeledSpinner {
     public void writeModbusValue() {
         try {
             errorLabel.setVisible(false);
-            attribute.writeModbusParameter(spinner.getValue().toString());
+            attribute.writeModbus(spinner.getValue().toString());
         } catch (Exception e) {
             errorText = "Ошибка записи";
             Platform.runLater(() -> errorLabel.setText(errorText));

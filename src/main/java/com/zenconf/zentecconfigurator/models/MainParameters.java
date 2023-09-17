@@ -3,6 +3,7 @@ package com.zenconf.zentecconfigurator.models;
 import java.util.List;
 
 public class MainParameters {
+    private Attribute schemeNumberAttribute;
     private Attribute startStopAttribute;
     private Attribute resetAlarmsAttribute;
     private Attribute clearJournalAttribute;
@@ -18,6 +19,10 @@ public class MainParameters {
     private Attribute warningsAttribute;
     private Attribute deviceAddressAttribute; // атрибут для проверки соединения M245
     private Attribute indexHMIAttribute; // атрибут для проверки соединения Z031
+
+    public Attribute getSchemeNumberAttribute() {
+        return schemeNumberAttribute;
+    }
 
     public Attribute getStartStopAttribute() {
         return startStopAttribute;

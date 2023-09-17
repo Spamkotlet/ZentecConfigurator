@@ -65,7 +65,7 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setText("Используется");
 
                     nodes.add(isUsedDefaultCheckBox);
-                    inWorkAttribute.writeModbusParameter(element.getIsUsedDefault());
+                    inWorkAttribute.writeModbus(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
@@ -83,7 +83,7 @@ public class SchemeTitledPane extends TitledPane {
                         }
                     });
                     nodes.add(isUsedDefaultChoiceBox);
-                    inWorkAttribute.writeModbusParameter(isInWorkInteger);
+                    inWorkAttribute.writeModbus(isInWorkInteger);
                 }
             }
         } else {
@@ -135,9 +135,9 @@ public class SchemeTitledPane extends TitledPane {
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
-                    inWorkAttribute.writeModbusParameter(false);
+                    inWorkAttribute.writeModbus(false);
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
-                    inWorkAttribute.writeModbusParameter(0);
+                    inWorkAttribute.writeModbus(0);
                 }
             }
         }
@@ -146,7 +146,7 @@ public class SchemeTitledPane extends TitledPane {
     private void onSelectedCheckBox() throws Exception {
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultCheckBox.isSelected();
-            inWorkAttribute.writeModbusParameter(isUsed);
+            inWorkAttribute.writeModbus(isUsed);
             element.setIsUsedDefault(isUsed);
             if (element.getClass().equals(Actuator.class)) {
                 if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
@@ -168,7 +168,7 @@ public class SchemeTitledPane extends TitledPane {
         errorLabel.setVisible(false);
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0;
-            inWorkAttribute.writeModbusParameter(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
+            inWorkAttribute.writeModbus(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setIsUsedDefault(isUsed);
             if (element.getClass().equals(Actuator.class)) {
                 if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {

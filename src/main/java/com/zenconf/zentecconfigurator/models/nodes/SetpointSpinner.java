@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.util.StringConverter;
 
 public class SetpointSpinner {
 
@@ -80,12 +79,12 @@ public class SetpointSpinner {
         spinner.setPrefHeight(55);
         SpinnerValueFactory<Integer> spinnerFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbusParameter()));
+                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
         spinner.setValueFactory(spinnerFactory);
 
         spinner.setOnMouseReleased(e -> {
             try {
-                attribute.writeModbusParameter(spinner.getValue().toString());
+                attribute.writeModbus(spinner.getValue().toString());
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -94,7 +93,7 @@ public class SetpointSpinner {
         spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 try {
-                    attribute.writeModbusParameter(Integer.parseInt(spinner.getValue().toString()));
+                    attribute.writeModbus(Integer.parseInt(spinner.getValue().toString()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

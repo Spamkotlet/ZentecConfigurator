@@ -1,15 +1,12 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.CommonController;
-import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
-import com.zenconf.zentecconfigurator.models.enums.VarTypes;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
-import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Node;
@@ -41,24 +38,21 @@ public class ChangeSchemeController extends CommonController implements Initiali
     public static List<Actuator> actuatorsInScheme;
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
-    private ModbusUtilSingleton modbusUtilSingleton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                 try {
-                    selectedScheme = readSchemeNumberFromModbus();
-                    ConfiguratorController.selectScheme();
+                    ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
                     onActionSchemeNumberChoiceBox();
+                    schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
                     logger.info("Выбрана схема " + selectedScheme.getNumber() + " / " + selectedScheme.getName());
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
                 }
-                schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
             }
         });
 
@@ -80,7 +74,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
             schemeNumberChoiceBox.valueProperty().addListener((obs, oldVal, newVal) -> {
                 if (!Objects.equals(newVal, oldVal)) {
                     try {
-                        ConfiguratorController.selectScheme();
                         onActionSchemeNumberChoiceBox();
                     } catch (Exception ex) {
                         Platform.runLater(() -> {
@@ -105,11 +98,12 @@ public class ChangeSchemeController extends CommonController implements Initiali
         ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
 
         schemeNumberChoiceBox.setItems(schemesItems);
-        selectedScheme = readSchemeNumberFromModbus();
+        selectedScheme = schemes.get(readSchemeNumberFromModbus());
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
     private void onActionSchemeNumberChoiceBox() throws Exception {
+        selectedScheme = schemes.get(readSchemeNumberFromModbus());
         String selectedSchemeName = "";
         if (previousScheme != null) {
             selectedSchemeName = previousScheme.getNumber() + 1 + " - " + previousScheme.getName();
@@ -155,7 +149,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         }
         fillingPane();
-        writeSchemeNumberByModbus();
+        writeSchemeNumberByModbus(selectedScheme.getNumber());
     }
 
 
@@ -299,29 +293,13 @@ public class ChangeSchemeController extends CommonController implements Initiali
     }
 
     // Запись номера схемы в контроллер по Modbus
-    private void writeSchemeNumberByModbus() throws Exception {
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            try {
-                modbusUtilSingleton.writeModbus(1436, VarTypes.UINT8, selectedScheme.getNumber());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private void writeSchemeNumberByModbus(int schemeNumber) throws Exception {
+        MainController.mainParameters.getSchemeNumberAttribute().writeModbus(schemeNumber);
     }
 
     // Чтение номера схемы из контроллера по Modbus
-    private Scheme readSchemeNumberFromModbus() throws Exception {
-        selectedScheme = schemes.get(0);
-        modbusUtilSingleton = ModbusUtilSingleton.getInstance();
-        if (modbusUtilSingleton.getMaster() != null) {
-            try {
-                selectedScheme = schemes.get(Integer.parseInt(modbusUtilSingleton.readModbus(1436, VarTypes.UINT8).toString()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return selectedScheme;
+    private int readSchemeNumberFromModbus() throws Exception {
+        return Integer.parseInt(MainController.mainParameters.getSchemeNumberAttribute().readModbus());
     }
 
     // Получить список схем для помещения в schemeNumberChoiceBox

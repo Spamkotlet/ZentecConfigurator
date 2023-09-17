@@ -289,11 +289,11 @@ public class IOMonitorController extends CommonController implements Initializab
         controlModeChoiceBox.setItems(getChoiceBoxStringItems(controlModeValues));
         controlModeChoiceBox.setValue(
                 getChoiceBoxStringItems(controlModeValues)
-                        .get(Integer.parseInt(controlModeAttribute.readModbusParameter()))
+                        .get(Integer.parseInt(controlModeAttribute.readModbus()))
         );
         controlModeChoiceBox.setOnAction(e -> {
             try {
-                controlModeAttribute.writeModbusParameter(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
+                controlModeAttribute.writeModbus(controlModeValues.indexOf(controlModeChoiceBox.getValue()));
             } catch (Exception ex) {
                 logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
@@ -309,7 +309,7 @@ public class IOMonitorController extends CommonController implements Initializab
         seasonChoiceBox.setOnAction(e -> {
             try {
                 int seasonNumber = Math.max(Seasons.values()[seasonChoiceBox.getSelectionModel().getSelectedIndex()].getNumber(), 0);
-                seasonAttribute.writeModbusParameter(seasonNumber);
+                seasonAttribute.writeModbus(seasonNumber);
                 System.out.println("Index: " + seasonChoiceBox.getValue() + " Value: " + seasonChoiceBox.getValue());
             } catch (Exception ex) {
                 logger.error(ex.getMessage());
@@ -362,7 +362,7 @@ public class IOMonitorController extends CommonController implements Initializab
 
     private synchronized void updateCurrentSeason() throws Exception {
         Attribute seasonAttribute = MainController.mainParameters.getSeasonAttribute();
-        String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbusParameter()));
+        String binaryString = Integer.toBinaryString(Integer.parseInt(seasonAttribute.readModbus()));
         char[] seasonBitsCharArray = String.format("%4s", binaryString).replace(' ', '0').toCharArray();
         String seasonText;
         if (seasonBitsCharArray[0] == '1') {
@@ -390,7 +390,7 @@ public class IOMonitorController extends CommonController implements Initializab
     }
 
     private int getCurrentSeasonNumber(Attribute seasonAttribute) throws Exception {
-        int number = Integer.parseInt(seasonAttribute.readModbusParameter());
+        int number = Integer.parseInt(seasonAttribute.readModbus());
         int currentSeasonNumber = 0;
         if (number < 8) {
             switch (number) {
@@ -409,27 +409,27 @@ public class IOMonitorController extends CommonController implements Initializab
 
     private synchronized void updateStatusLabel() throws Exception {
         List<String> statusList = MainController.mainParameters.getStatusAttribute().getValues();
-        int statusNumber = Integer.parseInt(MainController.mainParameters.getStatusAttribute().readModbusParameter());
+        int statusNumber = Integer.parseInt(MainController.mainParameters.getStatusAttribute().readModbus());
         Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
     }
 
     private synchronized void startStop() throws Exception {
         logger.info("Нажата кнопка <ПУСК/СТОП>");
         Attribute startStopAttribute = MainController.mainParameters.getStartStopAttribute();
-        boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
+        boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbus());
         if (startStopBoolean) {
-            startStopAttribute.writeModbusParameter(startStopBoolean);
+            startStopAttribute.writeModbus(startStopBoolean);
         } else {
-            startStopAttribute.writeModbusParameter(!startStopBoolean);
+            startStopAttribute.writeModbus(!startStopBoolean);
         }
-        startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbusParameter());
-        startStopAttribute.writeModbusParameter(!startStopBoolean);
+        startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbus());
+        startStopAttribute.writeModbus(!startStopBoolean);
     }
 
     private boolean isAlarmActive() throws Exception {
-        long alarms0 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute0().readModbusParameter());
-        long alarms1 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute1().readModbusParameter());
-        long warnings = Long.parseLong(MainController.mainParameters.getWarningsAttribute().readModbusParameter());
+        long alarms0 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute0().readModbus());
+        long alarms1 = Long.parseLong(MainController.mainParameters.getAlarmsAttribute1().readModbus());
+        long warnings = Long.parseLong(MainController.mainParameters.getWarningsAttribute().readModbus());
 
         boolean isAlarmActive = warnings != warningsNumber || alarms0 != alarmsNumber0 || alarms1 != alarmsNumber1;
 
@@ -443,7 +443,7 @@ public class IOMonitorController extends CommonController implements Initializab
     private void onClearJournalButton() throws Exception {
         logger.info("Очистка журнала");
         Attribute clearJournalAttribute = MainController.mainParameters.getClearJournalAttribute();
-        clearJournalAttribute.writeModbusParameter(true);
+        clearJournalAttribute.writeModbus(true);
         alarmsTableView.clearJournal();
         onResetAlarmsButton();
     }
@@ -451,7 +451,7 @@ public class IOMonitorController extends CommonController implements Initializab
     private void onResetAlarmsButton() throws Exception {
         logger.info("Сброс аварий");
         Attribute resetAlarmsAttribute = MainController.mainParameters.getResetAlarmsAttribute();
-        resetAlarmsAttribute.writeModbusParameter(true);
+        resetAlarmsAttribute.writeModbus(true);
         alarmsTableView.resetAlarms();
     }
 

@@ -1,5 +1,12 @@
 {
   "mainParameters": {
+    "schemeNumberAttribute": {
+      "name": "Номер схемы",
+      "modbusParameters": {
+        "address": 1436,
+        "varType": "UINT8"
+      }
+    },
     "deviceAddressAttribute": {
       "name": "Адрес устройства",
       "modbusParameters": {

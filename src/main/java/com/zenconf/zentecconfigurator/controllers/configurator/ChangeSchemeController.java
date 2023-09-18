@@ -38,6 +38,8 @@ public class ChangeSchemeController extends CommonController implements Initiali
     public static List<Actuator> actuatorsInScheme;
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
+    private final HashMap<String, SchemeTitledPane> actuatorsTitledPaneHashMap = new HashMap<>();
+    private final HashMap<String, SchemeTitledPane> sensorsTitledPaneHashMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,7 +47,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 try {
-                    ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
+                    ObservableList<String> schemesItems = getSchemeItems(schemes);
                     onActionSchemeNumberChoiceBox();
                     schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
                     logger.info("Выбрана схема " + selectedScheme.getNumber() + " / " + selectedScheme.getName());
@@ -93,21 +95,28 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
     // Что происходит при открытии экрана
     protected void onOpenedChangeSchemeVBox() throws Exception {
+        // Получаем все возможные схемы
         schemes = MainController.schemes;
 
-        ObservableList<String> schemesItems = getSchemesForSchemeNumberChoiceBox(schemes);
-
+        // Получаем список схем для Choice Box
+        ObservableList<String> schemesItems = getSchemeItems(schemes);
         schemeNumberChoiceBox.setItems(schemesItems);
+
+        // Получаем текущую выбранную схему и пихаем в Choice Box
         selectedScheme = schemes.get(readSchemeNumberFromModbus());
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
+    // Что происходит при выборе Choice Box
     private void onActionSchemeNumberChoiceBox() throws Exception {
-        selectedScheme = schemes.get(readSchemeNumberFromModbus());
+
+        // Получаем имя схемы для дальнейшего сравнения
         String selectedSchemeName = "";
         if (previousScheme != null) {
             selectedSchemeName = previousScheme.getNumber() + 1 + " - " + previousScheme.getName();
         }
+
+        // Если выбранная схема не совпадает текущей
         if (!schemeNumberChoiceBox.getValue().equals(selectedSchemeName)) {
             previousScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
             onSelectedSchemeNumber();
@@ -117,18 +126,25 @@ public class ChangeSchemeController extends CommonController implements Initiali
     // Что происходит при выборе схемы из списка
     protected void onSelectedSchemeNumber() throws Exception {
 
+        // Получить схему, которая была выбрана в Choice Box
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+
+        // Получить все датчики и исполнительные устройства, которые есть в схеме
         sensorsInScheme = selectedScheme.getSensors();
         actuatorsInScheme = selectedScheme.getActuators();
+
+        // Создаем списки для устройств, которые используются
         sensorsUsed = new ArrayList<>();
         actuatorsUsed = new ArrayList<>();
 
         for (Actuator actuatorInScheme : actuatorsInScheme) {
             for (Actuator actuator : MainController.actuatorList) {
+                // Копирование свойств элементов схемы
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     if (actuatorInScheme.getIsUsedDefault()) {
                         actuatorsUsed.add(actuatorInScheme);
                     }
+//                    actuatorInScheme.setIsUsedDefault(actuator.getIsUsedDefault());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
@@ -138,10 +154,12 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
         for (Sensor sensorInScheme : sensorsInScheme) {
             for (Sensor sensor : MainController.sensorList) {
+                // Копирование свойств элементов схемы
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     if (sensorInScheme.getIsUsedDefault()) {
                         sensorsUsed.add(sensorInScheme);
                     }
+//                    sensorInScheme.setIsUsedDefault(sensor.getIsUsedDefault());
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
@@ -149,15 +167,14 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         }
         fillingPane();
+
+        // Запись номера схемы по Modbus
         writeSchemeNumberByModbus(selectedScheme.getNumber());
     }
 
 
     // Заполнение панели устройствами и датчиками
     private void fillingPane() throws Exception {
-
-        System.out.println("fillingPane");
-
         // Задача по установке всех чекбоксов в исходное положение
         Task<Void> setAttributeIsUsedOffTask = new Task<>() {
             @Override
@@ -187,12 +204,14 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 super.succeeded();
                 System.out.println("Задача setAttributeIsUsedOffTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
                 System.out.println("Задача setAttributeIsUsedOffTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
@@ -207,10 +226,11 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         Thread setAttributeIsUsedOffThread = new Thread(setAttributeIsUsedOffTask);
-        setAttributeIsUsedOffThread.start();
+//        setAttributeIsUsedOffThread.start();
 
         // Задача по наполнению экрана
         Task<Void> loadActuatorsAndSensorsTask = new Task<>() {
@@ -230,9 +250,20 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     actuatorsDone++;
                     updateMessage("Загрузка устройств: " + actuatorsDone + "/" + actuatorsMax);
                     updateProgress(actuatorsDone, actuatorsMax);
-                    SchemeTitledPane actuatorTitledPane = new SchemeTitledPane(actuator);
+
+                    SchemeTitledPane actuatorTitledPane;
+                    if (actuatorsTitledPaneHashMap.get(actuator.getName()) == null) {
+                        actuatorTitledPane = new SchemeTitledPane(actuator);
+                        actuatorsTitledPaneHashMap.put(actuator.getName(), actuatorTitledPane);
+                    } else {
+                        actuatorTitledPane = actuatorsTitledPaneHashMap.get(actuator.getName());
+                        actuatorTitledPane.setElement(actuator);
+                    }
+
                     try {
-                        Platform.runLater(() -> actuatorsVbox.getChildren().add(actuatorTitledPane));
+                        Platform.runLater(() -> {
+                            actuatorsVbox.getChildren().add(actuatorTitledPane);
+                        });
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw e;
@@ -248,7 +279,16 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     sensorsDone++;
                     updateMessage("Загрузка датчиков: " + sensorsDone + "/" + sensorsMax);
                     updateProgress(sensorsDone, sensorsMax);
-                    SchemeTitledPane sensorTitledPane = new SchemeTitledPane(sensor);
+
+                    SchemeTitledPane sensorTitledPane;
+                    if (sensorsTitledPaneHashMap.get(sensor.getName()) == null) {
+                        sensorTitledPane = new SchemeTitledPane(sensor);
+                        sensorsTitledPaneHashMap.put(sensor.getName(), sensorTitledPane);
+                    } else {
+                        sensorTitledPane = sensorsTitledPaneHashMap.get(sensor.getName());
+                        sensorTitledPane.setElement(sensor);
+                    }
+
                     try {
                         Platform.runLater(() -> sensorsVbox.getChildren().add(sensorTitledPane));
                     } catch (Exception e) {
@@ -266,12 +306,14 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 super.succeeded();
                 System.out.println("Задача loadActuatorsAndSensorsTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
                 System.out.println("Задача loadActuatorsAndSensorsTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
@@ -286,10 +328,12 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         Thread loadActuatorsAndSensorsThread = new Thread(loadActuatorsAndSensorsTask);
-        setAttributeIsUsedOffTask.setOnSucceeded(e -> loadActuatorsAndSensorsThread.start());
+        loadActuatorsAndSensorsTask.setOnSucceeded(e -> setAttributeIsUsedOffThread.start());
+        loadActuatorsAndSensorsThread.start();
     }
 
     // Запись номера схемы в контроллер по Modbus
@@ -303,7 +347,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
     }
 
     // Получить список схем для помещения в schemeNumberChoiceBox
-    private ObservableList<String> getSchemesForSchemeNumberChoiceBox(List<Scheme> schemes) {
+    private ObservableList<String> getSchemeItems(List<Scheme> schemes) {
         List<String> schemeStrings = new ArrayList<>();
         for (Scheme scheme : schemes) {
             schemeStrings.add(scheme.getNumber() + 1 + " - " + scheme.getName());

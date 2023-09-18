@@ -5,6 +5,7 @@ import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
+import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -14,8 +15,10 @@ import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,6 +31,8 @@ public class ActuatorsController extends CommonController implements Initializab
     private final List<Actuator> actuatorsUsed = new ArrayList<>();
 
     private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
+
+    private final HashMap<String, ElementTitledPane> actuatorsTitledPaneHashMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +64,15 @@ public class ActuatorsController extends CommonController implements Initializab
                     Parameter valveParameter = new Parameter();
                     valveParameter.setName("Воздушный клапан");
                     valveParameter.setAttributes(MainController.mainParameters.getValveAttributes());
-                    ElementTitledPane valveTitledPane = new ElementTitledPane(valveParameter);
+                    ElementTitledPane valveTitledPane;
+                    if (actuatorsTitledPaneHashMap.get(valveParameter.getName()) == null) {
+                        valveTitledPane = new ElementTitledPane(valveParameter);
+                        actuatorsTitledPaneHashMap.put(valveParameter.getName(), valveTitledPane);
+                    } else {
+                        valveTitledPane = actuatorsTitledPaneHashMap.get(valveParameter.getName());
+                        valveTitledPane.setElement(valveParameter);
+                    }
+
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveTitledPane));
                     } catch (Exception e) {
@@ -71,7 +84,16 @@ public class ActuatorsController extends CommonController implements Initializab
                     Parameter valveHeatersParameter = new Parameter();
                     valveHeatersParameter.setName("Обогрев клапанов");
                     valveHeatersParameter.setAttributes(MainController.mainParameters.getValveHeatersAttributes());
-                    ElementTitledPane valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+                    ElementTitledPane valveHeatersTitledPane;
+
+                    if (actuatorsTitledPaneHashMap.get(valveHeatersParameter.getName()) == null) {
+                        valveHeatersTitledPane = new ElementTitledPane(valveHeatersParameter);
+                        actuatorsTitledPaneHashMap.put(valveHeatersParameter.getName(), valveHeatersTitledPane);
+                    } else {
+                        valveHeatersTitledPane = actuatorsTitledPaneHashMap.get(valveHeatersParameter.getName());
+                        valveHeatersTitledPane.setElement(valveHeatersParameter);
+                    }
+
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveHeatersTitledPane));
                     } catch (Exception e) {
@@ -83,7 +105,16 @@ public class ActuatorsController extends CommonController implements Initializab
                     Parameter heatExchangerParameter = new Parameter();
                     heatExchangerParameter.setName("Теплообменники");
                     heatExchangerParameter.setAttributes(MainController.mainParameters.getHeatExchangerAttributes());
-                    ElementTitledPane heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                    ElementTitledPane heatExchangerTitledPane;
+
+                    if (actuatorsTitledPaneHashMap.get(heatExchangerParameter.getName()) == null) {
+                        heatExchangerTitledPane = new ElementTitledPane(heatExchangerParameter);
+                        actuatorsTitledPaneHashMap.put(heatExchangerParameter.getName(), heatExchangerTitledPane);
+                    } else {
+                        heatExchangerTitledPane = actuatorsTitledPaneHashMap.get(heatExchangerParameter.getName());
+                        heatExchangerTitledPane.setElement(heatExchangerParameter);
+                    }
+
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
                     } catch (Exception e) {
@@ -94,20 +125,26 @@ public class ActuatorsController extends CommonController implements Initializab
                 }
 
                 for (Actuator actuatorInScheme : actuators) {
-                    if (actuatorInScheme.getIsUsedDefault()) {
-                        actuatorsDone++;
-                        updateMessage("Загрузка...: " + actuatorsDone + "/" + actuatorsMax);
-                        updateProgress(actuatorsDone, actuatorsMax);
-                        if (actuatorInScheme.getAttributes() != null) {
-                            ElementTitledPane actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
-                            try {
-                                Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
-                            } catch (Exception e) {
-                                logger.error(e.getMessage());
-                                throw e;
-                            }
-                            Thread.sleep(100);
+                    actuatorsDone++;
+                    updateMessage("Загрузка...: " + actuatorsDone + "/" + actuatorsMax);
+                    updateProgress(actuatorsDone, actuatorsMax);
+                    if (actuatorInScheme.getAttributes() != null) {
+                        ElementTitledPane actuatorTitledPane;
+                        if (actuatorsTitledPaneHashMap.get(actuatorInScheme.getName()) == null) {
+                            actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
+                            actuatorsTitledPaneHashMap.put(actuatorInScheme.getName(), actuatorTitledPane);
+                        } else {
+                            actuatorTitledPane = actuatorsTitledPaneHashMap.get(actuatorInScheme.getName());
+                            actuatorTitledPane.setElement(actuatorInScheme);
                         }
+
+                        try {
+                            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
+                        } catch (Exception e) {
+                            logger.error(e.getMessage());
+                            throw e;
+                        }
+                        Thread.sleep(100);
                     }
                 }
                 return null;
@@ -118,12 +155,14 @@ public class ActuatorsController extends CommonController implements Initializab
                 super.succeeded();
                 System.out.println("Задача fillingPaneTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
                 System.out.println("Задача fillingPaneTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
@@ -138,6 +177,7 @@ public class ActuatorsController extends CommonController implements Initializab
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         Thread fillingPaneThread = new Thread(fillingPaneTask);

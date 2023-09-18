@@ -5,7 +5,8 @@ import java.util.List;
 public abstract class Element {
 
     private String name;
-    private Boolean isUsedDefault;
+    private boolean isUsed;
+    private boolean isUsedDefault;
     private List<Attribute> attributes;
     private Attribute attributeForMonitoring;
     private List<Attribute> attributesForControlling;
@@ -18,11 +19,19 @@ public abstract class Element {
         this.name = name;
     }
 
-    public Boolean getIsUsedDefault() {
+    public boolean getUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+
+    public boolean getIsUsedDefault() {
         return this.isUsedDefault;
     }
 
-    public void setIsUsedDefault(Boolean isUsedDefault) {
+    public void setIsUsedDefault(boolean isUsedDefault) {
         this.isUsedDefault = isUsedDefault;
     }
 

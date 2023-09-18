@@ -76,10 +76,13 @@ public abstract class CommonController {
             parent = loader.load();
             Button cancelLoadButton = (Button) parent.lookup("#cancelLoadButton");
             cancelLoadButton.setOnAction(e -> closeLoadWindow(task));
+
             progressBar = (ProgressBar) parent.lookup("#progressBar");
             progressBar.progressProperty().bind(task.progressProperty());
+
             progressLabel = (Label) parent.lookup("#progressLabel");
             progressLabel.textProperty().bind(task.messageProperty());
+
             window = new Stage();
             window.initModality(Modality.APPLICATION_MODAL);
             window.initStyle(StageStyle.UNDECORATED);

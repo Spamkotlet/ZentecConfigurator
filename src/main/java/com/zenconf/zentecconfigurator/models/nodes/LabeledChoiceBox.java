@@ -18,22 +18,24 @@ import java.util.List;
 
 public class LabeledChoiceBox {
 
+    private final ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private final Attribute attribute;
     private String errorText = "*";
     private Label errorLabel;
+    List<String> attributeValues;
 
     public LabeledChoiceBox(Attribute attribute) {
         this.attribute = attribute;
     }
 
-    public Node getChoiceBox() throws Exception {
+    public Node getChoiceBox() {
         String labelText = attribute.getName();
-        List<String> attributeValues = attribute.getValues();
+        attributeValues = attribute.getValues();
         List<Node> nodes = new ArrayList<>();
 
         nodes.add(createLabel(labelText));
         errorLabel = createErrorLabel("(" + errorText + ")", 100, false);
-        nodes.add(createChoiceBox(attributeValues));
+        nodes.add(createChoiceBox());
         nodes.add(errorLabel);
 
         return createHBoxForLabeledChoiceBox(nodes);
@@ -55,26 +57,13 @@ public class LabeledChoiceBox {
         return label;
     }
 
-    private ChoiceBox<String> createChoiceBox(List<String> attributeValues) throws Exception {
-        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+    private ChoiceBox<String> createChoiceBox() {
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
+        readModbusValue();
 
         try {
             if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
-                try {
-                    errorLabel.setVisible(false);
-                    choiceBox.setValue(
-                            getChoiceBoxItems(attributeValues)
-                                    .get(attribute.readModbus().equals("true") ? 1 : 0)
-                    );
-                } catch (Exception ex) {
-                    errorText = "Ошибка чтения";
-                    errorLabel.setText(errorText);
-                    errorLabel.setVisible(true);
-                    throw new RuntimeException(ex);
-                }
-
                 choiceBox.setOnAction(e -> {
                     Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
                     try {
@@ -84,22 +73,10 @@ public class LabeledChoiceBox {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);
                         errorLabel.setVisible(true);
-                        throw new RuntimeException(ex);
+//                        throw new RuntimeException(ex);
                     }
                 });
             } else {
-                try {
-                    errorLabel.setVisible(false);
-                    choiceBox.setValue(
-                            getChoiceBoxItems(attributeValues)
-                                    .get(Integer.parseInt(attribute.readModbus()))
-                    );
-                } catch (Exception ex) {
-                    errorText = "Ошибка чтения";
-                    errorLabel.setText(errorText);
-                    errorLabel.setVisible(true);
-                    throw new RuntimeException(ex);
-                }
                 choiceBox.setOnAction(e -> {
                     try {
                         errorLabel.setVisible(false);
@@ -108,15 +85,14 @@ public class LabeledChoiceBox {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);
                         errorLabel.setVisible(true);
-                        throw new RuntimeException(ex);
+//                        throw new RuntimeException(ex);
                     }
                 });
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            return choiceBox;
+//            throw new RuntimeException(e);
         }
+        return choiceBox;
     }
 
     private ObservableList<String> getChoiceBoxItems(List<String> attributeValues) {
@@ -136,5 +112,36 @@ public class LabeledChoiceBox {
         AnchorPane.setTopAnchor(hBox, 0.0);
         AnchorPane.setBottomAnchor(hBox, 0.0);
         return hBox;
+    }
+
+    public void readModbusValue(){
+        if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
+
+            try {
+                errorLabel.setVisible(false);
+                choiceBox.setValue(
+                        getChoiceBoxItems(attributeValues)
+                                .get(attribute.readModbus().equals("true") ? 1 : 0)
+                );
+            } catch (Exception ex) {
+                errorText = "Ошибка чтения";
+                errorLabel.setText(errorText);
+                errorLabel.setVisible(true);
+                ex.printStackTrace();
+            }
+        } else {
+            try {
+                errorLabel.setVisible(false);
+                choiceBox.setValue(
+                        getChoiceBoxItems(attributeValues)
+                                .get(Integer.parseInt(attribute.readModbus()))
+                );
+            } catch (Exception ex) {
+                errorText = "Ошибка чтения";
+                errorLabel.setText(errorText);
+                errorLabel.setVisible(true);
+                ex.printStackTrace();
+            }
+        }
     }
 }

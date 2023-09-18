@@ -33,8 +33,8 @@ public class MainController extends CommonController implements Initializable {
 
     @FXML
     public Button goToHomeButton;
-    @FXML
-    public Button goToHelpButton;
+//    @FXML
+//    public Button goToHelpButton;
     @FXML
     public Button goToSettingsButton;
     @FXML
@@ -66,7 +66,7 @@ public class MainController extends CommonController implements Initializable {
         onCreateChildNode(mainControllerAnchorPane, "Домашняя", "home-page-view.fxml");
 
         goToHomeButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Домашняя", "home-page-view.fxml"));
-        goToHelpButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Справка", "help-page-view.fxml"));
+//        goToHelpButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Справка", "help-page-view.fxml"));
         goToSettingsButton.setOnAction(e -> onCreateChildNode(mainControllerAnchorPane, "Настройки", "settings.fxml"));
 
         Thread thread;

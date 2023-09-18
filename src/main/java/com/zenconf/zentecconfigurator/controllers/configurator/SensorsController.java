@@ -22,6 +22,8 @@ public class SensorsController extends CommonController implements Initializable
     private VBox sensorsVBox;
 
     private final List<Sensor> sensorsUsed = new ArrayList<>();
+    private final HashMap<String, ElementTitledPane> sensorsTitledPaneHashMap = new HashMap<>();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,22 +52,29 @@ public class SensorsController extends CommonController implements Initializable
                 int sensorsDone = 0;
                 int sensorsMax = sensors.size();
                 for (Sensor sensorInScheme : ChangeSchemeController.sensorsUsed) {
-                    if (sensorInScheme.getIsUsedDefault()) {
-                        sensorsDone++;
-                        updateMessage("Загрузка...: " + sensorsDone + "/" + sensorsMax);
-                        updateProgress(sensorsDone, sensorsMax);
-                        if (sensorInScheme.getAttributes() != null) {
-                            ElementTitledPane sensorTitledPane = new ElementTitledPane(sensorInScheme);
-                            try {
-                                Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(sensorTitledPane));
-                            } catch (Exception e) {
-                                logger.error(e.getMessage());
-                                throw e;
-                            }
-                            Thread.sleep(100);
+                    sensorsDone++;
+                    updateMessage("Загрузка...: " + sensorsDone + "/" + sensorsMax);
+                    updateProgress(sensorsDone, sensorsMax);
+                    if (sensorInScheme.getAttributes() != null) {
+                        ElementTitledPane sensorTitledPane;
+                        if (sensorsTitledPaneHashMap.get(sensorInScheme.getName()) == null) {
+                            sensorTitledPane = new ElementTitledPane(sensorInScheme);
+                            sensorsTitledPaneHashMap.put(sensorInScheme.getName(), sensorTitledPane);
+                        } else {
+                            sensorTitledPane = sensorsTitledPaneHashMap.get(sensorInScheme.getName());
+                            sensorTitledPane.setElement(sensorInScheme);
                         }
+
+                        try {
+                            Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(sensorTitledPane));
+                        } catch (Exception e) {
+                            logger.error(e.getMessage());
+                            throw e;
+                        }
+                        Thread.sleep(100);
                     }
                 }
+
                 return null;
             }
 
@@ -74,12 +83,14 @@ public class SensorsController extends CommonController implements Initializable
                 super.succeeded();
                 System.out.println("Задача fillingPaneTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
                 System.out.println("Задача fillingPaneTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
@@ -94,6 +105,7 @@ public class SensorsController extends CommonController implements Initializable
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         Thread fillingPaneThread = new Thread(fillingPaneTask);

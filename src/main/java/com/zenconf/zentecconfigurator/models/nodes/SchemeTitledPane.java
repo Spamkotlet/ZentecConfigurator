@@ -135,9 +135,11 @@ public class SchemeTitledPane extends TitledPane {
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
-                    inWorkAttribute.writeModbus(false);
+                    isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
+                    inWorkAttribute.writeModbus(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
-                    inWorkAttribute.writeModbus(0);
+                    isUsedDefaultChoiceBox.getSelectionModel().select(!element.getIsUsedDefault() ? 0 : 1);
+                    inWorkAttribute.writeModbus(!element.getIsUsedDefault() ? 0 : 1);
                 }
             }
         }
@@ -147,7 +149,7 @@ public class SchemeTitledPane extends TitledPane {
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultCheckBox.isSelected();
             inWorkAttribute.writeModbus(isUsed);
-            element.setIsUsedDefault(isUsed);
+            element.setUsed(isUsed);
             if (element.getClass().equals(Actuator.class)) {
                 if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
                     ChangeSchemeController.actuatorsUsed.add((Actuator) element);
@@ -169,7 +171,7 @@ public class SchemeTitledPane extends TitledPane {
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0;
             inWorkAttribute.writeModbus(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
-            element.setIsUsedDefault(isUsed);
+            element.setUsed(isUsed);
             if (element.getClass().equals(Actuator.class)) {
                 if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
                     ChangeSchemeController.actuatorsUsed.add((Actuator) element);
@@ -188,5 +190,13 @@ public class SchemeTitledPane extends TitledPane {
 
     private ObservableList<String> getElementTypes() {
         return FXCollections.observableArrayList(inWorkAttribute.getValues());
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
+    }
+
+    public Element getElement() {
+        return this.element;
     }
 }

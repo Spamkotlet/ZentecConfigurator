@@ -8,10 +8,7 @@ import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
-import com.zenconf.zentecconfigurator.models.nodes.AlarmTableView;
-import com.zenconf.zentecconfigurator.models.nodes.MonitorTextFlow;
-import com.zenconf.zentecconfigurator.models.nodes.MonitorValueText;
-import com.zenconf.zentecconfigurator.models.nodes.SetpointSpinner;
+import com.zenconf.zentecconfigurator.models.nodes.*;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -69,6 +66,10 @@ public class IOMonitorController extends CommonController implements Initializab
     public VBox alarmsVBox;
     @FXML
     public Circle pollingStatusIndicatorCircle;
+
+    private final HashMap<String, MonitorTextFlow> sensorsTextFlowHashMap = new HashMap<>();
+    private final HashMap<String, MonitorTextFlow> actuatorsTextFlowHashMap = new HashMap<>();
+    private final HashMap<String, SetpointSpinner> setpointSpinnersHashMap = new HashMap<>();
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<MonitorValueText> monitorValueTextList = new ArrayList<>();
@@ -329,12 +330,24 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (sensor.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {
-                        SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                        SetpointSpinner setpointSpinner;
+                        if (setpointSpinnersHashMap.get(attribute.getName()) == null) {
+                            setpointSpinner = new SetpointSpinner(attribute);
+                            setpointSpinnersHashMap.put(attribute.getName(), setpointSpinner);
+                        } else {
+                            setpointSpinner = setpointSpinnersHashMap.get(attribute.getName());
+                        }
                         setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
                 }
                 if (sensor.getAttributeForMonitoring() != null) {
-                    MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
+                    MonitorTextFlow monitorTextFlow;
+                    if (sensorsTextFlowHashMap.get(sensor.getName()) == null) {
+                        monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
+                        sensorsTextFlowHashMap.put(sensor.getName(), monitorTextFlow);
+                    } else {
+                        monitorTextFlow = sensorsTextFlowHashMap.get(sensor.getName());
+                    }
                     monitorValueTextList.add(monitorTextFlow.getValueText());
                     sensorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                 }
@@ -347,12 +360,24 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (actuator.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {
-                        SetpointSpinner setpointSpinner = new SetpointSpinner(attribute);
+                        SetpointSpinner setpointSpinner;
+                        if (setpointSpinnersHashMap.get(attribute.getName()) == null) {
+                            setpointSpinner = new SetpointSpinner(attribute);
+                            setpointSpinnersHashMap.put(attribute.getName(), setpointSpinner);
+                        } else {
+                            setpointSpinner = setpointSpinnersHashMap.get(attribute.getName());
+                        }
                         setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
                 }
                 if (actuator.getAttributeForMonitoring() != null) {
-                    MonitorTextFlow monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
+                    MonitorTextFlow monitorTextFlow;
+                    if (actuatorsTextFlowHashMap.get(actuator.getName()) == null) {
+                        monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
+                        actuatorsTextFlowHashMap.put(actuator.getName(), monitorTextFlow);
+                    } else {
+                        monitorTextFlow = actuatorsTextFlowHashMap.get(actuator.getName());
+                    }
                     monitorValueTextList.add(monitorTextFlow.getValueText());
                     actuatorsMonitorVBox.getChildren().add(monitorTextFlow.getTextFlow());
                 }

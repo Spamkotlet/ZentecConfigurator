@@ -27,13 +27,13 @@
                </children>
             </HBox>
             <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="goToHelpButton" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Справка">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
+<!--            <Button fx:id="goToHelpButton" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Справка">-->
+<!--               <HBox.margin>-->
+<!--                  <Insets />-->
+<!--               </HBox.margin>-->
+<!--               <font>-->
+<!--                  <Font size="16.0" />-->
+<!--               </font></Button>-->
             <Button fx:id="goToSettingsButton" mnemonicParsing="false" prefHeight="40.0" styleClass="button-main-header" text="Настройки">
                <HBox.margin>
                   <Insets />

@@ -6,6 +6,7 @@ import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -32,7 +33,7 @@ public class SchemeTitledPane extends TitledPane {
     public SchemeTitledPane() {
     }
 
-    public SchemeTitledPane(Element element) throws Exception {
+    public SchemeTitledPane(Element element) {
         this.element = element;
         List<Attribute> elementAttributes = element.getAttributes();
         if (elementAttributes != null) {
@@ -59,13 +60,10 @@ public class SchemeTitledPane extends TitledPane {
                             errorText = "Ошибка записи";
                             errorLabel.setText(errorText);
                             errorLabel.setVisible(true);
-//                            throw new RuntimeException(ex);
                         }
                     });
                     isUsedDefaultCheckBox.setText("Используется");
-
                     nodes.add(isUsedDefaultCheckBox);
-                    inWorkAttribute.writeModbus(element.getIsUsedDefault());
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
@@ -83,7 +81,6 @@ public class SchemeTitledPane extends TitledPane {
                         }
                     });
                     nodes.add(isUsedDefaultChoiceBox);
-                    inWorkAttribute.writeModbus(isInWorkInteger);
                 }
             }
         } else {
@@ -136,10 +133,30 @@ public class SchemeTitledPane extends TitledPane {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
                     isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
-                    inWorkAttribute.writeModbus(element.getIsUsedDefault());
+                    try {
+                        errorLabel.setVisible(false);
+                        inWorkAttribute.writeModbus(element.getIsUsedDefault());
+                    } catch (Exception e) {
+                        Platform.runLater(() -> {
+                            errorText = "Ошибка записи";
+                            errorLabel.setText(errorText);
+                            errorLabel.setVisible(true);
+                        });
+                        throw e;
+                    }
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     isUsedDefaultChoiceBox.getSelectionModel().select(!element.getIsUsedDefault() ? 0 : 1);
-                    inWorkAttribute.writeModbus(!element.getIsUsedDefault() ? 0 : 1);
+                    try {
+                        errorLabel.setVisible(false);
+                        inWorkAttribute.writeModbus(!element.getIsUsedDefault() ? 0 : 1);
+                    } catch (Exception e) {
+                        Platform.runLater(() -> {
+                            errorText = "Ошибка записи";
+                            errorLabel.setText(errorText);
+                            errorLabel.setVisible(true);
+                        });
+                        throw e;
+                    }
                 }
             }
         }

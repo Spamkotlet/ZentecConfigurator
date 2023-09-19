@@ -12,7 +12,7 @@
           "name": "В работе",
           "control": 0,
           "modbusParameters": {
-            "address": 1384,
+            "address": 333,
             "varType": "BOOL"
           }
         },

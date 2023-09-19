@@ -160,7 +160,7 @@
           "name": "В работе",
           "control": 0,
           "modbusParameters": {
-            "address": 1300,
+            "address": 333,
             "varType": "BOOL"
           }
         },

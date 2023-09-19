@@ -144,7 +144,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     if (actuatorInScheme.getIsUsedDefault()) {
                         actuatorsUsed.add(actuatorInScheme);
                     }
-//                    actuatorInScheme.setIsUsedDefault(actuator.getIsUsedDefault());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
@@ -159,7 +158,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     if (sensorInScheme.getIsUsedDefault()) {
                         sensorsUsed.add(sensorInScheme);
                     }
-//                    sensorInScheme.setIsUsedDefault(sensor.getIsUsedDefault());
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
@@ -175,63 +173,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
     // Заполнение панели устройствами и датчиками
     private void fillingPane() throws Exception {
-        // Задача по установке всех чекбоксов в исходное положение
-        Task<Void> setAttributeIsUsedOffTask = new Task<>() {
-            @Override
-            protected Void call() throws Exception {
-                Platform.runLater(() -> showLoadWindow(this));
-
-                updateMessage("Загрузка...");
-                // Установка всех чекбоксов "Используется" в положение false
-                for (Iterator<Node> iterator = actuatorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
-                    Node node = iterator.next();
-                    if (node instanceof SchemeTitledPane) {
-                        ((SchemeTitledPane) node).setAttributeIsUsedOff();
-                    }
-                }
-
-                for (Iterator<Node> iterator = sensorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
-                    Node node = iterator.next();
-                    if (node instanceof SchemeTitledPane) {
-                        ((SchemeTitledPane) node).setAttributeIsUsedOff();
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            protected void succeeded() {
-                super.succeeded();
-                System.out.println("Задача setAttributeIsUsedOffTask выполнена успешно");
-                Platform.runLater(() -> closeLoadWindow(this));
-                Thread.currentThread().interrupt();
-            }
-
-            @Override
-            protected void cancelled() {
-                super.cancelled();
-                System.out.println("Задача setAttributeIsUsedOffTask прервана");
-                Thread.currentThread().interrupt();
-            }
-
-            @Override
-            protected void failed() {
-                super.failed();
-                System.out.println("Задача setAttributeIsUsedOffTask завершилась ошибкой");
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Ошибка");
-                    alert.setHeaderText("Невозможно выполнить операцию");
-                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                    alert.show();
-                    closeLoadWindow(this);
-                });
-                Thread.currentThread().interrupt();
-            }
-        };
-        Thread setAttributeIsUsedOffThread = new Thread(setAttributeIsUsedOffTask);
-//        setAttributeIsUsedOffThread.start();
-
         // Задача по наполнению экрана
         Task<Void> loadActuatorsAndSensorsTask = new Task<>() {
             @Override
@@ -319,6 +260,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             @Override
             protected void failed() {
                 super.failed();
+                this.getException().printStackTrace();
                 System.out.println("Задача loadActuatorsAndSensorsTask завершилась ошибкой");
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -332,8 +274,94 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         };
         Thread loadActuatorsAndSensorsThread = new Thread(loadActuatorsAndSensorsTask);
-        loadActuatorsAndSensorsTask.setOnSucceeded(e -> setAttributeIsUsedOffThread.start());
         loadActuatorsAndSensorsThread.start();
+
+        // Задача по установке всех чекбоксов в исходное положение
+        Task<Void> setAttributeIsUsedOffTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> showLoadWindow(this));
+
+                // Установка всех чекбоксов "Используется" в положение false
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                Node node = null;
+                for (Iterator<Node> iterator = actuatorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...");
+                        node = iterator.next();
+                    }
+                    if (node instanceof SchemeTitledPane) {
+
+                        try {
+                            ((SchemeTitledPane) node).setAttributeIsUsedOff();
+                            isSuccessfulAction = true;
+                        } catch (Exception e) {
+                            isSuccessfulAction = false;
+                            successfulActionAttempt++;
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + ((SchemeTitledPane) node).getElement().getName());
+                            if (successfulActionAttempt >= 3) {
+                                isSuccessfulAction = true;
+                                successfulActionAttempt = 0;
+                            }
+                            Thread.sleep(1000);
+                        }
+                    }
+                }
+
+                successfulActionAttempt = 0;
+                node = null;
+                for (Iterator<Node> iterator = sensorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...");
+                        node = iterator.next();
+                    }
+                    if (node instanceof SchemeTitledPane) {
+
+                        try {
+                            ((SchemeTitledPane) node).setAttributeIsUsedOff();
+                            isSuccessfulAction = true;
+                        } catch (Exception e) {
+                            isSuccessfulAction = false;
+                            successfulActionAttempt++;
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + ((SchemeTitledPane) node).getElement().getName());
+                            if (successfulActionAttempt >= 3) {
+                                isSuccessfulAction = true;
+                                successfulActionAttempt = 0;
+                            }
+                            Thread.sleep(1000);
+                        }
+                    }
+                }
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                System.out.println("Задача setAttributeIsUsedOffTask выполнена успешно");
+                Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
+            }
+
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+                System.out.println("Задача setAttributeIsUsedOffTask прервана");
+                Thread.currentThread().interrupt();
+            }
+
+            @Override
+            protected void failed() {
+                this.getException().printStackTrace();
+                super.failed();
+                System.out.println("Задача setAttributeIsUsedOffTask завершилась ошибкой");
+                closeLoadWindow(this);
+                Thread.currentThread().interrupt();
+            }
+        };
+        Thread setAttributeIsUsedOffThread = new Thread(setAttributeIsUsedOffTask);
+        loadActuatorsAndSensorsTask.setOnSucceeded(e -> setAttributeIsUsedOffThread.start());
     }
 
     // Запись номера схемы в контроллер по Modbus

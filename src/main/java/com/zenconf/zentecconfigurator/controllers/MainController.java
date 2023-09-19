@@ -39,6 +39,8 @@ public class MainController extends CommonController implements Initializable {
     public Button goToSettingsButton;
     @FXML
     public AnchorPane mainControllerAnchorPane;
+    @FXML
+    public Label leftStatusLabel;
     public static AnchorPane mainAnchorPane1;
     @FXML
     public HBox leftHeaderButtonsHBox;

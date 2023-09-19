@@ -343,7 +343,7 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (sensor.getAttributeForMonitoring() != null) {
                     MonitorTextFlow monitorTextFlow;
                     if (sensorsTextFlowHashMap.get(sensor.getName()) == null) {
-                        monitorTextFlow = new MonitorTextFlow(verticalSplitPane, sensor);
+                        monitorTextFlow = new MonitorTextFlow(sensor);
                         sensorsTextFlowHashMap.put(sensor.getName(), monitorTextFlow);
                     } else {
                         monitorTextFlow = sensorsTextFlowHashMap.get(sensor.getName());
@@ -373,7 +373,7 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (actuator.getAttributeForMonitoring() != null) {
                     MonitorTextFlow monitorTextFlow;
                     if (actuatorsTextFlowHashMap.get(actuator.getName()) == null) {
-                        monitorTextFlow = new MonitorTextFlow(verticalSplitPane, actuator);
+                        monitorTextFlow = new MonitorTextFlow(actuator);
                         actuatorsTextFlowHashMap.put(actuator.getName(), monitorTextFlow);
                     } else {
                         monitorTextFlow = actuatorsTextFlowHashMap.get(actuator.getName());
@@ -419,12 +419,8 @@ public class IOMonitorController extends CommonController implements Initializab
         int currentSeasonNumber = 0;
         if (number < 8) {
             switch (number) {
-                case 2:
-                    currentSeasonNumber = 1;
-                    break;
-                case 4:
-                    currentSeasonNumber = 2;
-                    break;
+                case 2 -> currentSeasonNumber = 1;
+                case 4 -> currentSeasonNumber = 2;
             }
         } else {
             currentSeasonNumber = 3;

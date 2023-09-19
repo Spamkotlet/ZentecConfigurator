@@ -46,7 +46,7 @@
       <AnchorPane fx:id="mainControllerAnchorPane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox id="HBox" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="16.0" spacing="5.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
+            <Label fx:id="leftStatusLabel" maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="11.0" fx:id="x3" />
                </font>

@@ -1,33 +1,27 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
+import com.zenconf.zentecconfigurator.models.Sensor;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.Spinner;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
-
-import java.util.ArrayList;
-import java.util.List;
+import javafx.util.StringConverter;
 
 public class MonitorTextFlow {
-
-    private final SplitPane parentSplitPane;
     private final Element element;
+    private Attribute correctionAttribute = null;
     private final MonitorValueText valueText = new MonitorValueText("***");
-    private final List<Float> values = new ArrayList<>();
-    XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
-    public MonitorTextFlow(SplitPane parentSplitPane, Element element) {
-        this.parentSplitPane = parentSplitPane;
+    public MonitorTextFlow(Element element) {
         this.element = element;
         valueText.setElement(element);
     }
@@ -48,7 +42,7 @@ public class MonitorTextFlow {
         return valueText;
     }
 
-    private VBox createVBoxForTextFlow() {
+    private Node createVBoxForTextFlow() {
         VBox vBox = new VBox();
         vBox.getChildren().add(createValueText());
         vBox.getChildren().add(createNameText());
@@ -56,64 +50,99 @@ public class MonitorTextFlow {
         vBox.setFillWidth(true);
         vBox.setAlignment(Pos.CENTER);
         VBox.setVgrow(vBox, Priority.ALWAYS);
-//        vBox.setOnMouseClicked(e -> onClickToMonitorTextFlow());
+        HBox.setHgrow(vBox, Priority.ALWAYS);
         return vBox;
     }
 
+    private Spinner<Integer> createSpinner(Attribute attribute) {
+        int initValue;
+
+        try {
+            initValue = (int) Double.parseDouble(attribute.readModbus());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        Spinner<Integer> spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), initValue);
+
+        spinner.setEditable(true);
+        spinner.setPrefWidth(0);
+        spinner.setPadding(new Insets(-10, -10, -10, 0));
+        spinner.setPrefHeight(70);
+        spinner.getValueFactory().setWrapAround(true);
+        spinner.getValueFactory().setConverter(
+                new StringConverter<>() {
+                    @Override
+                    public String toString(Integer integer) {
+                        return (integer == null) ? "0" : integer.toString();
+                    }
+
+                    @Override
+                    public Integer fromString(String s) {
+                        if (s.matches("^-?[0-9]+$")) {
+                            try {
+                                return Integer.valueOf(s);
+                            } catch (NumberFormatException e) {
+                                return 0;
+                            }
+                        }
+                        return 0;
+                    }
+                }
+        );
+
+        spinner.setOnMouseReleased(e -> writeModbusValue(spinner.getValue()));
+
+        spinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (oldVal && !newVal) {
+                writeModbusValue(spinner.getValue());
+            }
+        });
+
+        spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                writeModbusValue(spinner.getValue());
+            }
+        });
+
+        return spinner;
+    }
+
+    public void writeModbusValue(Object value) {
+        try {
+            correctionAttribute.writeModbus(value);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Node getTextFlow() {
-        TextFlow textFlow = new TextFlow();
-        textFlow.setBackground(new Background(new BackgroundFill(new Color(0.831, 0.831, 0.831, 1), CornerRadii.EMPTY, Insets.EMPTY)));
-        textFlow.setTextAlignment(TextAlignment.CENTER);
-        textFlow.setPadding(new Insets(10));
+        VBox monitorVBox = new VBox();
+        monitorVBox.setBackground(new Background(new BackgroundFill(new Color(0.831, 0.831, 0.831, 1), CornerRadii.EMPTY, Insets.EMPTY)));
+        monitorVBox.setAlignment(Pos.CENTER);
+        monitorVBox.setPadding(new Insets(10));
 
-        textFlow.getChildren().add(createVBoxForTextFlow());
+        VBox vBox = (VBox) createVBoxForTextFlow();
 
-        return textFlow;
-    }
-
-    public void update(){
-//        if (values.size() > 300) {
-//            series.getData().clear();
-//            values.remove(0);
-//            for (int i = 0; i < values.size(); i++) {
-//                series.getData().add(new XYChart.Data<>(i, values.get(i)));
-//            }
-//        } else {
-//            series.getData().add(new XYChart.Data<>(series.getData().size(), value));
-//        }
-//        values.add(value);
-    }
-
-    private void onClickToMonitorTextFlow() {
-        VBox plotPane = null;
-        for (Node node : parentSplitPane.getItems()) {
-            if (node instanceof VBox)
-                if (node.getId() != null && node.getId().equals("plotPane")) {
-                plotPane = (VBox) node;
-                break;
+        HBox hBox = null;
+        if (element.getClass().equals(Sensor.class)) {
+            for (Attribute attribute : element.getAttributes()) {
+                if (attribute.getName().equals("Коррекция")) {
+                    correctionAttribute = attribute;
+                    break;
+                }
+            }
+            if (correctionAttribute != null) {
+                hBox = new HBox();
+                hBox.setAlignment(Pos.CENTER);
+                hBox.getChildren().add(vBox);
+                hBox.getChildren().add(createSpinner(correctionAttribute));
             }
         }
 
-        LineChart<Number, Number> chart = new LineChart<>(new NumberAxis(), new NumberAxis());
-        chart.setAnimated(false);
-        chart.setCreateSymbols(false);
-        chart.getData().add(series);
-        chart.setTitle(element.getName());
+        monitorVBox.getChildren().add(correctionAttribute == null ? vBox : hBox);
 
-        AnchorPane.setBottomAnchor(chart, 0d);
-        AnchorPane.setLeftAnchor(chart, 0d);
-        AnchorPane.setRightAnchor(chart, 0d);
-        AnchorPane.setTopAnchor(chart, 0d);
-
-        if (plotPane != null) {
-            plotPane.getChildren().clear();
-            plotPane.getChildren().add(chart);
-        } else {
-            plotPane = new VBox();
-            plotPane.setId("plotPane");
-            plotPane.getChildren().add(chart);
-            parentSplitPane.getItems().add(plotPane);
-        }
+        return monitorVBox;
     }
 
     public MonitorValueText getValueText() {

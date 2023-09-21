@@ -35,14 +35,7 @@ public class SchemeTitledPane extends TitledPane {
 
     public SchemeTitledPane(Element element) {
         this.element = element;
-        List<Attribute> elementAttributes = element.getAttributes();
-        if (elementAttributes != null) {
-            for (Attribute attribute : elementAttributes) {
-                if (attribute.getName().equals("В работе")) {
-                    inWorkAttribute = attribute;
-                }
-            }
-        }
+        inWorkAttribute = element.getIsInWorkAttribute();
 
         List<Node> nodes = new ArrayList<>();
         errorLabel = createErrorLabel("(" + errorText + ")");
@@ -51,7 +44,6 @@ public class SchemeTitledPane extends TitledPane {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
                     isUsedDefaultCheckBox = new CheckBox();
-                    isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
                     isUsedDefaultCheckBox.setOnAction(e -> {
                         try {
                             errorLabel.setVisible(false);
@@ -65,10 +57,8 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setText("Используется");
                     nodes.add(isUsedDefaultCheckBox);
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
-                    int isInWorkInteger = element.getIsUsedDefault() ? 1 : 0;
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
                     isUsedDefaultChoiceBox.setItems(getElementTypes());
-                    isUsedDefaultChoiceBox.setValue(getElementTypes().get(isInWorkInteger));
                     isUsedDefaultChoiceBox.setOnAction(e -> {
                         try {
                             errorLabel.setVisible(false);
@@ -77,7 +67,6 @@ public class SchemeTitledPane extends TitledPane {
                             errorText = "Ошибка записи";
                             errorLabel.setText(errorText);
                             errorLabel.setVisible(true);
-//                            throw new RuntimeException(ex);
                         }
                     });
                     nodes.add(isUsedDefaultChoiceBox);
@@ -128,11 +117,12 @@ public class SchemeTitledPane extends TitledPane {
         return hBox;
     }
 
-    public void setAttributeIsUsedOff() throws Exception {
+    public void setAttributeIsUsedDefault() throws Exception {
         if (inWorkAttribute != null) {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
                     isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
+                    System.out.println(element.getName() + " по умолчанию включен? " + element.getIsUsedDefault());
                     try {
                         errorLabel.setVisible(false);
                         inWorkAttribute.writeModbus(element.getIsUsedDefault());

@@ -7,6 +7,7 @@ public abstract class Element {
     private String name;
     private boolean isUsed;
     private boolean isUsedDefault;
+    private Attribute isInWorkAttribute;
     private List<Attribute> attributes;
     private Attribute attributeForMonitoring;
     private List<Attribute> attributesForControlling;
@@ -33,6 +34,14 @@ public abstract class Element {
 
     public void setIsUsedDefault(boolean isUsedDefault) {
         this.isUsedDefault = isUsedDefault;
+    }
+
+    public Attribute getIsInWorkAttribute() {
+        return isInWorkAttribute;
+    }
+
+    public void setIsInWorkAttribute(Attribute isInWorkAttribute) {
+        this.isInWorkAttribute = isInWorkAttribute;
     }
 
     public List<Attribute> getAttributes() {

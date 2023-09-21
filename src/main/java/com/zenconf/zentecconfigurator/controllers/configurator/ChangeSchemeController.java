@@ -5,11 +5,11 @@ import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.Node;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -144,6 +144,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     if (actuatorInScheme.getIsUsedDefault()) {
                         actuatorsUsed.add(actuatorInScheme);
                     }
+                    actuatorInScheme.setIsInWorkAttribute(actuator.getIsInWorkAttribute());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
@@ -158,6 +159,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     if (sensorInScheme.getIsUsedDefault()) {
                         sensorsUsed.add(sensorInScheme);
                     }
+                    sensorInScheme.setIsInWorkAttribute(sensor.getIsInWorkAttribute());
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
@@ -184,10 +186,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     sensorsVbox.getChildren().clear();
                 });
 
-                List<Actuator> actuators = schemes.get(selectedScheme.getNumber()).getActuators();
+                List<Actuator> actuators = actuatorsInScheme;
                 int actuatorsDone = 0;
                 int actuatorsMax = actuators.size();
-                for (Actuator actuator : schemes.get(selectedScheme.getNumber()).getActuators()) {
+                for (Actuator actuator : actuators) {
                     actuatorsDone++;
                     updateMessage("Загрузка устройств: " + actuatorsDone + "/" + actuatorsMax);
                     updateProgress(actuatorsDone, actuatorsMax);
@@ -202,12 +204,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     }
 
                     try {
-                        Platform.runLater(() -> {
-                            actuatorsVbox.getChildren().add(actuatorTitledPane);
-                        });
+                        Platform.runLater(() -> actuatorsVbox.getChildren().add(actuatorTitledPane));
+                        actuatorTitledPane.setAttributeIsUsedDefault();
                     } catch (Exception e) {
                         logger.error(e.getMessage());
-                        throw e;
                     }
 
                     Thread.sleep(100);
@@ -232,6 +232,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
                     try {
                         Platform.runLater(() -> sensorsVbox.getChildren().add(sensorTitledPane));
+                        sensorTitledPane.setAttributeIsUsedDefault();
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw e;
@@ -274,7 +275,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         };
         Thread loadActuatorsAndSensorsThread = new Thread(loadActuatorsAndSensorsTask);
-        loadActuatorsAndSensorsThread.start();
 
         // Задача по установке всех чекбоксов в исходное положение
         Task<Void> setAttributeIsUsedOffTask = new Task<>() {
@@ -285,52 +285,69 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 // Установка всех чекбоксов "Используется" в положение false
                 boolean isSuccessfulAction = true;
                 int successfulActionAttempt = 0;
-                Node node = null;
-                for (Iterator<Node> iterator = actuatorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
+                Actuator actuator = null;
+                for (int i = 0; i < MainController.actuatorList.size(); ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        node = iterator.next();
+                        actuator = MainController.actuatorList.get(i);
                     }
-                    if (node instanceof SchemeTitledPane) {
 
-                        try {
-                            ((SchemeTitledPane) node).setAttributeIsUsedOff();
-                            isSuccessfulAction = true;
-                        } catch (Exception e) {
-                            isSuccessfulAction = false;
-                            successfulActionAttempt++;
-                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + ((SchemeTitledPane) node).getElement().getName());
-                            if (successfulActionAttempt >= 3) {
-                                isSuccessfulAction = true;
-                                successfulActionAttempt = 0;
+                    try {
+                        if (actuator != null) {
+                            if (actuator.getIsInWorkAttribute() != null) {
+                                if (actuator.getIsInWorkAttribute().getControl() == Controls.CHECKBOX) {
+                                    actuator.getIsInWorkAttribute().writeModbus(false);
+                                } else if (actuator.getIsInWorkAttribute().getControl() == Controls.CHOICE_BOX) {
+                                    actuator.getIsInWorkAttribute().writeModbus(0);
+                                }
                             }
-                            Thread.sleep(1000);
+                            isSuccessfulAction = true;
+                            i++;
                         }
+                    } catch (Exception e) {
+                        isSuccessfulAction = false;
+                        successfulActionAttempt++;
+                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + actuator.getName());
+                        if (successfulActionAttempt >= 3) {
+                            isSuccessfulAction = true;
+                            successfulActionAttempt = 0;
+                            i++;
+                        }
+                        Thread.sleep(1000);
                     }
                 }
 
+                isSuccessfulAction = true;
                 successfulActionAttempt = 0;
-                node = null;
-                for (Iterator<Node> iterator = sensorsVbox.getChildren().iterator(); iterator.hasNext(); ) {
+                Sensor sensor = null;
+                for (int i = 0; i < MainController.sensorList.size(); ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        node = iterator.next();
+                        sensor = MainController.sensorList.get(i);
                     }
-                    if (node instanceof SchemeTitledPane) {
 
-                        try {
-                            ((SchemeTitledPane) node).setAttributeIsUsedOff();
-                            isSuccessfulAction = true;
-                        } catch (Exception e) {
-                            isSuccessfulAction = false;
-                            successfulActionAttempt++;
-                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + ((SchemeTitledPane) node).getElement().getName());
-                            if (successfulActionAttempt >= 3) {
-                                isSuccessfulAction = true;
-                                successfulActionAttempt = 0;
+                    try {
+                        if (sensor != null) {
+                            if (sensor.getIsInWorkAttribute() != null) {
+                                if (sensor.getIsInWorkAttribute().getControl() == Controls.CHECKBOX) {
+                                    sensor.getIsInWorkAttribute().writeModbus(false);
+                                } else if (sensor.getIsInWorkAttribute().getControl() == Controls.CHOICE_BOX) {
+                                    sensor.getIsInWorkAttribute().writeModbus(0);
+                                }
                             }
-                            Thread.sleep(1000);
+                            isSuccessfulAction = true;
+                            i++;
                         }
+                    } catch (Exception e) {
+                        isSuccessfulAction = false;
+                        successfulActionAttempt++;
+                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + sensor.getName());
+                        if (successfulActionAttempt >= 3) {
+                            isSuccessfulAction = true;
+                            successfulActionAttempt = 0;
+                            i++;
+                        }
+                        Thread.sleep(1000);
                     }
                 }
                 return null;
@@ -361,7 +378,8 @@ public class ChangeSchemeController extends CommonController implements Initiali
             }
         };
         Thread setAttributeIsUsedOffThread = new Thread(setAttributeIsUsedOffTask);
-        loadActuatorsAndSensorsTask.setOnSucceeded(e -> setAttributeIsUsedOffThread.start());
+        setAttributeIsUsedOffThread.start();
+        setAttributeIsUsedOffTask.setOnSucceeded(e -> loadActuatorsAndSensorsThread.start());
     }
 
     // Запись номера схемы в контроллер по Modbus

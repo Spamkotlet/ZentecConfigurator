@@ -7,15 +7,15 @@
   "sensors": [
     {
       "name": "[ПРИТОК] Температура приточного воздуха",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1270,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1270,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -81,15 +81,15 @@
     },
     {
       "name": "[ДОВОДЧИК] Температура притока (доводчик)",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1271,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1271,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -155,15 +155,15 @@
     },
     {
       "name": "[ВЫТЯЖКА] Температура вытяжного воздуха",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1300,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 333,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -218,15 +218,15 @@
     },
     {
       "name": "[УЛИЧНАЯ] Температура наружного воздуха",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1320,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1320,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -281,20 +281,20 @@
     },
     {
       "name": "[ПОМЕЩЕНИЕ] Температура в помещении",
-      "attributes": [
-        {
-          "name": "В работе",
-          "control": 2,
-          "modbusParameters": {
-            "address": 1325,
-            "varType": "UINT8"
-          },
-          "values": [
-            "Нет",
-            "Внешний",
-            "ПУ Z031"
-          ]
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 2,
+        "modbusParameters": {
+          "address": 1325,
+          "varType": "UINT8"
         },
+        "values": [
+          "Нет",
+          "Внешний",
+          "ПУ Z031"
+        ]
+      },
+      "attributes": [
         {
           "name": "Тип датчика",
           "control": 2,
@@ -349,15 +349,15 @@
     },
     {
       "name": "[ОБРАТКА 1] Температура обратной воды 1",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1305,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1305,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -412,15 +412,15 @@
     },
     {
       "name": "[ОБРАТКА 2] Температура обратной воды 2",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1306,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1306,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -475,15 +475,15 @@
     },
     {
       "name": "[ОБРАТКА 3] Температура обратной воды 3",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1307,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1307,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Тип датчика",
           "control": 2,
@@ -538,15 +538,15 @@
     },
     {
       "name": "[ДАВЛЕНИЕ] Датчик давления",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1289,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1289,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Коррекция",
           "control": 1,
@@ -599,15 +599,15 @@
     },
     {
       "name": "[ВЛАЖНОСТЬ] Датчик влажности",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1296,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1296,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Коррекция",
           "control": 1,
@@ -669,15 +669,15 @@
     },
     {
       "name": "[CO2] Датчик углекислого газа",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1282,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
-        {
-          "name": "В работе",
-          "control": 0,
-          "modbusParameters": {
-            "address": 1282,
-            "varType": "BOOL"
-          }
-        },
         {
           "name": "Коррекция",
           "control": 1,

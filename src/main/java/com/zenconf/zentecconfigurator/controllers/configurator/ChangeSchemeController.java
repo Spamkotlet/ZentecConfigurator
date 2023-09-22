@@ -137,7 +137,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         ConfiguratorController.actuatorsUsed = new ArrayList<>();
 
         for (Actuator actuatorInScheme : actuatorsInScheme) {
-            for (Actuator actuator : MainController.actuatorList) {
+            for (Actuator actuator : ConfiguratorController.actuatorsList) {
                 // Копирование свойств элементов схемы
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     if (actuatorInScheme.getIsUsedDefault()) {
@@ -152,7 +152,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         }
 
         for (Sensor sensorInScheme : sensorsInScheme) {
-            for (Sensor sensor : MainController.sensorList) {
+            for (Sensor sensor : ConfiguratorController.sensorsList) {
                 // Копирование свойств элементов схемы
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     if (sensorInScheme.getIsUsedDefault()) {
@@ -285,10 +285,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 boolean isSuccessfulAction = true;
                 int successfulActionAttempt = 0;
                 Actuator actuator = null;
-                for (int i = 0; i < MainController.actuatorList.size(); ) {
+                for (int i = 0; i < ConfiguratorController.actuatorsList.size(); ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        actuator = MainController.actuatorList.get(i);
+                        actuator = ConfiguratorController.actuatorsList.get(i);
                     }
 
                     try {
@@ -319,10 +319,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 isSuccessfulAction = true;
                 successfulActionAttempt = 0;
                 Sensor sensor = null;
-                for (int i = 0; i < MainController.sensorList.size(); ) {
+                for (int i = 0; i < ConfiguratorController.sensorsList.size(); ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        sensor = MainController.sensorList.get(i);
+                        sensor = ConfiguratorController.sensorsList.get(i);
                     }
 
                     try {

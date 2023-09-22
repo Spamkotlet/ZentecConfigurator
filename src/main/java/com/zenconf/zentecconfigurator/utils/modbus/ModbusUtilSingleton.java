@@ -269,7 +269,6 @@ public class ModbusUtilSingleton {
                 }
             }
             master.writeSingleRegister(slaveId, address, value);
-            System.out.println(value);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

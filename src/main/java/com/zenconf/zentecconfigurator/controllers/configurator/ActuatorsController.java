@@ -5,6 +5,7 @@ import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
+import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 import javafx.application.Platform;
@@ -125,28 +126,60 @@ public class ActuatorsController extends CommonController implements Initializab
                     actuatorsDone++;
                 }
 
-                for (Actuator actuatorInScheme : actuators) {
-                    actuatorsDone++;
-                    updateMessage("Загрузка...: " + actuatorsDone + "/" + actuatorsMax);
-                    updateProgress(actuatorsDone, actuatorsMax);
-                    if (actuatorInScheme.getAttributes() != null) {
-                        ElementTitledPane actuatorTitledPane;
-                        if (actuatorsTitledPaneHashMap.get(actuatorInScheme.getName()) == null) {
-                            actuatorTitledPane = new ElementTitledPane(actuatorInScheme);
-                            actuatorsTitledPaneHashMap.put(actuatorInScheme.getName(), actuatorTitledPane);
-                        } else {
-                            actuatorTitledPane = actuatorsTitledPaneHashMap.get(actuatorInScheme.getName());
-                            actuatorTitledPane.setElement(actuatorInScheme);
-                        }
-
-                        try {
-                            Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(actuatorTitledPane));
-                        } catch (Exception e) {
-                            logger.error(e.getMessage());
-                            throw e;
-                        }
-                        Thread.sleep(100);
+                Actuator actuator = null;
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                for (int i = 0; i < actuators.size(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...: " + (i + 1) + "/" + actuators.size());
+                        updateProgress(i + 1, actuators.size());
+                        actuator = actuators.get(i);
                     }
+
+                    ElementTitledPane actuatorTitledPane = null;
+                    if (actuator.getAttributes() != null) {
+                        if (actuatorsTitledPaneHashMap.get(actuator.getName()) == null) {
+                            try {
+                                actuatorTitledPane = new ElementTitledPane(actuator);
+                                actuatorsTitledPaneHashMap.put(actuator.getName(), actuatorTitledPane);
+                                isSuccessfulAction = true;
+                                i++;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                isSuccessfulAction = false;
+                                successfulActionAttempt++;
+                                updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + actuator.getName());
+                                if (successfulActionAttempt >= 3) {
+                                    isSuccessfulAction = true;
+                                    successfulActionAttempt = 0;
+                                    i++;
+                                    updateMessage("Ошибка загрузки\n" + actuator.getName());
+                                    Thread.sleep(1000);
+                                }
+                                Thread.sleep(1000);
+                            }
+                        } else {
+                            actuatorTitledPane = actuatorsTitledPaneHashMap.get(actuator.getName());
+                            actuatorTitledPane.setElement(actuator);
+                            isSuccessfulAction = true;
+                            i++;
+                        }
+                    } else {
+                        isSuccessfulAction = true;
+                        i++;
+                    }
+                    try {
+                        ElementTitledPane finalActuatorTitledPane = actuatorTitledPane;
+                        Platform.runLater(() -> {
+                            if (finalActuatorTitledPane != null) {
+                                actuatorsSettingsVbox.getChildren().add(finalActuatorTitledPane);
+                            }
+                        });
+                    } catch (Exception e) {
+                        logger.error(e.getMessage());
+                        throw e;
+                    }
+                    Thread.sleep(100);
                 }
                 return null;
             }
@@ -184,8 +217,10 @@ public class ActuatorsController extends CommonController implements Initializab
         Thread fillingPaneThread = new Thread(fillingPaneTask);
         fillingPaneThread.start();
         fillingPaneTask.setOnSucceeded(e -> {
-            actuatorsUsed.clear();
-            actuatorsUsed.addAll(ConfiguratorController.actuatorsUsed);
+            if (actuatorsSettingsVbox.getChildren().size() == ConfiguratorController.actuatorsUsed.size()) {
+                actuatorsUsed.clear();
+                actuatorsUsed.addAll(ConfiguratorController.actuatorsUsed);
+            }
         });
     }
 }

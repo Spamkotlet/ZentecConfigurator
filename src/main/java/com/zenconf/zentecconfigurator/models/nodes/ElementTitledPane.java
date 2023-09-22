@@ -33,15 +33,17 @@ public class ElementTitledPane extends TitledPane {
 
         labeledSpinnerList = new ArrayList<>();
         labeledChoiceBoxList = new ArrayList<>();
-        for (Attribute attribute : element.getAttributes()) {
-            if (attribute.getControl() == Controls.SPINNER) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true);
-                labeledSpinnerList.add(labeledSpinner);
-                vBox.getChildren().add(labeledSpinner.getSpinner());
-            } else if (attribute.getControl() == Controls.CHOICE_BOX) {
-                LabeledChoiceBox labeledChoiceBox = new LabeledChoiceBox(attribute);
-                labeledChoiceBoxList.add(labeledChoiceBox);
-                vBox.getChildren().add(labeledChoiceBox.getChoiceBox());
+        if (element.getAttributes() != null) {
+            for (Attribute attribute : element.getAttributes()) {
+                if (attribute.getControl() == Controls.SPINNER) {
+                    LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true);
+                    labeledSpinnerList.add(labeledSpinner);
+                    vBox.getChildren().add(labeledSpinner.getSpinner());
+                } else if (attribute.getControl() == Controls.CHOICE_BOX) {
+                    LabeledChoiceBox labeledChoiceBox = new LabeledChoiceBox(attribute);
+                    labeledChoiceBoxList.add(labeledChoiceBox);
+                    vBox.getChildren().add(labeledChoiceBox.getChoiceBox());
+                }
             }
         }
 

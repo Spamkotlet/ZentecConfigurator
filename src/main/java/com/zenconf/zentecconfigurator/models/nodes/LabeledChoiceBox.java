@@ -28,7 +28,7 @@ public class LabeledChoiceBox {
         this.attribute = attribute;
     }
 
-    public Node getChoiceBox() {
+    public Node getChoiceBox() throws Exception {
         String labelText = attribute.getName();
         attributeValues = attribute.getValues();
         List<Node> nodes = new ArrayList<>();
@@ -57,12 +57,10 @@ public class LabeledChoiceBox {
         return label;
     }
 
-    private ChoiceBox<String> createChoiceBox() {
+    private ChoiceBox<String> createChoiceBox() throws Exception {
         choiceBox.setPrefWidth(200);
         choiceBox.setItems(getChoiceBoxItems(attributeValues));
         readModbusValue();
-
-        try {
             if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
                 choiceBox.setOnAction(e -> {
                     Boolean value = attributeValues.indexOf(choiceBox.getValue()) > 0;
@@ -73,7 +71,11 @@ public class LabeledChoiceBox {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);
                         errorLabel.setVisible(true);
-//                        throw new RuntimeException(ex);
+                        try {
+                            throw ex;
+                        } catch (Exception exc) {
+                            throw new RuntimeException(exc);
+                        }
                     }
                 });
             } else {
@@ -85,13 +87,14 @@ public class LabeledChoiceBox {
                         errorText = "Ошибка записи";
                         errorLabel.setText(errorText);
                         errorLabel.setVisible(true);
-//                        throw new RuntimeException(ex);
+                        try {
+                            throw ex;
+                        } catch (Exception exc) {
+                            throw new RuntimeException(exc);
+                        }
                     }
                 });
             }
-        } catch (Exception e) {
-//            throw new RuntimeException(e);
-        }
         return choiceBox;
     }
 
@@ -114,7 +117,7 @@ public class LabeledChoiceBox {
         return hBox;
     }
 
-    public void readModbusValue(){
+    public void readModbusValue() throws Exception {
         if (attribute.getModbusParameters().getVarType().equals(VarTypes.BOOL)) {
 
             try {
@@ -128,6 +131,7 @@ public class LabeledChoiceBox {
                 errorLabel.setText(errorText);
                 errorLabel.setVisible(true);
                 ex.printStackTrace();
+                throw ex;
             }
         } else {
             try {
@@ -141,6 +145,7 @@ public class LabeledChoiceBox {
                 errorLabel.setText(errorText);
                 errorLabel.setVisible(true);
                 ex.printStackTrace();
+                throw ex;
             }
         }
     }

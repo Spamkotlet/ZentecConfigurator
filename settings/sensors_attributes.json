@@ -550,8 +550,8 @@
         {
           "name": "Коррекция",
           "control": 1,
-          "minValue": -32000,
-          "maxValue": 32000,
+          "minValue": -5000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1290,
             "varType": "SINT16"
@@ -560,8 +560,8 @@
         {
           "name": "Min 0..10 В",
           "control": 1,
-          "minValue": -32000,
-          "maxValue": 32000,
+          "minValue": -5000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1294,
             "varType": "SINT16"
@@ -570,8 +570,8 @@
         {
           "name": "Max 0..10 В",
           "control": 1,
-          "minValue": -32000,
-          "maxValue": 32000,
+          "minValue": -5000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1292,
             "varType": "SINT16"
@@ -589,7 +589,7 @@
         {
           "name": "Уставка давления",
           "minValue": 0,
-          "maxValue": 32000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1252,
             "varType": "UINT16"
@@ -681,8 +681,8 @@
         {
           "name": "Коррекция",
           "control": 1,
-          "minValue": -32000,
-          "maxValue": 32000,
+          "minValue": -5000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1283,
             "varType": "SINT16"
@@ -692,7 +692,7 @@
           "name": "Min 0..10 В",
           "control": 1,
           "minValue": 0,
-          "maxValue": 100,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1287,
             "varType": "UINT16"
@@ -702,7 +702,7 @@
           "name": "Max 0..10 В",
           "control": 1,
           "minValue": 0,
-          "maxValue": 32000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1285,
             "varType": "UINT16"
@@ -720,7 +720,7 @@
         {
           "name": "Уставка CO2",
           "minValue": 0,
-          "maxValue": 32000,
+          "maxValue": 9999,
           "modbusParameters": {
             "address": 1254,
             "varType": "UINT16"

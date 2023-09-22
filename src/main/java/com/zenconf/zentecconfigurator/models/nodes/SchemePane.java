@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.configurator.ChangeSchemeController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
@@ -142,18 +143,18 @@ public class SchemePane extends VBox {
             inWorkAttribute.writeModbus(isUsed);
             element.setIsUsedDefault(isUsed);
             if (element.getClass().equals(Actuator.class)
-                    && !ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
+                    && !ConfiguratorController.actuatorsUsed.contains((Actuator) element)) {
                 if (isUsed) {
-                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
+                    ConfiguratorController.actuatorsUsed.add((Actuator) element);
                 } else {
-                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
+                    ConfiguratorController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)
-                    && !ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
+                    && !ConfiguratorController.sensorsUsed.contains((Sensor) element)) {
                 if (isUsed) {
-                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
+                    ConfiguratorController.sensorsUsed.add((Sensor) element);
                 } else {
-                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
+                    ConfiguratorController.sensorsUsed.remove((Sensor) element);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.CommonController;
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
@@ -38,8 +39,8 @@ public class ActuatorsController extends CommonController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         actuatorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                if (ChangeSchemeController.actuatorsUsed != null) {
-                    if (!ChangeSchemeController.actuatorsUsed.equals(this.actuatorsUsed)) {
+                if (ConfiguratorController.actuatorsUsed != null) {
+                    if (!ConfiguratorController.actuatorsUsed.equals(this.actuatorsUsed)) {
                         fillActuatorsSettingsPane();
                     }
                 }
@@ -57,7 +58,7 @@ public class ActuatorsController extends CommonController implements Initializab
                     actuatorsSettingsVbox.getChildren().clear();
                 });
 
-                List<Actuator> actuators = ChangeSchemeController.actuatorsUsed;
+                List<Actuator> actuators = ConfiguratorController.actuatorsUsed;
                 int actuatorsDone = 0;
                 int actuatorsMax = actuators.size() + 3;
                 if (MainController.mainParameters != null) {
@@ -184,7 +185,7 @@ public class ActuatorsController extends CommonController implements Initializab
         fillingPaneThread.start();
         fillingPaneTask.setOnSucceeded(e -> {
             actuatorsUsed.clear();
-            actuatorsUsed.addAll(ChangeSchemeController.actuatorsUsed);
+            actuatorsUsed.addAll(ConfiguratorController.actuatorsUsed);
         });
     }
 }

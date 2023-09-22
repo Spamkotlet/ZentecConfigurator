@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.configurator.ChangeSchemeController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
@@ -122,7 +123,6 @@ public class SchemeTitledPane extends TitledPane {
             if (inWorkAttribute.getControl() != null) {
                 if (inWorkAttribute.getControl().equals(Controls.CHECKBOX)) {
                     isUsedDefaultCheckBox.setSelected(element.getIsUsedDefault());
-                    System.out.println(element.getName() + " по умолчанию включен? " + element.getIsUsedDefault());
                     try {
                         errorLabel.setVisible(false);
                         inWorkAttribute.writeModbus(element.getIsUsedDefault());
@@ -158,16 +158,16 @@ public class SchemeTitledPane extends TitledPane {
             inWorkAttribute.writeModbus(isUsed);
             element.setUsed(isUsed);
             if (element.getClass().equals(Actuator.class)) {
-                if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
-                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
+                if (!ConfiguratorController.actuatorsUsed.contains((Actuator) element)) {
+                    ConfiguratorController.actuatorsUsed.add((Actuator) element);
                 } else {
-                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
+                    ConfiguratorController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)) {
-                if (!ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
-                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
+                if (!ConfiguratorController.sensorsUsed.contains((Sensor) element)) {
+                    ConfiguratorController.sensorsUsed.add((Sensor) element);
                 } else {
-                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
+                    ConfiguratorController.sensorsUsed.remove((Sensor) element);
                 }
             }
         }
@@ -179,17 +179,17 @@ public class SchemeTitledPane extends TitledPane {
             boolean isUsed = isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex() > 0;
             inWorkAttribute.writeModbus(isUsedDefaultChoiceBox.getSelectionModel().getSelectedIndex());
             element.setUsed(isUsed);
-            if (element.getClass().equals(Actuator.class)) {
-                if (!ChangeSchemeController.actuatorsUsed.contains((Actuator) element)) {
-                    ChangeSchemeController.actuatorsUsed.add((Actuator) element);
+            if (element.getClass().equals(Actuator.class) && isUsed) {
+                if (!ConfiguratorController.actuatorsUsed.contains((Actuator) element)) {
+                    ConfiguratorController.actuatorsUsed.add((Actuator) element);
                 } else {
-                    ChangeSchemeController.actuatorsUsed.remove((Actuator) element);
+                    ConfiguratorController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)) {
-                if (!ChangeSchemeController.sensorsUsed.contains((Sensor) element)) {
-                    ChangeSchemeController.sensorsUsed.add((Sensor) element);
+                if (!ConfiguratorController.sensorsUsed.contains((Sensor) element) && isUsed) {
+                    ConfiguratorController.sensorsUsed.add((Sensor) element);
                 } else {
-                    ChangeSchemeController.sensorsUsed.remove((Sensor) element);
+                    ConfiguratorController.sensorsUsed.remove((Sensor) element);
                 }
             }
         }

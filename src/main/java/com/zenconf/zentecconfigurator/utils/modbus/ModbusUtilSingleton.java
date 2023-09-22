@@ -260,8 +260,16 @@ public class ModbusUtilSingleton {
                 if (value < Byte.MAX_VALUE) {
                     value = Byte.MAX_VALUE * 2 + 2 + value;
                 }
+            } else if (varType.equals(VarTypes.SINT16)) {
+                if (value < 32767) {
+                    value = 32767 * 2 + 2 + value;
+                    if (value > 65535) {
+                        value -= 65536;
+                    }
+                }
             }
             master.writeSingleRegister(slaveId, address, value);
+            System.out.println(value);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {

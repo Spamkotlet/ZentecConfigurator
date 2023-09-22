@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.CommonController;
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
@@ -28,9 +29,9 @@ public class SensorsController extends CommonController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
-            if (!Objects.equals(newVal, oldVal)) {
-                if (ChangeSchemeController.sensorsUsed != null) {
-                    if (!ChangeSchemeController.sensorsUsed.equals(this.sensorsUsed)) {
+            if (newVal != null) {
+                if (ConfiguratorController.sensorsUsed != null) {
+                    if (!ConfiguratorController.sensorsUsed.equals(this.sensorsUsed)) {
                         fillSensorsSettingsPane();
                     }
                 }
@@ -46,35 +47,58 @@ public class SensorsController extends CommonController implements Initializable
                     showLoadWindow(this);
 
                     sensorsSettingsVbox.getChildren().clear();
+                    System.out.println("sensorsSettingsVBox очищен");
                 });
 
-                List<Sensor> sensors = ChangeSchemeController.sensorsUsed;
-                int sensorsDone = 0;
-                int sensorsMax = sensors.size();
-                for (Sensor sensorInScheme : ChangeSchemeController.sensorsUsed) {
-                    sensorsDone++;
-                    updateMessage("Загрузка...: " + sensorsDone + "/" + sensorsMax);
-                    updateProgress(sensorsDone, sensorsMax);
-                    if (sensorInScheme.getAttributes() != null) {
-                        ElementTitledPane sensorTitledPane;
-                        if (sensorsTitledPaneHashMap.get(sensorInScheme.getName()) == null) {
-                            sensorTitledPane = new ElementTitledPane(sensorInScheme);
-                            sensorsTitledPaneHashMap.put(sensorInScheme.getName(), sensorTitledPane);
-                        } else {
-                            sensorTitledPane = sensorsTitledPaneHashMap.get(sensorInScheme.getName());
-                            sensorTitledPane.setElement(sensorInScheme);
-                        }
-
-                        try {
-                            Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(sensorTitledPane));
-                        } catch (Exception e) {
-                            logger.error(e.getMessage());
-                            throw e;
-                        }
-                        Thread.sleep(100);
+                List<Sensor> sensors = ConfiguratorController.sensorsUsed;
+                Sensor sensor = null;
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                for (int i = 0; i < sensors.size(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...: " + (i + 1) + "/" + sensors.size());
+                        updateProgress(i + 1, sensors.size());
+                        sensor = sensors.get(i);
                     }
-                }
 
+                    ElementTitledPane sensorTitledPane = null;
+                    if (sensor.getAttributes() != null) {
+                        if (sensorsTitledPaneHashMap.get(sensor.getName()) == null) {
+                            try {
+                                sensorTitledPane = new ElementTitledPane(sensor);
+                                sensorsTitledPaneHashMap.put(sensor.getName(), sensorTitledPane);
+                                isSuccessfulAction = true;
+                                i++;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                isSuccessfulAction = false;
+                                successfulActionAttempt++;
+                                updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + sensor.getName());
+                                if (successfulActionAttempt >= 3) {
+                                    isSuccessfulAction = true;
+                                    successfulActionAttempt = 0;
+                                    i++;
+                                    updateMessage("Ошибка загрузки\n" + sensor.getName());
+                                    Thread.sleep(1000);
+                                }
+                                Thread.sleep(1000);
+                            }
+                        } else {
+                            sensorTitledPane = sensorsTitledPaneHashMap.get(sensor.getName());
+                            sensorTitledPane.setElement(sensor);
+                            isSuccessfulAction = true;
+                            i++;
+                        }
+                    }
+                    try {
+                        ElementTitledPane finalSensorTitledPane = sensorTitledPane;
+                        Platform.runLater(() -> sensorsSettingsVbox.getChildren().add(finalSensorTitledPane));
+                    } catch (Exception e) {
+                        logger.error(e.getMessage());
+                        throw e;
+                    }
+                    Thread.sleep(100);
+                }
                 return null;
             }
 
@@ -111,8 +135,10 @@ public class SensorsController extends CommonController implements Initializable
         Thread fillingPaneThread = new Thread(fillingPaneTask);
         fillingPaneThread.start();
         fillingPaneTask.setOnSucceeded(e -> {
-            sensorsUsed.clear();
-            sensorsUsed.addAll(ChangeSchemeController.sensorsUsed);
+            if (sensorsSettingsVbox.getChildren().size() == ConfiguratorController.sensorsUsed.size()) {
+                sensorsUsed.clear();
+                sensorsUsed.addAll(ConfiguratorController.sensorsUsed);
+            }
         });
     }
 }

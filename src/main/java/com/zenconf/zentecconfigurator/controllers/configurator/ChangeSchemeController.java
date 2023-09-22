@@ -1,6 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.CommonController;
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
@@ -36,8 +37,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
     private Scheme previousScheme = null;
     public static List<Sensor> sensorsInScheme;
     public static List<Actuator> actuatorsInScheme;
-    public static List<Sensor> sensorsUsed = new ArrayList<>();
-    public static List<Actuator> actuatorsUsed = new ArrayList<>();
     private final HashMap<String, SchemeTitledPane> actuatorsTitledPaneHashMap = new HashMap<>();
     private final HashMap<String, SchemeTitledPane> sensorsTitledPaneHashMap = new HashMap<>();
 
@@ -134,15 +133,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
         actuatorsInScheme = selectedScheme.getActuators();
 
         // Создаем списки для устройств, которые используются
-        sensorsUsed = new ArrayList<>();
-        actuatorsUsed = new ArrayList<>();
+        ConfiguratorController.sensorsUsed = new ArrayList<>();
+        ConfiguratorController.actuatorsUsed = new ArrayList<>();
 
         for (Actuator actuatorInScheme : actuatorsInScheme) {
             for (Actuator actuator : MainController.actuatorList) {
                 // Копирование свойств элементов схемы
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
                     if (actuatorInScheme.getIsUsedDefault()) {
-                        actuatorsUsed.add(actuatorInScheme);
+                        ConfiguratorController.actuatorsUsed.add(actuatorInScheme);
                     }
                     actuatorInScheme.setIsInWorkAttribute(actuator.getIsInWorkAttribute());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
@@ -157,7 +156,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 // Копирование свойств элементов схемы
                 if (sensorInScheme.getName().equals(sensor.getName())) {
                     if (sensorInScheme.getIsUsedDefault()) {
-                        sensorsUsed.add(sensorInScheme);
+                        ConfiguratorController.sensorsUsed.add(sensorInScheme);
                     }
                     sensorInScheme.setIsInWorkAttribute(sensor.getIsInWorkAttribute());
                     sensorInScheme.setAttributes(sensor.getAttributes());
@@ -277,7 +276,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         Thread loadActuatorsAndSensorsThread = new Thread(loadActuatorsAndSensorsTask);
 
         // Задача по установке всех чекбоксов в исходное положение
-        Task<Void> setAttributeIsUsedOffTask = new Task<>() {
+        Task<Void> setAttributeIsUsedDefaultTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 Platform.runLater(() -> showLoadWindow(this));
@@ -377,9 +376,9 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 Thread.currentThread().interrupt();
             }
         };
-        Thread setAttributeIsUsedOffThread = new Thread(setAttributeIsUsedOffTask);
-        setAttributeIsUsedOffThread.start();
-        setAttributeIsUsedOffTask.setOnSucceeded(e -> loadActuatorsAndSensorsThread.start());
+        Thread setAttributeIsUsedDefaultThread = new Thread(setAttributeIsUsedDefaultTask);
+        setAttributeIsUsedDefaultThread.start();
+        setAttributeIsUsedDefaultTask.setOnSucceeded(e -> loadActuatorsAndSensorsThread.start());
     }
 
     // Запись номера схемы в контроллер по Modbus

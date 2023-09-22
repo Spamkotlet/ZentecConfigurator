@@ -21,7 +21,7 @@ public class ElementTitledPane extends TitledPane {
 
     }
 
-    public ElementTitledPane(Element element) {
+    public ElementTitledPane(Element element) throws Exception {
         this.element = element;
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);
@@ -59,7 +59,7 @@ public class ElementTitledPane extends TitledPane {
         return vBox;
     }
 
-    public void setElement(Element element) {
+    public void setElement(Element element) throws Exception {
         this.element = element;
         for (LabeledSpinner labeledSpinner : labeledSpinnerList) {
             labeledSpinner.readModbusValue();

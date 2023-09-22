@@ -3,6 +3,7 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.zenconf.zentecconfigurator.controllers.CommonController;
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
@@ -102,7 +103,7 @@ public class IOMonitorController extends CommonController implements Initializab
             // Событие на открытие окна
             if (newVal != null) {
 
-                if (ChangeSchemeController.sensorsUsed != null || ChangeSchemeController.actuatorsUsed != null) {
+                if (ConfiguratorController.sensorsUsed != null || ConfiguratorController.actuatorsUsed != null) {
                     if (pollingPreviousState) {
                         startPolling();
                     } else {
@@ -325,8 +326,8 @@ public class IOMonitorController extends CommonController implements Initializab
         monitorValueTextList.clear();
         sensorsMonitorVBox.getChildren().clear();
         setpointsVBox.getChildren().clear();
-        if (ChangeSchemeController.sensorsUsed != null) {
-            for (Sensor sensor : ChangeSchemeController.sensorsUsed) {
+        if (ConfiguratorController.sensorsUsed != null) {
+            for (Sensor sensor : ConfiguratorController.sensorsUsed) {
                 if (sensor.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {
@@ -355,8 +356,8 @@ public class IOMonitorController extends CommonController implements Initializab
         }
 
         actuatorsMonitorVBox.getChildren().clear();
-        if (ChangeSchemeController.actuatorsUsed != null) {
-            for (Actuator actuator : ChangeSchemeController.actuatorsUsed) {
+        if (ConfiguratorController.actuatorsUsed != null) {
+            for (Actuator actuator : ConfiguratorController.actuatorsUsed) {
                 if (actuator.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {

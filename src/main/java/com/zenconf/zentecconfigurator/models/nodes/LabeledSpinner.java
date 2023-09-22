@@ -52,7 +52,7 @@ public class LabeledSpinner {
         this.readingByInitialization = readingByInitialization;
     }
 
-    public Node getSpinner() {
+    public Node getSpinner() throws Exception {
         String labelText = attribute.getName();
         int minValue = attribute.getMinValue();
         int maxValue = attribute.getMaxValue();
@@ -125,7 +125,7 @@ public class LabeledSpinner {
         return label;
     }
 
-    private Spinner<Integer> createSpinner(int minValue, int maxValue) {
+    private Spinner<Integer> createSpinner(int minValue, int maxValue) throws Exception {
         int initValue = 0;
 
         if (showDefaultValue) {
@@ -142,7 +142,7 @@ public class LabeledSpinner {
                 errorText = "Ошибка чтения";
                 Platform.runLater(() -> errorLabel.setText(errorText));
                 errorLabel.setVisible(true);
-//                throw e;
+                throw e;
             }
         }
 

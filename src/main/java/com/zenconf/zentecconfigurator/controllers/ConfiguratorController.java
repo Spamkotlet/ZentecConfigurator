@@ -1,5 +1,7 @@
 package com.zenconf.zentecconfigurator.controllers;
 
+import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Sensor;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -45,10 +47,18 @@ public class ConfiguratorController extends CommonController implements Initiali
     @FXML
     public VBox disabledButtonsVBox;
 
+    public static List<Sensor> sensorsList;
+    public static List<Actuator> actuatorsList;
+    public static List<Sensor> sensorsUsed = new ArrayList<>();
+    public static List<Actuator> actuatorsUsed = new ArrayList<>();
+
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        sensorsList = MainController.sensorList;
+        actuatorsList = MainController.actuatorList;
+
         openChangeSchemeView();
         schemeBorderPane.onMouseClickedProperty()
                 .setValue(

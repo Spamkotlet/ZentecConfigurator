@@ -157,13 +157,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
             for (Sensor sensor : ConfiguratorController.sensorsList) {
                 // Копирование свойств элементов схемы
                 if (sensorInScheme.getName().equals(sensor.getName())) {
-                    if (sensorInScheme.getIsUsedDefault()) {
-                        ConfiguratorController.sensorsUsed.add(sensorInScheme);
-                    }
                     sensorInScheme.setIsInWorkAttribute(sensor.getIsInWorkAttribute());
                     sensorInScheme.setAttributes(sensor.getAttributes());
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
+                    if (sensorInScheme.getIsUsedDefault()) {
+                        if (sensorInScheme.getAttributes() != null) {
+                            ConfiguratorController.sensorsUsed.add(sensorInScheme);
+                        }
+                    }
                 }
             }
         }

@@ -1,7 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
-import com.zenconf.zentecconfigurator.controllers.configurator.ChangeSchemeController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Element;
@@ -159,13 +158,17 @@ public class SchemeTitledPane extends TitledPane {
             element.setUsed(isUsed);
             if (element.getClass().equals(Actuator.class)) {
                 if (!ConfiguratorController.actuatorsUsed.contains((Actuator) element)) {
-                    ConfiguratorController.actuatorsUsed.add((Actuator) element);
+                    if (element.getAttributes() != null) {
+                        ConfiguratorController.actuatorsUsed.add((Actuator) element);
+                    }
                 } else {
                     ConfiguratorController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)) {
                 if (!ConfiguratorController.sensorsUsed.contains((Sensor) element)) {
-                    ConfiguratorController.sensorsUsed.add((Sensor) element);
+                    if (element.getAttributes() != null) {
+                        ConfiguratorController.sensorsUsed.add((Sensor) element);
+                    }
                 } else {
                     ConfiguratorController.sensorsUsed.remove((Sensor) element);
                 }
@@ -181,13 +184,17 @@ public class SchemeTitledPane extends TitledPane {
             element.setUsed(isUsed);
             if (element.getClass().equals(Actuator.class) && isUsed) {
                 if (!ConfiguratorController.actuatorsUsed.contains((Actuator) element)) {
-                    ConfiguratorController.actuatorsUsed.add((Actuator) element);
+                    if (element.getAttributes() != null) {
+                        ConfiguratorController.actuatorsUsed.add((Actuator) element);
+                    }
                 } else {
                     ConfiguratorController.actuatorsUsed.remove((Actuator) element);
                 }
             } else if (element.getClass().equals(Sensor.class)) {
                 if (!ConfiguratorController.sensorsUsed.contains((Sensor) element) && isUsed) {
-                    ConfiguratorController.sensorsUsed.add((Sensor) element);
+                    if (element.getAttributes() != null) {
+                        ConfiguratorController.sensorsUsed.add((Sensor) element);
+                    }
                 } else {
                     ConfiguratorController.sensorsUsed.remove((Sensor) element);
                 }

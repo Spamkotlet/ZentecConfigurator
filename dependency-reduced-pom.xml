@@ -52,6 +52,17 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Multi-Release>true</Multi-Release>
+            </manifestEntries>
+          </archive>
+          <finalName>mr-jar-demo.jar</finalName>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>

@@ -25,7 +25,7 @@ public abstract class CommonController {
     private ProgressBar progressBar;
     private Label progressLabel;
 
-    protected static final Logger logger = LogManager.getLogger();
+    public static final Logger logger = LogManager.getLogger();
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;

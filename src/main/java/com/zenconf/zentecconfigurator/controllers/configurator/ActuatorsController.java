@@ -217,6 +217,7 @@ public class ActuatorsController extends CommonController implements Initializab
                 actuatorsUsed.clear();
                 actuatorsUsed.addAll(ConfiguratorController.actuatorsUsed);
             }
+            standardElementsCount = 0;
         });
     }
 }

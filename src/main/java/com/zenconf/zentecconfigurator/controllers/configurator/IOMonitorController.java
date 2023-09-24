@@ -12,6 +12,8 @@ import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.*;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,6 +60,8 @@ public class IOMonitorController extends CommonController implements Initializab
     @FXML
     public Label statusLabel;
     @FXML
+    public Label statusRemainingTimeLabel;
+    @FXML
     public Label seasonLabel;
     @FXML
     public AnchorPane statusAnchorPane;
@@ -82,6 +86,8 @@ public class IOMonitorController extends CommonController implements Initializab
     private long alarmsNumber0 = 0;
     private long alarmsNumber1 = 0;
     private long warningsNumber = 0;
+    private final BooleanProperty statusTimerIsNotZeroValue = new SimpleBooleanProperty();
+    private int prevStatusNumber = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -229,6 +235,10 @@ public class IOMonitorController extends CommonController implements Initializab
             }
         }
         pollingStatusIndicatorCircle.setFill(new Color(0.831, 0.831, 0.831, 1f));
+
+//        for (MonitorValueText monitorValueText : monitorValueTextList) {
+//            monitorValueText.reset();
+//        }
     }
 
     private void initializationPollingElements() {
@@ -261,14 +271,30 @@ public class IOMonitorController extends CommonController implements Initializab
     private void initializationPLCControlElements() throws Exception {
         logger.info("Инициализация элементов управления контроллером");
 
-        startStopButton.setOnAction(e -> {
+        startStopButton.setOnMousePressed(e -> {
             try {
-                startStop();
+                startStopPressed();
             } catch (Exception ex) {
                 logger.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         });
+        startStopButton.setOnMouseReleased(e -> {
+            try {
+                startStopReleased();
+            } catch (Exception ex) {
+                logger.error(ex.getMessage());
+                throw new RuntimeException(ex);
+            }
+        });
+//        startStopButton.setOnAction(e -> {
+//            try {
+//                startStop();
+//            } catch (Exception ex) {
+//                logger.error(ex.getMessage());
+//                throw new RuntimeException(ex);
+//            }
+//        });
         resetAlarmsButton.setOnAction(e -> {
             try {
                 onResetAlarmsButton();
@@ -285,6 +311,7 @@ public class IOMonitorController extends CommonController implements Initializab
                 throw new RuntimeException(ex);
             }
         });
+        statusRemainingTimeLabel.visibleProperty().bind(statusTimerIsNotZeroValue);
 
         Attribute controlModeAttribute = MainController.mainParameters.getControlModeAttribute();
         List<String> controlModeValues = MainController.mainParameters.getControlModeAttribute().getValues();
@@ -432,20 +459,27 @@ public class IOMonitorController extends CommonController implements Initializab
     private synchronized void updateStatusLabel() throws Exception {
         List<String> statusList = MainController.mainParameters.getStatusAttribute().getValues();
         int statusNumber = Integer.parseInt(MainController.mainParameters.getStatusAttribute().readModbus());
-        Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
+        if (statusNumber != prevStatusNumber) {
+            Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
+            prevStatusNumber = statusNumber;
+        }
+        int statusRemainingTime = Integer.parseInt(MainController.mainParameters.getStatusRemainingTime().readModbus());
+        statusTimerIsNotZeroValue.setValue(statusRemainingTime > 0);
+        if (statusTimerIsNotZeroValue.getValue()) {
+            Platform.runLater(() -> statusRemainingTimeLabel.setText("" + statusRemainingTime));
+        }
     }
 
-    private synchronized void startStop() throws Exception {
-        logger.info("Нажата кнопка <ПУСК/СТОП>");
+    private synchronized void startStopPressed() throws Exception {
+        logger.info("Кнопка <ПУСК/СТОП> нажата");
         Attribute startStopAttribute = MainController.mainParameters.getStartStopAttribute();
-        boolean startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbus());
-        if (startStopBoolean) {
-            startStopAttribute.writeModbus(startStopBoolean);
-        } else {
-            startStopAttribute.writeModbus(!startStopBoolean);
-        }
-        startStopBoolean = Boolean.parseBoolean(startStopAttribute.readModbus());
-        startStopAttribute.writeModbus(!startStopBoolean);
+        startStopAttribute.writeModbus(true);
+    }
+
+    private synchronized void startStopReleased() throws Exception {
+        logger.info("Кнопка <ПУСК/СТОП> отпущена");
+        Attribute startStopAttribute = MainController.mainParameters.getStartStopAttribute();
+        startStopAttribute.writeModbus(false);
     }
 
     private boolean isAlarmActive() throws Exception {

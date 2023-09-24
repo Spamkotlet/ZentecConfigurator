@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="ioMonitorVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController">
+<VBox fx:id="ioMonitorVBox" prefHeight="700.0" prefWidth="1200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController">
    <children>
       <HBox alignment="CENTER_LEFT" fillHeight="false" minHeight="-Infinity" prefHeight="40.0" spacing="5.0" style="-fx-background-color: #EAEAEA;">
          <children>
@@ -38,6 +38,15 @@
                   <AnchorPane fx:id="statusAnchorPane" layoutX="420.0" layoutY="15.0" prefHeight="50.0" prefWidth="250.0">
                      <children>
                         <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" text="***" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="statusAnchorPane2" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <Label fx:id="statusRemainingTimeLabel" alignment="CENTER" contentDisplay="CENTER" text="***" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="19.0" />
                            </font>

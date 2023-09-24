@@ -5,9 +5,7 @@ import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Parameter;
-import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
-import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -16,8 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +31,8 @@ public class ActuatorsController extends CommonController implements Initializab
     private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
 
     private final HashMap<String, ElementTitledPane> actuatorsTitledPaneHashMap = new HashMap<>();
+
+    private int standardElementsCount = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,8 +58,6 @@ public class ActuatorsController extends CommonController implements Initializab
                 });
 
                 List<Actuator> actuators = ConfiguratorController.actuatorsUsed;
-                int actuatorsDone = 0;
-                int actuatorsMax = actuators.size() + 3;
                 if (MainController.mainParameters != null) {
                     Parameter valveParameter = new Parameter();
                     valveParameter.setName("Воздушный клапан");
@@ -77,11 +73,11 @@ public class ActuatorsController extends CommonController implements Initializab
 
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveTitledPane));
+                        standardElementsCount++;
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw e;
                     }
-                    actuatorsDone++;
 
                     Parameter valveHeatersParameter = new Parameter();
                     valveHeatersParameter.setName("Обогрев клапанов");
@@ -98,11 +94,11 @@ public class ActuatorsController extends CommonController implements Initializab
 
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(valveHeatersTitledPane));
+                        standardElementsCount++;
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw e;
                     }
-                    actuatorsDone++;
 
                     Parameter heatExchangerParameter = new Parameter();
                     heatExchangerParameter.setName("Теплообменники");
@@ -119,11 +115,11 @@ public class ActuatorsController extends CommonController implements Initializab
 
                     try {
                         Platform.runLater(() -> actuatorsSettingsVbox.getChildren().add(heatExchangerTitledPane));
+                        standardElementsCount++;
                     } catch (Exception e) {
                         logger.error(e.getMessage());
                         throw e;
                     }
-                    actuatorsDone++;
                 }
 
                 Actuator actuator = null;
@@ -217,7 +213,7 @@ public class ActuatorsController extends CommonController implements Initializab
         Thread fillingPaneThread = new Thread(fillingPaneTask);
         fillingPaneThread.start();
         fillingPaneTask.setOnSucceeded(e -> {
-            if (actuatorsSettingsVbox.getChildren().size() == ConfiguratorController.actuatorsUsed.size()) {
+            if (actuatorsSettingsVbox.getChildren().size() - standardElementsCount == ConfiguratorController.actuatorsUsed.size()) {
                 actuatorsUsed.clear();
                 actuatorsUsed.addAll(ConfiguratorController.actuatorsUsed);
             }

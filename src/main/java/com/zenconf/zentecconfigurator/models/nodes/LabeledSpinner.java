@@ -2,8 +2,6 @@ package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -197,17 +195,18 @@ public class LabeledSpinner {
         return label;
     }
 
-    public void readModbusValue() {
+    public void readModbusValue() throws Exception {
         SpinnerValueFactory<Integer> spinnerFactory;
         try {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
+            System.out.println("Name: " + attribute.getName() + " Address: " + attribute.getModbusParameters().getAddress());
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));
             errorLabel.setVisible(true);
-            throw new RuntimeException(e);
+            throw e;
         }
         spinner.setValueFactory(spinnerFactory);
     }

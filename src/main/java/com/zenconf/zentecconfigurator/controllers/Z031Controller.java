@@ -149,21 +149,40 @@ public class Z031Controller extends CommonController implements Initializable {
 
                 int parametersDone = 0;
                 int parametersMax = labeledSpinnerList.size();
-                for (LabeledSpinner spinner: labeledSpinnerList) {
-                    parametersDone++;
-                    updateMessage("Загрузка...: " + parametersDone + "/" + parametersMax);
-                    updateProgress(parametersDone, parametersMax);
-                    if (varFunctions.equals(VarFunctions.WRITE)) {
-                        try {
-                            spinner.writeModbusValue();
-                        } catch (Exception e) {
-                            logger.error(e.getMessage());
-                            throw new RuntimeException(e);
-                        }
-                    } else if (varFunctions.equals(VarFunctions.READ)) {
-                        spinner.readModbusValue();
+                LabeledSpinner spinner = null;
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                for (int i = 0; i < labeledSpinnerList.size(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...: " + (i + 1) + "/" + parametersMax);
+                        updateProgress(i + 1, parametersMax);
+                        spinner = labeledSpinnerList.get(i);
                     }
-                    Thread.sleep(50);
+                    try {
+                        if (varFunctions.equals(VarFunctions.WRITE)) {
+                            spinner.writeModbusValue();
+                            isSuccessfulAction = true;
+                            i++;
+                        } else if (varFunctions.equals(VarFunctions.READ)) {
+                            spinner.readModbusValue();
+                            i++;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        isSuccessfulAction = false;
+                        successfulActionAttempt++;
+                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]");
+                        if (successfulActionAttempt >= 3) {
+                            isSuccessfulAction = true;
+                            successfulActionAttempt = 0;
+                            i++;
+                            updateMessage("Ошибка загрузки");
+                            Thread.sleep(1000);
+                        }
+                        Thread.sleep(1000);
+                    }
+
+                    Thread.sleep(100);
                 }
                 return null;
             }
@@ -193,6 +212,7 @@ public class Z031Controller extends CommonController implements Initializable {
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         thread = new Thread(fillingPaneTask);

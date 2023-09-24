@@ -10,6 +10,7 @@ public class MainParameters {
     private Attribute controlModeAttribute;
     private Attribute seasonAttribute;
     private Attribute statusAttribute;
+    private Attribute statusRemainingTime;
     private List<Attribute> heatExchangerAttributes;
     private List<Attribute> valveHeatersAttributes;
     private List<Attribute> valveAttributes;
@@ -46,6 +47,10 @@ public class MainParameters {
 
     public Attribute getStatusAttribute() {
         return statusAttribute;
+    }
+
+    public Attribute getStatusRemainingTime() {
+        return statusRemainingTime;
     }
 
     public Attribute getDeviceAddressAttribute() {

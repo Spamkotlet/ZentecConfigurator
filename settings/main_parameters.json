@@ -99,6 +99,13 @@
         "varType": "UINT8"
       }
     },
+    "statusRemainingTime": {
+      "name": "Оставшееся время статуса",
+      "modbusParameters": {
+        "address": 1558,
+        "varType": "UINT16"
+      }
+    },
     "heatExchangerAttributes": [
       {
         "name": "Время прогрева",

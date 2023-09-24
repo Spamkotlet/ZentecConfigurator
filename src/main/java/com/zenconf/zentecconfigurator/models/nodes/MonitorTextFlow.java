@@ -66,9 +66,13 @@ public class MonitorTextFlow {
         Spinner<Integer> spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), initValue);
 
         spinner.setEditable(true);
-        spinner.setPrefWidth(0);
-        spinner.setPadding(new Insets(-10, -10, -10, 0));
+        spinner.setPrefWidth(70);
         spinner.setPrefHeight(70);
+        spinner.getEditor().setFont(Font.font("Verdana", 16));
+        spinner.getEditor().setAlignment(Pos.CENTER);
+        spinner.getEditor().setBackground(Background.EMPTY);
+        spinner.setBackground(Background.EMPTY);
+        spinner.setPadding(new Insets(-10, -10, -10, 0));
         spinner.getValueFactory().setWrapAround(true);
         spinner.getValueFactory().setConverter(
                 new StringConverter<>() {

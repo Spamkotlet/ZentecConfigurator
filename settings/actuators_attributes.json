@@ -322,7 +322,7 @@
           "minValue": 0,
           "maxValue": 5,
           "modbusParameters": {
-            "address": 1333,
+            "address": 1341,
             "varType": "UINT8"
           }
         }
@@ -330,7 +330,7 @@
       "attributeForMonitoring": {
         "name": "Эл. доводчик",
         "modbusParameters": {
-          "address": 1214,
+          "address": 1216,
           "varType": "UINT16"
         }
       }

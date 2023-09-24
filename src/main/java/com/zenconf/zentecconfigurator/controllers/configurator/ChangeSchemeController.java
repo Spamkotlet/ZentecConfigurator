@@ -140,13 +140,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
             for (Actuator actuator : ConfiguratorController.actuatorsList) {
                 // Копирование свойств элементов схемы
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
-                    if (actuatorInScheme.getIsUsedDefault()) {
-                        ConfiguratorController.actuatorsUsed.add(actuatorInScheme);
-                    }
                     actuatorInScheme.setIsInWorkAttribute(actuator.getIsInWorkAttribute());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
+                    if (actuatorInScheme.getIsUsedDefault()) {
+                        if (actuatorInScheme.getAttributes() != null) {
+                            ConfiguratorController.actuatorsUsed.add(actuatorInScheme);
+                        }
+                    }
                 }
             }
         }

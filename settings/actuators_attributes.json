@@ -369,6 +369,16 @@
             "address": 1338,
             "varType": "UINT8"
           }
+        },
+        {
+          "name": "Температура обр. воды пуск. 1",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1334,
+            "varType": "UINT8"
+          }
         }
       ],
       "attributeForMonitoring": {
@@ -402,6 +412,16 @@
             "address": 1346,
             "varType": "UINT8"
           }
+        },
+        {
+          "name": "Температура обр. воды пуск. 2",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1342,
+            "varType": "UINT8"
+          }
         }
       ],
       "attributeForMonitoring": {
@@ -433,6 +453,16 @@
           "maxValue": 100,
           "modbusParameters": {
             "address": 1354,
+            "varType": "UINT8"
+          }
+        },
+        {
+          "name": "Температура обр. воды пуск. 3",
+          "control": 1,
+          "minValue": 0,
+          "maxValue": 100,
+          "modbusParameters": {
+            "address": 1350,
             "varType": "UINT8"
           }
         }

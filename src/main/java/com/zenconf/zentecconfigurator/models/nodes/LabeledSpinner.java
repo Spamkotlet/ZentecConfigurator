@@ -201,7 +201,6 @@ public class LabeledSpinner {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
-            System.out.println("Name: " + attribute.getName() + " Address: " + attribute.getModbusParameters().getAddress());
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));

@@ -1,0 +1,69 @@
+.button-main-header {
+    -fx-text-fill: "#E9E9E9";
+    -fx-font-size: 16px;
+    -fx-pref-height: 40px;
+    -fx-alignment: "center";
+    -fx-background-color: "#343435";
+    -fx-background-radius: 0px;
+}
+
+.button-main-header:hover {
+    -fx-text-fill: "#E9E9E9";
+    -fx-background-color: "#4f4f4f";
+}
+
+.button-main-header-active {
+    -fx-text-fill: "#343435";
+    -fx-background-color: "#E9E9E9";
+    -fx-background-radius: 0px;
+}
+
+.button-main-header:focused {
+    -fx-text-fill: "#343435";
+    -fx-background-color: "#E9E9E9";
+    -fx-background-radius: 0px;
+}
+
+.button-iomonitor-toolbar {
+    -fx-background-color: "#D4D4D4";
+    -fx-background-radius: 0px;
+}
+
+.button-iomonitor-toolbar:hover {
+    -fx-background-color: "#4f4f4f";
+    -fx-background-radius: 0px;
+}
+
+.button-configurator {
+    -fx-background-color: "#F4F4F4";
+    -fx-background-radius: 0px;
+}
+
+.button-configurator:hover {
+    -fx-background-color: "#E6E6E6";
+    -fx-background-radius: 0px;
+}
+
+.button-configurator-active {
+    -fx-background-color: "#CDCDCD";
+    -fx-background-radius: 0px;
+}
+
+.button-home-page {
+    -fx-background-color: "#B5B5B5";
+    -fx-background-radius: 0px;
+}
+
+.button-home-page:hover {
+    -fx-background-color: "#5E5E5E";
+    -fx-background-radius: 0px;
+}
+
+.element-pane-header {
+    -fx-background-color: "#CDCDCD";
+    -fx-font-weight: bold;
+}
+
+.element-pane-border {
+    -fx-border-color: "#C8C8C8";
+}

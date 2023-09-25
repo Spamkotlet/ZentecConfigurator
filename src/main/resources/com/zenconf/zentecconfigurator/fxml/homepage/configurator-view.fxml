@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane fx:id="mainSplitPane" dividerPositions="0.2504" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.ConfiguratorController">
+    <items>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="315.0">
+            <content>
+                <AnchorPane prefHeight="664.0" prefWidth="313.0">
+                    <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <children>
+                                      <BorderPane fx:id="schemeBorderPane" focusTraversable="true" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0" styleClass="button-configurator">
+                                          <bottom>
+                                              <Label text="Схема" BorderPane.alignment="CENTER" />
+                                          </bottom>
+                                          <padding>
+                                              <Insets bottom="10.0" top="10.0" />
+                                          </padding>
+                                          <opaqueInsets>
+                                              <Insets />
+                                          </opaqueInsets>
+                           <center>
+                              <ImageView fx:id="schemeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                           </center>
+                                      </BorderPane>
+                        <VBox fx:id="disabledButtonsVBox" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                                            <BorderPane fx:id="sensorsBorderPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0" styleClass="button-configurator">
+                                                <bottom>
+                                                    <Label text="Датчики" BorderPane.alignment="CENTER" />
+                                                </bottom>
+                                                <padding>
+                                                    <Insets bottom="10.0" top="10.0" />
+                                                </padding>
+                                 <center>
+                                    <ImageView fx:id="sensorsImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                 </center>
+                                            </BorderPane>
+                                            <BorderPane fx:id="actuatorsBorderPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0" styleClass="button-configurator">
+                                                <bottom>
+                                                    <Label text="Исполнительные устройства" BorderPane.alignment="CENTER" />
+                                                </bottom>
+                                                <padding>
+                                                    <Insets bottom="10.0" top="10.0" />
+                                                </padding>
+                                                <opaqueInsets>
+                                                    <Insets />
+                                                </opaqueInsets>
+                                 <center>
+                                    <ImageView fx:id="actuatorsImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                 </center>
+                                            </BorderPane>
+                              <BorderPane fx:id="peripheryBorderPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0" styleClass="button-configurator">
+                                 <bottom>
+                                    <Label text="Периферия" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                                 <center>
+                                    <ImageView fx:id="peripheryImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                                            <BorderPane fx:id="ioBorderPane" minHeight="-Infinity" prefHeight="150.0" prefWidth="317.0" styleClass="button-configurator">
+                                                <bottom>
+                                                    <Label text="Мониторинг" BorderPane.alignment="CENTER" />
+                                                </bottom>
+                                                <padding>
+                                                    <Insets bottom="10.0" top="10.0" />
+                                                </padding>
+                                 <center>
+                                    <ImageView fx:id="ioImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                 </center>
+                                            </BorderPane>
+                           </children>
+                        </VBox>
+                                  </children>
+                              </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <AnchorPane fx:id="splitPaneRight" prefHeight="800.0" prefWidth="957.0" />
+    </items>
+</SplitPane>

@@ -1,0 +1,706 @@
+{
+  "electric": {
+    "attributes": [
+      {
+        "name": "A0",
+        "description": "Блокировка клавиатуры",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50000,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A1",
+        "description": "Режим исполнения программы",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50001,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A2",
+        "description": "Дополнительный номер исполняющейся программы",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50002,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A4",
+        "description": "Максимальное кол-во скоростей вентилятора",
+        "defaultValue": 3,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50004,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A5",
+        "description": "Индикация продувки ЭлКал",
+        "defaultValue": 7,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50005,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A6",
+        "description": "Режим работы панели",
+        "defaultValue": 11,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50006,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A7",
+        "description": "Выбор точки измерения влажности",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50007,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B0",
+        "description": "Минимальная температура (SET) от 15 до 30",
+        "defaultValue": 15,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50008,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B1",
+        "description": "Максимальная температура (SET) до 30 до 63",
+        "defaultValue": 30,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50009,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B6",
+        "description": "Выбор отображаемой температуры на главном экране",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50014,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B7",
+        "description": "Маска вывода параметров (значений датчиков)",
+        "defaultValue": 43,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50015,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C0",
+        "description": "Коэффициент И",
+        "defaultValue": 25,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50016,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C1",
+        "description": "Коэффициент П",
+        "defaultValue": 40,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50017,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C2",
+        "description": "Чувствительность регулятора",
+        "defaultValue": 10,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50018,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C3",
+        "description": "Время открытия воздушного клапана, сек",
+        "defaultValue": 30,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50019,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C4",
+        "description": "dT (время транспортного запаздывания), минуты",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50020,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C5",
+        "description": "Температура наружного воздуха для включения / отключения нагревателя (температура для перехода в режим «Нагревание»)",
+        "defaultValue": 3,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50021,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C6",
+        "description": "Наличие ошибки «E 13».",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50022,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C7",
+        "description": "Период ШИМ, сек",
+        "defaultValue": 10,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50023,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D0",
+        "description": "Количество секций нагревателя, согласно комплектации системы, включая первую ШИМ (диапазон значений от 1 до 2).Параметр устанавливается на заводе-изготовителе.",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50024,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D1",
+        "description": "Время продувки ТЭНов, сек",
+        "defaultValue": 30,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50025,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D2",
+        "description": "Разрешить каскадный регулятор (диапазон значений 0-выкл / 1-вкл)",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50026,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D3",
+        "description": "Тип защиты двигателя (0 – нет защиты, 1 – прессостат, 2 – термоконтакт, 3 – прессостат + термоконтакт)",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50027,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D4",
+        "description": "Тип вентилятора",
+        "defaultValue": 2,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50028,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D5",
+        "description": "Производительность вентилятора. Скорость 1",
+        "defaultValue": 80,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50029,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D6",
+        "description": "Производительность вентилятора. Скорость 2",
+        "defaultValue": 90,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50030,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D7",
+        "description": "Производительность вентилятора. Скорость 3",
+        "defaultValue": 99,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50031,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "E0",
+        "description": "Зона нечувствительности, °С",
+        "defaultValue": 2,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50032,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "V1",
+        "description": "Калибровка внутреннего датчика температуры пульта (ввести значения с градусника на столе)",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50049,
+          "varType": "UINT8"
+        }
+      }
+    ]
+  },
+  "water": {
+    "attributes": [
+      {
+        "name": "A0",
+        "description": "Блокировка клавиатуры",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50000,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A1",
+        "description": "Режим исполнения программы",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50001,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A2",
+        "description": "Дополнительный номер исполняющейся программы",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50002,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A4",
+        "description": "Максимальное кол-во скоростей вентилятора",
+        "defaultValue": 3,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50004,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A5",
+        "description": "Индикация прогрева ВодКал",
+        "defaultValue": 7,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50005,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A6",
+        "description": "Режим работы панели",
+        "defaultValue": 11,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50006,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "A7",
+        "description": "Выбор точки измерения влажности",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50007,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B0",
+        "description": "Минимальная температура (SET) от 15 до 30",
+        "defaultValue": 15,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50008,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B1",
+        "description": "Максимальная температура (SET) до 30 до 63",
+        "defaultValue": 30,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50009,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B6",
+        "description": "Выбор отображаемой температуры на главном экране",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50014,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "B7",
+        "description": "Маска вывода параметров (значений датчиков)",
+        "defaultValue": 59,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50015,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C0",
+        "description": "Коэффициент И",
+        "defaultValue": 25,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50016,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C1",
+        "description": "Коэффициент П",
+        "defaultValue": 40,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50017,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C2",
+        "description": "Чувствительность регулятора",
+        "defaultValue": 10,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50018,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C3",
+        "description": "Время открытия воздушного клапана, сек",
+        "defaultValue": 30,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50019,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C4",
+        "description": "dT (время транспортного запаздывания), минуты",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50020,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C5",
+        "description": "Температура наружного воздуха для включения / отключения нагревателя (температура для перехода в режим «Нагревание»)",
+        "defaultValue": 3,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50021,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C6",
+        "description": "Тип защиты двигателя (0 – нет защиты, 1 – прессостат, 2 – термо-контакт, 3 – пресс.+терм.)",
+        "defaultValue": 1,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50022,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "C7",
+        "description": "Температура отработанного теплоносителя в дежурном режиме, ?С ",
+        "defaultValue": 25,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50023,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D0",
+        "description": "Пусковая температура отработанного теплоносителя, ?С",
+        "defaultValue": 50,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50024,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D1",
+        "description": "Аварийная температура отработанного теплоносителя, ?С",
+        "defaultValue": 12,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50025,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D2",
+        "description": "Аварийная температура приточного воздуха, ?С",
+        "defaultValue": 8,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50026,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D3",
+        "description": "Время прогрева, мин",
+        "defaultValue": 2,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50027,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D4",
+        "description": "Разрешить каскадный регулятор (диапазон значений 0-выкл / 1-вкл)",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50028,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D5",
+        "description": "Производительность вентилятора. Скорость 1",
+        "defaultValue": 60,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50029,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D6",
+        "description": "Производительность вентилятора. Скорость 2",
+        "defaultValue": 80,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50030,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "D7",
+        "description": "Производительность вентилятора. Скорость 3",
+        "defaultValue": 99,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50031,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "E0",
+        "description": "Зона нечувствительности, °С",
+        "defaultValue": 2,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50032,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "V1",
+        "description": "Калибровка внутреннего датчика температуры пульта (ввести значения с градусника на столе)",
+        "defaultValue": 0,
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 50049,
+          "varType": "UINT8"
+        }
+      }
+    ]
+  }
+}

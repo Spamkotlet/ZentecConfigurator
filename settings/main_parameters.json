@@ -1,0 +1,285 @@
+{
+  "mainParameters": {
+    "schemeNumberAttribute": {
+      "name": "Номер схемы",
+      "modbusParameters": {
+        "address": 1436,
+        "varType": "UINT8"
+      }
+    },
+    "deviceAddressAttribute": {
+      "name": "Адрес устройства",
+      "modbusParameters": {
+        "address": 65520,
+        "varType": "UINT8"
+      }
+    },
+    "indexHMIAttribute": {
+      "name": "Индекс HMI",
+      "modbusParameters": {
+        "address": 65488,
+        "varType": "UINT16"
+      }
+    },
+    "startStopAttribute": {
+      "name": "Пуск/стоп диспетчеризация",
+      "control": 3,
+      "modbusParameters": {
+        "address": 1101,
+        "varType": "BOOL"
+      }
+    },
+    "controlModeAttribute": {
+      "name": "Тип управления",
+      "control": 2,
+      "values": [
+        "СТОП",
+        "Местный",
+        "Дистанционный",
+        "ПУ Z031",
+        "Диспетчеризация",
+        "Расписание",
+        "Резерв",
+        "Датчик",
+        "Elhart"
+      ],
+      "modbusParameters": {
+        "address": 1248,
+        "varType": "UINT8"
+      }
+    },
+    "resetAlarmsAttribute": {
+      "name": "Сброс аварий",
+      "control": 3,
+      "modbusParameters": {
+        "address": 1102,
+        "varType": "BOOL"
+      }
+    },
+    "clearJournalAttribute": {
+      "name": "Очистка журнала",
+      "control": 3,
+      "modbusParameters": {
+        "address": 1103,
+        "varType": "BOOL"
+      }
+    },
+    "seasonAttribute": {
+      "name": "Режим работы",
+      "control": 2,
+      "values": [
+        "Вентиляция",
+        "Нагревание",
+        "Охлаждение",
+        "АВТО"
+      ],
+      "modbusParameters": {
+        "address": 1247,
+        "varType": "UINT8"
+      }
+    },
+    "statusAttribute": {
+      "name": "Статус системы",
+      "values": [
+        "Ожидание",
+        "Дежурный",
+        "Прогрев ВТО",
+        "Прогрев КЕ",
+        "Подготовка",
+        "Работа",
+        "Продувка",
+        "Оттайка",
+        "Блокировка",
+        "Резерв",
+        "Авария",
+        "Критическая авария"
+      ],
+      "modbusParameters": {
+        "address": 1018,
+        "varType": "UINT8"
+      }
+    },
+    "statusRemainingTime": {
+      "name": "Оставшееся время статуса",
+      "modbusParameters": {
+        "address": 1558,
+        "varType": "UINT16"
+      }
+    },
+    "heatExchangerAttributes": [
+      {
+        "name": "Время прогрева",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 999,
+        "modbusParameters": {
+          "address": 1368,
+          "varType": "UINT16"
+        }
+      },
+      {
+        "name": "Время продувки",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 1367,
+          "varType": "UINT8"
+        }
+      }
+    ],
+    "valveAttributes": [
+      {
+        "name": "Время открытия заслонки",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 1376,
+          "varType": "UINT8"
+        }
+      },
+      {
+        "name": "Сигнал на привод 0..10В",
+        "control": 2,
+        "modbusParameters": {
+          "address": 1375,
+          "varType": "BOOL"
+        },
+        "values": [
+          "Прямой",
+          "Инверсный"
+        ]
+      }
+    ],
+    "valveHeatersAttributes": [
+      {
+        "name": "Обогрев KG",
+        "control": 2,
+        "values": [
+          "ОТКЛ",
+          "ВКЛ"
+        ],
+        "modbusParameters": {
+          "address": 1439,
+          "varType": "BOOL"
+        }
+      },
+      {
+        "name": "Время прогрева КЕ",
+        "control": 1,
+        "minValue": 0,
+        "maxValue": 255,
+        "modbusParameters": {
+          "address": 1440,
+          "varType": "UINT8"
+        }
+      }
+    ],
+    "peripheryParameters": [
+      {
+        "name": "Модуль расширения 1",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 1441,
+              "varType": "BOOL"
+            },
+            "values": [
+              "НЕТ",
+              "ДА"
+            ]
+          },
+          {
+            "name": "Адрес СМ 1",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 1442,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Модуль расширения 2",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 1480,
+              "varType": "BOOL"
+            },
+            "values": [
+              "НЕТ",
+              "ДА"
+            ]
+          },
+          {
+            "name": "Адрес СМ 2",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 1481,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Пульт управления Z031",
+        "attributes": [
+          {
+            "name": "В работе",
+            "control": 2,
+            "modbusParameters": {
+              "address": 1534,
+              "varType": "BOOL"
+            },
+            "values": [
+              "НЕТ",
+              "ДА"
+            ]
+          },
+          {
+            "name": "Адрес ПУ Z031",
+            "control": 1,
+            "minValue": 1,
+            "maxValue": 247,
+            "modbusParameters": {
+              "address": 1533,
+              "varType": "UINT8"
+            }
+          }
+        ]
+      }
+    ],
+    "alarmsAttribute0": {
+      "name": "Шифр аварии 1-32",
+      "modbusParameters": {
+        "address": 1050,
+        "varType": "UINT32"
+      }
+    },
+    "alarmsAttribute1": {
+      "name": "Шифр аварии 33-64",
+      "modbusParameters": {
+        "address": 1054,
+        "varType": "UINT32"
+      }
+    },
+    "warningsAttribute": {
+      "name": "Шифр предупреждений",
+      "modbusParameters": {
+        "address": 1066,
+        "varType": "UINT32"
+      }
+    }
+  }
+}
+

@@ -34,6 +34,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1274,
             "varType": "SINT8"
@@ -72,6 +73,7 @@
           "name": "Уставка температуры притока",
           "minValue": 0,
           "maxValue": 35,
+          "defaultValue": 22,
           "modbusParameters": {
             "address": 1249,
             "varType": "UINT8"
@@ -108,6 +110,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1275,
             "varType": "SINT8"
@@ -146,6 +149,7 @@
           "name": "Уставка доводчик",
           "minValue": 0,
           "maxValue": 35,
+          "defaultValue": 20,
           "modbusParameters": {
             "address": 1242,
             "varType": "UINT8"
@@ -182,6 +186,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1302,
             "varType": "SINT8"
@@ -245,6 +250,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1322,
             "varType": "SINT8"
@@ -313,6 +319,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1327,
             "varType": "UINT8"
@@ -376,6 +383,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1311,
             "varType": "SINT8"
@@ -439,6 +447,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1312,
             "varType": "SINT8"
@@ -502,6 +511,7 @@
           "control": 1,
           "minValue": -50,
           "maxValue": 60,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1313,
             "varType": "SINT16"
@@ -552,6 +562,7 @@
           "control": 1,
           "minValue": -5000,
           "maxValue": 9999,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1290,
             "varType": "SINT16"
@@ -590,6 +601,7 @@
           "name": "Уставка давления",
           "minValue": 0,
           "maxValue": 9999,
+          "defaultValue": 990,
           "modbusParameters": {
             "address": 1252,
             "varType": "UINT16"
@@ -613,6 +625,7 @@
           "control": 1,
           "minValue": -100,
           "maxValue": 100,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1297,
             "varType": "SINT8"
@@ -651,6 +664,7 @@
           "name": "Уставка влажности",
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 70,
           "modbusParameters": {
             "address": 1240,
             "varType": "UINT8"
@@ -660,6 +674,7 @@
           "name": "Уставка влажности (осушение)",
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 70,
           "modbusParameters": {
             "address": 1241,
             "varType": "UINT8"
@@ -683,6 +698,7 @@
           "control": 1,
           "minValue": -5000,
           "maxValue": 9999,
+          "defaultValue": 0,
           "modbusParameters": {
             "address": 1283,
             "varType": "SINT16"
@@ -721,6 +737,7 @@
           "name": "Уставка CO2",
           "minValue": 0,
           "maxValue": 9999,
+          "defaultValue": 990,
           "modbusParameters": {
             "address": 1254,
             "varType": "UINT16"

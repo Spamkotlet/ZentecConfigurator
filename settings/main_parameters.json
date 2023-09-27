@@ -112,6 +112,7 @@
         "control": 1,
         "minValue": 0,
         "maxValue": 999,
+        "defaultValue": 300,
         "modbusParameters": {
           "address": 1368,
           "varType": "UINT16"
@@ -122,6 +123,7 @@
         "control": 1,
         "minValue": 0,
         "maxValue": 255,
+        "defaultValue": 30,
         "modbusParameters": {
           "address": 1367,
           "varType": "UINT8"
@@ -134,6 +136,7 @@
         "control": 1,
         "minValue": 0,
         "maxValue": 255,
+        "defaultValue": 30,
         "modbusParameters": {
           "address": 1376,
           "varType": "UINT8"

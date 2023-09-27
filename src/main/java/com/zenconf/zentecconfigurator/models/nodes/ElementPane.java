@@ -6,7 +6,6 @@ import com.zenconf.zentecconfigurator.models.enums.Controls;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 public class ElementPane extends VBox {
 
@@ -30,7 +29,7 @@ public class ElementPane extends VBox {
 
         for (Attribute attribute : element.getAttributes()) {
             if (attribute.getControl() == Controls.SPINNER) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true, true);
                 secondVBox.getChildren().add(labeledSpinner.getSpinner());
             } else if (attribute.getControl() == Controls.CHOICE_BOX) {
                 LabeledChoiceBox labeledChoiceBox = new LabeledChoiceBox(attribute);

@@ -2,6 +2,7 @@ package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -10,9 +11,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.StringConverter;
 
@@ -45,9 +44,10 @@ public class LabeledSpinner {
         this.showDefaultValue = showDefaultValue;
     }
 
-    public LabeledSpinner(Attribute attribute, boolean readingByInitialization) {
+    public LabeledSpinner(Attribute attribute, boolean readingByInitialization, boolean showDefaultValue) {
         this.attribute = attribute;
         this.readingByInitialization = readingByInitialization;
+        this.showDefaultValue = showDefaultValue;
     }
 
     public Node getSpinner() throws Exception {
@@ -126,7 +126,7 @@ public class LabeledSpinner {
     private Spinner<Integer> createSpinner(int minValue, int maxValue) throws Exception {
         int initValue = 0;
 
-        if (showDefaultValue) {
+        if (showDefaultValue && !readingByInitialization) {
             if (attribute.getDefaultValue() != null) {
                 initValue = (int) attribute.getDefaultValue();
             }
@@ -170,6 +170,12 @@ public class LabeledSpinner {
                 }
         );
 
+        if (attribute.getDefaultValue() != null) {
+            if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        }
+
         spinner.setOnMouseReleased(e -> writeModbusValue());
 
         spinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
@@ -184,13 +190,23 @@ public class LabeledSpinner {
             }
         });
 
+        spinner.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (attribute.getDefaultValue() != null) {
+                if (newVal != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
+                } else {
+                    spinner.getEditor().setBackground(Background.EMPTY);
+                }
+            }
+        });
+
         return spinner;
     }
 
     private Label createDefaultValueLabel(Object labelText) {
         Label label = new Label("(" + labelText + ")");
         label.setPrefWidth(labelWidth);
-        label.setTextFill(Color.GRAY);
+        label.setTextFill(new Color(0.992, 0.4, 0.243, 1));
 
         return label;
     }

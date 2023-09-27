@@ -1,11 +1,13 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Sensor;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,10 +49,15 @@ public class ConfiguratorController extends CommonController implements Initiali
     @FXML
     public VBox disabledButtonsVBox;
 
+    @FXML
+    public Button resetParametersToDefaultButton;
+
     public static List<Sensor> sensorsList;
     public static List<Actuator> actuatorsList;
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
+
+    public static List<Attribute> attributesForResetToDefault = new ArrayList<>();
 
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
@@ -58,6 +65,8 @@ public class ConfiguratorController extends CommonController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsList = MainController.sensorList;
         actuatorsList = MainController.actuatorList;
+
+        resetParametersToDefaultButton.setOnAction(e -> resetAttributesToDefault());
 
         openChangeSchemeView();
         schemeBorderPane.onMouseClickedProperty()
@@ -270,6 +279,20 @@ public class ConfiguratorController extends CommonController implements Initiali
         if (!peripheryBorderPane.getStyleClass().contains("button-configurator")) {
             peripheryBorderPane.getStyleClass().remove("button-configurator-active");
             peripheryBorderPane.getStyleClass().add("button-configurator");
+        }
+    }
+
+    private void resetAttributesToDefault() {
+        if (!attributesForResetToDefault.isEmpty()) {
+
+        } else {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Действие отклонено");
+                alert.setHeaderText("Восстановление параметров");
+                alert.setContentText("Восстановление параметров по умолчанию не требуется");
+                alert.show();
+            });
         }
     }
 

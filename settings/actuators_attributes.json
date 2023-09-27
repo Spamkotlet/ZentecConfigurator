@@ -21,6 +21,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 30,
           "modbusParameters": {
             "address": 1383,
             "varType": "UINT8"
@@ -31,6 +32,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 60,
           "modbusParameters": {
             "address": 1381,
             "varType": "UINT8"
@@ -41,6 +43,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 80,
           "modbusParameters": {
             "address": 1380,
             "varType": "UINT8"
@@ -51,6 +54,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 99,
           "modbusParameters": {
             "address": 1382,
             "varType": "UINT8"
@@ -81,6 +85,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 30,
           "modbusParameters": {
             "address": 1391,
             "varType": "UINT8"
@@ -91,6 +96,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 60,
           "modbusParameters": {
             "address": 1389,
             "varType": "UINT8"
@@ -101,6 +107,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 80,
           "modbusParameters": {
             "address": 1388,
             "varType": "UINT8"
@@ -111,6 +118,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 99,
           "modbusParameters": {
             "address": 1390,
             "varType": "UINT8"
@@ -153,6 +161,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 30,
           "modbusParameters": {
             "address": 1400,
             "varType": "UINT8"
@@ -163,6 +172,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 60,
           "modbusParameters": {
             "address": 1398,
             "varType": "UINT8"
@@ -173,6 +183,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 80,
           "modbusParameters": {
             "address": 1397,
             "varType": "UINT8"
@@ -183,6 +194,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 99,
           "modbusParameters": {
             "address": 1399,
             "varType": "UINT8"
@@ -225,6 +237,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 30,
           "modbusParameters": {
             "address": 1409,
             "varType": "UINT8"
@@ -235,6 +248,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 60,
           "modbusParameters": {
             "address": 1407,
             "varType": "UINT8"
@@ -245,6 +259,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 80,
           "modbusParameters": {
             "address": 1406,
             "varType": "UINT8"
@@ -255,6 +270,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 99,
           "modbusParameters": {
             "address": 1408,
             "varType": "UINT8"
@@ -375,6 +391,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 55,
           "modbusParameters": {
             "address": 1334,
             "varType": "UINT8"
@@ -418,6 +435,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 55,
           "modbusParameters": {
             "address": 1342,
             "varType": "UINT8"
@@ -461,6 +479,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 100,
+          "defaultValue": 55,
           "modbusParameters": {
             "address": 1350,
             "varType": "UINT8"
@@ -544,6 +563,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 5,
           "modbusParameters": {
             "address": 1358,
             "varType": "UINT16"
@@ -584,6 +604,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 255,
+          "defaultValue": 5,
           "modbusParameters": {
             "address": 1364,
             "varType": "UINT16"
@@ -626,6 +647,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 999,
+          "defaultValue": 900,
           "modbusParameters": {
             "address": 1434,
             "varType": "UINT16"
@@ -636,6 +658,7 @@
           "control": 1,
           "minValue": 0,
           "maxValue": 999,
+          "defaultValue": 1,
           "modbusParameters": {
             "address": 1427,
             "varType": "UINT16"

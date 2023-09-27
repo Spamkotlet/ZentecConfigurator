@@ -36,7 +36,7 @@ public class ElementTitledPane extends TitledPane {
         if (element.getAttributes() != null) {
             for (Attribute attribute : element.getAttributes()) {
                 if (attribute.getControl() == Controls.SPINNER) {
-                    LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true);
+                    LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, true, true);
                     labeledSpinnerList.add(labeledSpinner);
                     vBox.getChildren().add(labeledSpinner.getSpinner());
                 } else if (attribute.getControl() == Controls.CHOICE_BOX) {

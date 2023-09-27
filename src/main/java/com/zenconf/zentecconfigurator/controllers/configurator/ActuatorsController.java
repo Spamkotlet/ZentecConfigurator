@@ -142,6 +142,7 @@ public class ActuatorsController extends CommonController implements Initializab
                                 i++;
                             } catch (Exception e) {
                                 e.printStackTrace();
+                                logger.error(e.getMessage());
                                 isSuccessfulAction = false;
                                 successfulActionAttempt++;
                                 updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + actuator.getName());
@@ -152,6 +153,7 @@ public class ActuatorsController extends CommonController implements Initializab
                                     updateMessage("Ошибка загрузки\n" + actuator.getName());
                                     Thread.sleep(1000);
                                 }
+                                logger.error(e.getMessage());
                                 Thread.sleep(1000);
                             }
                         } else {
@@ -183,7 +185,7 @@ public class ActuatorsController extends CommonController implements Initializab
             @Override
             protected void succeeded() {
                 super.succeeded();
-                System.out.println("Задача fillingPaneTask выполнена успешно");
+                logger.info("Задача fillingActuatorsPaneTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
                 Thread.currentThread().interrupt();
             }
@@ -191,14 +193,15 @@ public class ActuatorsController extends CommonController implements Initializab
             @Override
             protected void cancelled() {
                 super.cancelled();
-                System.out.println("Задача fillingPaneTask прервана");
+                logger.info("Задача fillingActuatorsPaneTask прервана");
                 Thread.currentThread().interrupt();
             }
 
             @Override
             protected void failed() {
                 super.failed();
-                System.out.println("Задача fillingPaneTask завершилась ошибкой");
+                logger.info("Задача fillingActuatorsPaneTask завершилась ошибкой");
+                logger.error(this.getException().getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");

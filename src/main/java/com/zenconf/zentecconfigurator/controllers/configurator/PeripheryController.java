@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class PeripheryController extends CommonController implements Initializable {
@@ -36,25 +35,40 @@ public class PeripheryController extends CommonController implements Initializab
                     peripherySettingsVbox.getChildren().clear();
                 });
 
-                List<Parameter> parameters = MainController.mainParameters.getPeripheryParameters();
-                int parametersDone = 0;
-                int parametersMax = parameters.size();
-                for (Parameter parameter : parameters) {
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                Parameter parameter = null;
+                for (int i = 0; i < MainController.mainParameters.getPeripheryParameters().size(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...: " + (i + 1) + "/" + MainController.mainParameters.getPeripheryParameters().size());
+                        updateProgress(i + 1, MainController.mainParameters.getPeripheryParameters().size());
+                        parameter = MainController.mainParameters.getPeripheryParameters().get(i);
+                    }
+
                     if (parameter.getAttributes() != null) {
-                        parametersDone++;
-                        updateMessage("Загрузка...: " + parametersDone + "/" + parametersMax);
-                        updateProgress(parametersDone, parametersMax);
                         ElementTitledPane elementTitledPane = new ElementTitledPane(parameter);
                         try {
                             Platform.runLater(() -> peripherySettingsVbox.getChildren().add(elementTitledPane));
+                            isSuccessfulAction = true;
+                            i++;
                         } catch (Exception e) {
+                            e.printStackTrace();
                             logger.error(e.getMessage());
-                            throw e;
+                            isSuccessfulAction = false;
+                            successfulActionAttempt++;
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + parameter.getName());
+                            if (successfulActionAttempt >= 3) {
+                                isSuccessfulAction = true;
+                                successfulActionAttempt = 0;
+                                i++;
+                                updateMessage("Ошибка загрузки\n" + parameter.getName());
+                                Thread.sleep(1000);
+                            }
+                            Thread.sleep(1000);
                         }
 
                         Thread.sleep(100);
                     }
-
                 }
                 return null;
             }
@@ -62,20 +76,23 @@ public class PeripheryController extends CommonController implements Initializab
             @Override
             protected void succeeded() {
                 super.succeeded();
-                System.out.println("Задача fillingPaneTask выполнена успешно");
+                logger.info("Задача fillingPeripheryPaneTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
-                System.out.println("Задача fillingPaneTask прервана");
+                logger.info("Задача fillingPeripheryPaneTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void failed() {
                 super.failed();
-                System.out.println("Задача fillingPaneTask завершилась ошибкой");
+                logger.info("Задача fillingPeripheryPaneTask завершилась ошибкой");
+                logger.error(this.getException().getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");
@@ -84,6 +101,7 @@ public class PeripheryController extends CommonController implements Initializab
                     alert.show();
                     closeLoadWindow(this);
                 });
+                Thread.currentThread().interrupt();
             }
         };
         Thread fillingPaneThread = new Thread(fillingPaneTask);

@@ -227,8 +227,8 @@ public class ModbusUtilSingleton {
                 registerValue = (long) registerValues[0] * 65536 + (long) registerValues[1];
             } else if (varType.equals(VarTypes.SINT8)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];
-                if (registerValue > Byte.MAX_VALUE) {
-                    registerValue -= Byte.MAX_VALUE * 2 + 2;
+                if (registerValue > 32767) {
+                    registerValue -= 32767 * 2 + 2;
                 }
             } else if (varType.equals(VarTypes.SINT16)) {
                 registerValue = master.readHoldingRegisters(slaveId, address, 1)[0];

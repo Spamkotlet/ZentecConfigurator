@@ -53,7 +53,7 @@ public class Z031Controller extends CommonController implements Initializable {
         electricParametersVBox.getChildren().clear();
         if (electricParameters != null) {
             for (Attribute attribute : electricParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true, true);
                 try {
                     electricParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -69,7 +69,7 @@ public class Z031Controller extends CommonController implements Initializable {
         waterParametersVBox.getChildren().clear();
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true, true);
                 try {
                     waterParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -85,7 +85,7 @@ public class Z031Controller extends CommonController implements Initializable {
         z031ParametersVBox.getChildren().clear();
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60);
+                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
                 try {
                     z031ParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -147,7 +147,6 @@ public class Z031Controller extends CommonController implements Initializable {
             protected Void call() throws Exception {
                 Platform.runLater(() -> showLoadWindow(this));
 
-                int parametersDone = 0;
                 int parametersMax = labeledSpinnerList.size();
                 LabeledSpinner spinner = null;
                 boolean isSuccessfulAction = true;

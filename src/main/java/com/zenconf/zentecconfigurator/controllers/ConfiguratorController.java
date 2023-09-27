@@ -1,14 +1,13 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Actuator;
-import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +56,7 @@ public class ConfiguratorController extends CommonController implements Initiali
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
 
-    public static List<Attribute> attributesForResetToDefault = new ArrayList<>();
+    public static List<LabeledSpinner> attributesForResetToDefault = new ArrayList<>();
 
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
@@ -284,6 +283,92 @@ public class ConfiguratorController extends CommonController implements Initiali
 
     private void resetAttributesToDefault() {
         if (!attributesForResetToDefault.isEmpty()) {
+            Task<Void> resetParametersToDefaultTask = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    Platform.runLater(() -> showLoadWindow(this));
+
+                    boolean isSuccessfulAction = true;
+                    int successfulActionAttempt = 0;
+                    LabeledSpinner labeledSpinner = null;
+                    for (int i = 0; i < attributesForResetToDefault.size(); ) {
+                        if (isSuccessfulAction) {
+                            updateMessage("Загрузка...: " + (i + 1) + "/" + attributesForResetToDefault.size());
+                            updateProgress(i + 1, attributesForResetToDefault.size());
+                            labeledSpinner = attributesForResetToDefault.get(i);
+                        }
+
+                        try {
+                            labeledSpinner.getAttribute().writeModbus(labeledSpinner.getAttribute().getDefaultValue());
+                            labeledSpinner.readModbusValue();
+                            isSuccessfulAction = true;
+                            i++;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            logger.error(e.getMessage());
+                            isSuccessfulAction = false;
+                            successfulActionAttempt++;
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + labeledSpinner.getAttribute().getName());
+                            if (successfulActionAttempt >= 3) {
+                                isSuccessfulAction = true;
+                                successfulActionAttempt = 0;
+                                i++;
+                                updateMessage("Ошибка загрузки\n" + labeledSpinner.getAttribute().getName());
+                                Thread.sleep(1000);
+                            }
+                            Thread.sleep(1000);
+                        }
+                        Thread.sleep(100);
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    attributesForResetToDefault.clear();
+                    logger.info("Задача resetAttributesToDefault выполнена успешно");
+                    Platform.runLater(() -> closeLoadWindow(this));
+                }
+
+                @Override
+                protected void cancelled() {
+                    super.cancelled();
+                    logger.info("Задача resetAttributesToDefault прервана");
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    logger.info("Задача resetAttributesToDefault завершилась ошибкой");
+                    logger.error(this.getException().getMessage());
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Невозможно выполнить операцию");
+                        alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                        alert.show();
+                        closeLoadWindow(this);
+                    });
+                }
+            };
+            Thread resetParametersToDefaultThread = new Thread(resetParametersToDefaultTask);
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("Подтверждение");
+            dialog.setHeaderText("Восстановление параметров по умолчанию");
+            dialog.setContentText("Вы уверены что хотите восстановить параметры по умолчанию?");
+            dialog.getDialogPane().getButtonTypes().addAll(
+                    new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
+                    new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+            );
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    resetParametersToDefaultThread.start();
+                }
+            }
 
         } else {
             Platform.runLater(() -> {

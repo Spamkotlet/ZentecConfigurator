@@ -249,7 +249,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             @Override
             protected void succeeded() {
                 super.succeeded();
-                System.out.println("Задача loadActuatorsAndSensorsTask выполнена успешно");
+                logger.info("Задача loadActuatorsAndSensorsTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
                 Thread.currentThread().interrupt();
             }
@@ -257,7 +257,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             @Override
             protected void cancelled() {
                 super.cancelled();
-                System.out.println("Задача loadActuatorsAndSensorsTask прервана");
+                logger.info("Задача loadActuatorsAndSensorsTask прервана");
                 Thread.currentThread().interrupt();
             }
 
@@ -265,7 +265,8 @@ public class ChangeSchemeController extends CommonController implements Initiali
             protected void failed() {
                 super.failed();
                 this.getException().printStackTrace();
-                System.out.println("Задача loadActuatorsAndSensorsTask завершилась ошибкой");
+                logger.info("Задача loadActuatorsAndSensorsTask завершилась ошибкой");
+                logger.error(this.getException().getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");
@@ -359,15 +360,15 @@ public class ChangeSchemeController extends CommonController implements Initiali
             @Override
             protected void succeeded() {
                 super.succeeded();
-                System.out.println("Задача setAttributeIsUsedOffTask выполнена успешно");
-                Platform.runLater(() -> closeLoadWindow(this));
+                logger.info("Задача setAttributeIsUsedOffTask выполнена успешно");
+                closeLoadWindow(this);
                 Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
-                System.out.println("Задача setAttributeIsUsedOffTask прервана");
+                logger.info("Задача setAttributeIsUsedOffTask прервана");
                 Thread.currentThread().interrupt();
             }
 
@@ -375,7 +376,8 @@ public class ChangeSchemeController extends CommonController implements Initiali
             protected void failed() {
                 this.getException().printStackTrace();
                 super.failed();
-                System.out.println("Задача setAttributeIsUsedOffTask завершилась ошибкой");
+                logger.info("Задача setAttributeIsUsedOffTask завершилась ошибкой");
+                logger.error(this.getException().getMessage());
                 closeLoadWindow(this);
                 Thread.currentThread().interrupt();
             }

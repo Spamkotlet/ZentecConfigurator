@@ -571,21 +571,21 @@
         {
           "name": "Min 0..10 В",
           "control": 1,
-          "minValue": -5000,
+          "minValue": 0,
           "maxValue": 9999,
           "modbusParameters": {
             "address": 1294,
-            "varType": "SINT16"
+            "varType": "UINT16"
           }
         },
         {
           "name": "Max 0..10 В",
           "control": 1,
-          "minValue": -5000,
+          "minValue": 0,
           "maxValue": 9999,
           "modbusParameters": {
             "address": 1292,
-            "varType": "SINT16"
+            "varType": "UINT16"
           }
         }
       ],

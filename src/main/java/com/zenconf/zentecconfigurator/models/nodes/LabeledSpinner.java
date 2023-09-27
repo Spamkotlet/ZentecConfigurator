@@ -1,5 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -27,21 +28,26 @@ public class LabeledSpinner {
     private int labelWidth = 200;
     private boolean showDefaultValue = false;
     private boolean readingByInitialization = false;
+    // Временный параметр для исключения занесения в список атрибутов Z031 по умолчанию
+    // attributesForResetToDefault
+    private boolean _fromZ031 = false;
 
 
     public LabeledSpinner(Attribute attribute) {
         this.attribute = attribute;
     }
 
-    public LabeledSpinner(Attribute attribute, int labelWidth) {
+    public LabeledSpinner(Attribute attribute, int labelWidth, boolean _fromZ031) {
         this.attribute = attribute;
         this.labelWidth = labelWidth;
+        this._fromZ031 = _fromZ031;
     }
 
-    public LabeledSpinner(Attribute attribute, int labelWidth, boolean showDefaultValue) {
+    public LabeledSpinner(Attribute attribute, int labelWidth, boolean showDefaultValue, boolean _fromZ031) {
         this.attribute = attribute;
         this.labelWidth = labelWidth;
         this.showDefaultValue = showDefaultValue;
+        this._fromZ031 = _fromZ031;
     }
 
     public LabeledSpinner(Attribute attribute, boolean readingByInitialization, boolean showDefaultValue) {
@@ -135,7 +141,7 @@ public class LabeledSpinner {
         if (readingByInitialization) {
             try {
                 errorLabel.setVisible(false);
-                initValue = (int) Double.parseDouble(attribute.readModbus());
+                initValue = Integer.parseInt(attribute.readModbus());
             } catch (Exception e) {
                 errorText = "Ошибка чтения";
                 Platform.runLater(() -> errorLabel.setText(errorText));
@@ -173,6 +179,9 @@ public class LabeledSpinner {
         if (attribute.getDefaultValue() != null) {
             if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
                 spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
+                if (!ConfiguratorController.attributesForResetToDefault.contains(this) && !_fromZ031) {
+                    ConfiguratorController.attributesForResetToDefault.add(this);
+                }
             }
         }
 
@@ -190,15 +199,19 @@ public class LabeledSpinner {
             }
         });
 
-        spinner.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if (attribute.getDefaultValue() != null) {
-                if (newVal != Integer.parseInt(attribute.getDefaultValue().toString())) {
-                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
-                } else {
-                    spinner.getEditor().setBackground(Background.EMPTY);
-                }
-            }
-        });
+//        spinner.valueProperty().addListener((obs, oldVal, newVal) -> {
+//            if (attribute.getDefaultValue() != null) {
+//                if (newVal != Integer.parseInt(attribute.getDefaultValue().toString())) {
+//                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
+//                    if (!ConfiguratorController.attributesForResetToDefault.contains(this)) {
+//                        ConfiguratorController.attributesForResetToDefault.add(this);
+//                    }
+//                } else {
+//                    spinner.getEditor().setBackground(Background.EMPTY);
+//                    ConfiguratorController.attributesForResetToDefault.remove(this);
+//                }
+//            }
+//        });
 
         return spinner;
     }
@@ -217,6 +230,9 @@ public class LabeledSpinner {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
+            if (attribute.getDefaultValue() != null) {
+                setSpinnerStyleLikeDefault();
+            }
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));
@@ -230,6 +246,17 @@ public class LabeledSpinner {
         try {
             errorLabel.setVisible(false);
             attribute.writeModbus(spinner.getValue().toString());
+            if (attribute.getDefaultValue() != null) {
+                if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
+                    if (!ConfiguratorController.attributesForResetToDefault.contains(this) && !_fromZ031) {
+                        ConfiguratorController.attributesForResetToDefault.add(this);
+                    }
+                } else {
+                    setSpinnerStyleLikeDefault();
+                    ConfiguratorController.attributesForResetToDefault.remove(this);
+                }
+            }
         } catch (Exception e) {
             errorText = "Ошибка записи";
             Platform.runLater(() -> errorLabel.setText(errorText));
@@ -238,10 +265,19 @@ public class LabeledSpinner {
         }
     }
 
+    public void setSpinnerStyleLikeDefault() {
+        spinner.getEditor().setBackground(Background.EMPTY);
+    }
+
     public void setDefaultValue() {
         SpinnerValueFactory<Integer> spinnerFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
                         attribute.getMinValue(), attribute.getMaxValue(), (Integer) attribute.getDefaultValue());
         spinner.setValueFactory(spinnerFactory);
+        setSpinnerStyleLikeDefault();
+    }
+
+    public Attribute getAttribute() {
+        return attribute;
     }
 }

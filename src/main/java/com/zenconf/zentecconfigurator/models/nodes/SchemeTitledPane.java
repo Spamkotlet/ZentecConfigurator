@@ -134,7 +134,7 @@ public class SchemeTitledPane extends TitledPane {
                         throw e;
                     }
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
-                    isUsedDefaultChoiceBox.getSelectionModel().select(!element.getIsUsedDefault() ? 0 : 1);
+                    Platform.runLater(() -> isUsedDefaultChoiceBox.getSelectionModel().select(!element.getIsUsedDefault() ? 0 : 1));
                     try {
                         errorLabel.setVisible(false);
                         inWorkAttribute.writeModbus(!element.getIsUsedDefault() ? 0 : 1);

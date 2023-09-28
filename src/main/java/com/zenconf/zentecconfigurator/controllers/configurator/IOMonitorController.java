@@ -97,6 +97,7 @@ public class IOMonitorController extends CommonController implements Initializab
             initializationPollingElements();
             initializationPLCControlElements();
         } catch (Exception e) {
+            pollingPreviousState = false;
             logger.error(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка");
@@ -120,6 +121,7 @@ public class IOMonitorController extends CommonController implements Initializab
                 try {
                     initializationPLCMonitoringElements();
                 } catch (Exception e) {
+                    pollingPreviousState = false;
                     logger.error(e.getMessage());
                     Platform.runLater(() -> {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -185,6 +187,7 @@ public class IOMonitorController extends CommonController implements Initializab
                                 cycleCounter[0] = 0;
                             }
                         } catch (Exception e) {
+                            pollingPreviousState = false;
                             errorCounter[0]++;
                             if (errorCounter[0] >= errorNumber) {
                                 cycleCounter[0] = 0;
@@ -196,7 +199,7 @@ public class IOMonitorController extends CommonController implements Initializab
                             logger.warn("Количество ошибок во время опроса: " + errorCounter[0] + "/" + errorNumber);
                         }
                     } catch (Exception e) {
-                        System.out.println("Stop polling timer 1");
+                        pollingPreviousState = false;
                         Platform.runLater(() -> {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Ошибка");
@@ -205,7 +208,6 @@ public class IOMonitorController extends CommonController implements Initializab
                             alert.show();
                         });
                         logger.error(e.getMessage());
-                        pollingPreviousState = false;
                         stopPolling();
                         try {
                             modbusUtilSingleton.disconnect();
@@ -218,6 +220,7 @@ public class IOMonitorController extends CommonController implements Initializab
 
             executor.scheduleWithFixedDelay(timerTask, 1, 500, TimeUnit.MILLISECONDS);
         } else {
+            pollingPreviousState = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка");
             alert.setHeaderText("Невозможно запустить опрос контроллера");
@@ -287,14 +290,6 @@ public class IOMonitorController extends CommonController implements Initializab
                 throw new RuntimeException(ex);
             }
         });
-//        startStopButton.setOnAction(e -> {
-//            try {
-//                startStop();
-//            } catch (Exception ex) {
-//                logger.error(ex.getMessage());
-//                throw new RuntimeException(ex);
-//            }
-//        });
         resetAlarmsButton.setOnAction(e -> {
             try {
                 onResetAlarmsButton();

@@ -663,6 +663,32 @@
             "address": 1427,
             "varType": "UINT16"
           }
+        },
+        {
+          "name": "Управление системной оттайкой",
+          "control": 2,
+          "defaultValue": 0,
+          "modbusParameters": {
+            "address": 1419,
+            "varType": "BOOL"
+          },
+          "values": [
+            "Нет",
+            "Да"
+          ]
+        },
+        {
+          "name": "Управление системной разморозкой",
+          "control": 2,
+          "defaultValue": 0,
+          "modbusParameters": {
+            "address": 1421,
+            "varType": "BOOL"
+          },
+          "values": [
+            "Нет",
+            "Да"
+          ]
         }
       ],
       "attributeForMonitoring": {

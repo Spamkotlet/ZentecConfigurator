@@ -56,9 +56,9 @@ public class SensorsController extends CommonController implements Initializable
                 int successfulActionAttempt = 0;
                 for (int i = 0; i < sensors.size(); ) {
                     if (isSuccessfulAction) {
+                        sensor = sensors.get(i);
                         updateMessage("Загрузка...: " + (i + 1) + "/" + sensors.size());
                         updateProgress(i + 1, sensors.size());
-                        sensor = sensors.get(i);
                     }
 
                     ElementTitledPane sensorTitledPane = null;

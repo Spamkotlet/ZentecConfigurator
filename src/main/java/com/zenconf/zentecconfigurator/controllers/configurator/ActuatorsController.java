@@ -127,9 +127,9 @@ public class ActuatorsController extends CommonController implements Initializab
                 int successfulActionAttempt = 0;
                 for (int i = 0; i < actuators.size(); ) {
                     if (isSuccessfulAction) {
+                        actuator = actuators.get(i);
                         updateMessage("Загрузка...: " + (i + 1) + "/" + actuators.size());
                         updateProgress(i + 1, actuators.size());
-                        actuator = actuators.get(i);
                     }
 
                     ElementTitledPane actuatorTitledPane = null;

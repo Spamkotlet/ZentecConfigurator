@@ -153,9 +153,9 @@ public class Z031Controller extends CommonController implements Initializable {
                 int successfulActionAttempt = 0;
                 for (int i = 0; i < labeledSpinnerList.size(); ) {
                     if (isSuccessfulAction) {
-                        updateMessage("Загрузка...: " + (i + 1) + "/" + parametersMax);
-                        updateProgress(i + 1, parametersMax);
                         spinner = labeledSpinnerList.get(i);
+                        updateMessage("Загрузка " + spinner.getAttribute().getName() + "\n[" + (i + 1) + "/" + parametersMax + "]");
+                        updateProgress(i + 1, parametersMax);
                     }
                     try {
                         if (varFunctions.equals(VarFunctions.WRITE)) {
@@ -170,7 +170,7 @@ public class Z031Controller extends CommonController implements Initializable {
                         e.printStackTrace();
                         isSuccessfulAction = false;
                         successfulActionAttempt++;
-                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]");
+                        updateMessage("Попытка загрузки " + spinner.getAttribute().getName() + "\n[" + successfulActionAttempt + "/3]");
                         if (successfulActionAttempt >= 3) {
                             isSuccessfulAction = true;
                             successfulActionAttempt = 0;
@@ -189,20 +189,23 @@ public class Z031Controller extends CommonController implements Initializable {
             @Override
             protected void succeeded() {
                 super.succeeded();
-                System.out.println("Задача fillingPaneTask выполнена успешно");
+                logger.info("Задача fillingZ031PaneTask выполнена успешно");
                 Platform.runLater(() -> closeLoadWindow(this));
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void cancelled() {
                 super.cancelled();
-                System.out.println("Задача fillingPaneTask прервана");
+                logger.info("Задача fillingZ031PaneTask прервана");
+                Thread.currentThread().interrupt();
             }
 
             @Override
             protected void failed() {
                 super.failed();
-                System.out.println("Задача fillingPaneTask завершилась ошибкой");
+                logger.info("Задача fillingZ031PaneTask завершилась ошибкой");
+                logger.error(this.getException().getMessage());
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");

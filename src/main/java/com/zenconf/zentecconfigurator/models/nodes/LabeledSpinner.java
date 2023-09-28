@@ -230,9 +230,7 @@ public class LabeledSpinner {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
-            if (attribute.getDefaultValue() != null) {
-                setSpinnerStyleLikeDefault();
-            }
+            Platform.runLater(this::setSpinnerStyleLikeDefault);
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));
@@ -266,7 +264,11 @@ public class LabeledSpinner {
     }
 
     public void setSpinnerStyleLikeDefault() {
-        spinner.getEditor().setBackground(Background.EMPTY);
+        if (attribute.getDefaultValue() != null) {
+            if (spinner.getValue() == Integer.parseInt(attribute.getDefaultValue().toString())) {
+                spinner.getEditor().setBackground(Background.EMPTY);
+            }
+        }
     }
 
     public void setDefaultValue() {

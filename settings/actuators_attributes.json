@@ -309,6 +309,14 @@
     },
     {
       "name": "Дополнительный электрический нагреватель",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1559,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
         {
           "name": "Кол-во ступеней",
@@ -331,6 +339,14 @@
     },
     {
       "name": "Электрический доводчик",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1559,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
         {
           "name": "Кол-во ступеней",
@@ -353,6 +369,14 @@
     },
     {
       "name": "Электрический преднагреватель",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1559,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
         {
           "name": "Кол-во ступеней",
@@ -419,6 +443,14 @@
     },
     {
       "name": "Дополнительный водяной нагреватель",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1559,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
         {
           "name": "Min откр КЗР %",
@@ -463,6 +495,14 @@
     },
     {
       "name": "Дополнительный водяной нагреватель 2",
+      "isInWorkAttribute": {
+        "name": "В работе",
+        "control": 0,
+        "modbusParameters": {
+          "address": 1560,
+          "varType": "BOOL"
+        }
+      },
       "attributes": [
         {
           "name": "Min откр КЗР %",

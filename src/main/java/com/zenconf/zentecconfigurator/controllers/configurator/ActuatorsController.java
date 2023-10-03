@@ -68,7 +68,6 @@ public class ActuatorsController extends CommonController implements Initializab
                         actuatorsTitledPaneHashMap.put(valveParameter.getName(), valveTitledPane);
                     } else {
                         valveTitledPane = actuatorsTitledPaneHashMap.get(valveParameter.getName());
-                        valveTitledPane.setElement(valveParameter);
                     }
 
                     try {
@@ -89,7 +88,6 @@ public class ActuatorsController extends CommonController implements Initializab
                         actuatorsTitledPaneHashMap.put(valveHeatersParameter.getName(), valveHeatersTitledPane);
                     } else {
                         valveHeatersTitledPane = actuatorsTitledPaneHashMap.get(valveHeatersParameter.getName());
-                        valveHeatersTitledPane.setElement(valveHeatersParameter);
                     }
 
                     try {
@@ -110,7 +108,6 @@ public class ActuatorsController extends CommonController implements Initializab
                         actuatorsTitledPaneHashMap.put(heatExchangerParameter.getName(), heatExchangerTitledPane);
                     } else {
                         heatExchangerTitledPane = actuatorsTitledPaneHashMap.get(heatExchangerParameter.getName());
-                        heatExchangerTitledPane.setElement(heatExchangerParameter);
                     }
 
                     try {
@@ -158,7 +155,6 @@ public class ActuatorsController extends CommonController implements Initializab
                             }
                         } else {
                             actuatorTitledPane = actuatorsTitledPaneHashMap.get(actuator.getName());
-                            actuatorTitledPane.setElement(actuator);
                             isSuccessfulAction = true;
                             i++;
                         }

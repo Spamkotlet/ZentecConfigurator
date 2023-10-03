@@ -122,20 +122,6 @@
                                           </AnchorPane>
                                       </children>
                                   </HBox>
-                        <HBox layoutX="10.0" layoutY="220.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="NEVER">
-                                 <children>
-                                    <Spinner fx:id="leftSpinner" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <Spinner fx:id="rightSpinner" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
                               </children>
                           </VBox>
                </center>

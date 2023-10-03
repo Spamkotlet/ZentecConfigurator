@@ -86,7 +86,6 @@ public class SensorsController extends CommonController implements Initializable
                             }
                         } else {
                             sensorTitledPane = sensorsTitledPaneHashMap.get(sensor.getName());
-                            sensorTitledPane.setElement(sensor);
                             isSuccessfulAction = true;
                             i++;
                         }

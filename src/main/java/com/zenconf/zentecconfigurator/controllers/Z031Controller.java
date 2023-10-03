@@ -2,7 +2,7 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.VarFunctions;
-import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
+import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinnerZ031;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import javafx.application.Platform;
@@ -49,11 +49,11 @@ public class Z031Controller extends CommonController implements Initializable {
         ElectricParameters electricParameters = MainController.electricParameters;
         WaterParameters waterParameters = MainController.waterParameters;
 
-        List<LabeledSpinner> electricLabeledSpinnerList = new ArrayList<>();
+        List<LabeledSpinnerZ031> electricLabeledSpinnerList = new ArrayList<>();
         electricParametersVBox.getChildren().clear();
         if (electricParameters != null) {
             for (Attribute attribute : electricParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true, true);
+                LabeledSpinnerZ031 labeledSpinner = new LabeledSpinnerZ031(attribute, 60, true);
                 try {
                     electricParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -65,11 +65,11 @@ public class Z031Controller extends CommonController implements Initializable {
         writeElectricParametersButton.setOnAction(e -> writeParameters(electricLabeledSpinnerList));
         resetDefaultElectricButton.setOnAction(e -> setDefaultParameters(electricLabeledSpinnerList));
 
-        List<LabeledSpinner> waterLabeledSpinnerList = new ArrayList<>();
+        List<LabeledSpinnerZ031> waterLabeledSpinnerList = new ArrayList<>();
         waterParametersVBox.getChildren().clear();
         if (waterParameters != null) {
             for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true, true);
+                LabeledSpinnerZ031 labeledSpinner = new LabeledSpinnerZ031(attribute, 60, true);
                 try {
                     waterParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -81,11 +81,11 @@ public class Z031Controller extends CommonController implements Initializable {
         writeWaterParametersButton.setOnAction(e -> writeParameters(waterLabeledSpinnerList));
         resetDefaultWaterButton.setOnAction(e -> setDefaultParameters(waterLabeledSpinnerList));
 
-        List<LabeledSpinner> z031LabeledSpinnerList = new ArrayList<>();
+        List<LabeledSpinnerZ031> z031LabeledSpinnerList = new ArrayList<>();
         z031ParametersVBox.getChildren().clear();
         if (waterParameters != null) {
-            for (Attribute attribute : waterParameters.getAttributes()) {
-                LabeledSpinner labeledSpinner = new LabeledSpinner(attribute, 60, true);
+            for (int i = 0; i < waterParameters.getAttributes().size(); i++) {
+                LabeledSpinnerZ031 labeledSpinner = new LabeledSpinnerZ031(waterParameters.getAttributes().get(i), 60, false, false);
                 try {
                     z031ParametersVBox.getChildren().add(labeledSpinner.getSpinner());
                 } catch (Exception e) {
@@ -98,7 +98,7 @@ public class Z031Controller extends CommonController implements Initializable {
         readParameters(z031LabeledSpinnerList);
     }
 
-    private void writeParameters(List<LabeledSpinner> labeledSpinnerList) {
+    private void writeParameters(List<LabeledSpinnerZ031> labeledSpinnerList) {
         try {
             logger.info("Запись параметров в пульт");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.WRITE);
@@ -116,7 +116,7 @@ public class Z031Controller extends CommonController implements Initializable {
 
     }
 
-    private void readParameters(List<LabeledSpinner> labeledSpinnerList) {
+    private void readParameters(List<LabeledSpinnerZ031> labeledSpinnerList) {
         try {
             logger.info("Чтение параметров из пульта");
             Thread thread = getThread(labeledSpinnerList, VarFunctions.READ);
@@ -133,14 +133,14 @@ public class Z031Controller extends CommonController implements Initializable {
         }
     }
 
-    private void setDefaultParameters(List<LabeledSpinner> labeledSpinnerList) {
+    private void setDefaultParameters(List<LabeledSpinnerZ031> labeledSpinnerList) {
         logger.info("Вернуть параметры по умолчанию");
-        for (LabeledSpinner spinner : labeledSpinnerList) {
+        for (LabeledSpinnerZ031 spinner : labeledSpinnerList) {
             spinner.setDefaultValue();
         }
     }
 
-    private Thread getThread(List<LabeledSpinner> labeledSpinnerList, VarFunctions varFunctions) {
+    private Thread getThread(List<LabeledSpinnerZ031> labeledSpinnerList, VarFunctions varFunctions) {
         Thread thread;
         Task<Void> fillingPaneTask = new Task<>() {
             @Override
@@ -148,7 +148,7 @@ public class Z031Controller extends CommonController implements Initializable {
                 Platform.runLater(() -> showLoadWindow(this));
 
                 int parametersMax = labeledSpinnerList.size();
-                LabeledSpinner spinner = null;
+                LabeledSpinnerZ031 spinner = null;
                 boolean isSuccessfulAction = true;
                 int successfulActionAttempt = 0;
                 for (int i = 0; i < labeledSpinnerList.size(); ) {

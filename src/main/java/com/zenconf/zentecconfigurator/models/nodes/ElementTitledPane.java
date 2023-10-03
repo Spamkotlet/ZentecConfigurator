@@ -60,14 +60,4 @@ public class ElementTitledPane extends TitledPane {
         vBox.setPadding(new Insets(10));
         return vBox;
     }
-
-    public void setElement(Element element) throws Exception {
-        this.element = element;
-        for (LabeledSpinner labeledSpinner : labeledSpinnerList) {
-            labeledSpinner.readModbusValue();
-        }
-        for (LabeledChoiceBox labeledChoiceBox : labeledChoiceBoxList) {
-            labeledChoiceBox.readModbusValue();
-        }
-    }
 }

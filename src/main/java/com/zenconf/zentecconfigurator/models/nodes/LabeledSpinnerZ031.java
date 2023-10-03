@@ -17,24 +17,28 @@ import javafx.util.StringConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LabeledSpinner {
+public class LabeledSpinnerZ031 {
 
     private Spinner<Integer> spinner;
     private String errorText = "*";
     private Label errorLabel;
     private final Attribute attribute;
-    private final int labelWidth = 200;
+    private int labelWidth = 200;
     private boolean showDefaultValue = false;
     private boolean readingByInitialization = false;
+    private boolean _enabled = true;
 
-    public LabeledSpinner(Attribute attribute) {
+    public LabeledSpinnerZ031(Attribute attribute, int labelWidth, boolean showDefaultValue) {
         this.attribute = attribute;
+        this.labelWidth = labelWidth;
+        this.showDefaultValue = showDefaultValue;
     }
 
-    public LabeledSpinner(Attribute attribute, boolean readingByInitialization, boolean showDefaultValue) {
+    public LabeledSpinnerZ031(Attribute attribute, int labelWidth, boolean showDefaultValue, boolean _enabled) {
         this.attribute = attribute;
-        this.readingByInitialization = readingByInitialization;
+        this.labelWidth = labelWidth;
         this.showDefaultValue = showDefaultValue;
+        this._enabled = _enabled;
     }
 
     public Node getSpinner() throws Exception {
@@ -113,13 +117,13 @@ public class LabeledSpinner {
     private Spinner<Integer> createSpinner(int minValue, int maxValue) throws Exception {
         int initValue = 0;
 
-        if (showDefaultValue && !readingByInitialization) {
+        if (showDefaultValue && !readingByInitialization && _enabled) {
             if (attribute.getDefaultValue() != null) {
                 initValue = (int) attribute.getDefaultValue();
             }
         }
 
-        if (readingByInitialization) {
+        if (readingByInitialization && _enabled) {
             try {
                 errorLabel.setVisible(false);
                 initValue = Integer.parseInt(attribute.readModbus());
@@ -133,7 +137,11 @@ public class LabeledSpinner {
 
         spinner = new Spinner<>(minValue, maxValue, initValue);
 
+        spinner.setEditable(!_enabled);
         spinner.setPrefWidth(200);
+        if (!_enabled) {
+            return spinner;
+        }
         spinner.getValueFactory().setWrapAround(true);
         spinner.getValueFactory().setConverter(
                 new StringConverter<>() {
@@ -162,11 +170,9 @@ public class LabeledSpinner {
             }
         }
 
-        spinner.getValueFactory().valueProperty().bindBidirectional(attribute.currentValueProperty);
-
         spinner.getValueFactory().valueProperty().addListener(e -> {
             if (attribute.getDefaultValue() != null) {
-                if (attribute.currentValueProperty.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
                     Platform.runLater(() -> spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY))));
                 } else {
                     Platform.runLater(() -> spinner.getEditor().setBackground(Background.EMPTY));
@@ -198,6 +204,20 @@ public class LabeledSpinner {
         return label;
     }
 
+    public void readModbusValue() throws Exception {
+        int value = 0;
+        try {
+            errorLabel.setVisible(false);
+            value = Integer.parseInt(attribute.readModbus());
+        } catch (Exception e) {
+            errorText = "Ошибка чтения";
+            Platform.runLater(() -> errorLabel.setText(errorText));
+            errorLabel.setVisible(true);
+            throw e;
+        }
+        spinner.getValueFactory().setValue(value);
+    }
+
     public void writeModbusValue() {
         try {
             errorLabel.setVisible(false);
@@ -208,6 +228,19 @@ public class LabeledSpinner {
             errorLabel.setVisible(true);
             throw new RuntimeException(e);
         }
+    }
+
+    public void setSpinnerStyleLikeDefault() {
+        if (attribute.getDefaultValue() != null) {
+            if (spinner.getValue() == Integer.parseInt(attribute.getDefaultValue().toString())) {
+                spinner.getEditor().setBackground(Background.EMPTY);
+            }
+        }
+    }
+
+    public void setDefaultValue() {
+        spinner.getValueFactory().setValue((Integer) attribute.getDefaultValue());
+        setSpinnerStyleLikeDefault();
     }
 
     public Attribute getAttribute() {

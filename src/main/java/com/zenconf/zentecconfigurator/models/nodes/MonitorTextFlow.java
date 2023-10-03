@@ -18,7 +18,7 @@ import javafx.util.StringConverter;
 
 public class MonitorTextFlow {
     private final Element element;
-    private Attribute correctionAttribute = null;
+    private Attribute correctionAttribute;
     private final MonitorValueText valueText = new MonitorValueText("***");
 
     public MonitorTextFlow(Element element) {
@@ -94,6 +94,8 @@ public class MonitorTextFlow {
                     }
                 }
         );
+
+        spinner.getValueFactory().valueProperty().bindBidirectional(attribute.currentValueProperty);
 
         spinner.setOnMouseReleased(e -> writeModbusValue(spinner.getValue()));
 

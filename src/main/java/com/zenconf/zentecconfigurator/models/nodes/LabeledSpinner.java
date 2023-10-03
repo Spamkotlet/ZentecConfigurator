@@ -1,6 +1,5 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -31,7 +30,6 @@ public class LabeledSpinner {
     // Временный параметр для исключения занесения в список атрибутов Z031 по умолчанию
     // attributesForResetToDefault
     private boolean _fromZ031 = false;
-
 
     public LabeledSpinner(Attribute attribute) {
         this.attribute = attribute;
@@ -178,12 +176,21 @@ public class LabeledSpinner {
 
         if (attribute.getDefaultValue() != null) {
             if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
-                spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
-                if (!ConfiguratorController.attributesForResetToDefault.contains(this) && !_fromZ031) {
-                    ConfiguratorController.attributesForResetToDefault.add(this);
-                }
+                Platform.runLater(() -> spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY))));
             }
         }
+
+        spinner.getValueFactory().valueProperty().bindBidirectional(attribute.currentValueProperty);
+
+        spinner.getValueFactory().valueProperty().addListener(e -> {
+            if (attribute.getDefaultValue() != null) {
+                if (attribute.currentValueProperty.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                    Platform.runLater(() -> spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY))));
+                } else {
+                    Platform.runLater(() -> spinner.getEditor().setBackground(Background.EMPTY));
+                }
+            }
+        });
 
         spinner.setOnMouseReleased(e -> writeModbusValue());
 
@@ -198,21 +205,6 @@ public class LabeledSpinner {
                 writeModbusValue();
             }
         });
-
-//        spinner.valueProperty().addListener((obs, oldVal, newVal) -> {
-//            if (attribute.getDefaultValue() != null) {
-//                if (newVal != Integer.parseInt(attribute.getDefaultValue().toString())) {
-//                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
-//                    if (!ConfiguratorController.attributesForResetToDefault.contains(this)) {
-//                        ConfiguratorController.attributesForResetToDefault.add(this);
-//                    }
-//                } else {
-//                    spinner.getEditor().setBackground(Background.EMPTY);
-//                    ConfiguratorController.attributesForResetToDefault.remove(this);
-//                }
-//            }
-//        });
-
         return spinner;
     }
 
@@ -230,7 +222,6 @@ public class LabeledSpinner {
             errorLabel.setVisible(false);
             spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
                     attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
-            Platform.runLater(this::setSpinnerStyleLikeDefault);
         } catch (Exception e) {
             errorText = "Ошибка чтения";
             Platform.runLater(() -> errorLabel.setText(errorText));
@@ -244,17 +235,6 @@ public class LabeledSpinner {
         try {
             errorLabel.setVisible(false);
             attribute.writeModbus(spinner.getValue().toString());
-            if (attribute.getDefaultValue() != null) {
-                if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
-                    spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY)));
-                    if (!ConfiguratorController.attributesForResetToDefault.contains(this) && !_fromZ031) {
-                        ConfiguratorController.attributesForResetToDefault.add(this);
-                    }
-                } else {
-                    setSpinnerStyleLikeDefault();
-                    ConfiguratorController.attributesForResetToDefault.remove(this);
-                }
-            }
         } catch (Exception e) {
             errorText = "Ошибка записи";
             Platform.runLater(() -> errorLabel.setText(errorText));

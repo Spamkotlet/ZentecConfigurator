@@ -121,6 +121,7 @@ public class SensorsController extends CommonController implements Initializable
             @Override
             protected void failed() {
                 super.failed();
+                getException().printStackTrace();
                 logger.info("Задача fillingSensorsPaneTask завершилась ошибкой");
                 logger.error(this.getException().getMessage());
                 Platform.runLater(() -> {

@@ -1,8 +1,8 @@
 package com.zenconf.zentecconfigurator.controllers;
 
 import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Sensor;
-import com.zenconf.zentecconfigurator.models.nodes.LabeledSpinner;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -56,7 +56,7 @@ public class ConfiguratorController extends CommonController implements Initiali
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
 
-    public static List<LabeledSpinner> attributesForResetToDefault = new ArrayList<>();
+    public static List<Attribute> attributesForResetToDefault = new ArrayList<>();
 
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
@@ -290,17 +290,16 @@ public class ConfiguratorController extends CommonController implements Initiali
 
                     boolean isSuccessfulAction = true;
                     int successfulActionAttempt = 0;
-                    LabeledSpinner labeledSpinner = null;
+                    Attribute attribute = null;
                     for (int i = 0; i < attributesForResetToDefault.size(); ) {
                         if (isSuccessfulAction) {
                             updateMessage("Загрузка...: " + (i + 1) + "/" + attributesForResetToDefault.size());
                             updateProgress(i + 1, attributesForResetToDefault.size());
-                            labeledSpinner = attributesForResetToDefault.get(i);
+                            attribute = attributesForResetToDefault.get(i);
                         }
 
                         try {
-                            labeledSpinner.getAttribute().writeModbus(labeledSpinner.getAttribute().getDefaultValue());
-                            labeledSpinner.readModbusValue();
+                            attribute.writeModbusDefaultValue(attribute.getDefaultValue());
                             isSuccessfulAction = true;
                             i++;
                         } catch (Exception e) {
@@ -308,12 +307,12 @@ public class ConfiguratorController extends CommonController implements Initiali
                             logger.error(e.getMessage());
                             isSuccessfulAction = false;
                             successfulActionAttempt++;
-                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + labeledSpinner.getAttribute().getName());
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + attribute.getName());
                             if (successfulActionAttempt >= 3) {
                                 isSuccessfulAction = true;
                                 successfulActionAttempt = 0;
                                 i++;
-                                updateMessage("Ошибка загрузки\n" + labeledSpinner.getAttribute().getName());
+                                updateMessage("Ошибка загрузки\n" + attribute.getName());
                                 Thread.sleep(1000);
                             }
                             Thread.sleep(1000);

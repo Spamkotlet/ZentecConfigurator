@@ -1,8 +1,11 @@
 package com.zenconf.zentecconfigurator.models;
 
+import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.modbus.ModbusParameter;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ public class Attribute {
     private String name;
     private String description;
     private Controls control;
+    public ObjectProperty<Integer> currentValueProperty = new SimpleObjectProperty<>(0);
     private Object defaultValue;
     private int minValue;
     private int maxValue;
@@ -85,12 +89,47 @@ public class Attribute {
     public String readModbus() throws Exception {
         String value = "0";
         value = String.valueOf(modbusUtilSingleton.readModbus(modbusParameters.getAddress(), modbusParameters.getVarType()));
+        if (control != null) {
+            if (control.equals(Controls.SPINNER)) {
+                currentValueProperty.setValue(Integer.valueOf(value));
+            }
+        }
+        if (defaultValue != null) {
+            if (currentValueProperty.getValue() != Integer.parseInt(defaultValue.toString())) {
+                if (!ConfiguratorController.attributesForResetToDefault.contains(this)) {
+                    ConfiguratorController.attributesForResetToDefault.add(this);
+                }
+            } else {
+                ConfiguratorController.attributesForResetToDefault.remove(this);
+            }
+        }
         return value;
     }
 
     public void writeModbus(Object value) throws Exception {
-        if (modbusUtilSingleton.getMaster() != null) {
-            modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
+        modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
+        if (control != null) {
+            if (control.equals(Controls.SPINNER)) {
+                currentValueProperty.setValue(Integer.parseInt(value.toString()));
+            }
+        }
+        if (defaultValue != null) {
+            if (currentValueProperty.getValue() != Integer.parseInt(defaultValue.toString())) {
+                if (!ConfiguratorController.attributesForResetToDefault.contains(this)) {
+                    ConfiguratorController.attributesForResetToDefault.add(this);
+                }
+            } else {
+                ConfiguratorController.attributesForResetToDefault.remove(this);
+            }
+        }
+    }
+
+    public void writeModbusDefaultValue(Object value) throws Exception{
+        modbusUtilSingleton.writeModbus(modbusParameters.getAddress(), modbusParameters.getVarType(), value);
+        if (control != null) {
+            if (control.equals(Controls.SPINNER)) {
+                currentValueProperty.setValue(Integer.parseInt(value.toString()));
+            }
         }
     }
 }

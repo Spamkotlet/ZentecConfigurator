@@ -73,7 +73,6 @@
           "name": "Уставка температуры притока",
           "minValue": 0,
           "maxValue": 35,
-          "defaultValue": 22,
           "modbusParameters": {
             "address": 1249,
             "varType": "UINT8"
@@ -149,7 +148,6 @@
           "name": "Уставка доводчик",
           "minValue": 0,
           "maxValue": 35,
-          "defaultValue": 20,
           "modbusParameters": {
             "address": 1242,
             "varType": "UINT8"
@@ -601,7 +599,6 @@
           "name": "Уставка давления",
           "minValue": 0,
           "maxValue": 9999,
-          "defaultValue": 990,
           "modbusParameters": {
             "address": 1252,
             "varType": "UINT16"
@@ -664,7 +661,6 @@
           "name": "Уставка влажности",
           "minValue": 0,
           "maxValue": 100,
-          "defaultValue": 70,
           "modbusParameters": {
             "address": 1240,
             "varType": "UINT8"
@@ -674,7 +670,6 @@
           "name": "Уставка влажности (осушение)",
           "minValue": 0,
           "maxValue": 100,
-          "defaultValue": 70,
           "modbusParameters": {
             "address": 1241,
             "varType": "UINT8"
@@ -737,7 +732,6 @@
           "name": "Уставка CO2",
           "minValue": 0,
           "maxValue": 9999,
-          "defaultValue": 990,
           "modbusParameters": {
             "address": 1254,
             "varType": "UINT16"

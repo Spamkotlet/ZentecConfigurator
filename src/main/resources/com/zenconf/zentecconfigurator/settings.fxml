@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.SettingsController">
+<ScrollPane fitToWidth="true" minWidth="-Infinity" prefHeight="800.0" prefWidth="1224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zenconf.zentecconfigurator.controllers.SettingsController">
     <content>
         <VBox alignment="CENTER" fillWidth="false" minWidth="-Infinity" prefHeight="798.0" prefWidth="600.0" spacing="5.0">
             <children>
@@ -122,6 +122,20 @@
                                           </AnchorPane>
                                       </children>
                                   </HBox>
+                        <HBox layoutX="10.0" layoutY="220.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="NEVER">
+                                 <children>
+                                    <Spinner fx:id="leftSpinner" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Spinner fx:id="rightSpinner" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
                               </children>
                           </VBox>
                </center>

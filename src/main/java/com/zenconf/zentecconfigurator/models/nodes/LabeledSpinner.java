@@ -134,6 +134,7 @@ public class LabeledSpinner {
         spinner = new Spinner<>(minValue, maxValue, initValue);
 
         spinner.setPrefWidth(200);
+        spinner.setEditable(true);
         spinner.getValueFactory().setWrapAround(true);
         spinner.getValueFactory().setConverter(
                 new StringConverter<>() {

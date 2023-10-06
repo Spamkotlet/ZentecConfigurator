@@ -8,6 +8,7 @@ import com.zenconf.zentecconfigurator.controllers.MainController;
 import com.zenconf.zentecconfigurator.models.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.enums.Seasons;
 import com.zenconf.zentecconfigurator.models.nodes.*;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
@@ -74,7 +75,7 @@ public class IOMonitorController extends CommonController implements Initializab
 
     private final HashMap<String, MonitorTextFlow> sensorsTextFlowHashMap = new HashMap<>();
     private final HashMap<String, MonitorTextFlow> actuatorsTextFlowHashMap = new HashMap<>();
-    private final HashMap<String, SetpointSpinner> setpointSpinnersHashMap = new HashMap<>();
+    private final HashMap<String, SetpointControl> setpointControlsHashMap = new HashMap<>();
 
     ModbusUtilSingleton modbusUtilSingleton;
     List<MonitorValueText> monitorValueTextList = new ArrayList<>();
@@ -353,14 +354,28 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (sensor.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = sensor.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {
-                        SetpointSpinner setpointSpinner;
-                        if (setpointSpinnersHashMap.get(attribute.getName()) == null) {
-                            setpointSpinner = new SetpointSpinner(attribute);
-                            setpointSpinnersHashMap.put(attribute.getName(), setpointSpinner);
-                        } else {
-                            setpointSpinner = setpointSpinnersHashMap.get(attribute.getName());
+                        if (attribute.getControl() == null) {
+                            break;
                         }
-                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                        if (attribute.getControl().equals(Controls.SPINNER)) {
+                            SetpointSpinner setpointSpinner;
+                            if (setpointControlsHashMap.get(attribute.getName()) == null) {
+                                setpointSpinner = new SetpointSpinner(attribute);
+                                setpointControlsHashMap.put(attribute.getName(), setpointSpinner);
+                            } else {
+                                setpointSpinner = (SetpointSpinner) setpointControlsHashMap.get(attribute.getName());
+                            }
+                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                        } else if (attribute.getControl().equals(Controls.CHOICE_BOX)) {
+                            SetpointChoiceBox setpointChoiceBox;
+                            if (setpointControlsHashMap.get(attribute.getName()) == null) {
+                                setpointChoiceBox = new SetpointChoiceBox(attribute);
+                                setpointControlsHashMap.put(attribute.getName(), setpointChoiceBox);
+                            } else {
+                                setpointChoiceBox = (SetpointChoiceBox) setpointControlsHashMap.get(attribute.getName());
+                            }
+                            setpointsVBox.getChildren().add(setpointChoiceBox.getChoiceBox());
+                        }
                     }
                 }
                 if (sensor.getAttributeForMonitoring() != null) {
@@ -383,14 +398,25 @@ public class IOMonitorController extends CommonController implements Initializab
                 if (actuator.getAttributesForControlling() != null) {
                     List<Attribute> attributesForControlling = actuator.getAttributesForControlling();
                     for (Attribute attribute : attributesForControlling) {
-                        SetpointSpinner setpointSpinner;
-                        if (setpointSpinnersHashMap.get(attribute.getName()) == null) {
-                            setpointSpinner = new SetpointSpinner(attribute);
-                            setpointSpinnersHashMap.put(attribute.getName(), setpointSpinner);
-                        } else {
-                            setpointSpinner = setpointSpinnersHashMap.get(attribute.getName());
+                        if (attribute.getControl().equals(Controls.SPINNER)) {
+                            SetpointSpinner setpointSpinner;
+                            if (setpointControlsHashMap.get(attribute.getName()) == null) {
+                                setpointSpinner = new SetpointSpinner(attribute);
+                                setpointControlsHashMap.put(attribute.getName(), setpointSpinner);
+                            } else {
+                                setpointSpinner = (SetpointSpinner) setpointControlsHashMap.get(attribute.getName());
+                            }
+                            setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
+                        } else if (attribute.getControl().equals(Controls.CHOICE_BOX)) {
+                            SetpointChoiceBox setpointChoiceBox;
+                            if (setpointControlsHashMap.get(attribute.getName()) == null) {
+                                setpointChoiceBox = new SetpointChoiceBox(attribute);
+                                setpointControlsHashMap.put(attribute.getName(), setpointChoiceBox);
+                            } else {
+                                setpointChoiceBox = (SetpointChoiceBox) setpointControlsHashMap.get(attribute.getName());
+                            }
+                            setpointsVBox.getChildren().add(setpointChoiceBox.getChoiceBox());
                         }
-                        setpointsVBox.getChildren().add(setpointSpinner.getSpinner());
                     }
                 }
                 if (actuator.getAttributeForMonitoring() != null) {

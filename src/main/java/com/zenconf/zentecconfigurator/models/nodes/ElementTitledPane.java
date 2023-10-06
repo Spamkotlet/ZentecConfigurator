@@ -15,14 +15,12 @@ public class ElementTitledPane extends TitledPane {
 
     List<LabeledSpinner> labeledSpinnerList;
     List<LabeledChoiceBox> labeledChoiceBoxList;
-    private Element element;
 
     public ElementTitledPane() {
 
     }
 
     public ElementTitledPane(Element element) throws Exception {
-        this.element = element;
         VBox vBox = createMainVBox();
         vBox.setFillWidth(true);
 
@@ -47,11 +45,9 @@ public class ElementTitledPane extends TitledPane {
             }
         }
 
-        AnchorPane mainAnchor = new AnchorPane();
-        mainAnchor.getChildren().add(vBox);
-
+        this.setAnimated(false);
         this.setText(element.getName());
-        this.setContent(mainAnchor);
+        this.setContent(vBox);
     }
 
     private VBox createMainVBox() {

@@ -71,6 +71,7 @@
       "attributesForControlling": [
         {
           "name": "Уставка температуры притока",
+          "control": 1,
           "minValue": 0,
           "maxValue": 35,
           "modbusParameters": {
@@ -146,6 +147,7 @@
       "attributesForControlling": [
         {
           "name": "Уставка доводчик",
+          "control": 1,
           "minValue": 0,
           "maxValue": 35,
           "modbusParameters": {
@@ -597,6 +599,7 @@
       "attributesForControlling": [
         {
           "name": "Уставка давления",
+          "control": 1,
           "minValue": 0,
           "maxValue": 9999,
           "modbusParameters": {
@@ -659,6 +662,7 @@
       "attributesForControlling": [
         {
           "name": "Уставка влажности",
+          "control": 1,
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {
@@ -730,6 +734,7 @@
       "attributesForControlling": [
         {
           "name": "Уставка CO2",
+          "control": 1,
           "minValue": 0,
           "maxValue": 9999,
           "modbusParameters": {

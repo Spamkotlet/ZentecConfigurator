@@ -86,6 +86,7 @@ public class SchemeTitledPane extends TitledPane {
         vBox.getChildren().add(createHBox(nodes));
         vBox.setAlignment(Pos.CENTER);
 
+        this.setAnimated(false);
         this.setText(element.getName());
         this.setContent(vBox);
     }

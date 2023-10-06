@@ -67,7 +67,23 @@
           "address": 1204,
           "varType": "UINT16"
         }
-      }
+      },
+      "attributesForControlling": [
+        {
+          "name": "Скорость вентиляторов",
+          "control": 2,
+          "modbusParameters": {
+            "address": 1250,
+            "varType": "UINT8"
+          },
+          "values": [
+            "МИН",
+            "НОМ",
+            "МАКС",
+            "АВТО"
+          ]
+        }
+      ]
     },
     {
       "name": "Вытяжной вентилятор",
@@ -432,6 +448,7 @@
       "attributesForControlling": [
         {
           "name": "Температура обр. воды деж. 1",
+          "control": 1,
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {
@@ -484,6 +501,7 @@
       "attributesForControlling": [
         {
           "name": "Температура обр. воды деж. 2",
+          "control": 1,
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {
@@ -536,6 +554,7 @@
       "attributesForControlling": [
         {
           "name": "Температура обр. воды деж. 3",
+          "control": 1,
           "minValue": 0,
           "maxValue": 100,
           "modbusParameters": {

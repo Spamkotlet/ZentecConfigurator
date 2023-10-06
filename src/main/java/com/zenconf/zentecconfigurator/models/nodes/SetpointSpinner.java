@@ -13,7 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class SetpointSpinner {
+public class SetpointSpinner extends SetpointControl {
 
     private final Attribute attribute;
 
@@ -26,10 +26,9 @@ public class SetpointSpinner {
         int minValue = attribute.getMinValue();
         int maxValue = attribute.getMaxValue();
 
-        AnchorPane labelAnchor = createLabelAnchor(labelText);
         AnchorPane spinnerAnchor = createSpinnerAnchor(minValue, maxValue);
 
-        return createVBoxForSetpointSpinner(labelAnchor, spinnerAnchor);
+        return createVBoxForSetpointSpinner(createLabelAnchor(labelText), spinnerAnchor);
     }
 
     private VBox createVBoxForSetpointSpinner(Node... nodes) {
@@ -48,27 +47,18 @@ public class SetpointSpinner {
         return vBox;
     }
 
-    private AnchorPane createLabelAnchor(String labelText) {
+    private Label createLabelAnchor(String labelText) {
         Label label = new Label(labelText);
         label.setPrefWidth(200);
         label.setAlignment(Pos.CENTER);
         label.setFont(Font.font("Verdana", 14));
-
-        AnchorPane labelAnchor = new AnchorPane();
-
-        labelAnchor.getChildren().add(label);
 
         AnchorPane.setLeftAnchor(label, 0.0);
         AnchorPane.setRightAnchor(label, 0.0);
         AnchorPane.setTopAnchor(label, 0.0);
         AnchorPane.setBottomAnchor(label, 0.0);
 
-        AnchorPane.setLeftAnchor(labelAnchor, 0.0);
-        AnchorPane.setRightAnchor(labelAnchor, 0.0);
-        AnchorPane.setTopAnchor(labelAnchor, 0.0);
-        AnchorPane.setBottomAnchor(labelAnchor, 0.0);
-
-        return labelAnchor;
+        return label;
     }
 
     private AnchorPane createSpinnerAnchor(int minValue, int maxValue) throws Exception {

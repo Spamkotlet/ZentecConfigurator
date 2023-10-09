@@ -145,9 +145,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());
                     actuatorInScheme.setAttributesForControlling(actuator.getAttributesForControlling());
                     if (actuatorInScheme.getIsUsedDefault()) {
-                        if (actuatorInScheme.getAttributes() != null) {
-                            ConfiguratorController.actuatorsUsed.add(actuatorInScheme);
-                        }
+                        ConfiguratorController.actuatorsUsed.add(actuatorInScheme);
                     }
                 }
             }
@@ -162,9 +160,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     sensorInScheme.setAttributeForMonitoring(sensor.getAttributeForMonitoring());
                     sensorInScheme.setAttributesForControlling(sensor.getAttributesForControlling());
                     if (sensorInScheme.getIsUsedDefault()) {
-                        if (sensorInScheme.getAttributes() != null) {
-                            ConfiguratorController.sensorsUsed.add(sensorInScheme);
-                        }
+                        ConfiguratorController.sensorsUsed.add(sensorInScheme);
                     }
                 }
             }

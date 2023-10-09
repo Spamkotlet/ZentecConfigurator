@@ -22,10 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.util.*;
@@ -62,6 +66,8 @@ public class IOMonitorController extends CommonController implements Initializab
     public Label statusLabel;
     @FXML
     public Label statusRemainingTimeLabel;
+    @FXML
+    public Spinner<Integer> waitingTimeSpinner;
     @FXML
     public Label seasonLabel;
     @FXML
@@ -341,6 +347,65 @@ public class IOMonitorController extends CommonController implements Initializab
                 throw new RuntimeException(ex);
             }
         });
+
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                MainController.mainParameters.getWaitingTimeAttribute().getMinValue(),
+                MainController.mainParameters.getWaitingTimeAttribute().getMaxValue(),
+                Integer.parseInt(MainController.mainParameters.getWaitingTimeAttribute().readModbus())
+        );
+
+        waitingTimeSpinner.setValueFactory(valueFactory);
+        waitingTimeSpinner.getEditor().setFont(Font.font("Verdana", 14));
+        waitingTimeSpinner.getValueFactory().setConverter(
+                new StringConverter<>() {
+                    @Override
+                    public String toString(Integer integer) {
+                        return (integer == null) ? "0" : integer.toString();
+                    }
+
+                    @Override
+                    public Integer fromString(String s) {
+                        if (s.matches("^-?[0-9]+$")) {
+                            try {
+                                return Integer.valueOf(s);
+                            } catch (NumberFormatException e) {
+                                return 0;
+                            }
+                        }
+                        return 0;
+                    }
+                }
+        );
+
+        waitingTimeSpinner.getValueFactory().setValue(Integer.parseInt(MainController.mainParameters.getWaitingTimeAttribute().readModbus()));
+
+        waitingTimeSpinner.setOnMouseReleased(e -> {
+            try {
+                MainController.mainParameters.getWaitingTimeAttribute().writeModbus(waitingTimeSpinner.getValue());
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        waitingTimeSpinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (oldVal && !newVal) {
+                try {
+                    MainController.mainParameters.getWaitingTimeAttribute().writeModbus(waitingTimeSpinner.getValue());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        waitingTimeSpinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    MainController.mainParameters.getWaitingTimeAttribute().writeModbus(waitingTimeSpinner.getValue());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     // Инициализация элементов мониторинга состояния контроллера
@@ -484,7 +549,7 @@ public class IOMonitorController extends CommonController implements Initializab
             Platform.runLater(() -> statusLabel.setText(statusList.get(statusNumber)));
             prevStatusNumber = statusNumber;
         }
-        int statusRemainingTime = Integer.parseInt(MainController.mainParameters.getStatusRemainingTime().readModbus());
+        int statusRemainingTime = Integer.parseInt(MainController.mainParameters.getStatusRemainingTimeAttribute().readModbus());
         statusTimerIsNotZeroValue.setValue(statusRemainingTime > 0);
         if (statusTimerIsNotZeroValue.getValue()) {
             Platform.runLater(() -> statusRemainingTimeLabel.setText("" + statusRemainingTime));

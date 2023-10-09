@@ -92,18 +92,28 @@
         "Блокировка",
         "Резерв",
         "Авария",
-        "Критическая авария"
+        "Крит. авария"
       ],
       "modbusParameters": {
         "address": 1018,
         "varType": "UINT8"
       }
     },
-    "statusRemainingTime": {
+    "statusRemainingTimeAttribute": {
       "name": "Оставшееся время статуса",
       "modbusParameters": {
         "address": 1558,
         "varType": "UINT16"
+      }
+    },
+    "waitingTimeAttribute": {
+      "name": "Время ожидания",
+      "control": 1,
+      "minValue": 0,
+      "maxValue": 255,
+      "modbusParameters": {
+        "address": 1561,
+        "varType": "UINT8"
       }
     },
     "heatExchangerAttributes": [

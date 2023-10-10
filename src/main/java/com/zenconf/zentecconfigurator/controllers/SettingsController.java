@@ -2,6 +2,7 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
+import com.zenconf.zentecconfigurator.updater.FtpClient;
 import com.zenconf.zentecconfigurator.utils.modbus.ModbusUtilSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import jssc.SerialPortList;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Objects;
@@ -38,6 +40,14 @@ public class SettingsController extends CommonController implements Initializabl
     public Button disconnectDeviceButton;
     @FXML
     public Button refreshComPortsButton;
+
+    // TEST
+    @FXML
+    public Button connectFTP;
+    @FXML
+    public Button disconnectFTP;
+    FtpClient ftpClient;
+    // TEST
 
     ModbusUtilSingleton modbusUtilSingleton;
 
@@ -68,6 +78,24 @@ public class SettingsController extends CommonController implements Initializabl
         connectDeviceButton.setOnAction(this::connectDevice);
         disconnectDeviceButton.setOnAction(this::disconnectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
+
+//        connectFTP.setOnAction(e -> {
+//            try {
+//                ftpClient = new FtpClient();
+//                ftpClient.open();
+//            } catch (IOException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
+//
+//        disconnectFTP.setOnAction(e -> {
+//            try {
+//                ftpClient = new FtpClient();
+//                ftpClient.close();
+//            } catch (IOException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
     }
 
     private void connectDevice(ActionEvent actionEvent) {

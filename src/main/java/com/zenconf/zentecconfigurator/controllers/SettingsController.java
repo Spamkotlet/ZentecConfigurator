@@ -78,24 +78,6 @@ public class SettingsController extends CommonController implements Initializabl
         connectDeviceButton.setOnAction(this::connectDevice);
         disconnectDeviceButton.setOnAction(this::disconnectDevice);
         refreshComPortsButton.setOnAction(this::refreshComPorts);
-
-//        connectFTP.setOnAction(e -> {
-//            try {
-//                ftpClient = new FtpClient();
-//                ftpClient.open();
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
-//
-//        disconnectFTP.setOnAction(e -> {
-//            try {
-//                ftpClient = new FtpClient();
-//                ftpClient.close();
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
     }
 
     private void connectDevice(ActionEvent actionEvent) {

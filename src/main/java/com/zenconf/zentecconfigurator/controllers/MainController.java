@@ -8,7 +8,9 @@ import com.zenconf.zentecconfigurator.models.Scheme;
 import com.zenconf.zentecconfigurator.models.Sensor;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
+import com.zenconf.zentecconfigurator.updater.FtpClient;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,10 +26,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController extends CommonController implements Initializable {
 
@@ -82,6 +81,48 @@ public class MainController extends CommonController implements Initializable {
         };
         thread = new Thread(task);
         thread.start();
+
+        FtpClient ftpClient = new FtpClient();
+        Task<Boolean> updateApplicationTask = new Task<Boolean>() {
+            @Override
+            protected Boolean call() throws Exception {
+                boolean checkUpdates = ftpClient.checkUpdates();
+                logger.info("CheckUpdates: " + checkUpdates);
+                return checkUpdates;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                logger.info("Updates available: " + super.getValue());
+                if (super.getValue()) {
+                    Dialog<ButtonType> dialog = new Dialog<>();
+                    dialog.setTitle("Обновление");
+                    dialog.setHeaderText("Найдена более новая версия приложения");
+                    dialog.setContentText("Обновляем?");
+                    dialog.getDialogPane().getButtonTypes().addAll(
+                            new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
+                            new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+                    );
+
+                    Optional<ButtonType> result = dialog.showAndWait();
+                    if (result.isPresent()) {
+                        if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                            try {
+                                Runtime.getRuntime().exec("cmd /c start updater.jar");
+                            } catch (IOException ex) {
+                                logger.error(ex.getMessage(), ex);
+                                ex.printStackTrace();
+                                throw new RuntimeException(ex);
+                            }
+                            Platform.exit();
+                        }
+                    }
+                }
+            }
+        };
+        Thread updateApplicationThread = new Thread(updateApplicationTask);
+        updateApplicationThread.start();
     }
 
     private void getMainParametersFromJson() {

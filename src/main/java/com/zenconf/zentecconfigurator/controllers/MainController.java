@@ -57,12 +57,14 @@ public class MainController extends CommonController implements Initializable {
     public static final Map<String, Node> panels = new HashMap<>();
     public static Node activePanel = null;
     public static Stage primaryStage;
-
+    public static HashMap<String, String> ftpServerProperties = new HashMap<>();
+    public static HashMap<String, String> configuratorProperties = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         leftHeaderButtonsHBox1 = leftHeaderButtonsHBox;
         mainAnchorPane1 = mainControllerAnchorPane;
+        initializeProperties();
 
         onCreateChildNode(mainControllerAnchorPane, "Домашняя", "home-page-view.fxml");
 
@@ -87,14 +89,13 @@ public class MainController extends CommonController implements Initializable {
             @Override
             protected Boolean call() throws Exception {
                 boolean checkUpdates = ftpClient.checkUpdates();
-                logger.info("CheckUpdates: " + checkUpdates);
+                logger.info("UPDATE IS AVAILABLE: " + checkUpdates);
                 return checkUpdates;
             }
 
             @Override
             protected void succeeded() {
                 super.succeeded();
-                logger.info("Updates available: " + super.getValue());
                 if (super.getValue()) {
                     Dialog<ButtonType> dialog = new Dialog<>();
                     dialog.setTitle("Обновление");
@@ -147,7 +148,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -186,7 +187,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -221,7 +222,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -256,7 +257,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -292,7 +293,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -329,7 +330,7 @@ public class MainController extends CommonController implements Initializable {
 
             logger.info("Файл " + file + " (Найден и загружен)");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage(), e);
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
@@ -338,6 +339,32 @@ public class MainController extends CommonController implements Initializable {
                 alert.setOnCloseRequest(ex -> Platform.exit());
                 alert.show();
             });
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void initializeProperties() {
+        Properties _FTPServerProperties = new Properties();
+        try (FileInputStream fis = new FileInputStream("settings/properties/FTPServer.properties")) {
+            logger.info("Инициализация FTPServer.properties");
+            _FTPServerProperties.load(fis);
+            Map map = _FTPServerProperties;
+            Map<String, String> map1 = (Map<String, String>) map;
+            ftpServerProperties = new HashMap<>(map1);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
+
+        Properties _ConfiguratorProperties = new Properties();
+        try (FileInputStream fis = new FileInputStream("settings/properties/Configurator.properties")) {
+            logger.info("Инициализация Configurator.properties");
+            _ConfiguratorProperties.load(fis);
+            Map map = _ConfiguratorProperties;
+            Map<String, String> map1 = (Map<String, String>) map;
+            configuratorProperties = new HashMap<>(map1);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }

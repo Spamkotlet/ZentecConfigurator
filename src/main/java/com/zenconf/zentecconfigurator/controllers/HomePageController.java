@@ -3,6 +3,7 @@ package com.zenconf.zentecconfigurator.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +15,8 @@ import java.util.*;
 public class HomePageController extends CommonController implements Initializable {
 
     @FXML
+    public Label currentVersionLabel;
+    @FXML
     public Button goToConfiguratorButton;
     @FXML
     public Button goToZ031Button;
@@ -24,6 +27,8 @@ public class HomePageController extends CommonController implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        currentVersionLabel.setText(MainController.configuratorProperties.get("Configurator.currentVersion"));
+
         mainViewVBox1 = mainViewVBox;
         mainAnchorPane = MainController.mainAnchorPane1;
 

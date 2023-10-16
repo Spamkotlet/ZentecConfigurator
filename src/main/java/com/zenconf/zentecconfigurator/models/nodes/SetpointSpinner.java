@@ -1,21 +1,23 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 public class SetpointSpinner extends SetpointControl {
 
     private final Attribute attribute;
+    private Spinner<Integer> spinner;
 
     public SetpointSpinner(Attribute attribute) {
         this.attribute = attribute;
@@ -23,10 +25,8 @@ public class SetpointSpinner extends SetpointControl {
 
     public Node getSpinner() throws Exception {
         String labelText = attribute.getName();
-        int minValue = attribute.getMinValue();
-        int maxValue = attribute.getMaxValue();
 
-        AnchorPane spinnerAnchor = createSpinnerAnchor(minValue, maxValue);
+        AnchorPane spinnerAnchor = createSpinnerAnchor();
 
         return createVBoxForSetpointSpinner(createLabelAnchor(labelText), spinnerAnchor);
     }
@@ -49,7 +49,7 @@ public class SetpointSpinner extends SetpointControl {
 
     private Label createLabelAnchor(String labelText) {
         Label label = new Label(labelText);
-        label.setPrefWidth(200);
+        label.setPrefWidth(250);
         label.setAlignment(Pos.CENTER);
         label.setFont(Font.font("Verdana", 14));
 
@@ -61,38 +61,10 @@ public class SetpointSpinner extends SetpointControl {
         return label;
     }
 
-    private AnchorPane createSpinnerAnchor(int minValue, int maxValue) throws Exception {
-        int initValue = 0;
-        Spinner<Integer> spinner = new Spinner<>(minValue, maxValue, initValue, 0.1);
-        spinner.setEditable(true);
-        spinner.setPrefWidth(200);
-        spinner.setPrefHeight(55);
-        SpinnerValueFactory<Integer> spinnerFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        attribute.getMinValue(), attribute.getMaxValue(), Integer.parseInt(attribute.readModbus()));
-        spinner.setValueFactory(spinnerFactory);
-
-        spinner.setOnMouseReleased(e -> {
-            try {
-                attribute.writeModbus(spinner.getValue().toString());
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    attribute.writeModbus(Integer.parseInt(spinner.getValue().toString()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        spinner.editorProperty().get().setAlignment(Pos.CENTER);
-        spinner.editorProperty().get().setFont(Font.font("Verdana", 26));
-
+    private AnchorPane createSpinnerAnchor() throws Exception {
         AnchorPane spinnerAnchor = new AnchorPane();
+
+        spinner = createSpinner(attribute);
 
         spinnerAnchor.getChildren().add(spinner);
 
@@ -107,5 +79,84 @@ public class SetpointSpinner extends SetpointControl {
         AnchorPane.setBottomAnchor(spinnerAnchor, 0.0);
 
         return spinnerAnchor;
+    }
+
+    private Spinner<Integer> createSpinner(Attribute attribute) throws Exception {
+        int initValue;
+
+        try {
+            initValue = (int) Double.parseDouble(attribute.readModbus());
+        } catch (Exception e) {
+            throw e;
+        }
+
+        spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), initValue);
+        spinner.setEditable(true);
+        spinner.setPrefWidth(200);
+        spinner.setPrefHeight(55);
+        spinner.editorProperty().get().setAlignment(Pos.CENTER);
+        spinner.editorProperty().get().setFont(Font.font("Verdana", 26));
+        spinner.getValueFactory().setConverter(
+                new StringConverter<>() {
+                    @Override
+                    public String toString(Integer integer) {
+                        return (integer == null) ? "0" : integer.toString();
+                    }
+
+                    @Override
+                    public Integer fromString(String s) {
+                        if (s.matches("^-?[0-9]+$")) {
+                            try {
+                                return Integer.valueOf(s);
+                            } catch (NumberFormatException e) {
+                                return 0;
+                            }
+                        }
+                        return 0;
+                    }
+                }
+        );
+
+        if (attribute.getDefaultValue() != null) {
+            if (spinner.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                Platform.runLater(() -> spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY))));
+            }
+        }
+
+        spinner.getValueFactory().valueProperty().bindBidirectional(attribute.currentValueProperty);
+
+        spinner.getValueFactory().valueProperty().addListener(e -> {
+            if (attribute.getDefaultValue() != null) {
+                if (attribute.currentValueProperty.getValue() != Integer.parseInt(attribute.getDefaultValue().toString())) {
+                    Platform.runLater(() -> spinner.getEditor().setBackground(new Background(new BackgroundFill(Color.color(0.961, 0.545, 0, 0.35), CornerRadii.EMPTY, Insets.EMPTY))));
+                } else {
+                    Platform.runLater(() -> spinner.getEditor().setBackground(Background.EMPTY));
+                }
+            }
+        });
+
+        spinner.setOnMouseReleased(e -> writeModbusValue());
+
+        spinner.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (oldVal && !newVal) {
+                writeModbusValue();
+            }
+        });
+
+        spinner.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                writeModbusValue();
+            }
+        });
+
+        return spinner;
+    }
+
+    public void writeModbusValue() {
+        try {
+            attribute.writeModbus(spinner.getValue().toString());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

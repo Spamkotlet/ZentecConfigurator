@@ -117,6 +117,13 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
         // Если выбранная схема не совпадает текущей
         if (!schemeNumberChoiceBox.getValue().equals(selectedSchemeName)) {
+            System.out.println("Выбрана другая схема");
+            if (!ActuatorsController.actuatorsUsed.isEmpty()) {
+                ActuatorsController.actuatorsUsed.clear();
+            }
+            if (!SensorsController.sensorsUsed.isEmpty()) {
+                SensorsController.sensorsUsed.clear();
+            }
             previousScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
             onSelectedSchemeNumber();
         }
@@ -124,7 +131,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
     // Что происходит при выборе схемы из списка
     protected void onSelectedSchemeNumber() throws Exception {
-
+        System.out.println("OnSelectedSchemeNumber");
         // Получить схему, которая была выбрана в Choice Box
         selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
 

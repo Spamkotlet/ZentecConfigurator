@@ -22,8 +22,8 @@ public class SensorsController extends CommonController implements Initializable
     @FXML
     private VBox sensorsVBox;
 
-    private final List<Sensor> sensorsUsed = new ArrayList<>();
-    private final HashMap<String, ElementTitledPane> sensorsTitledPaneHashMap = new HashMap<>();
+    protected static final List<Sensor> sensorsUsed = new ArrayList<>();
+    private static final HashMap<String, ElementTitledPane> sensorsTitledPaneHashMap = new HashMap<>();
 
 
     @Override

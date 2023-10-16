@@ -26,7 +26,7 @@ public class ActuatorsController extends CommonController implements Initializab
     @FXML
     public VBox actuatorsVBox;
 
-    private final List<Actuator> actuatorsUsed = new ArrayList<>();
+    protected static final List<Actuator> actuatorsUsed = new ArrayList<>();
 
     private static final Logger logger = LogManager.getLogger(ActuatorsController.class);
 

@@ -20,6 +20,7 @@ public class MonitorTextFlow {
     private final Element element;
     private Attribute correctionAttribute;
     private final MonitorValueText valueText = new MonitorValueText("***");
+    private Spinner<Integer> spinner;
 
     public MonitorTextFlow(Element element) {
         this.element = element;
@@ -63,7 +64,7 @@ public class MonitorTextFlow {
             throw new RuntimeException(e);
         }
 
-        Spinner<Integer> spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), initValue);
+        spinner = new Spinner<>(attribute.getMinValue(), attribute.getMaxValue(), initValue);
 
         spinner.setEditable(true);
         spinner.setPrefWidth(70);

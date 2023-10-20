@@ -2,10 +2,10 @@ package com.zenconf.zentecconfigurator.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.elements.Actuator;
 import com.zenconf.zentecconfigurator.models.MainParameters;
 import com.zenconf.zentecconfigurator.models.Scheme;
-import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import com.zenconf.zentecconfigurator.models.z031.ElectricParameters;
 import com.zenconf.zentecconfigurator.models.z031.WaterParameters;
 import com.zenconf.zentecconfigurator.updater.FtpClient;

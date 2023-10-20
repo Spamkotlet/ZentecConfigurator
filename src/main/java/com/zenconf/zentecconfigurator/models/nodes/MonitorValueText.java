@@ -1,6 +1,6 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
-import com.zenconf.zentecconfigurator.models.Element;
+import com.zenconf.zentecconfigurator.models.elements.Element;
 import javafx.application.Platform;
 import javafx.scene.text.Text;
 

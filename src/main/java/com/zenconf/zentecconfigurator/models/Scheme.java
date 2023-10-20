@@ -1,5 +1,8 @@
 package com.zenconf.zentecconfigurator.models;
 
+import com.zenconf.zentecconfigurator.models.elements.Actuator;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
+
 import java.util.List;
 
 public class Scheme {

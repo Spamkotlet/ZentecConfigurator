@@ -1,4 +1,6 @@
-package com.zenconf.zentecconfigurator.models;
+package com.zenconf.zentecconfigurator.models.elements;
+
+import com.zenconf.zentecconfigurator.models.Attribute;
 
 import java.util.List;
 

@@ -3,9 +3,9 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
-import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.elements.Actuator;
 import com.zenconf.zentecconfigurator.models.Scheme;
-import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import com.zenconf.zentecconfigurator.models.nodes.SchemeTitledPane;
 
@@ -147,6 +147,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             for (Actuator actuator : ConfiguratorController.actuatorsList) {
                 // Копирование свойств элементов схемы
                 if (actuatorInScheme.getName().equals(actuator.getName())) {
+                    actuatorInScheme.setFunctionalities(actuator.getFunctionalities());
                     actuatorInScheme.setIsInWorkAttribute(actuator.getIsInWorkAttribute());
                     actuatorInScheme.setAttributes(actuator.getAttributes());
                     actuatorInScheme.setAttributeForMonitoring(actuator.getAttributeForMonitoring());

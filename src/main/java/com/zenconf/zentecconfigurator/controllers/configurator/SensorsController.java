@@ -2,7 +2,7 @@ package com.zenconf.zentecconfigurator.controllers.configurator;
 
 import com.zenconf.zentecconfigurator.controllers.CommonController;
 import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
-import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import com.zenconf.zentecconfigurator.models.nodes.ElementTitledPane;
 import javafx.application.Platform;
 import javafx.concurrent.Task;

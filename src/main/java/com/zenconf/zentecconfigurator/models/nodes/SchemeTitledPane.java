@@ -1,10 +1,10 @@
 package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.controllers.ConfiguratorController;
-import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.elements.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.Element;
-import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.elements.Element;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -19,12 +19,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SchemeTitledPane extends TitledPane {
 
     private Element element;
     private CheckBox isUsedDefaultCheckBox;
+    private HashMap<String, CheckBox> functionalityCheckBoxes = new HashMap<>();
     private Label errorLabel;
     private String errorText = "*";
     private ChoiceBox<String> isUsedDefaultChoiceBox;
@@ -47,7 +49,7 @@ public class SchemeTitledPane extends TitledPane {
                     isUsedDefaultCheckBox.setOnAction(e -> {
                         try {
                             errorLabel.setVisible(false);
-                            onSelectedCheckBox();
+                            onSelectedDefaultCheckBox();
                         } catch (Exception ex) {
                             errorText = "Ошибка записи";
                             errorLabel.setText(errorText);
@@ -58,7 +60,7 @@ public class SchemeTitledPane extends TitledPane {
                     nodes.add(isUsedDefaultCheckBox);
                 } else if (inWorkAttribute.getControl().equals(Controls.CHOICE_BOX)) {
                     isUsedDefaultChoiceBox = new ChoiceBox<>();
-                    isUsedDefaultChoiceBox.setItems(getElementTypes());
+                    isUsedDefaultChoiceBox.setItems(getElementTypes(inWorkAttribute));
                     isUsedDefaultChoiceBox.setOnAction(e -> {
                         try {
                             errorLabel.setVisible(false);
@@ -84,7 +86,11 @@ public class SchemeTitledPane extends TitledPane {
 
         VBox vBox = new VBox();
         vBox.getChildren().add(createHBox(nodes));
+        if (element.getClass().equals(Actuator.class) && ((Actuator) element).getFunctionalities() != null) {
+            vBox.getChildren().add(createHBox(getFunctionalityNodes()));
+        }
         vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
 
         this.setAnimated(false);
         this.setText(element.getName());
@@ -116,6 +122,53 @@ public class SchemeTitledPane extends TitledPane {
         AnchorPane.setBottomAnchor(hBox, 0.0);
 
         return hBox;
+    }
+
+    private List<Node> getFunctionalityNodes() {
+        List<Node> nodes = new ArrayList<>();
+        for (Attribute functionality : ((Actuator) element).getFunctionalities()) {
+            if (functionality.getControl().equals(Controls.CHECKBOX)) {
+                Attribute isIgnoreDefaultValueExistsAttribute = element.getAttributes()
+                        .stream()
+                        .filter(attribute -> attribute.isIgnoreDefaultValue() != null)
+                        .findFirst().orElse(null);
+                if (isIgnoreDefaultValueExistsAttribute != null) {
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.setSelected(Boolean.parseBoolean(functionality.getInitialValue().toString()));
+                    checkBox.setOnAction(e -> {
+                        isIgnoreDefaultValueExistsAttribute.addOrRemoveAttributeToDefaultResetList();
+                    });
+
+                    checkBox.selectedProperty().bindBidirectional(isIgnoreDefaultValueExistsAttribute.isIgnoreDefaultValueProperty);
+                    checkBox.selectedProperty().addListener(e -> {
+                        System.out.println("Check");
+                        isIgnoreDefaultValueExistsAttribute.addOrRemoveAttributeToDefaultResetList();
+                    });
+                    checkBox.disableProperty().bind(isUsedDefaultCheckBox.selectedProperty().not());
+                    checkBox.setText(functionality.getName());
+                    functionalityCheckBoxes.put(functionality.getName(), checkBox);
+                    nodes.add(checkBox);
+                }
+            } else if (functionality.getControl().equals(Controls.CHOICE_BOX)) {
+                ChoiceBox<String> choiceBox = new ChoiceBox<>();
+                choiceBox.setItems(getElementTypes(functionality));
+                choiceBox.setOnAction(e -> {
+                    // TODO: биндить связное поле атрибута
+                });
+                nodes.add(choiceBox);
+            }
+        }
+        return nodes;
+    }
+
+    private void setFunctionalityCheckBoxesDefault() {
+        if (functionalityCheckBoxes.isEmpty()) {
+            return;
+        }
+        for (Attribute functionality : ((Actuator) element).getFunctionalities()) {
+            CheckBox checkBox = functionalityCheckBoxes.get(functionality.getName());
+            checkBox.setSelected(Boolean.parseBoolean(functionality.getDefaultValue().toString()));
+        }
     }
 
     public void setAttributeIsUsedDefault() throws Exception {
@@ -150,9 +203,10 @@ public class SchemeTitledPane extends TitledPane {
                 }
             }
         }
+        setFunctionalityCheckBoxesDefault();
     }
 
-    private void onSelectedCheckBox() throws Exception {
+    private void onSelectedDefaultCheckBox() throws Exception {
         if (inWorkAttribute != null) {
             boolean isUsed = isUsedDefaultCheckBox.isSelected();
             inWorkAttribute.writeModbus(isUsed);
@@ -203,8 +257,8 @@ public class SchemeTitledPane extends TitledPane {
         }
     }
 
-    private ObservableList<String> getElementTypes() {
-        return FXCollections.observableArrayList(inWorkAttribute.getValues());
+    private ObservableList<String> getElementTypes(Attribute attribute) {
+        return FXCollections.observableArrayList(attribute.getValues());
     }
 
     public void setElement(Element element) {

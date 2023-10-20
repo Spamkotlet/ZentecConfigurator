@@ -1,8 +1,8 @@
 package com.zenconf.zentecconfigurator.controllers;
 
-import com.zenconf.zentecconfigurator.models.Actuator;
+import com.zenconf.zentecconfigurator.models.elements.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
-import com.zenconf.zentecconfigurator.models.Sensor;
+import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;

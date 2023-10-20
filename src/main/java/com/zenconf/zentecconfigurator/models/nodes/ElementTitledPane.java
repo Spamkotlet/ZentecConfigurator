@@ -2,7 +2,7 @@ package com.zenconf.zentecconfigurator.models.nodes;
 
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.enums.Controls;
-import com.zenconf.zentecconfigurator.models.Element;
+import com.zenconf.zentecconfigurator.models.elements.Element;
 import javafx.geometry.Insets;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;

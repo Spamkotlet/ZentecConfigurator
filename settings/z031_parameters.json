@@ -560,7 +560,7 @@
       {
         "name": "C6",
         "description": "Тип защиты двигателя (0 – нет защиты, 1 – прессостат, 2 – термо-контакт, 3 – пресс.+терм.)",
-        "defaultValue": 1,
+        "defaultValue": 2,
         "control": 1,
         "minValue": 0,
         "maxValue": 255,

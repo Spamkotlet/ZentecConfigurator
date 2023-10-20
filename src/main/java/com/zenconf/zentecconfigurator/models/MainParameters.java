@@ -1,5 +1,7 @@
 package com.zenconf.zentecconfigurator.models;
 
+import com.zenconf.zentecconfigurator.models.elements.Parameter;
+
 import java.util.List;
 
 public class MainParameters {

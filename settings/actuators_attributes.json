@@ -15,6 +15,14 @@
           "varType": "BOOL"
         }
       },
+      "functionalities": [
+        {
+          "name": "Есть РПД",
+          "initialValue": "true",
+          "defaultValue": "true",
+          "control": 0
+        }
+      ],
       "attributes": [
         {
           "name": "Задержка РПД",
@@ -22,6 +30,7 @@
           "minValue": 0,
           "maxValue": 255,
           "defaultValue": 30,
+          "isIgnoreDefaultValue": false,
           "modbusParameters": {
             "address": 1383,
             "varType": "UINT8"
@@ -95,6 +104,14 @@
           "varType": "BOOL"
         }
       },
+      "functionalities": [
+        {
+          "name": "Есть РПД",
+          "initialValue": "true",
+          "defaultValue": "true",
+          "control": 0
+        }
+      ],
       "attributes": [
         {
           "name": "Задержка РПД",
@@ -102,6 +119,7 @@
           "minValue": 0,
           "maxValue": 255,
           "defaultValue": 30,
+          "isIgnoreDefaultValue": false,
           "modbusParameters": {
             "address": 1391,
             "varType": "UINT8"
@@ -159,6 +177,14 @@
           "varType": "BOOL"
         }
       },
+      "functionalities": [
+        {
+          "name": "Есть РПД",
+          "initialValue": "true",
+          "defaultValue": "true",
+          "control": 0
+        }
+      ],
       "attributes": [
         {
           "name": "Тип вентилятора",
@@ -178,6 +204,7 @@
           "minValue": 0,
           "maxValue": 255,
           "defaultValue": 30,
+          "isIgnoreDefaultValue": false,
           "modbusParameters": {
             "address": 1400,
             "varType": "UINT8"
@@ -235,6 +262,14 @@
           "varType": "BOOL"
         }
       },
+      "functionalities": [
+        {
+          "name": "Есть РПД",
+          "initialValue": "true",
+          "defaultValue": "true",
+          "control": 0
+        }
+      ],
       "attributes": [
         {
           "name": "Тип вентилятора",
@@ -254,6 +289,7 @@
           "minValue": 0,
           "maxValue": 255,
           "defaultValue": 30,
+          "isIgnoreDefaultValue": false,
           "modbusParameters": {
             "address": 1409,
             "varType": "UINT8"
@@ -697,6 +733,18 @@
             "Нагревание",
             "Охлаждение",
             "Всегда"
+          ]
+        },
+        {
+          "name": "Реакция РПД",
+          "control": 2,
+          "modbusParameters": {
+            "address": 1416,
+            "varType": "BOOL"
+          },
+          "values": [
+            "Оттайка",
+            "Разморозка"
           ]
         },
         {

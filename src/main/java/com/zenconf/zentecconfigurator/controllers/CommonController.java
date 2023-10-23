@@ -20,15 +20,18 @@ import java.io.IOException;
 
 public abstract class CommonController {
 
-    private Stage window;
-    private Stage primaryStage;
-    private ProgressBar progressBar;
-    private Label progressLabel;
+    private static Stage window;
+    private static Stage primaryStage;
+    private static ProgressBar progressBar;
+    private static Label progressLabel;
 
     public static final Logger logger = LogManager.getLogger();
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
     }
 
     // Загрузка дочернего узла (страницы)
@@ -69,13 +72,15 @@ public abstract class CommonController {
     }
 
     // Показать простое модальное окно на время загрузки наполнения
-    protected void showLoadWindow(Task<?> task) {
+    public static void showLoadWindow(Task<?> task) {
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("loading-view.fxml"));
         Parent parent;
         try {
             parent = loader.load();
             Button cancelLoadButton = (Button) parent.lookup("#cancelLoadButton");
-            cancelLoadButton.setOnAction(e -> closeLoadWindow(task));
+            cancelLoadButton.setOnAction(e -> {
+                closeLoadWindow(task);
+            });
 
             progressBar = (ProgressBar) parent.lookup("#progressBar");
             progressBar.progressProperty().bind(task.progressProperty());
@@ -96,7 +101,7 @@ public abstract class CommonController {
     }
 
     // Закрыть модальное окно
-    protected void closeLoadWindow(Task<?> task) {
+    protected static void closeLoadWindow(Task<?> task) {
         window.close();
         task.cancel(true);
         if (progressBar != null) {

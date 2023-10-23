@@ -141,7 +141,6 @@ public class SchemeTitledPane extends TitledPane {
 
                     checkBox.selectedProperty().bindBidirectional(isIgnoreDefaultValueExistsAttribute.isIgnoreDefaultValueProperty);
                     checkBox.selectedProperty().addListener(e -> {
-                        System.out.println("Check");
                         isIgnoreDefaultValueExistsAttribute.addOrRemoveAttributeToDefaultResetList();
                     });
                     checkBox.disableProperty().bind(isUsedDefaultCheckBox.selectedProperty().not());

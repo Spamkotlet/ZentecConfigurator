@@ -322,7 +322,7 @@
           "defaultValue": 0,
           "modbusParameters": {
             "address": 1327,
-            "varType": "UINT8"
+            "varType": "SINT8"
           }
         },
         {

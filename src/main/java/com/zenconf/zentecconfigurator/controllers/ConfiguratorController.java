@@ -58,6 +58,8 @@ public class ConfiguratorController extends CommonController implements Initiali
 
     public static List<Attribute> attributesForResetToDefault = new ArrayList<>();
 
+    public static Task<Boolean> resetAttributesToDefaultTask = null;
+
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
 
     @Override
@@ -65,7 +67,7 @@ public class ConfiguratorController extends CommonController implements Initiali
         sensorsList = MainController.sensorList;
         actuatorsList = MainController.actuatorList;
 
-        resetParametersToDefaultButton.setOnAction(e -> resetAttributesToDefault());
+        resetParametersToDefaultButton.setOnAction(e -> checkingAttributesForResetToDefault());
 
         openChangeSchemeView();
         schemeBorderPane.onMouseClickedProperty()
@@ -281,78 +283,97 @@ public class ConfiguratorController extends CommonController implements Initiali
         }
     }
 
-    private void resetAttributesToDefault() {
-        if (!attributesForResetToDefault.isEmpty()) {
-            Task<Void> resetParametersToDefaultTask = new Task<>() {
-                @Override
-                protected Void call() throws Exception {
-                    Platform.runLater(() -> showLoadWindow(this));
+    public static Boolean resetAttributesToDefault() {
+        resetAttributesToDefaultTask = new Task<>() {
+            @Override
+            protected Boolean call() throws Exception {
+                Boolean result = Boolean.FALSE;
+                if (attributesForResetToDefault.isEmpty()) {
+                    // Этот колхоз нужен для того,
+                    // чтобы выскакивало только окно с подтверждением восстановления параметров
+                    // для случая, если была сменена схема, а параметры не были восстановлены.
+                    // Для кнопки "Восстановить" есть метод checkingAttributesForResetToDefault
+                    return Boolean.TRUE;
+                }
 
-                    boolean isSuccessfulAction = true;
-                    int successfulActionAttempt = 0;
-                    Attribute attribute = null;
-                    for (int i = 0; i < attributesForResetToDefault.size(); ) {
-                        if (isSuccessfulAction) {
-                            updateMessage("Загрузка...: " + (i + 1) + "/" + attributesForResetToDefault.size());
-                            updateProgress(i + 1, attributesForResetToDefault.size());
-                            attribute = attributesForResetToDefault.get(i);
-                        }
+                Platform.runLater(() -> showLoadWindow(this));
 
-                        try {
-                            attribute.writeModbusDefaultValue(attribute.getDefaultValue());
+                boolean isSuccessfulAction = true;
+                int successfulActionAttempt = 0;
+                Attribute attribute = null;
+                for (int i = 0; i < attributesForResetToDefault.size(); ) {
+                    if (isSuccessfulAction) {
+                        updateMessage("Загрузка...: " + (i + 1) + "/" + attributesForResetToDefault.size());
+                        updateProgress(i + 1, attributesForResetToDefault.size());
+                        attribute = attributesForResetToDefault.get(i);
+                    }
+
+                    try {
+                        attribute.writeModbusDefaultValue(attribute.getDefaultValue());
+                        isSuccessfulAction = true;
+                        i++;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        logger.error(e.getMessage());
+                        isSuccessfulAction = false;
+                        successfulActionAttempt++;
+                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + attribute.getName());
+                        if (successfulActionAttempt >= 3) {
                             isSuccessfulAction = true;
+                            successfulActionAttempt = 0;
                             i++;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            logger.error(e.getMessage());
-                            isSuccessfulAction = false;
-                            successfulActionAttempt++;
-                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + attribute.getName());
-                            if (successfulActionAttempt >= 3) {
-                                isSuccessfulAction = true;
-                                successfulActionAttempt = 0;
-                                i++;
-                                updateMessage("Ошибка загрузки\n" + attribute.getName());
-                                Thread.sleep(1000);
-                            }
+                            updateMessage("Ошибка загрузки\n" + attribute.getName());
                             Thread.sleep(1000);
                         }
-                        Thread.sleep(100);
+                        Thread.sleep(1000);
                     }
-                    return null;
+                    Thread.sleep(100);
                 }
+                result = Boolean.TRUE;
+                return result;
+            }
 
-                @Override
-                protected void succeeded() {
-                    super.succeeded();
-                    attributesForResetToDefault.clear();
-                    logger.info("Задача resetAttributesToDefault выполнена успешно");
-                    Platform.runLater(() -> closeLoadWindow(this));
-                }
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                attributesForResetToDefault.clear();
+                logger.info("Задача resetAttributesToDefault выполнена успешно");
+                closeLoadWindow(this);
+            }
 
-                @Override
-                protected void cancelled() {
-                    super.cancelled();
-                    logger.info("Задача resetAttributesToDefault прервана");
-                }
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+                logger.info("Задача resetAttributesToDefault прервана");
+            }
 
-                @Override
-                protected void failed() {
-                    super.failed();
-                    logger.info("Задача resetAttributesToDefault завершилась ошибкой");
-                    logger.error(this.getException().getMessage());
-                    Platform.runLater(() -> {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText("Невозможно выполнить операцию");
-                        alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                        alert.show();
-                        closeLoadWindow(this);
-                    });
-                }
-            };
-            Thread resetParametersToDefaultThread = new Thread(resetParametersToDefaultTask);
+            @Override
+            protected void failed() {
+                super.failed();
+                logger.info("Задача resetAttributesToDefault завершилась ошибкой");
+                logger.error(this.getException().getMessage(), this.getException());
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setHeaderText("Невозможно выполнить операцию");
+                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                    alert.show();
+                });
+                closeLoadWindow(this);
+            }
+        };
+        Thread resetAttributesToDefaultThread = new Thread(resetAttributesToDefaultTask);
 
+        if (attributesForResetToDefault.isEmpty()) {
+            // Этот колхоз нужен для того,
+            // чтобы выскакивало только окно с подтверждением восстановления параметров
+            // для случая, если была сменена схема, а параметры не были восстановлены.
+            // Для кнопки "Восстановить" есть метод checkingAttributesForResetToDefault
+            resetAttributesToDefaultThread.start();
+            return Boolean.TRUE;
+        }
+
+        Platform.runLater(() -> {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Подтверждение");
             dialog.setHeaderText("Восстановление параметров по умолчанию");
@@ -365,11 +386,39 @@ public class ConfiguratorController extends CommonController implements Initiali
             Optional<ButtonType> result = dialog.showAndWait();
             if (result.isPresent()) {
                 if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                    resetParametersToDefaultThread.start();
+                    resetAttributesToDefaultThread.start();
+                } else {
+                    resetAttributesToDefaultTask.cancel();
                 }
             }
+        });
+        return resetAttributesToDefaultTask.getValue();
+    }
 
-        } else {
+    private void checkingAttributesForResetToDefault() {
+        if (MainController.panels.get("Испонительные устройства") == null) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Действие отклонено");
+                alert.setHeaderText("Восстановление параметров");
+                alert.setContentText("Некоторые параметры могут быть не восстановлены." +
+                        "\nНеобходимо загрузить страницу «Испонительные устройства»");
+                alert.show();
+            });
+            return;
+        }
+        if (MainController.panels.get("Датчики") == null) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Действие отклонено");
+                alert.setHeaderText("Восстановление параметров");
+                alert.setContentText("Некоторые параметры могут быть не восстановлены." +
+                        "\nНеобходимо загрузить страницу «Датчики»");
+                alert.show();
+            });
+            return;
+        }
+        if (attributesForResetToDefault.isEmpty()) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Действие отклонено");
@@ -377,11 +426,8 @@ public class ConfiguratorController extends CommonController implements Initiali
                 alert.setContentText("Восстановление параметров по умолчанию не требуется");
                 alert.show();
             });
+            return;
         }
+        resetAttributesToDefault();
     }
-
-//    public static void selectScheme() {
-//        isEnabled.setValue(true);
-//    }
-
 }

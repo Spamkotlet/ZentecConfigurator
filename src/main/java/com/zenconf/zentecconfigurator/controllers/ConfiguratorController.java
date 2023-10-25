@@ -4,7 +4,9 @@ import com.zenconf.zentecconfigurator.models.elements.Actuator;
 import com.zenconf.zentecconfigurator.models.Attribute;
 import com.zenconf.zentecconfigurator.models.elements.Sensor;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -58,16 +60,133 @@ public class ConfiguratorController extends CommonController implements Initiali
 
     public static List<Attribute> attributesForResetToDefault = new ArrayList<>();
 
-    public static Task<Boolean> resetAttributesToDefaultTask = null;
+    public static Task<Void> resetAttributesToDefaultValuesTask = null;
+    public static ResetAttributesService resetAttributesService = new ResetAttributesService();
 
 //    static BooleanProperty isEnabled = new SimpleBooleanProperty();
+
+    public static class ResetAttributesService extends Service<Boolean> {
+
+        @Override
+        protected Task<Boolean> createTask() {
+            return new Task<>() {
+                @Override
+                protected Boolean call() throws Exception {
+                    logger.info("Задача resetAttributesTask в ResetAtttributesSetvice начата");
+                    Boolean result = Boolean.FALSE;
+                    if (attributesForResetToDefault.isEmpty()) {
+                        logger.info("ConfiguratorController.resetAttributesTask: восстановление параметров не требуется");
+                        return Boolean.TRUE;
+                    }
+
+                    Platform.runLater(() -> showLoadWindow(this));
+
+                    boolean isSuccessfulAction = true;
+                    int successfulActionAttempt = 0;
+                    Attribute attribute = null;
+                    int attributesListSize = attributesForResetToDefault.size();
+                    int attributesCounter = 1;
+                    for (int i = attributesForResetToDefault.size() - 1; i >= 0; ) {
+                        if (isSuccessfulAction) {
+                            updateMessage("Загрузка...: " + attributesCounter + "/" + attributesListSize);
+                            updateProgress(attributesCounter, attributesListSize);
+                            attribute = attributesForResetToDefault.get(i);
+                        }
+
+                        try {
+                            attribute.writeModbusDefaultValue(attribute.getDefaultValue());
+                            isSuccessfulAction = true;
+                            i--;
+                            attributesCounter++;
+                            attributesForResetToDefault.remove(attribute);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            logger.error(e.getMessage(), e);
+                            isSuccessfulAction = false;
+                            successfulActionAttempt++;
+                            updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + attribute.getName());
+                            if (successfulActionAttempt >= 3) {
+                                isSuccessfulAction = true;
+                                successfulActionAttempt = 0;
+                                i--;
+                                attributesCounter++;
+                                updateMessage("Ошибка загрузки\n" + attribute.getName());
+                                Thread.sleep(1000);
+                            }
+                            Thread.sleep(1000);
+                        }
+                        Thread.sleep(100);
+                    }
+
+                    if (!attributesForResetToDefault.isEmpty()) {
+                        result = Boolean.FALSE;
+                    } else {
+                        result = Boolean.TRUE;
+                    }
+
+                    return result;
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    logger.info("Задача resetAttributesToDefault выполнена успешно");
+                    closeLoadWindow(this);
+                }
+
+                @Override
+                protected void cancelled() {
+                    super.cancelled();
+                    logger.info("Задача resetAttributesToDefault прервана");
+                    closeLoadWindow(this);
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    logger.info("Задача resetAttributesToDefault завершилась ошибкой");
+                    logger.error(this.getException().getMessage(), this.getException());
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Невозможно выполнить операцию");
+                        alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                        alert.show();
+                    });
+                    closeLoadWindow(this);
+                }
+            };
+        }
+
+        @Override
+        protected void succeeded() {
+            super.succeeded();
+            System.out.println("resetAttributeService.setOnSucceeded");
+            if (resetAttributesService.getValue().equals(Boolean.FALSE)) {
+                showAttributesWhichNotResetDialog();
+            }
+            resetAttributesService.reset();
+        }
+
+        @Override
+        protected void cancelled() {
+            super.cancelled();
+            super.reset();
+            System.out.println("resetAttributeService.setOnCancelled");
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sensorsList = MainController.sensorList;
         actuatorsList = MainController.actuatorList;
 
-        resetParametersToDefaultButton.setOnAction(e -> checkingAttributesForResetToDefault());
+        resetAttributesService = new ResetAttributesService();
+
+        resetParametersToDefaultButton.setOnAction(e -> {
+            System.out.println("Reset Button");
+            checkingAttributesForResetToDefault();
+        });
 
         openChangeSchemeView();
         schemeBorderPane.onMouseClickedProperty()
@@ -283,119 +402,7 @@ public class ConfiguratorController extends CommonController implements Initiali
         }
     }
 
-    public static Boolean resetAttributesToDefault() {
-        resetAttributesToDefaultTask = new Task<>() {
-            @Override
-            protected Boolean call() throws Exception {
-                Boolean result = Boolean.FALSE;
-                if (attributesForResetToDefault.isEmpty()) {
-                    // Этот колхоз нужен для того,
-                    // чтобы выскакивало только окно с подтверждением восстановления параметров
-                    // для случая, если была сменена схема, а параметры не были восстановлены.
-                    // Для кнопки "Восстановить" есть метод checkingAttributesForResetToDefault
-                    return Boolean.TRUE;
-                }
-
-                Platform.runLater(() -> showLoadWindow(this));
-
-                boolean isSuccessfulAction = true;
-                int successfulActionAttempt = 0;
-                Attribute attribute = null;
-                for (int i = 0; i < attributesForResetToDefault.size(); ) {
-                    if (isSuccessfulAction) {
-                        updateMessage("Загрузка...: " + (i + 1) + "/" + attributesForResetToDefault.size());
-                        updateProgress(i + 1, attributesForResetToDefault.size());
-                        attribute = attributesForResetToDefault.get(i);
-                    }
-
-                    try {
-                        attribute.writeModbusDefaultValue(attribute.getDefaultValue());
-                        isSuccessfulAction = true;
-                        i++;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        logger.error(e.getMessage());
-                        isSuccessfulAction = false;
-                        successfulActionAttempt++;
-                        updateMessage("Попытка загрузки [" + successfulActionAttempt + "/3]\n" + attribute.getName());
-                        if (successfulActionAttempt >= 3) {
-                            isSuccessfulAction = true;
-                            successfulActionAttempt = 0;
-                            i++;
-                            updateMessage("Ошибка загрузки\n" + attribute.getName());
-                            Thread.sleep(1000);
-                        }
-                        Thread.sleep(1000);
-                    }
-                    Thread.sleep(100);
-                }
-                result = Boolean.TRUE;
-                return result;
-            }
-
-            @Override
-            protected void succeeded() {
-                super.succeeded();
-                attributesForResetToDefault.clear();
-                logger.info("Задача resetAttributesToDefault выполнена успешно");
-                closeLoadWindow(this);
-            }
-
-            @Override
-            protected void cancelled() {
-                super.cancelled();
-                logger.info("Задача resetAttributesToDefault прервана");
-            }
-
-            @Override
-            protected void failed() {
-                super.failed();
-                logger.info("Задача resetAttributesToDefault завершилась ошибкой");
-                logger.error(this.getException().getMessage(), this.getException());
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Ошибка");
-                    alert.setHeaderText("Невозможно выполнить операцию");
-                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                    alert.show();
-                });
-                closeLoadWindow(this);
-            }
-        };
-        Thread resetAttributesToDefaultThread = new Thread(resetAttributesToDefaultTask);
-
-        if (attributesForResetToDefault.isEmpty()) {
-            // Этот колхоз нужен для того,
-            // чтобы выскакивало только окно с подтверждением восстановления параметров
-            // для случая, если была сменена схема, а параметры не были восстановлены.
-            // Для кнопки "Восстановить" есть метод checkingAttributesForResetToDefault
-            resetAttributesToDefaultThread.start();
-            return Boolean.TRUE;
-        }
-
-        Platform.runLater(() -> {
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setTitle("Подтверждение");
-            dialog.setHeaderText("Восстановление параметров по умолчанию");
-            dialog.setContentText("Вы уверены что хотите восстановить параметры по умолчанию?");
-            dialog.getDialogPane().getButtonTypes().addAll(
-                    new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
-                    new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
-            );
-
-            Optional<ButtonType> result = dialog.showAndWait();
-            if (result.isPresent()) {
-                if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                    resetAttributesToDefaultThread.start();
-                } else {
-                    resetAttributesToDefaultTask.cancel();
-                }
-            }
-        });
-        return resetAttributesToDefaultTask.getValue();
-    }
-
-    private void checkingAttributesForResetToDefault() {
+    public static void checkingAttributesForResetToDefault() {
         if (MainController.panels.get("Испонительные устройства") == null) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -428,6 +435,65 @@ public class ConfiguratorController extends CommonController implements Initiali
             });
             return;
         }
-        resetAttributesToDefault();
+        showResetAttributesDialog();
+    }
+
+    public static void showResetAttributesDialog() {
+        if (attributesForResetToDefault.isEmpty()) {
+            resetAttributesService.restart();
+            return;
+        }
+        if (resetAttributesService.getState() == Worker.State.READY) {
+            Platform.runLater(() -> {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setTitle("Подтверждение");
+                dialog.setHeaderText("Восстановление параметров по умолчанию");
+                dialog.setContentText("Вы уверены что хотите восстановить параметры по умолчанию?");
+                dialog.getDialogPane().getButtonTypes().addAll(
+                        new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
+                        new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+                );
+
+                Optional<ButtonType> result = dialog.showAndWait();
+                if (result.isPresent()) {
+                    if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                        resetAttributesService.restart();
+                    } else {
+                        resetAttributesService.cancel();
+                    }
+                }
+            });
+        }
+    }
+
+    private static void showAttributesWhichNotResetDialog() {
+        if (attributesForResetToDefault.isEmpty()) {
+            return;
+        }
+        StringBuilder contentText = new StringBuilder();
+        for (Attribute notResetAttribute : attributesForResetToDefault) {
+            contentText.append("- ").append(notResetAttribute.getName()).append("\n");
+        }
+        contentText.append("\nПопробовать снова?");
+
+        Platform.runLater(() -> {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("Предупреждение");
+            dialog.setHeaderText("Некоторые параметры не были восстановлены:");
+            dialog.setContentText(contentText.toString());
+            dialog.getDialogPane().getButtonTypes().addAll(
+                    new ButtonType("Повторить", ButtonBar.ButtonData.OK_DONE),
+                    new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+            );
+
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                if (result.orElseThrow().getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    resetAttributesService.restart();
+                } else {
+                    resetAttributesService.cancel();
+                }
+            }
+        });
     }
 }

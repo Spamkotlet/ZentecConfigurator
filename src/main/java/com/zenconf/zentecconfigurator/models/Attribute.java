@@ -26,13 +26,7 @@ public class Attribute {
     private final ModbusUtilSingleton modbusUtilSingleton = ModbusUtilSingleton.getInstance();
 
     private Attribute() {
-//        currentValueProperty.addListener(e -> {
-//            Platform.runLater(this::addAttributeToDefaultResetList);
-//        });
-//
-        isIgnoreDefaultValueProperty.addListener(e -> {
-            addOrRemoveAttributeToDefaultResetList();
-        });
+        isIgnoreDefaultValueProperty.addListener(e -> addOrRemoveAttributeToDefaultResetList());
     }
 
     public void setName(String name) {
@@ -41,10 +35,6 @@ public class Attribute {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setControl(Controls control) {

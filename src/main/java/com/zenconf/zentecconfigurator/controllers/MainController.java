@@ -85,7 +85,7 @@ public class MainController extends CommonController implements Initializable {
         thread.start();
 
         FtpClient ftpClient = new FtpClient();
-        Task<Boolean> updateApplicationTask = new Task<Boolean>() {
+        Task<Boolean> updateApplicationTask = new Task<>() {
             @Override
             protected Boolean call() throws Exception {
                 boolean checkUpdates = ftpClient.checkUpdates();
@@ -124,6 +124,76 @@ public class MainController extends CommonController implements Initializable {
         };
         Thread updateApplicationThread = new Thread(updateApplicationTask);
         updateApplicationThread.start();
+    }
+
+    private void getActuatorsFromJson() {
+        File dir1 = new File("");
+        String file;
+        try {
+            file = dir1.getCanonicalPath() + "\\settings\\actuators_attributes.json";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        Files.newInputStream(Paths.get(file)),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
+            });
+
+            logger.info("Файл " + file + " (Найден и загружен)");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка");
+                alert.setHeaderText("Файл отсутствует");
+                alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
+                alert.show();
+            });
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getSensorsFromJson() {
+        File dir1 = new File("");
+        String file;
+        try {
+            file = dir1.getCanonicalPath() + "\\settings\\sensors_attributes.json";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        Files.newInputStream(Paths.get(file)),
+                        StandardCharsets.UTF_8))) {
+            JSONParser parser = new JSONParser();
+            ObjectMapper mapper = new ObjectMapper();
+            Object obj = parser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+            sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
+            });
+
+            logger.info("Файл " + file + " (Найден и загружен)");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка");
+                alert.setHeaderText("Файл отсутствует");
+                alert.setContentText(e.getMessage());
+                alert.setOnCloseRequest(ex -> Platform.exit());
+                alert.show();
+            });
+            throw new RuntimeException(e);
+        }
     }
 
     private void getMainParametersFromJson() {
@@ -183,76 +253,6 @@ public class MainController extends CommonController implements Initializable {
             alarms1 = mapper.readValue(jsonObject.get("alarms1").toString(), new TypeReference<>() {
             });
             warnings = mapper.readValue(jsonObject.get("warnings").toString(), new TypeReference<>() {
-            });
-
-            logger.info("Файл " + file + " (Найден и загружен)");
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Файл отсутствует");
-                alert.setContentText(e.getMessage());
-                alert.setOnCloseRequest(ex -> Platform.exit());
-                alert.show();
-            });
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void getActuatorsFromJson() {
-        File dir1 = new File("");
-        String file;
-        try {
-            file = dir1.getCanonicalPath() + "\\settings\\actuators_attributes.json";
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        Files.newInputStream(Paths.get(file)),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            actuatorList = mapper.readValue(jsonObject.get("actuators").toString(), new TypeReference<>() {
-            });
-
-            logger.info("Файл " + file + " (Найден и загружен)");
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Файл отсутствует");
-                alert.setContentText(e.getMessage());
-                alert.setOnCloseRequest(ex -> Platform.exit());
-                alert.show();
-            });
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void getSensorsFromJson() {
-        File dir1 = new File("");
-        String file;
-        try {
-            file = dir1.getCanonicalPath() + "\\settings\\sensors_attributes.json";
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        Files.newInputStream(Paths.get(file)),
-                        StandardCharsets.UTF_8))) {
-            JSONParser parser = new JSONParser();
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = parser.parse(reader);
-            JSONObject jsonObject = (JSONObject) obj;
-            sensorList = mapper.readValue(jsonObject.get("sensors").toString(), new TypeReference<>() {
             });
 
             logger.info("Файл " + file + " (Найден и загружен)");

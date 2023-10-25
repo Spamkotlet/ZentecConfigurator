@@ -19,7 +19,7 @@ public class ModbusUtilSingleton {
     private static ModbusUtilSingleton instance;
 
     private static ModbusMaster master;
-    private int slaveId = 1;
+    private int slaveId = 247;
     private String device;
     private SerialPort.BaudRate baudRate = SerialPort.BaudRate.BAUD_RATE_115200;
     private int dataBits = 8;

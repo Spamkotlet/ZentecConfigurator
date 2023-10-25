@@ -14,7 +14,6 @@ import javafx.concurrent.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -72,30 +71,33 @@ public class ChangeSchemeController extends CommonController implements Initiali
             throw new RuntimeException(e);
         }
 
-//        schemeNumberChoiceBox.setOnMouseClicked(e -> {
-            schemeNumberChoiceBox.valueProperty().addListener((obs, oldVal, newVal) -> {
-                if (!Objects.equals(newVal, oldVal)) {
-                    ConfiguratorController.resetAttributesToDefault();
-                    if (ConfiguratorController.resetAttributesToDefaultTask != null) {
-                        ConfiguratorController.resetAttributesToDefaultTask.setOnSucceeded(event -> {
-                            try {
-                                onActionSchemeNumberChoiceBox();
-                            } catch (Exception ex) {
-                                Platform.runLater(() -> {
-                                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("Ошибка");
-                                    alert.setHeaderText("Невозможно выполнить операцию");
-                                    alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                                    alert.show();
-                                });
-                                logger.error(ex.getMessage());
-                                throw new RuntimeException(ex);
-                            }
-                        });
+        schemeNumberChoiceBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (!Objects.equals(newVal, oldVal)) {
+                ConfiguratorController.showResetAttributesDialog();
+
+                ConfiguratorController.resetAttributesService.setOnSucceeded(event -> {
+                    if (ConfiguratorController.resetAttributesService.getValue()) {
+                        try {
+                            onActionSchemeNumberChoiceBox();
+                        } catch (Exception ex) {
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Ошибка");
+                                alert.setHeaderText("Невозможно выполнить операцию");
+                                alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                                alert.show();
+                            });
+                            logger.error(ex.getMessage());
+                            throw new RuntimeException(ex);
+                        }
                     }
-                }
-            });
-//        });
+                });
+
+                ConfiguratorController.resetAttributesService.setOnCancelled(event -> {
+                    schemeNumberChoiceBox.valueProperty().setValue(oldVal);
+                });
+            }
+        });
     }
 
     // Что происходит при открытии экрана
@@ -114,8 +116,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
     // Что происходит при выборе Choice Box
     private void onActionSchemeNumberChoiceBox() throws Exception {
-        System.out.println("onActionSchemeNumberChoiceBox");
-
         // Получаем имя схемы для дальнейшего сравнения
         String selectedSchemeName = "";
         if (previousScheme != null) {
@@ -124,7 +124,6 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
         // Если выбранная схема не совпадает текущей
         if (!schemeNumberChoiceBox.getValue().equals(selectedSchemeName)) {
-            System.out.println("Выбрана другая схема");
             if (!ActuatorsController.actuatorsUsed.isEmpty()) {
                 ActuatorsController.actuatorsUsed.clear();
             }

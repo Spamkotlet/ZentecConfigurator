@@ -53,8 +53,8 @@ public class ConfiguratorController extends CommonController implements Initiali
     @FXML
     public Button resetParametersToDefaultButton;
 
-    public static List<Sensor> sensorsList;
-    public static List<Actuator> actuatorsList;
+    public static Sensor[] sensorsList;
+    public static Actuator[] actuatorsList;
     public static List<Sensor> sensorsUsed = new ArrayList<>();
     public static List<Actuator> actuatorsUsed = new ArrayList<>();
 

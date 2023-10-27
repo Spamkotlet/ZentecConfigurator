@@ -1,5 +1,7 @@
 package com.zenconf.zentecconfigurator.updater;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenconf.zentecconfigurator.controllers.MainController;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTPClient;
@@ -8,9 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class FtpClient {
 
@@ -22,6 +22,8 @@ public class FtpClient {
     private final String password = MainController.ftpServerProperties.get("FTPServer.password");
     private final String lastVersionPath = MainController.configuratorProperties.get("Configurator.lastVersionPath");
     private final String currentVersion = MainController.configuratorProperties.get("Configurator.currentVersion");
+    private String remoteVersion = "";
+    private final String changeLogPath = MainController.configuratorProperties.get("Configurator.changeLogPath");
 
     public boolean checkUpdates() throws Exception {
         logger.info("CHECK UPDATES");
@@ -40,7 +42,7 @@ public class FtpClient {
                 logger.error(e.getMessage(), e);
                 throw new RuntimeException(e);
             }
-            String remoteVersion = remoteConfiguratorProperties.get("Configurator.currentVersion");
+            remoteVersion = remoteConfiguratorProperties.get("Configurator.currentVersion");
             logger.info("Remote version " + remoteVersion);
             logger.info("Current version " + currentVersion);
             updateRequired = !remoteVersion.equals(currentVersion);
@@ -68,6 +70,42 @@ public class FtpClient {
 
         ftp.login(user, password);
         ftp.enterLocalPassiveMode();
+    }
+
+    public String getChangeLog() throws Exception {
+        connectToFTPServer();
+
+        Map<String, String> versions;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new ByteArrayInputStream(downloadFile(changeLogPath, ftp))))) {
+            ObjectMapper mapper = new ObjectMapper();
+            versions = mapper.readValue(reader, new TypeReference<>(){});
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
+
+        StringBuilder lastVersionChanges = new StringBuilder();
+        lastVersionChanges.append("Что нового:\n");
+        lastVersionChanges.append(versions.get(remoteVersion));
+
+        StringBuilder previousVersionsSB = new StringBuilder();
+        previousVersionsSB.append("В прошлых версиях, которые были пропущены:\n");
+        List<String> keys = new ArrayList<>(versions.keySet());
+        boolean isSkippedPreviousVersions = false;
+        for (int i = keys.indexOf(currentVersion) + 1; i < keys.indexOf(remoteVersion); i++) {
+            isSkippedPreviousVersions = true;
+            previousVersionsSB.append("- ").append(versions.get(keys.get(i))).append("\n");
+        }
+
+        StringBuilder changeLog = new StringBuilder();
+        if (isSkippedPreviousVersions) {
+            changeLog.append(previousVersionsSB).append("\n");
+        }
+        changeLog.append(lastVersionChanges);
+
+        return changeLog.toString();
     }
 
     public byte[] downloadFile(String path, FTPClient ftpClient) throws Exception {

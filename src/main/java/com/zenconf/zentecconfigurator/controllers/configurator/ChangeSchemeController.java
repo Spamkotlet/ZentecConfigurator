@@ -32,7 +32,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
     @FXML
     public VBox changeSchemeVBox;
 
-    private List<Scheme> schemes;
+    private Scheme[] schemes;
     public static Scheme selectedScheme = null;
     private Scheme previousScheme = null;
     public static List<Sensor> sensorsInScheme;
@@ -46,7 +46,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
         changeSchemeVBox.sceneProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 try {
-                    ObservableList<String> schemesItems = getSchemeItems(schemes);
+                    ObservableList<String> schemesItems = getSchemeItems(List.of(schemes));
                     onActionSchemeNumberChoiceBox();
                     schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
                     logger.info("Выбрана схема " + selectedScheme.getNumber() + " / " + selectedScheme.getName());
@@ -73,29 +73,31 @@ public class ChangeSchemeController extends CommonController implements Initiali
 
         schemeNumberChoiceBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!Objects.equals(newVal, oldVal)) {
-                ConfiguratorController.showResetAttributesDialog();
+//                ConfiguratorController.showResetAttributesDialog();
+//
+//                ConfiguratorController.resetAttributesService.setOnSucceeded(event -> {
+//                    if (ConfiguratorController.resetAttributesService.getValue()) {
+//
+//                    }
+//                });
+//
+//                ConfiguratorController.resetAttributesService.setOnCancelled(event -> {
+//                    schemeNumberChoiceBox.valueProperty().setValue(oldVal);
+//                });
 
-                ConfiguratorController.resetAttributesService.setOnSucceeded(event -> {
-                    if (ConfiguratorController.resetAttributesService.getValue()) {
-                        try {
-                            onActionSchemeNumberChoiceBox();
-                        } catch (Exception ex) {
-                            Platform.runLater(() -> {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Ошибка");
-                                alert.setHeaderText("Невозможно выполнить операцию");
-                                alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
-                                alert.show();
-                            });
-                            logger.error(ex.getMessage());
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-
-                ConfiguratorController.resetAttributesService.setOnCancelled(event -> {
-                    schemeNumberChoiceBox.valueProperty().setValue(oldVal);
-                });
+                try {
+                    onActionSchemeNumberChoiceBox();
+                } catch (Exception ex) {
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Невозможно выполнить операцию");
+                        alert.setContentText("- установите соединение с контроллером, или повторите ещё раз");
+                        alert.show();
+                    });
+                    logger.error(ex.getMessage());
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
@@ -106,11 +108,11 @@ public class ChangeSchemeController extends CommonController implements Initiali
         schemes = MainController.schemes;
 
         // Получаем список схем для Choice Box
-        ObservableList<String> schemesItems = getSchemeItems(schemes);
+        ObservableList<String> schemesItems = getSchemeItems(List.of(schemes));
         schemeNumberChoiceBox.setItems(schemesItems);
 
         // Получаем текущую выбранную схему и пихаем в Choice Box
-        selectedScheme = schemes.get(readSchemeNumberFromModbus());
+        selectedScheme = schemes[readSchemeNumberFromModbus()];
         schemeNumberChoiceBox.setValue(schemesItems.get(selectedScheme.getNumber()));
     }
 
@@ -130,7 +132,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
             if (!SensorsController.sensorsUsed.isEmpty()) {
                 SensorsController.sensorsUsed.clear();
             }
-            previousScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+            previousScheme = schemes[schemeNumberChoiceBox.getSelectionModel().getSelectedIndex()];
 
             onSelectedSchemeNumber();
         }
@@ -139,7 +141,7 @@ public class ChangeSchemeController extends CommonController implements Initiali
     // Что происходит при выборе схемы из списка
     protected void onSelectedSchemeNumber() throws Exception {
         // Получить схему, которая была выбрана в Choice Box
-        selectedScheme = schemes.get(schemeNumberChoiceBox.getSelectionModel().getSelectedIndex());
+        selectedScheme = schemes[schemeNumberChoiceBox.getSelectionModel().getSelectedIndex()];
 
         // Получить все датчики и исполнительные устройства, которые есть в схеме
         sensorsInScheme = selectedScheme.getSensors();
@@ -226,10 +228,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                     Thread.sleep(100);
                 }
 
-                List<Sensor> sensors = schemes.get(selectedScheme.getNumber()).getSensors();
+                List<Sensor> sensors = schemes[selectedScheme.getNumber()].getSensors();
                 int sensorsDone = 0;
                 int sensorsMax = sensors.size();
-                for (Sensor sensor : schemes.get(selectedScheme.getNumber()).getSensors()) {
+                for (Sensor sensor : schemes[selectedScheme.getNumber()].getSensors()) {
                     sensorsDone++;
                     updateMessage("Загрузка датчиков: " + sensorsDone + "/" + sensorsMax);
                     updateProgress(sensorsDone, sensorsMax);
@@ -300,10 +302,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 boolean isSuccessfulAction = true;
                 int successfulActionAttempt = 0;
                 Actuator actuator = null;
-                for (int i = 0; i < ConfiguratorController.actuatorsList.size(); ) {
+                for (int i = 0; i < ConfiguratorController.actuatorsList.length; ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        actuator = ConfiguratorController.actuatorsList.get(i);
+                        actuator = ConfiguratorController.actuatorsList[i];
                     }
 
                     try {
@@ -334,10 +336,10 @@ public class ChangeSchemeController extends CommonController implements Initiali
                 isSuccessfulAction = true;
                 successfulActionAttempt = 0;
                 Sensor sensor = null;
-                for (int i = 0; i < ConfiguratorController.sensorsList.size(); ) {
+                for (int i = 0; i < ConfiguratorController.sensorsList.length; ) {
                     if (isSuccessfulAction) {
                         updateMessage("Загрузка...");
-                        sensor = ConfiguratorController.sensorsList.get(i);
+                        sensor = ConfiguratorController.sensorsList[i];
                     }
 
                     try {

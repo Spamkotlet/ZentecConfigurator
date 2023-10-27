@@ -2,14 +2,8 @@ package com.zenconf.zentecconfigurator;
 
 import com.zenconf.zentecconfigurator.controllers.configurator.IOMonitorController;
 import com.zenconf.zentecconfigurator.controllers.MainController;
-import com.zenconf.zentecconfigurator.updater.FtpClient;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Application extends javafx.application.Application {
 

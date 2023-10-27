@@ -45,12 +45,12 @@ public class MainController extends CommonController implements Initializable {
     public HBox leftHeaderButtonsHBox;
     public static HBox leftHeaderButtonsHBox1;
     public static MainParameters mainParameters;
-    public static List<String> alarms0;
-    public static List<String> alarms1;
-    public static List<String> warnings;
-    public static List<Actuator> actuatorList;
-    public static List<Sensor> sensorList;
-    public static List<Scheme> schemes;
+    public static String[] alarms0 = new String[32];
+    public static String[] alarms1 = new String[32];
+    public static String[] warnings = new String[16];
+    public static Actuator[] actuatorList = new Actuator[18];
+    public static Sensor[] sensorList = new Sensor[11];
+    public static Scheme[] schemes = new Scheme[71];
     public static ElectricParameters electricParameters;
     public static WaterParameters waterParameters;
 
@@ -85,6 +85,7 @@ public class MainController extends CommonController implements Initializable {
         thread.start();
 
         FtpClient ftpClient = new FtpClient();
+        final String[] changeLog = {""};
         Task<Boolean> updateApplicationTask = new Task<>() {
             @Override
             protected Boolean call() throws Exception {
@@ -96,11 +97,18 @@ public class MainController extends CommonController implements Initializable {
             @Override
             protected void succeeded() {
                 super.succeeded();
+
+                try {
+                    changeLog[0] = ftpClient.getChangeLog();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
                 if (super.getValue()) {
                     Dialog<ButtonType> dialog = new Dialog<>();
                     dialog.setTitle("Обновление");
                     dialog.setHeaderText("Найдена более новая версия приложения");
-                    dialog.setContentText("Обновляем?");
+                    dialog.setContentText(changeLog[0]);
                     dialog.getDialogPane().getButtonTypes().addAll(
                             new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
                             new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)

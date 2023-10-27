@@ -26,9 +26,9 @@ public class AlarmTableView {
     private final Attribute alarmsAttribute0;
     private final Attribute alarmsAttribute1;
     private final Attribute warningsAttribute;
-    private final List<String> alarmsList0;
-    private final List<String> alarmsList1;
-    private final List<String> warningsList;
+    private final String[] alarmsList0;
+    private final String[] alarmsList1;
+    private final String[] warningsList;
     private final char[] activeAlarms0CharArray = new char[32];
     private final char[] activeAlarms1CharArray = new char[32];
     private final char[] activeWarningsCharArray = new char[32];
@@ -96,7 +96,7 @@ public class AlarmTableView {
         String dateString = formatter.format(new Date());
         for (int i = 0; i < binaryAlarms0.length; i++) {
             if (binaryAlarms0[i] == '1') {
-                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList0.get(i), dateString);
+                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList0[i], dateString);
                 activeAlarmsList.add(alarm);
             }
         }
@@ -105,7 +105,7 @@ public class AlarmTableView {
         binaryAlarms1 = getActiveAlarmsBits1();
         for (int i = 0; i < binaryAlarms1.length; i++) {
             if (binaryAlarms1[i] == '1') {
-                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList1.get(i), dateString);
+                Alarm alarm = new Alarm(activeAlarmsList.size(), alarmsList1[i], dateString);
                 activeAlarmsList.add(alarm);
             }
         }
@@ -114,7 +114,7 @@ public class AlarmTableView {
         binaryWarnings = getActiveWarningsBits();
         for (int i = 0; i < binaryWarnings.length; i++) {
             if (binaryWarnings[i] == '1') {
-                Alarm alarm = new Alarm(activeAlarmsList.size(), warningsList.get(i), dateString);
+                Alarm alarm = new Alarm(activeAlarmsList.size(), warningsList[i], dateString);
                 activeAlarmsList.add(alarm);
             }
         }

@@ -55,6 +55,8 @@ public class IOMonitorController extends CommonController implements Initializab
     @FXML
     public Button startStopButton;
     @FXML
+    public Button startStopButton1;
+    @FXML
     public Button resetAlarmsButton;
     @FXML
     public Button clearJournalButton;
@@ -289,7 +291,7 @@ public class IOMonitorController extends CommonController implements Initializab
                 throw new RuntimeException(ex);
             }
         });
-        startStopButton.setOnMouseReleased(e -> {
+        startStopButton1.setOnMousePressed(e -> {
             try {
                 startStopReleased();
             } catch (Exception ex) {

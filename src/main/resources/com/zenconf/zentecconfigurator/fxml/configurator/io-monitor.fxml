@@ -45,7 +45,8 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button fx:id="startStopButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Пуск/Стоп" />
+            <Button fx:id="startStopButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Пуск" />
+            <Button fx:id="startStopButton1" layoutX="365.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Стоп" />
             <ChoiceBox fx:id="controlModeChoiceBox" prefHeight="50.0" prefWidth="140.0" />
             <Label fx:id="seasonLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="60.0" text="***" textAlignment="CENTER" wrapText="true">
                <font>

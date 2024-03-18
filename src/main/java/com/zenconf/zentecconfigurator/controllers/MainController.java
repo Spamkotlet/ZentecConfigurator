@@ -108,7 +108,7 @@ public class MainController extends CommonController implements Initializable {
                     Dialog<ButtonType> dialog = new Dialog<>();
                     dialog.setTitle("Обновление");
                     dialog.setHeaderText("Найдена более новая версия приложения");
-                    dialog.setContentText(changeLog[0]);
+                    dialog.setContentText("Обновить?");
                     dialog.getDialogPane().getButtonTypes().addAll(
                             new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
                             new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
